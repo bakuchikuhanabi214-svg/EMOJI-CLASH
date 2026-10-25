@@ -633,7 +633,8 @@ chatUI();upd();applyLang();
    items: {t:'title',id:'ec'} / {t:'ticket',n:5} / {t:'gitem',id:'c9'}
    新しい称号: 画像をindex.htmlと同じフォルダに置き、TITLES に1行足す(img は画像ファイル名、d は説明、ar は縦横比=横÷縦) */
 (()=>{
-const TITLES={ec:{n:'ECの覇者達',ne:'Champions of EC',img:'title_ec.jpg',d:'ECの覇者に贈られる称号',ar:4.5}};
+const TIMG="data:image/jpeg;base64,/9j/4AAQ...(元の長い1行)";
+const TITLES={ec:{n:'ECの覇者達',ne:'Champions of EC',img:TIMG,d:'ECの覇者に贈られる称号',ar:4.5}};
 const GIFTS=[
 {id:'ec_champ_1',n:'ECの覇者達 記念配布',ne:'Champions of EC Giveaway',m:'日本時間 8:00 までにログインしてくれた皆さんへ、記念の称号をプレゼント!',me:'A commemorative title for everyone who logged in before 8:00 AM JST!',until:Date.parse('2026-10-27T08:00:00+09:00'),items:[{t:'title',id:'ec'}]}
 /* 例(チケット+装備+称号):
