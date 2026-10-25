@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EMOJI CLASH</title>
+<style>
+:root{--bg:#0c0a18;--card:#17142b;--card2:#252144;--tx:#f4f2ff;--mut:#9a95c4;--acc:#ff4d8d;--gold:#ffd23f;--ok:#37d67a;--ng:#ff4d4d;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f1ff;--card:#fff;--card2:#e8e4fb;--tx:#171433;--mut:#625d8c;color-scheme:light}}
+:root[data-theme="light"]{--bg:#f3f1ff;--card:#fff;--card2:#e8e4fb;--tx:#171433;--mut:#625d8c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,"Hiragino Sans","Noto Sans JP",sans-serif;overflow-x:hidden}
+main{max-width:520px;margin:0 auto;padding:14px}
+h1{font-size:26px;margin:0;letter-spacing:.05em;background:linear-gradient(90deg,var(--acc),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{background:var(--card);border-radius:16px;padding:14px;margin:12px 0}
+.mut{color:var(--mut);font-size:13px}.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.btn{border:0;border-radius:99px;padding:12px 18px;font:inherit;font-weight:800;background:var(--acc);color:#fff;width:100%;margin-top:8px}
+.btn.alt{background:var(--card2);color:var(--tx)}
+.hide{display:none}
+.slot{background:var(--card2);border-radius:14px;padding:10px;margin:8px 0}
+.slot .top{display:flex;align-items:center;gap:10px}
+.slot .big{font-size:44px;width:64px;text-align:center}
+.slot input{font:inherit;font-size:20px;width:80px;padding:6px 8px;border-radius:10px;border:1px solid var(--card);background:var(--bg);color:var(--tx);text-align:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chips span{font-size:24px;padding:3px 7px;border-radius:10px;background:var(--card);cursor:pointer}
+.chips span:active{transform:scale(.9)}
+.tbar{height:8px;border-radius:4px;background:var(--card2);overflow:hidden}.tbar i{display:block;height:100%;background:var(--acc);width:100%}
+.stat{font-size:13px;color:var(--mut)}.stat b{color:var(--tx)}
+.arena{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.f{text-align:center;position:relative;transition:transform .15s}
+.f .em{font-size:78px;line-height:1.1}.f .sub{font-size:30px}
+.f .nm{font-size:13px;color:var(--mut)}
+.hp{height:14px;border-radius:7px;background:var(--card2);overflow:hidden;margin-top:6px}
+.hp i{display:block;height:100%;width:100%;background:var(--ok);transition:width .35s,background .3s}
+.hp.low i{background:var(--ng)}
+.hpn{font-size:13px;font-weight:700}
+.f.a0{transform:translateX(34px) scale(1.12)}.f.a1{transform:translateX(-34px) scale(1.12)}
+.f.hit{animation:hit .3s}.f.dead{opacity:.35;filter:grayscale(1)}
+.dmg{position:absolute;left:50%;top:10px;font-weight:900;font-size:26px;color:#fff;text-shadow:0 0 8px var(--ng),0 2px 0 #000;animation:rise .8s forwards;pointer-events:none}
+.dmg.h{color:var(--ok);text-shadow:0 0 8px #0a5}.dmg.c{color:var(--gold);font-size:34px}
+#tick{text-align:center;min-height:48px;font-weight:700;margin-top:10px}
+#turn{text-align:center;font-weight:900;letter-spacing:.15em;color:var(--mut)}
+.banner{position:fixed;left:0;right:0;top:34%;text-align:center;font-size:40px;font-weight:900;z-index:60;pointer-events:none;color:var(--gold);text-shadow:0 0 24px #f80,0 3px 0 #000;animation:ban 1.3s forwards}
+.verdict{text-align:center;font-size:44px;font-weight:900;margin:6px 0}
+.verdict.w{color:var(--gold);text-shadow:0 0 24px var(--gold)}.verdict.l{color:var(--ng)}
+.ttl{display:inline-block;background:var(--card2);padding:3px 10px;border-radius:99px;margin:3px 4px 0 0;font-size:13px}
+#flash{position:fixed;inset:0;pointer-events:none;z-index:45;opacity:0}#flash.go{animation:fl .6s}
+#cv{position:fixed;inset:0;pointer-events:none;z-index:50}
+body.shake main{animation:shk .5s}body.dark main{filter:brightness(.25)}
+main{transition:filter .15s}
+@keyframes hit{50%{transform:translateX(8px) rotate(6deg);filter:brightness(2)}}
+@keyframes rise{to{transform:translate(-50%,-60px);opacity:0}}
+@keyframes ban{0%{opacity:0;transform:scale(.3)}20%{opacity:1;transform:scale(1.2)}100%{opacity:0;transform:scale(1) translateY(-30px)}}
+@keyframes fl{0%{opacity:.85}100%{opacity:0}}
+@keyframes shk{20%{transform:translate(-9px,4px)}40%{transform:translate(8px,-5px)}60%{transform:translate(-6px,3px)}80%{transform:translate(5px,-2px)}}
+</style>
+</head>
+<body>
+<div id="flash"></div><canvas id="cv"></canvas>
+<main>
+<h1>EMOJI CLASH</h1>
+<div class="mut">絵文字ひとつで、世界を倒せ。</div>
+
+<div id="start" class="card">
+ <b>絵文字を3つ組み合わせて、自分だけの戦士を作ろう。</b>
+ <p class="mut">戦闘は自動。HPが25%以下になると逆転技が発動することがあります。</p>
+ <div id="chal" class="hide" style="color:var(--gold);font-weight:700;margin-bottom:8px"></div>
+ <button class="btn" id="sOn">🔊 音ありでプレイ</button>
+ <button class="btn alt" id="sOff">🔇 音なしでプレイ</button>
+</div>
+
+<div id="build" class="card hide">
+ <div class="row"><b>戦士ビルダー</b><span class="mut" id="tm">15</span></div>
+ <div class="tbar"><i id="tbar"></i></div><input id="nick" maxlength="10" placeholder="ニックネーム(友達への挑戦状に載ります)" style="width:100%;margin:8px 0;padding:8px 10px;border-radius:10px;border:1px solid var(--card2);background:var(--bg);color:var(--tx);font:inherit">
+ <div id="slots"></div><div id="info" class="card" style="background:var(--card2);margin:8px 0"></div><details style="margin:6px 0"><summary><b>📊 タイプ相性表(タップで開く)</b></summary><div id="chart"></div></details>
+ <div class="card" style="background:var(--card2);margin:8px 0">
+  <div class="row"><b>YOUR WARRIOR</b><span style="font-size:30px" id="wv"></span></div>
+  <div class="stat" id="st"></div>
+ </div>
+ <button class="btn" id="go">⚔️ バトル開始</button>
+ <button class="btn alt" id="rnd">🎲 ランダム</button>
+</div>
+
+<div id="arena" class="card hide">
+ <div id="turn"></div>
+ <div class="arena">
+  <div class="f" id="f0"><div class="em" id="e0"></div><div class="sub" id="s0"></div><div class="nm" id="n0"></div><div class="hp" id="h0"><i></i></div><div class="hpn" id="hn0"></div></div>
+  <div class="f" id="f1"><div class="em" id="e1"></div><div class="sub" id="s1"></div><div class="nm" id="n1"></div><div class="hp" id="h1"><i></i></div><div class="hpn" id="hn1"></div></div>
+ </div>
+ <div id="tick"></div>
+</div>
+
+<div id="result" class="card hide"></div>
+<div class="card hide" id="rec"></div>
+</main>
+<script>
+const $=s=>document.querySelector(s),sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const SHARE="";
+const norm=s=>String(s).replace(/\uFE0F/g,"");
+const T=o=>{const r={};for(const k in o)r[norm(k)]=o[k];return r};
+const BODY=T({"🐢":{d:"高耐久・低速",def:8,spd:.6,c:"def"},"🗿":{d:"超高防御・鈍足",def:10,spd:.5,c:"def"},"🐱":{d:"高速・紙耐久",def:2,spd:1.5,c:"dodge"},"🐉":{d:"バランス型",def:5,spd:1,c:"atk"},"💩":{d:"紙装甲・くさい",def:1,spd:1,c:"stink"},"🍣":{d:"やわらか・やや速い",def:3,spd:1.1,c:"heal"},"🤖":{d:"硬くて安定",def:6,spd:1,c:"dodge"},"👻":{d:"すばしこい",def:2,spd:1.3,c:"dodge"},"🦖":{d:"重量級",def:5,spd:.9,c:"atk"}});
+const WEAP=T({"⚔️":{d:"単発高火力",atk:20,hits:1},"⚡":{d:"高速2連撃",atk:8,hits:2},"🎸":{d:"防御貫通",atk:11,hits:1,pierce:.6},"🔨":{d:"大打撃・やや鈍重",atk:25,hits:1,spdm:.8},"🏹":{d:"高クリティカル",atk:14,hits:1,crit:.3},"🔫":{d:"3連射",atk:6,hits:3},"🪄":{d:"魔法・防御貫通",atk:13,hits:1,pierce:.5}});
+const ELEM=T({"🔥":{d:"継続ダメージ",burn:1,c:"x2"},"❄️":{d:"相手を減速",slow:1,c:"freeze"},"💚":{d:"毎ターン回復",heal:4,c:"heal"},"💀":{d:"ライフ吸収",steal:.3,c:"x2"},"☠️":{d:"毒",poison:1,c:"x2"},"🌀":{d:"15%で行動不能",stun:.15,c:"freeze"}});
+const DB={d:"未登録(標準)",def:3,spd:1,c:"atk"},DW={d:"未登録(標準)",atk:12,hits:1},DE={d:"属性なし",c:null};
+Object.assign(BODY,T({'🐘':{d:'超耐久の重戦車',def:9,spd:.5,c:'def'},'🦊':{d:'すばしこい策士',def:3,spd:1.3,c:'dodge'},'🐺':{d:'高速アタッカー',def:3,spd:1.4,c:'atk'},'🦍':{d:'パワー型',def:6,spd:.8,c:'atk'},'🐍':{d:'毒々しい小細工',def:2,spd:1.2,c:'stink'},'🐙':{d:'粘る回復役',def:4,spd:.9,c:'heal'},'🦅':{d:'超高速の空襲',def:2,spd:1.5,c:'dodge'},'🐻':{d:'頑丈な森の王',def:7,spd:.7,c:'def'},'🥷':{d:'最速の暗殺者',def:2,spd:1.6,c:'dodge'},'🧛':{d:'タフで回復',def:4,spd:1,c:'heal'},'🤡':{d:'ふざけた小細工',def:2,spd:1.1,c:'stink'}}));
+Object.assign(WEAP,T({'🗡️':{d:'鋭い一撃',atk:16,hits:1,crit:.2},'🪓':{d:'重い斧・軽く貫通',atk:22,hits:1,pierce:.3,spdm:.9},'🔱':{d:'2連貫通',atk:10,hits:2,pierce:.3},'💣':{d:'超火力・超鈍重',atk:30,hits:1,spdm:.7},'🪃':{d:'2連・高クリ',atk:9,hits:2,crit:.2},'🥊':{d:'速い拳',atk:15,hits:1,spdm:1.1},'🍌':{d:'弱いが超クリ',atk:7,hits:1,crit:.5}}));
+Object.assign(ELEM,T({'🌊':{d:'毎ターン+2回復・減速',heal:2,slow:1,c:'heal'},'⭐':{d:'クリティカル率+25%',crit:.25,c:'x2'},'🍀':{d:'20%で攻撃を回避',evade:.2,c:'dodge'},'🩸':{d:'継続ダメージ+吸血',burn:1,steal:.2,c:'x2'},'🌑':{d:'当てると相手の攻撃-40%',curse:1,c:'freeze'},'✨':{d:'防御貫通+30%',pierce:.3,c:'x2'}}));
+const TYPE=T({'🐢':'守','🗿':'守','🤖':'守','🐘':'守','🐻':'守','🐱':'速','🐺':'速','🦅':'速','🥷':'速','🐉':'力','🦖':'力','🦍':'力','💩':'トリ','👻':'トリ','🦊':'トリ','🐍':'トリ','🤡':'トリ','🍣':'持','🐙':'持','🧛':'持'});
+const N=T({'🐢':'カメ','🗿':'モアイ','🤖':'ロボ','🐘':'ゾウ','🐻':'クマ','🐱':'ネコ','🐺':'オオカミ','🦅':'ワシ','🥷':'ニンジャ','🐉':'ドラゴン','🦖':'きょうりゅう','🦍':'ゴリラ','💩':'うんち','👻':'ゆうれい','🦊':'キツネ','🐍':'ヘビ','🤡':'ピエロ','🍣':'おすし','🐙':'タコ','🧛':'ドラキュラ','⚔️':'剣','⚡':'雷','🎸':'ギター','🔨':'ハンマー','🏹':'弓','🔫':'ガン','🪄':'魔法の杖','🗡️':'短剣','🪓':'斧','🔱':'トライデント','💣':'爆弾','🪃':'ブーメラン','🥊':'パンチ','🍌':'バナナ','🔥':'炎','❄️':'氷','💚':'癒し','💀':'吸血','☠️':'毒','🌀':'めまい','🌊':'水流','⭐':'スター','🍀':'幸運','🩸':'出血','🌑':'呪い','✨':'聖なる光'});
+const GB=T({'⚔️':['耐久の低い相手','回避・凍結で空振りしやすい'],'⚡':['回避持ち・防御の低い相手(2連撃で当てやすい)','防御が高い相手(1発が軽い)'],'🎸':['防御が高い相手(貫通)','紙装甲には火力不足'],'🔨':['防御が高い・動きが遅い相手','高速型(先に攻撃される)'],'🏹':['長期戦(クリティカルが積み上がる)','防御が高い相手'],'🔫':['回避持ち・防御の低い相手','防御が高い相手'],'🪄':['守り型(防御を貫通)','高速型'],'🗡️':['バランス型','防御が高い相手'],'🪓':['守り型(軽く貫通)','高速型'],'🔱':['守り型(2連貫通)','特になし(器用貧乏)'],'💣':['守り型・低速型','高速型(当たる前に倒される)'],'🪃':['回避持ち','防御が高い相手'],'🥊':['近づいて押し切る戦い','貫通・持久型'],'🍌':['運試し(超クリティカル狙い)','ほぼ全般(火力が低い)'],'🔥':['回復持ち・持久型','速攻型に押し切られる'],'❄️':['高速型(減速で封じる)','低速・守り型'],'💚':['長期戦・継続ダメージ','高火力の短期決戦'],'💀':['殴り合い','回避が多い相手'],'☠️':['守り型(防御を無視)','速攻で倒される'],'🌀':['2連撃・多段攻撃と相性◎','確率が低く安定しない'],'🌊':['速攻型(減速+回復)','高火力型'],'⭐':['高クリ武器(🏹🍌)','防御が硬い相手'],'🍀':['多段攻撃を避ける','火力不足になりがち'],'🩸':['持久戦','防御が高い相手'],'🌑':['パワー型(攻撃を弱める)','短期決戦'],'✨':['守り型(貫通UP)','速攻型']});
+const BEATS={'守':['速','トリ'],'速':['持','力'],'力':['守','トリ'],'トリ':['速','持'],'持':['守','力']};
+const TYPES={'守':{n:'守り型',i:'🛡️',c:'#4da3ff'},'速':{n:'速攻型',i:'⚡',c:'#ffd23f'},'力':{n:'パワー型',i:'💥',c:'#ff6b4a'},'トリ':{n:'トリック型',i:'🌀',c:'#c77dff'},'持':{n:'持久型',i:'🌿',c:'#37d67a'}};
+const COL=Object.fromEntries(Object.entries(TYPES).map(([k,v])=>[k,v.c]));
+const WHY={'守>速':'速い攻撃は硬い守りを抜けない','守>トリ':'小細工を真正面から受け止める','速>持':'回復される前に倒せる','速>力':'大技が出る前に畳みかける','力>守':'防御を力で砕く','力>トリ':'小細工ごと押し潰す','トリ>速':'速い攻撃をかわして翻弄','トリ>持':'回復を邪魔して調子を崩す','持>守':'火力の低い守りを長期戦で削る','持>力':'大技に耐えて回復で粘り勝つ'};
+const adv=(f,o)=>f.type&&o.type?(BEATS[f.type].includes(o.type)?1.25:BEATS[o.type].includes(f.type)?.8:1):1;
+const tnm=x=>TYPES[x].i+TYPES[x].n,lose=t=>Object.keys(BEATS).filter(k=>BEATS[k].includes(t));
+function mu(A,B){if(!A.type||!B.type)return '相性なし(未登録タイプを含む)';const a=adv(A,B);return tnm(A.type)+' VS '+tnm(B.type)+' → '+(a>1?'有利!(ダメージ×1.25)':a<1?'不利…(ダメージ×0.8)':'互角')}
+let INFO=null,INFO_I=0;
+function info(r){const t=TYPES[r.type];let h=t?`<b>あなたの戦士:<span style="color:${t.c}">${tnm(r.type)}</span></b><div class="stat">有利:${BEATS[r.type].map(tnm).join('・')} / 不利:${lose(r.type).map(tnm).join('・')}</div>`:`<b>あなたの戦士:タイプなし</b><div class="stat">本体が未登録のため相性なし(標準ステータス)</div>`;const i=INFO?INFO_I:0,e=INFO||W[0],k=norm(e),x=[BODY,WEAP,ELEM][i][k];h+=`<hr style="border:0;border-top:1px solid var(--card);margin:8px 0"><b>${e} ${N[k]||'未登録'}</b> <span class="mut">(${LAB[i]})</span><div class="stat">`;if(!x)h+='未登録の絵文字:標準ステータスで戦います(特性・タイプなし)';else if(i==0){const ty=TYPE[k];h+=`${x.d}<br>DEF ${x.def} / SPD ${x.spd}<br>タイプ:<b style="color:${TYPES[ty].c}">${tnm(ty)}</b> 有利:${BEATS[ty].map(tnm).join('・')} / 不利:${lose(ty).map(tnm).join('・')}<br>逆転:${CL[x.c]}`}else{const g=GB[k]||['',''];h+=`${x.d}${i==1?'<br>ATK '+x.atk+'×'+x.hits:''}<br>◎得意:${g[0]}<br>△苦手:${g[1]}${x.c?'<br>逆転:'+CL[x.c]:''}`}$('#info').innerHTML=h+'</div>'}
+$('#chart').innerHTML=Object.keys(BEATS).map(t=>`<div style="margin:8px 0"><b style="color:${TYPES[t].c}">${tnm(t)}</b><div class="stat">✅ 有利:${BEATS[t].map(x=>tnm(x)+'('+WHY[t+'>'+x]+')').join('、')}<br>⚠️ 不利:${lose(t).map(x=>tnm(x)+'('+WHY[x+'>'+t]+')').join('、')}</div></div>`).join('')+'<div class="mut">相性が良いとダメージ×1.25、悪いと×0.8。武器・属性にも「得意/苦手」があります。未登録の本体は相性なしです。</div>';
+const CL={def:"防御+8",dodge:"次の攻撃を回避",atk:"攻撃+60%(3回)",stink:"相手の攻撃-40%(3回)",heal:"HP+15",x2:"次の攻撃2倍",freeze:"相手を2ターン凍結",hl:"HP+12"};
+const PRE=[["🐢","🐱","🗿","🐉","💩","🍣","🤖","👻"],["⚔️","⚡","🎸","🔨","🏹","🔫","🪄"],["🔥","❄️","💚","💀","☠️","🌀"]];
+PRE[0].push('🐘','🦊','🐺','🦍','🐍','🐙','🦅','🐻','🥷','🧛','🤡');PRE[1].push('🗡️','🪓','🔱','💣','🪃','🥊','🍌');PRE[2].push('🌊','⭐','🍀','🩸','🌑','✨');
+const LAB=["① 本体","② 武器","③ 属性"];
+const OPP=[["🐉","⚔️","🔥","Fiesta"],["🗿","🔨","❄️","Buster"],["🐱","⚡","💚","Snoopy"],["💩","🎸","💀","Ducky"],["🍣","🏹","☠️","Belle"],["🤖","🔫","🌀","Tony"],["🦖","🔨","🔥","Rex"],["👻","🪄","❄️","Boo"]];
+OPP.push(['🐘','🪓','🌑','Gus'],['🥷','🗡️','🩸','Kage'],['🐙','🔱','🌊','Ink'],['🦊','🪃','🍀','Luna'],['🐻','🥊','✨','Bruno']);
+const seg=window.Intl&&Intl.Segmenter?new Intl.Segmenter(undefined,{granularity:"grapheme"}):null;
+const first=s=>{const a=seg?[...seg.segment(s)].map(x=>x.segment):Array.from(s);return a.find(g=>/\p{Extended_Pictographic}|\p{Emoji_Presentation}/u.test(g))||""};
+let W=["🐢","⚡","🔥"],rec={w:0,l:0,st:0,best:0,cb:0},chal=null,lastRun=null,busy=false,tmr=null;
+// ---- 音 ----
+let AC=null,master,sndOn=true,nb=null;const M={mode:null,step:0,next:0,hold:0};
+function ctx(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)();master=AC.createGain();master.gain.value=.9;master.connect(AC.destination);setInterval(sched,25)}catch(e){}}return AC}
+function tn(f,t,d,ty,v,f2){if(!AC||!sndOn)return;const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0008,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.02)}
+function nz(t,d,v,hp){if(!AC||!sndOn)return;if(!nb){nb=AC.createBuffer(1,AC.sampleRate*.5,AC.sampleRate);const a=nb.getChannelData(0);for(let i=0;i<a.length;i++)a[i]=Math.random()*2-1}const s=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();s.buffer=nb;f.type="highpass";f.frequency.value=hp;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0008,t+d);s.connect(f);f.connect(g);g.connect(master);s.start(t);s.stop(t+d)}
+const kick=(t,v)=>tn(150,t,.15,"sine",v||.5,40),hz=m=>440*Math.pow(2,(m-69)/12),now=()=>AC?AC.currentTime:0;
+const BPM={select:118,battle:150,clutch:164};
+const BS={battle:[36,36,48,36,39,36,43,36,34,34,46,34,38,34,41,34],clutch:[33,33,45,33,36,33,40,33,31,31,43,31,35,31,38,31]};
+const LD={select:[72,76,79,76,81,79,76,74,72,76,79,84,81,79,76,72],battle:[0,0,67,0,0,70,0,0,72,0,0,70,0,67,0,0],clutch:[69,72,76,81,76,72,69,72,67,71,74,79,74,71,67,71]};
+function step(m,i,t){const s=i%16;
+ if(m==="select"){if(s%4==0)tn(hz(s<8?48:43),t,.2,"triangle",.12);tn(hz(LD.select[s]),t,.12,"square",.045);if(s%2==1)nz(t,.03,.05,7000);if(s==0)kick(t,.25)}
+ else if(m==="battle"){if(s%4==0)kick(t,.45);if(s%2==1)nz(t,.04,.07,8000);if(s==4||s==12)nz(t,.12,.12,1800);tn(hz(BS.battle[s]),t,.1,"sawtooth",.07);if(LD.battle[s])tn(hz(LD.battle[s]),t,.1,"square",.05)}
+ else{if(s%4==0||s==10)kick(t,.6);if(s==4||s==12)nz(t,.15,.2,1500);nz(t,.03,.06,9000);tn(hz(BS.clutch[s]),t,.1,"sawtooth",.1);tn(hz(LD.clutch[s]),t,.1,"sawtooth",.05)}}
+function sched(){if(!AC||!sndOn||!M.mode||AC.currentTime<M.hold)return;if(M.next<AC.currentTime)M.next=AC.currentTime+.05;while(M.next<AC.currentTime+.12){step(M.mode,M.step++,M.next);M.next+=60/BPM[M.mode]/4}}
+function music(m){M.mode=m;M.step=0;M.next=0;M.hold=0}
+function sfxHit(c){const t=now();tn(c?320:200,t,.12,"square",.14,60);nz(t,.08,c?.25:.15,1200)}
+function jWin(){const t=now();[523,659,784,1047,784,1047,1319].forEach((f,i)=>tn(f,t+i*.1,.3,"square",.1))}
+function jLose(){const t=now();tn(300,t,.5,"sawtooth",.12,200);tn(250,t+.5,.5,"sawtooth",.12,170);tn(200,t+1,.9,"sawtooth",.12,90)}
+// ---- 演出 ----
+function fl(c){const f=$("#flash");f.style.background=c;f.classList.remove("go");void f.offsetWidth;f.classList.add("go")}
+function shake(){document.body.classList.add("shake");setTimeout(()=>document.body.classList.remove("shake"),500)}
+function vib(p){try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}}
+function banner(t){const d=document.createElement("div");d.className="banner";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1400)}
+function confetti(n){const c=$("#cv"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;const ps=[...Array(n)].map(()=>({x:innerWidth/2,y:innerHeight*.5,vx:(Math.random()-.5)*16,vy:-Math.random()*15-4,r:Math.random()*6+3,col:"hsl("+Math.random()*360+",90%,60%)",a:Math.random()*6}));let f=0;(function d(){x.clearRect(0,0,c.width,c.height);ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.a+=.2;x.fillStyle=p.col;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillRect(-p.r,-p.r/2,p.r*2,p.r);x.restore()});if(++f<160)requestAnimationFrame(d);else x.clearRect(0,0,c.width,c.height)})()}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function show(id){["start","build","arena","result","rec"].forEach(x=>$("#"+x).classList.toggle("hide",x!==id&&!(id==="result"&&x==="rec")))}
+// ---- 戦士 ----
+function mk(w,name){const b=BODY[norm(w[0])]||DB,wp=WEAP[norm(w[1])]||DW,el=ELEM[norm(w[2])]||DE;
+ return{w,name,hp:100,def:b.def,spd:b.spd*(wp.spdm||1),atk:wp.atk,hits:wp.hits,pierce:(wp.pierce||0)+(el.pierce||0),crit:(wp.crit||.1)+(el.crit||0),evade:el.evade||0,type:TYPE[norm(w[0])]||'',b,wp,el,acc:0,burn:0,slow:0,freeze:0,dodge:0,atkBuf:0,x2:0,deb:0,poison:0,clutched:false,minhp:100}}
+function fight(A,B){const log=[],F=[A,B],hp=()=>[A.hp,B.hp];
+ const ev=o=>log.push(Object.assign({hp:hp()},o));
+ const clutch=(i)=>{const f=F[i],o=F[1-i];if(f.hp<=0||f.hp>25||f.clutched)return;f.clutched=true;if(Math.random()>.75){ev({type:"nocl",who:i});return}
+  const fx=[f.b.c,f.el.c].filter(Boolean),txt=[];
+  fx.forEach(c=>{if(c==="def"){f.def+=8}else if(c==="dodge"){f.dodge=1}else if(c==="atk"){f.atkBuf=3}else if(c==="stink"){o.deb=3}else if(c==="heal"){f.hp=Math.min(100,f.hp+(f.b.c==="heal"?15:12))}else if(c==="x2"){f.x2=1}else if(c==="freeze"){o.freeze=2}txt.push(CL[c])});
+  if(!fx.length){f.atkBuf=3;txt.push(CL.atk)}
+  ev({type:"clutch",who:i,text:txt.join(" + ")})};
+ const dmg=(i,v,why)=>{const f=F[i];f.hp=Math.max(0,f.hp-v);f.minhp=Math.min(f.minhp,f.hp);ev({type:"dot",who:i,v,why});clutch(i)};
+ const atk=(i)=>{const f=F[i],o=F[1-i];if(o.dodge>0){o.dodge--;ev({type:"miss",who:i});return}if(o.evade&&Math.random()<o.evade){ev({type:"miss",who:i});return}
+  for(let h=0;h<f.hits&&o.hp>0;h++){let a=f.atk,m=adv(f,o);if(f.atkBuf>0)m*=1.6;if(f.x2){m*=2}if(f.deb>0)m*=.6;
+   const cr=Math.random()<f.crit;if(cr)m*=1.5;let d=Math.max(1,Math.round(a*m-o.def*(1-f.pierce)*.8+(Math.random()*4-2)));
+   o.hp=Math.max(0,o.hp-d);o.minhp=Math.min(o.minhp,o.hp);
+   if(f.el.steal)f.hp=Math.min(100,f.hp+Math.round(d*f.el.steal));
+   if(f.el.burn)o.burn=3;if(f.el.slow)o.slow=3;if(f.el.curse)o.deb=2;if(f.el.poison)o.poison=4;if(f.el.stun&&Math.random()<f.el.stun)o.freeze=1;
+   ev({type:"hit",who:i,v:d,crit:cr,hits:f.hits});clutch(1-i)}
+  if(f.atkBuf>0)f.atkBuf--;f.x2=0;if(f.deb>0)f.deb--};
+ for(let t=1;t<=10&&A.hp>0&&B.hp>0;t++){ev({type:"turn",t});
+  F.forEach((f,i)=>{if(f.hp<=0)return;if(f.burn>0){f.burn--;dmg(i,3,"🔥")}if(f.poison>0){f.poison--;dmg(i,2,"☠️")}if(f.el.heal&&f.hp>0){f.hp=Math.min(100,f.hp+f.el.heal);ev({type:"heal",who:i,v:f.el.heal})}});
+  const ord=A.spd>=B.spd?[0,1]:[1,0];
+  ord.forEach(i=>{const f=F[i];if(f.hp<=0||F[1-i].hp<=0)return;if(f.freeze>0){f.freeze--;ev({type:"frozen",who:i});return}
+   f.acc+=f.spd*(f.slow>0?.7:1);if(f.slow>0)f.slow--;let n=0;while(f.acc>=1&&n++<3&&F[1-i].hp>0&&f.hp>0){f.acc-=1;atk(i)}})}
+ const pa=A.hp,pb=B.hp,win=pa>pb?0:pb>pa?1:-1;ev({type:"end",win});return{log,win}}
+// ---- 画面 ----
+function stats(){const r=mk(W,"");$("#wv").textContent=W.join("");info(r);
+ $("#st").innerHTML=`ATK <b>${r.atk}×${r.hits}</b> / DEF <b>${r.def}</b> / SPD <b>${r.spd.toFixed(1)}</b><br>本体:${r.b.d}<br>武器:${r.wp.d}<br>属性:${r.el.d}<br>逆転:<b>${[r.b.c,r.el.c].filter(Boolean).map(c=>CL[c]).join(" + ")||CL.atk}</b>`}
+function drawSlots(){$("#slots").innerHTML=PRE.map((p,i)=>`<div class="slot"><div class="top"><div class="big">${W[i]}</div><div><div class="mut">${LAB[i]}</div><input data-i="${i}" placeholder="絵文字" value=""></div></div><div class="chips">${p.map(e=>`<span data-i="${i}" style="border-bottom:3px solid ${i==0?COL[TYPE[norm(e)]]||'transparent':'transparent'}">${e}</span>`).join("")}</div></div>`).join("");
+ $("#slots").querySelectorAll("input").forEach(n=>n.oninput=()=>{const e=first(n.value);n.value="";if(e){W[+n.dataset.i]=e;INFO=e;INFO_I=+n.dataset.i;ping();drawSlots();stats()}});
+ $("#slots").querySelectorAll(".chips span").forEach(n=>n.onclick=()=>{W[+n.dataset.i]=n.textContent;INFO=n.textContent;INFO_I=+n.dataset.i;ping();drawSlots();stats()})}
+function ping(){if(AC)tn(880,now(),.08,"square",.08);vib(15)}
+function openBuild(){show("build");music("select");stats();drawSlots();let left=15;clearInterval(tmr);$("#tm").textContent=left;$("#tbar").style.width="100%";
+ tmr=setInterval(()=>{left--;$("#tm").textContent=left;$("#tbar").style.width=(left/15*100)+"%";if(left<=0){clearInterval(tmr);battle()}},1000)}
+function tokOf(w){return "w"+w.map(e=>[...e].map(c=>c.codePointAt(0).toString(16)).join("_")).join("-")+(NICK?"-n"+[...NICK].map(c=>c.codePointAt(0).toString(16)).join("_"):"")}
+function parseTok(h){try{const m=h.replace("#","");if(m[0]!=="w")return null;const p=m.slice(1).split("-"),dec=s=>String.fromCodePoint(...s.split("_").map(x=>parseInt(x,16)));const w=p.slice(0,3).map(dec);if(w.length!==3)return null;let n="";if(p[3]&&p[3][0]==="n")n=dec(p[3].slice(1));return{w,n}}catch(e){return null}}
+function friendFight(me,op){const key=w=>w.map(e=>[...e].map(c=>c.codePointAt(0).toString(16)).join('_')).join('-'),km=key(me),ko=key(op),first=km<=ko;const P=mk(first?me:op,''),Q=mk(first?op:me,'');let h=2166136261;for(const c of (first?km+'|'+ko:ko+'|'+km))h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;const orig=Math.random;let s=h||1;Math.random=()=>{s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};let r;try{r=fight(P,Q)}finally{Math.random=orig}if(first)return{A:P,B:Q,r};const fl=w=>w<0?-1:1-w;const log=r.log.map(e=>{const x=Object.assign({},e);if(x.hp)x.hp=[e.hp[1],e.hp[0]];if(x.who!==undefined)x.who=1-x.who;if(x.type==='end')x.win=fl(e.win);return x});return{A:Q,B:P,r:{log,win:fl(r.win)}}}
+async function battle(){if(busy)return;busy=true;clearInterval(tmr);
+ let oppW,oppN,ghost=true;if(chal){oppW=chal.w;oppN="友達の戦士:"+(chal.n||"???");ghost=false}else{const o=OPP[Math.floor(Math.random()*OPP.length)];oppW=o.slice(0,3);oppN="👻 "+o[3]}
+ let A=mk(W.slice(),"YOU"),B=mk(oppW,oppN),r;if(ghost)r=fight(A,B);else{const o=friendFight(W.slice(),oppW);A=o.A;B=o.B;r=o.r}lastRun={W:W.slice(),oppW,oppN,r,A,B};await play(lastRun);busy=false}
+function setHp(i,v,low){const e=$("#h"+i);e.firstElementChild.style.width=Math.max(0,v)+"%";e.classList.toggle("low",v<=25);$("#hn"+i).textContent="HP "+Math.max(0,v)}
+async function play(L,replay){show("arena");const {A,B,r}=L;music("battle");
+ [[0,L.W,"YOU"],[1,L.oppW,L.oppN]].forEach(([i,w,n])=>{$("#e"+i).textContent=w[0];$("#s"+i).textContent=w[1]+w[2];$("#n"+i).textContent=n;$("#f"+i).className="f";setHp(i,100)});
+ $("#tick").textContent="READY...";$("#turn").textContent="相性:"+mu(A,B);await sleep(1900);
+ const nm=i=>i?L.oppN:"YOU",F=[$("#f0"),$("#f1")];
+ const float=(i,t,c)=>{const d=document.createElement("div");d.className="dmg "+(c||"");d.textContent=t;F[i].appendChild(d);setTimeout(()=>d.remove(),850)};
+ for(const e of r.log){
+  if(e.type==="turn"){$("#turn").textContent="TURN "+e.t+" / 10";await sleep(350)}
+  else if(e.type==="hit"){F[e.who].classList.add("a"+e.who);sfxHit(e.crit);await sleep(130);F[e.who].classList.remove("a"+e.who);const t=1-e.who;F[t].classList.add("hit");setTimeout(()=>F[t].classList.remove("hit"),300);float(t,"-"+e.v,e.crit?"c":"");setHp(0,e.hp[0]);setHp(1,e.hp[1]);$("#tick").textContent=(e.crit?"💥 CRITICAL! ":"")+nm(e.who)+" の攻撃 -"+e.v;if(e.crit){shake();vib(60)}await sleep(e.hits>1?260:420)}
+  else if(e.type==="dot"){float(e.who,"-"+e.v);setHp(0,e.hp[0]);setHp(1,e.hp[1]);$("#tick").textContent=e.why+" "+nm(e.who)+" に継続ダメージ";await sleep(250)}
+  else if(e.type==="heal"){float(e.who,"+"+e.v,"h");setHp(0,e.hp[0]);setHp(1,e.hp[1]);await sleep(160)}
+  else if(e.type==="miss"){$("#tick").textContent="💨 "+nm(1-e.who)+" が回避!";await sleep(450)}
+  else if(e.type==="frozen"){$("#tick").textContent="🧊 "+nm(e.who)+" は動けない!";await sleep(400)}
+  else if(e.type==="nocl"){$("#tick").textContent="…"+nm(e.who)+" は逆転できなかった";await sleep(500)}
+  else if(e.type==="clutch"){music(null);document.body.classList.add("dark");if(AC){kick(now(),.7);kick(now()+.38,.5)}vib([120,200,120]);$("#tick").textContent="…";await sleep(1100);document.body.classList.remove("dark");
+   fl(e.who?"#ff4d4d":"#ffd23f");shake();banner("⚡ CLUTCH!");vib([80,40,200]);$("#tick").textContent="⚡ "+nm(e.who)+" の逆転技!「"+e.text+"」";setHp(0,e.hp[0]);setHp(1,e.hp[1]);music("clutch");await sleep(1300)}
+  else if(e.type==="end"){await sleep(500)}
+ }
+ music(null);if(replay){show("result");return}
+ finish(L)}
+function finish(L){const {r,A}=L,win=r.win===0,draw=r.win<0;
+ const hp0=L.r.log[L.r.log.length-1].hp,cb=win&&A.minhp<=25;
+ if(win){rec.w++;rec.st++;rec.best=Math.max(rec.best,rec.st);if(cb)rec.cb++}else if(!draw){rec.l++;rec.st=0}
+ const titles=[];if(cb)titles.push("🔥 HP "+A.minhp+"から逆転勝利");if(win&&norm(L.W[0])==="💩"&&norm(L.oppW[0])==="🐉")titles.push("💩でドラゴンに勝利");
+ if(win&&!BODY[norm(L.W[0])])titles.push("🆕 未登録の絵文字で勝利");if(win&&rec.st>=3)titles.push("🔥 "+rec.st+"連勝中");if(win&&r.log.length<12)titles.push("⚡ 秒殺");
+ music(null);if(win){fl("#ffd23f");confetti(cb?260:120);jWin();vib([60,40,60,40,200])}else if(draw){}else{fl("#ff4d4d");shake();jLose();vib(400)}
+ const txt=draw?"DRAW":win?"WIN!":"LOSE";
+ $("#result").innerHTML=`<div class="verdict ${win?"w":"l"}">${win?"🏆 ":draw?"🤝 ":"💀 "}${txt}</div><div style="text-align:center;font-size:32px">${L.W.join("")} <span class="mut" style="font-size:16px">VS</span> ${L.oppW.join("")}</div><div class="mut" style="text-align:center">${esc(L.oppN)}(${L.oppN.startsWith("👻")?"ゴースト対戦:過去に保存された戦士":"友達の戦士"})</div><div class="mut" style="text-align:center">相性:${mu(L.A,L.B)}</div><div style="text-align:center;margin:8px 0">${titles.map(t=>`<span class="ttl">${t}</span>`).join("")}</div>
+ <button class="btn" id="again">⚔️ もう一戦(同じ戦士)</button><button class="btn alt" id="edit">✏️ 戦士を作り直す</button><button class="btn alt" id="rep">🎬 リプレイ</button><button class="btn alt" id="shr">📋 結果をシェア</button><button class="btn alt" id="chl">🔗 友達に挑戦状(この戦士)</button>`;
+ $("#rec").innerHTML=`<b>戦績</b> <span class="mut">${rec.w}勝 ${rec.l}敗 / 連勝 ${rec.st}(最高 ${rec.best}) / 逆転勝利 ${rec.cb}回</span>`;
+ show("result");busy=false;if(chal){const b=document.createElement("button");b.className="btn alt";b.textContent="👻 ゴースト戦に切り替え";b.onclick=()=>{chal=null;b.remove()};$("#result").appendChild(b)}
+ const base=SHARE||location.href.split("#")[0],link=base+"#"+tokOf(L.W);
+ $("#again").onclick=()=>{if(!busy){music(null);battleNow()}};$("#edit").onclick=()=>{busy=false;openBuild()};
+ $("#rep").onclick=()=>{if(!busy)play(L,true)};
+ const cp=async(b,t)=>{try{await navigator.clipboard.writeText(t);b.textContent="コピーしました!"}catch(e){b.textContent=t.slice(0,60)}};
+ $("#shr").onclick=e=>cp(e.target,"EMOJI CLASH ⚔️ "+L.W.join("")+" で"+(win?(cb?"HP "+A.minhp+"から逆転勝利":"勝利")+"!🏆":draw?"引き分け🤝":"惜敗…")+"\n"+link);
+ $("#chl").onclick=e=>cp(e.target,"この戦士に勝てる? "+L.W.join("")+"\n"+link)}
+function battleNow(){busy=false;battle()}
+$("#go").onclick=()=>battle();
+$("#rnd").onclick=()=>{W=[PRE[0][Math.random()*PRE[0].length|0],PRE[1][Math.random()*PRE[1].length|0],PRE[2][Math.random()*PRE[2].length|0]];ping();drawSlots();stats()};
+const start=on=>{sndOn=on;if(on)ctx();openBuild()};
+$("#sOn").onclick=()=>start(true);$("#sOff").onclick=()=>start(false);
+let NICK='';$('#nick').oninput=e=>{NICK=e.target.value.trim().slice(0,10)};try{const sv=localStorage.getItem('en');if(sv){NICK=sv;$('#nick').value=sv}}catch(e){}$('#nick').addEventListener('change',()=>{try{localStorage.setItem('en',NICK)}catch(e){}});
+const c0=parseTok(location.hash);if(c0){chal=c0;$("#chal").classList.remove("hide");$("#chal").textContent="⚔️ 友達の戦士 "+c0.w.join("")+(c0.n?"("+c0.n+")":"")+" から挑戦状が届いています!"}
+</script>
+</body>
+</html>
