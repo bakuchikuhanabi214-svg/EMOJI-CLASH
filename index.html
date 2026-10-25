@@ -650,7 +650,7 @@ const gid=id=>GIFTS.find(g=>g.id===id);
 window.getTitle=()=>S.eq&&has(TITLES,S.eq)&&S.titles[S.eq]?S.eq:null;
 /* 称号は画像で表示(画像は1回だけCSS変数に登録して使い回す) */
 window.tb=id=>id&&has(TITLES,id)?'<span class="tti" role="img" aria-label="'+esc(TITLES[id].n)+'" style="aspect-ratio:'+(TITLES[id].ar||4.5)+';background-image:var(--ti-'+id+')"></span>':'';
-Object.keys(TITLES).forEach(k=>document.documentElement.style.setProperty('--ti-'+k,'url("'+TITLES[k].img+'")'));
+Object.keys(TITLES).forEach(k=>document.documentElement.style.setProperty('--ti-'+k,'url("'+new URL(TITLES[k].img,location.href).href+'")'));
 const itemHtml=it=>it.t==='title'&&has(TITLES,it.id)?'🏅 称号:'+tb(it.id):it.t==='ticket'?'🎟️ ガチャチケット ×'+(+it.n||0):it.t==='gitem'&&window.ecItemName&&ecItemName(it.id)?'🎁 '+esc(ecItemName(it.id)):'';
 function claim(id){const g=gid(id),b=S.inbox[id];if(!g||!b||b.c)return false;
 g.items.forEach(it=>{if(it.t==='title'&&has(TITLES,it.id)){S.titles[it.id]=1;if(!S.eq)S.eq=it.id}else if(window.ecGrant)ecGrant(it)});b.c=1;save();return true}
