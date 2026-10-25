@@ -69,50 +69,50 @@ main{transition:filter .15s}
 <div class="mut">絵文字ひとつで、世界を倒せ。</div>
 
 <div id="start" class="card">
- <b>絵文字を3つ組み合わせて、自分だけの戦士を作ろう。</b>
- <p class="mut">戦闘は自動。HPが25%以下になると逆転技が発動することがあります。</p>
- <div id="chal" class="hide" style="color:var(--gold);font-weight:700;margin-bottom:8px"></div>
- <button class="btn alt hide" id="unchal">👻 友達戦をやめてゴースト戦に戻す</button>
- <button class="btn" id="sOn">🔊 音ありでプレイ</button>
- <button class="btn alt" id="sOff">🔇 音なしでプレイ</button>
- <div class="card" style="background:var(--card2);margin:14px 0 0">
-  <b>👥 友達とリアルタイム対戦</b>
-  <p class="mut" style="margin:4px 0 0">ルームを作って4桁の番号(またはリンク)を友達に送ると、お互いに戦士を決めて同時に対戦できます。</p>
-  <button class="btn" id="mk">🏠 ルームを作る</button>
-  <div style="display:flex;gap:8px"><input class="inp" id="rc" inputmode="numeric" maxlength="4" placeholder="ルーム番号4桁" style="flex:1"><button class="btn alt" id="jn" style="width:auto;margin-top:8px;background:var(--card)">参加</button></div>
-  <label class="mut" style="display:block;margin-top:6px"><input type="checkbox" id="snd" checked> 🔊 音あり(ルーム・ランキング用)</label>
-  <div class="mut" id="dbmsg"></div>
- </div>
- <div class="card" style="background:var(--card2);margin:10px 0 0">
-  <b>🔗 挑戦状リンクで戦う</b>
-  <p class="mut" style="margin:4px 0 0">友達の挑戦状リンクを貼り付けて、その戦士と戦います。</p>
-  <input class="inp" id="lnk" placeholder="友達のリンクを貼り付け">
-  <button class="btn alt" id="lnkb" style="background:var(--card)">読み込む</button>
- </div>
- <button class="btn alt" id="rk">🏆 ランキングを見る</button>
+<b>絵文字を3つ組み合わせて、自分だけの戦士を作ろう。</b>
+<p class="mut">戦闘は自動。HPが25%以下になると逆転技が発動することがあります。</p>
+<div id="chal" class="hide" style="color:var(--gold);font-weight:700;margin-bottom:8px"></div>
+<button class="btn alt hide" id="unchal">👻 友達戦をやめてゴースト戦に戻す</button>
+<button class="btn" id="sOn">🔊 音ありでプレイ</button>
+<button class="btn alt" id="sOff">🔇 音なしでプレイ</button>
+<div class="card" style="background:var(--card2);margin:14px 0 0">
+<b>👥 友達とリアルタイム対戦</b>
+<p class="mut" style="margin:4px 0 0">ルームを作って4桁の番号(またはリンク)を友達に送ると、お互いに戦士を決めて同時に対戦できます。</p>
+<button class="btn" id="mk">🏠 ルームを作る</button>
+<div style="display:flex;gap:8px"><input class="inp" id="rc" inputmode="numeric" maxlength="4" placeholder="ルーム番号4桁" style="flex:1"><button class="btn alt" id="jn" style="width:auto;margin-top:8px;background:var(--card)">参加</button></div>
+<label class="mut" style="display:block;margin-top:6px"><input type="checkbox" id="snd" checked> 🔊 音あり(ルーム・ランキング用)</label>
+<div class="mut" id="dbmsg"></div>
+</div>
+<div class="card" style="background:var(--card2);margin:10px 0 0">
+<b>🔗 挑戦状リンクで戦う</b>
+<p class="mut" style="margin:4px 0 0">友達の挑戦状リンクを貼り付けて、その戦士と戦います。</p>
+<input class="inp" id="lnk" placeholder="友達のリンクを貼り付け">
+<button class="btn alt" id="lnkb" style="background:var(--card)">読み込む</button>
+</div>
+<button class="btn alt" id="rk">🏆 ランキングを見る</button>
 </div>
 
 <div id="build" class="card hide">
- <b>戦士ビルダー</b><span class="mut"> 時間制限なし。決まったらバトル開始!</span>
- <div id="rbar" class="hide"></div><input id="nick" class="inp" maxlength="10" placeholder="ニックネーム(友達への挑戦状に載ります)">
- <div id="slots"></div><div id="info" class="card" style="background:var(--card2);margin:8px 0"></div>
- <details open style="margin:6px 0"><summary><b>📊 タイプ相性表</b></summary><div id="chart"></div></details>
- <div class="card" style="background:var(--card2);margin:8px 0">
-  <div class="row"><b>YOUR WARRIOR</b><span style="font-size:30px" id="wv"></span></div>
-  <div class="stat" id="st"></div>
- </div>
- <button class="btn" id="go">⚔️ バトル開始</button>
- <button class="btn alt" id="sendc">🔗 この戦士で友達に挑戦状を送る</button>
- <button class="btn alt" id="rnd">🎲 ランダム</button>
+<b>戦士ビルダー</b><span class="mut"> 時間制限なし。決まったらバトル開始!</span>
+<div id="rbar" class="hide"></div><input id="nick" class="inp" maxlength="10" placeholder="ニックネーム(友達への挑戦状に載ります)">
+<div id="slots"></div><div id="info" class="card" style="background:var(--card2);margin:8px 0"></div>
+<details open style="margin:6px 0"><summary><b>📊 タイプ相性表</b></summary><div id="chart"></div></details>
+<div class="card" style="background:var(--card2);margin:8px 0">
+<div class="row"><b>YOUR WARRIOR</b><span style="font-size:30px" id="wv"></span></div>
+<div class="stat" id="st"></div>
+</div>
+<button class="btn" id="go">⚔️ バトル開始</button>
+<button class="btn alt" id="sendc">🔗 この戦士で友達に挑戦状を送る</button>
+<button class="btn alt" id="rnd">🎲 ランダム</button>
 </div>
 
 <div id="arena" class="card hide">
- <div id="turn"></div>
- <div class="arena">
-  <div class="f" id="f0"><div class="em" id="e0"></div><div class="sub" id="s0"></div><div class="nm" id="n0"></div><div class="hp" id="h0"><i></i></div><div class="hpn" id="hn0"></div></div>
-  <div class="f" id="f1"><div class="em" id="e1"></div><div class="sub" id="s1"></div><div class="nm" id="n1"></div><div class="hp" id="h1"><i></i></div><div class="hpn" id="hn1"></div></div>
- </div>
- <div id="tick"></div>
+<div id="turn"></div>
+<div class="arena">
+<div class="f" id="f0"><div class="em" id="e0"></div><div class="sub" id="s0"></div><div class="nm" id="n0"></div><div class="hp" id="h0"><i></i></div><div class="hpn" id="hn0"></div></div>
+<div class="f" id="f1"><div class="em" id="e1"></div><div class="sub" id="s1"></div><div class="nm" id="n1"></div><div class="hp" id="h1"><i></i></div><div class="hpn" id="hn1"></div></div>
+</div>
+<div id="tick"></div>
 </div>
 
 <div id="rank" class="card hide"></div>
@@ -124,7 +124,7 @@ main{transition:filter .15s}
 const $=s=>document.querySelector(s),sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const SHARE="";
 // ★ Firebase Realtime Database のURLをここに入れる(例: https://xxxx-default-rtdb.asia-southeast1.firebasedatabase.app)
-const FIREBASE_URL="https://emoji1clash-default-rtdb.asia-southeast1.firebasedatabase.app/";
+const FIREBASE_URL="https://emoji1clash-default-rtdb.asia-southeast1.firebasedatabase.app";
 async function db(m,p,b){const r=await fetch(FIREBASE_URL.replace(/\/$/,"")+"/"+p+".json",{method:m,body:b===undefined?undefined:JSON.stringify(b)});if(!r.ok)throw new Error(r.status);return r.json()}
 const okW=w=>{if(!Array.isArray(w)||w.length!==3)return null;const x=w.map(e=>first(String(e)));return x.every(Boolean)?x:null};
 const PID=(()=>{try{let i=localStorage.getItem('ecid');if(!i){i=Math.random().toString(36).slice(2,8)+Date.now().toString(36);localStorage.setItem('ecid',i)}return i}catch(e){return Math.random().toString(36).slice(2,10)}})();
@@ -151,11 +151,11 @@ let INFO=null,INFO_I=0;
 function info(r){const t=TYPES[r.type];let h=t?`<b>あなたの戦士:<span style="color:${t.c}">${tnm(r.type)}</span></b><div class="stat">有利:${BEATS[r.type].map(tnm).join('・')} / 不利:${lose(r.type).map(tnm).join('・')}</div>`:`<b>あなたの戦士:タイプなし</b><div class="stat">本体が未登録のため相性なし(標準ステータス)</div>`;const i=INFO?INFO_I:0,e=INFO||W[0],k=norm(e),x=[BODY,WEAP,ELEM][i][k];h+=`<hr style="border:0;border-top:1px solid var(--card);margin:8px 0"><b>${esc(e)} ${N[k]||'未登録'}</b> <span class="mut">(${LAB[i]})</span><div class="stat">`;if(!x)h+='未登録の絵文字:標準ステータスで戦います(特性・タイプなし)';else if(i==0){const ty=TYPE[k];h+=`${x.d}<br>DEF ${x.def} / SPD ${x.spd}<br>タイプ:<b style="color:${TYPES[ty].c}">${tnm(ty)}</b> 有利:${BEATS[ty].map(tnm).join('・')} / 不利:${lose(ty).map(tnm).join('・')}<br>逆転:${CL[x.c]}`}else{const g=GB[k]||['',''];h+=`${x.d}${i==1?'<br>ATK '+x.atk+'×'+x.hits:''}<br>◎得意:${g[0]}<br>△苦手:${g[1]}${x.c?'<br>逆転:'+CL[x.c]:''}`}$('#info').innerHTML=h+'</div>'}
 // 相性表(5×5マトリクス+タイプ別カード)
 $('#chart').innerHTML=(()=>{const K=Object.keys(BEATS),Tt=TYPES;
- let h='<table class="mx"><tr><th>攻撃側↓<br>受ける側→</th>'+K.map(k=>'<th style="color:'+Tt[k].c+'">'+Tt[k].i+'<br>'+Tt[k].n+'</th>').join('')+'</tr>';
- K.forEach(a=>{h+='<tr><th style="color:'+Tt[a].c+'">'+Tt[a].i+' '+Tt[a].n+'</th>'+K.map(d=>BEATS[a].includes(d)?'<td class="w">◎</td>':BEATS[d].includes(a)?'<td class="l">△</td>':'<td class="eq">－</td>').join('')+'</tr>'});
- h+='</table><div class="mut" style="margin:6px 0 10px"><b style="color:var(--ok)">◎</b> 有利(ダメージ×1.25) / <b style="color:var(--ng)">△</b> 不利(×0.8) / － 互角。左の列が「攻撃する側」です。</div>';
- K.forEach(t=>{h+='<div class="tc" style="border-left:4px solid '+Tt[t].c+'"><b style="color:'+Tt[t].c+'">'+tnm(t)+'</b>'+BEATS[t].map(x=>'<div class="stat">✅ '+tnm(x)+' に強い:'+WHY[t+'>'+x]+'</div>').join('')+lose(t).map(x=>'<div class="stat">⚠️ '+tnm(x)+' に弱い:'+WHY[x+'>'+t]+'</div>').join('')+'</div>'});
- return h+'<div class="mut">武器・属性にも「得意/苦手」があります。未登録の本体は相性なしです。</div>'})();
+let h='<table class="mx"><tr><th>攻撃側↓<br>受ける側→</th>'+K.map(k=>'<th style="color:'+Tt[k].c+'">'+Tt[k].i+'<br>'+Tt[k].n+'</th>').join('')+'</tr>';
+K.forEach(a=>{h+='<tr><th style="color:'+Tt[a].c+'">'+Tt[a].i+' '+Tt[a].n+'</th>'+K.map(d=>BEATS[a].includes(d)?'<td class="w">◎</td>':BEATS[d].includes(a)?'<td class="l">△</td>':'<td class="eq">－</td>').join('')+'</tr>'});
+h+='</table><div class="mut" style="margin:6px 0 10px"><b style="color:var(--ok)">◎</b> 有利(ダメージ×1.25) / <b style="color:var(--ng)">△</b> 不利(×0.8) / － 互角。左の列が「攻撃する側」です。</div>';
+K.forEach(t=>{h+='<div class="tc" style="border-left:4px solid '+Tt[t].c+'"><b style="color:'+Tt[t].c+'">'+tnm(t)+'</b>'+BEATS[t].map(x=>'<div class="stat">✅ '+tnm(x)+' に強い:'+WHY[t+'>'+x]+'</div>').join('')+lose(t).map(x=>'<div class="stat">⚠️ '+tnm(x)+' に弱い:'+WHY[x+'>'+t]+'</div>').join('')+'</div>'});
+return h+'<div class="mut">武器・属性にも「得意/苦手」があります。未登録の本体は相性なしです。</div>'})();
 const CL={def:"防御+8",dodge:"次の攻撃を回避",atk:"攻撃+60%(3回)",stink:"相手の攻撃-40%(3回)",heal:"HP+15",x2:"次の攻撃2倍",freeze:"相手を2ターン凍結",hl:"HP+12"};
 const PRE=[["🐢","🐱","🗿","🐉","💩","🍣","🤖","👻"],["⚔️","⚡","🎸","🔨","🏹","🔫","🪄"],["🔥","❄️","💚","💀","☠️","🌀"]];
 PRE[0].push('🐘','🦊','🐺','🦍','🐍','🐙','🦅','🐻','🥷','🧛','🤡');PRE[1].push('🗡️','🪓','🔱','💣','🪃','🥊','🍌');PRE[2].push('🌊','⭐','🍀','🩸','🌑','✨');
@@ -176,9 +176,9 @@ const BPM={select:118,battle:150,clutch:164};
 const BS={battle:[36,36,48,36,39,36,43,36,34,34,46,34,38,34,41,34],clutch:[33,33,45,33,36,33,40,33,31,31,43,31,35,31,38,31]};
 const LD={select:[72,76,79,76,81,79,76,74,72,76,79,84,81,79,76,72],battle:[0,0,67,0,0,70,0,0,72,0,0,70,0,67,0,0],clutch:[69,72,76,81,76,72,69,72,67,71,74,79,74,71,67,71]};
 function step(m,i,t){const s=i%16;
- if(m==="select"){if(s%4==0)tn(hz(s<8?48:43),t,.2,"triangle",.12);tn(hz(LD.select[s]),t,.12,"square",.045);if(s%2==1)nz(t,.03,.05,7000);if(s==0)kick(t,.25)}
- else if(m==="battle"){if(s%4==0)kick(t,.45);if(s%2==1)nz(t,.04,.07,8000);if(s==4||s==12)nz(t,.12,.12,1800);tn(hz(BS.battle[s]),t,.1,"sawtooth",.07);if(LD.battle[s])tn(hz(LD.battle[s]),t,.1,"square",.05)}
- else{if(s%4==0||s==10)kick(t,.6);if(s==4||s==12)nz(t,.15,.2,1500);nz(t,.03,.06,9000);tn(hz(BS.clutch[s]),t,.1,"sawtooth",.1);tn(hz(LD.clutch[s]),t,.1,"sawtooth",.05)}}
+if(m==="select"){if(s%4==0)tn(hz(s<8?48:43),t,.2,"triangle",.12);tn(hz(LD.select[s]),t,.12,"square",.045);if(s%2==1)nz(t,.03,.05,7000);if(s==0)kick(t,.25)}
+else if(m==="battle"){if(s%4==0)kick(t,.45);if(s%2==1)nz(t,.04,.07,8000);if(s==4||s==12)nz(t,.12,.12,1800);tn(hz(BS.battle[s]),t,.1,"sawtooth",.07);if(LD.battle[s])tn(hz(LD.battle[s]),t,.1,"square",.05)}
+else{if(s%4==0||s==10)kick(t,.6);if(s==4||s==12)nz(t,.15,.2,1500);nz(t,.03,.06,9000);tn(hz(BS.clutch[s]),t,.1,"sawtooth",.1);tn(hz(LD.clutch[s]),t,.1,"sawtooth",.05)}}
 function sched(){if(!AC||!sndOn||!M.mode||AC.currentTime<M.hold)return;if(M.next<AC.currentTime)M.next=AC.currentTime+.05;while(M.next<AC.currentTime+.12){step(M.mode,M.step++,M.next);M.next+=60/BPM[M.mode]/4}}
 function music(m){M.mode=m;M.step=0;M.next=0;M.hold=0}
 function sfxHit(c){const t=now();tn(c?320:200,t,.12,"square",.14,60);nz(t,.08,c?.25:.15,1200)}
@@ -194,97 +194,97 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 function show(id){["start","build","arena","result","rec","rank","wait"].forEach(x=>$("#"+x).classList.toggle("hide",x!==id&&!(id==="result"&&x==="rec")))}
 // ---- 戦士 ----
 function mk(w,name){const b=BODY[norm(w[0])]||DB,wp=WEAP[norm(w[1])]||DW,el=ELEM[norm(w[2])]||DE;
- return{w,name,hp:100,def:b.def,spd:b.spd*(wp.spdm||1),atk:wp.atk,hits:wp.hits,pierce:(wp.pierce||0)+(el.pierce||0),crit:(wp.crit||.1)+(el.crit||0),evade:el.evade||0,type:TYPE[norm(w[0])]||'',b,wp,el,acc:0,burn:0,slow:0,freeze:0,dodge:0,atkBuf:0,x2:0,deb:0,poison:0,clutched:false,minhp:100}}
+return{w,name,hp:100,def:b.def,spd:b.spd*(wp.spdm||1),atk:wp.atk,hits:wp.hits,pierce:(wp.pierce||0)+(el.pierce||0),crit:(wp.crit||.1)+(el.crit||0),evade:el.evade||0,type:TYPE[norm(w[0])]||'',b,wp,el,acc:0,burn:0,slow:0,freeze:0,dodge:0,atkBuf:0,x2:0,deb:0,poison:0,clutched:false,minhp:100}}
 function fight(A,B){const log=[],F=[A,B],hp=()=>[A.hp,B.hp];
- const ev=o=>log.push(Object.assign({hp:hp()},o));
- const clutch=(i)=>{const f=F[i],o=F[1-i];if(f.hp<=0||f.hp>25||f.clutched)return;f.clutched=true;if(Math.random()>.75){ev({type:"nocl",who:i});return}
-  const fx=[f.b.c,f.el.c].filter(Boolean),txt=[];
-  fx.forEach(c=>{if(c==="def"){f.def+=8}else if(c==="dodge"){f.dodge=1}else if(c==="atk"){f.atkBuf=3}else if(c==="stink"){o.deb=3}else if(c==="heal"){f.hp=Math.min(100,f.hp+(f.b.c==="heal"?15:12))}else if(c==="x2"){f.x2=1}else if(c==="freeze"){o.freeze=2}txt.push(CL[c])});
-  if(!fx.length){f.atkBuf=3;txt.push(CL.atk)}
-  ev({type:"clutch",who:i,text:txt.join(" + ")})};
- const dmg=(i,v,why)=>{const f=F[i];if(f.hp<=0)return;f.hp=Math.max(0,f.hp-v);f.minhp=Math.min(f.minhp,f.hp);ev({type:"dot",who:i,v,why});clutch(i)};
- const atk=(i)=>{const f=F[i],o=F[1-i];if(o.dodge>0){o.dodge--;ev({type:"miss",who:i});return}if(o.evade&&Math.random()<o.evade){ev({type:"miss",who:i});return}
-  for(let h=0;h<f.hits&&o.hp>0;h++){let a=f.atk,m=adv(f,o);if(f.atkBuf>0)m*=1.6;if(f.x2){m*=2}if(f.deb>0)m*=.6;
-   const cr=Math.random()<f.crit;if(cr)m*=1.5;let d=Math.max(1,Math.round(a*m-o.def*(1-f.pierce)*.8+(Math.random()*4-2)));
-   o.hp=Math.max(0,o.hp-d);o.minhp=Math.min(o.minhp,o.hp);
-   if(f.el.steal)f.hp=Math.min(100,f.hp+Math.round(d*f.el.steal));
-   if(f.el.burn)o.burn=3;if(f.el.slow)o.slow=3;if(f.el.curse)o.deb=2;if(f.el.poison)o.poison=4;if(f.el.stun&&Math.random()<f.el.stun)o.freeze=1;
-   ev({type:"hit",who:i,v:d,crit:cr,hits:f.hits});clutch(1-i)}
-  if(f.atkBuf>0)f.atkBuf--;f.x2=0;if(f.deb>0)f.deb--};
- for(let t=1;t<=10&&A.hp>0&&B.hp>0;t++){ev({type:"turn",t});
-  F.forEach((f,i)=>{if(f.hp<=0)return;if(f.burn>0){f.burn--;dmg(i,3,"🔥")}if(f.poison>0){f.poison--;dmg(i,2,"☠️")}if(f.el.heal&&f.hp>0){f.hp=Math.min(100,f.hp+f.el.heal);ev({type:"heal",who:i,v:f.el.heal})}});
-  const ord=A.spd>=B.spd?[0,1]:[1,0];
-  ord.forEach(i=>{const f=F[i];if(f.hp<=0||F[1-i].hp<=0)return;if(f.freeze>0){f.freeze--;ev({type:"frozen",who:i});return}
-   f.acc+=f.spd*(f.slow>0?.7:1);if(f.slow>0)f.slow--;let n=0;while(f.acc>=1&&n++<3&&F[1-i].hp>0&&f.hp>0){f.acc-=1;atk(i)}})}
- const pa=A.hp,pb=B.hp,win=pa>pb?0:pb>pa?1:-1;ev({type:"end",win});return{log,win}}
+const ev=o=>log.push(Object.assign({hp:hp()},o));
+const clutch=(i)=>{const f=F[i],o=F[1-i];if(f.hp<=0||f.hp>25||f.clutched)return;f.clutched=true;if(Math.random()>.75){ev({type:"nocl",who:i});return}
+const fx=[f.b.c,f.el.c].filter(Boolean),txt=[];
+fx.forEach(c=>{if(c==="def"){f.def+=8}else if(c==="dodge"){f.dodge=1}else if(c==="atk"){f.atkBuf=3}else if(c==="stink"){o.deb=3}else if(c==="heal"){f.hp=Math.min(100,f.hp+(f.b.c==="heal"?15:12))}else if(c==="x2"){f.x2=1}else if(c==="freeze"){o.freeze=2}txt.push(CL[c])});
+if(!fx.length){f.atkBuf=3;txt.push(CL.atk)}
+ev({type:"clutch",who:i,text:txt.join(" + ")})};
+const dmg=(i,v,why)=>{const f=F[i];if(f.hp<=0)return;f.hp=Math.max(0,f.hp-v);f.minhp=Math.min(f.minhp,f.hp);ev({type:"dot",who:i,v,why});clutch(i)};
+const atk=(i)=>{const f=F[i],o=F[1-i];if(o.dodge>0){o.dodge--;ev({type:"miss",who:i});return}if(o.evade&&Math.random()<o.evade){ev({type:"miss",who:i});return}
+for(let h=0;h<f.hits&&o.hp>0;h++){let a=f.atk,m=adv(f,o);if(f.atkBuf>0)m*=1.6;if(f.x2){m*=2}if(f.deb>0)m*=.6;
+const cr=Math.random()<f.crit;if(cr)m*=1.5;let d=Math.max(1,Math.round(a*m-o.def*(1-f.pierce)*.8+(Math.random()*4-2)));
+o.hp=Math.max(0,o.hp-d);o.minhp=Math.min(o.minhp,o.hp);
+if(f.el.steal)f.hp=Math.min(100,f.hp+Math.round(d*f.el.steal));
+if(f.el.burn)o.burn=3;if(f.el.slow)o.slow=3;if(f.el.curse)o.deb=2;if(f.el.poison)o.poison=4;if(f.el.stun&&Math.random()<f.el.stun)o.freeze=1;
+ev({type:"hit",who:i,v:d,crit:cr,hits:f.hits});clutch(1-i)}
+if(f.atkBuf>0)f.atkBuf--;f.x2=0;if(f.deb>0)f.deb--};
+for(let t=1;t<=10&&A.hp>0&&B.hp>0;t++){ev({type:"turn",t});
+F.forEach((f,i)=>{if(f.hp<=0)return;if(f.burn>0){f.burn--;dmg(i,3,"🔥")}if(f.poison>0){f.poison--;dmg(i,2,"☠️")}if(f.el.heal&&f.hp>0){f.hp=Math.min(100,f.hp+f.el.heal);ev({type:"heal",who:i,v:f.el.heal})}});
+const ord=A.spd>=B.spd?[0,1]:[1,0];
+ord.forEach(i=>{const f=F[i];if(f.hp<=0||F[1-i].hp<=0)return;if(f.freeze>0){f.freeze--;ev({type:"frozen",who:i});return}
+f.acc+=f.spd*(f.slow>0?.7:1);if(f.slow>0)f.slow--;let n=0;while(f.acc>=1&&n++<3&&F[1-i].hp>0&&f.hp>0){f.acc-=1;atk(i)}})}
+const pa=A.hp,pb=B.hp,win=pa>pb?0:pb>pa?1:-1;ev({type:"end",win});return{log,win}}
 // ---- 画面 ----
 function stats(){const r=mk(W,"");$("#wv").textContent=W.join("");info(r);
- $("#st").innerHTML=`ATK <b>${r.atk}×${r.hits}</b> / DEF <b>${r.def}</b> / SPD <b>${r.spd.toFixed(1)}</b><br>本体:${r.b.d}<br>武器:${r.wp.d}<br>属性:${r.el.d}<br>逆転:<b>${[r.b.c,r.el.c].filter(Boolean).map(c=>CL[c]).join(" + ")||CL.atk}</b>`}
+$("#st").innerHTML=`ATK <b>${r.atk}×${r.hits}</b> / DEF <b>${r.def}</b> / SPD <b>${r.spd.toFixed(1)}</b><br>本体:${r.b.d}<br>武器:${r.wp.d}<br>属性:${r.el.d}<br>逆転:<b>${[r.b.c,r.el.c].filter(Boolean).map(c=>CL[c]).join(" + ")||CL.atk}</b>`}
 function drawSlots(){$("#slots").innerHTML=PRE.map((p,i)=>`<div class="slot"><div class="top"><div class="big">${W[i]}</div><div><div class="mut">${LAB[i]}</div><input data-i="${i}" placeholder="絵文字" value=""></div></div><div class="chips">${p.map(e=>`<span data-i="${i}" style="border-bottom:3px solid ${i==0?COL[TYPE[norm(e)]]||'transparent':'transparent'}">${e}</span>`).join("")}</div></div>`).join("");
- $("#slots").querySelectorAll("input").forEach(n=>n.oninput=()=>{const e=first(n.value);n.value="";if(e){W[+n.dataset.i]=e;INFO=e;INFO_I=+n.dataset.i;ping();drawSlots();stats()}});
- $("#slots").querySelectorAll(".chips span").forEach(n=>n.onclick=()=>{W[+n.dataset.i]=n.textContent;INFO=n.textContent;INFO_I=+n.dataset.i;ping();drawSlots();stats()})}
+$("#slots").querySelectorAll("input").forEach(n=>n.oninput=()=>{const e=first(n.value);n.value="";if(e){W[+n.dataset.i]=e;INFO=e;INFO_I=+n.dataset.i;ping();drawSlots();stats()}});
+$("#slots").querySelectorAll(".chips span").forEach(n=>n.onclick=()=>{W[+n.dataset.i]=n.textContent;INFO=n.textContent;INFO_I=+n.dataset.i;ping();drawSlots();stats()})}
 function ping(){if(AC)tn(880,now(),.08,"square",.08);vib(15)}
 function openBuild(){show("build");music("select");stats();drawSlots();roomUI()}
 function roomUI(){const b=$("#rbar");b.classList.toggle("hide",!ROOM&&!chal);$("#go").textContent=ROOM?"✅ 準備OK(相手と同時に開始)":"⚔️ バトル開始";
- if(ROOM){b.innerHTML='<div class="tc" style="border-left:4px solid var(--gold)">🏠 ルーム <b style="font-size:20px">'+ROOM.code+'</b> / ラウンド '+ROOM.round+'<div class="stat">番号を伝えるか、リンクを送ってください。両方が「準備OK」で開始します。</div><button class="btn alt" id="rlink" style="margin-top:6px">🔗 ルームのリンクを送る</button><button class="btn alt" id="rleave" style="margin-top:6px">🚪 ルームを出る</button></div>';
-  $("#rlink").onclick=e=>shareText(e.target,"EMOJI CLASHで対戦しよう!ルーム番号 "+ROOM.code+"\n"+baseUrl()+"#r"+ROOM.code);$("#rleave").onclick=()=>{ROOM=null;music(null);show("start")}}
- else if(chal)b.innerHTML='<div class="tc" style="border-left:4px solid var(--acc)">⚔️ 挑戦相手:'+esc(chal.w.join(""))+' '+esc(chal.n||"")+'</div>'}
+if(ROOM){b.innerHTML='<div class="tc" style="border-left:4px solid var(--gold)">🏠 ルーム <b style="font-size:20px">'+ROOM.code+'</b> / ラウンド '+ROOM.round+'<div class="stat">番号を伝えるか、リンクを送ってください。両方が「準備OK」で開始します。</div><button class="btn alt" id="rlink" style="margin-top:6px">🔗 ルームのリンクを送る</button><button class="btn alt" id="rleave" style="margin-top:6px">🚪 ルームを出る</button></div>';
+$("#rlink").onclick=e=>shareText(e.target,"EMOJI CLASHで対戦しよう!ルーム番号 "+ROOM.code+"\n"+baseUrl()+"#r"+ROOM.code);$("#rleave").onclick=()=>{ROOM=null;music(null);show("start")}}
+else if(chal)b.innerHTML='<div class="tc" style="border-left:4px solid var(--acc)">⚔️ 挑戦相手:'+esc(chal.w.join(""))+' '+esc(chal.n||"")+'</div>'}
 function tokOf(w){return "w"+w.map(e=>[...e].map(c=>c.codePointAt(0).toString(16)).join("_")).join("-")+(NICK?"-n"+[...NICK].map(c=>c.codePointAt(0).toString(16)).join("_"):"")}
 function parseTok(h){try{const m=String(h).replace("#","").trim();if(m[0]!=="w"||m.length>400)return null;const p=m.slice(1).split("-"),dec=s=>String.fromCodePoint(...s.split("_").map(x=>parseInt(x,16)));const w=p.slice(0,3).map(s=>first(dec(s)));if(w.length!==3||!w.every(Boolean))return null;let n="";if(p[3]&&p[3][0]==="n")n=dec(p[3].slice(1)).slice(0,10);return{w,n}}catch(e){return null}}
 function friendFight(me,op,salt){const key=w=>w.map(e=>[...e].map(c=>c.codePointAt(0).toString(16)).join('_')).join('-'),km=key(me),ko=key(op),first=km<=ko;const P=mk(first?me:op,''),Q=mk(first?op:me,'');let h=2166136261;for(const c of ((first?km+'|'+ko:ko+'|'+km)+(salt||'')))h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;const orig=Math.random;let s=h||1;Math.random=()=>{s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};let r;try{r=fight(P,Q)}finally{Math.random=orig}if(first)return{A:P,B:Q,r};const fl=w=>w<0?-1:1-w;const log=r.log.map(e=>{const x=Object.assign({},e);if(x.hp)x.hp=[e.hp[1],e.hp[0]];if(x.who!==undefined)x.who=1-x.who;if(x.type==='end')x.win=fl(e.win);return x});return{A:Q,B:P,r:{log,win:fl(r.win)}}}
 async function battle(){if(busy)return;busy=true;
- let oppW,oppN,ghost=true,salt="";
- if(ROOM){const rm=ROOM,myr=rm.round;show("wait");rm.cancel=false;
-  $("#wait").innerHTML='<b>⏳ 相手の準備を待っています…</b><div class="mut">ルーム '+rm.code+' / 相手が「準備OK」を押すと自動で始まります。</div><button class="btn alt" id="wcan">やめる</button>';
-  $("#wcan").onclick=()=>{rm.cancel=true};
-  let o=null,err=false;try{await db("PUT","rooms/"+rm.code+"/p/"+rm.role,{w:W.slice(),n:NICK,r:myr});o=await waitOpp(rm,myr)}catch(e){err=true}
-  if(!o||ROOM!==rm){busy=false;if(ROOM===rm){openBuild();if(err)alert(tr("通信に失敗しました"))}else show("start");return}
-  oppW=o.w;oppN="友達:"+(o.n||"???");ghost=false;salt=rm.code+":"+myr}
- else if(chal){oppW=chal.w;oppN="友達の戦士:"+(chal.n||"???");ghost=false}
- else{const o=OPP[Math.floor(Math.random()*OPP.length)];oppW=o.slice(0,3);oppN="👻 "+o[3]}
- let A=mk(W.slice(),"YOU"),B=mk(oppW,oppN),r;if(ghost)r=fight(A,B);else{const o=friendFight(W.slice(),oppW,salt);A=o.A;B=o.B;r=o.r}lastRun={W:W.slice(),oppW,oppN,r,A,B};await play(lastRun);busy=false}
+let oppW,oppN,ghost=true,salt="";
+if(ROOM){const rm=ROOM,myr=rm.round;show("wait");rm.cancel=false;
+$("#wait").innerHTML='<b>⏳ 相手の準備を待っています…</b><div class="mut">ルーム '+rm.code+' / 相手が「準備OK」を押すと自動で始まります。</div><button class="btn alt" id="wcan">やめる</button>';
+$("#wcan").onclick=()=>{rm.cancel=true};
+let o=null,err=false;try{await db("PUT","rooms/"+rm.code+"/p/"+rm.role,{w:W.slice(),n:NICK,r:myr});o=await waitOpp(rm,myr)}catch(e){err=true}
+if(!o||ROOM!==rm){busy=false;if(ROOM===rm){openBuild();if(err)alert(tr("通信に失敗しました"))}else show("start");return}
+oppW=o.w;oppN="友達:"+(o.n||"???");ghost=false;salt=rm.code+":"+myr}
+else if(chal){oppW=chal.w;oppN="友達の戦士:"+(chal.n||"???");ghost=false}
+else{const o=OPP[Math.floor(Math.random()*OPP.length)];oppW=o.slice(0,3);oppN="👻 "+o[3]}
+let A=mk(W.slice(),"YOU"),B=mk(oppW,oppN),r;if(ghost)r=fight(A,B);else{const o=friendFight(W.slice(),oppW,salt);A=o.A;B=o.B;r=o.r}lastRun={W:W.slice(),oppW,oppN,r,A,B};await play(lastRun);busy=false}
 async function waitOpp(rm,r){const o2=rm.role==="a"?"b":"a",t0=Date.now();while(ROOM===rm&&!rm.cancel&&Date.now()-t0<6e5){try{const o=await db("GET","rooms/"+rm.code+"/p/"+o2);if(o&&o.r===r){const w=okW(o.w);if(w)return{w,n:String(o.n||"").slice(0,10)}}}catch(e){}await sleep(1200)}return null}
 function setHp(i,v,low){const e=$("#h"+i);e.firstElementChild.style.width=Math.max(0,v)+"%";e.classList.toggle("low",v<=25);$("#hn"+i).textContent="HP "+Math.max(0,v)}
 async function play(L,replay){show("arena");const {A,B,r}=L;music("battle");
- [[0,L.W,"YOU"],[1,L.oppW,L.oppN]].forEach(([i,w,n])=>{$("#e"+i).textContent=w[0];$("#s"+i).textContent=w[1]+w[2];$("#n"+i).textContent=n;$("#f"+i).className="f";setHp(i,100)});
- $("#tick").textContent="READY...";$("#turn").textContent="相性:"+mu(A,B);await sleep(1900);
- const nm=i=>i?L.oppN:"YOU",F=[$("#f0"),$("#f1")];
- const float=(i,t,c)=>{const d=document.createElement("div");d.className="dmg "+(c||"");d.textContent=t;F[i].appendChild(d);setTimeout(()=>d.remove(),850)};
- for(const e of r.log){
-  if(e.type==="turn"){$("#turn").textContent="TURN "+e.t+" / 10";await sleep(350)}
-  else if(e.type==="hit"){F[e.who].classList.add("a"+e.who);sfxHit(e.crit);await sleep(130);F[e.who].classList.remove("a"+e.who);const t=1-e.who;F[t].classList.add("hit");setTimeout(()=>F[t].classList.remove("hit"),300);float(t,"-"+e.v,e.crit?"c":"");setHp(0,e.hp[0]);setHp(1,e.hp[1]);$("#tick").textContent=(e.crit?"💥 CRITICAL! ":"")+nm(e.who)+" の攻撃 -"+e.v;if(e.crit){shake();vib(60)}await sleep(e.hits>1?260:420)}
-  else if(e.type==="dot"){float(e.who,"-"+e.v);setHp(0,e.hp[0]);setHp(1,e.hp[1]);$("#tick").textContent=e.why+" "+nm(e.who)+" に継続ダメージ";await sleep(250)}
-  else if(e.type==="heal"){float(e.who,"+"+e.v,"h");setHp(0,e.hp[0]);setHp(1,e.hp[1]);await sleep(160)}
-  else if(e.type==="miss"){$("#tick").textContent="💨 "+nm(1-e.who)+" が回避!";await sleep(450)}
-  else if(e.type==="frozen"){$("#tick").textContent="🧊 "+nm(e.who)+" は動けない!";await sleep(400)}
-  else if(e.type==="nocl"){$("#tick").textContent="…"+nm(e.who)+" は逆転できなかった";await sleep(500)}
-  else if(e.type==="clutch"){music(null);document.body.classList.add("dark");if(AC){kick(now(),.7);kick(now()+.38,.5)}vib([120,200,120]);$("#tick").textContent="…";await sleep(1100);document.body.classList.remove("dark");
-   fl(e.who?"#ff4d4d":"#ffd23f");shake();banner("⚡ CLUTCH!");vib([80,40,200]);$("#tick").textContent="⚡ "+nm(e.who)+" の逆転技!「"+e.text+"」";setHp(0,e.hp[0]);setHp(1,e.hp[1]);music("clutch");await sleep(1300)}
-  else if(e.type==="end"){await sleep(500)}
- }
- music(null);if(replay){show("result");return}
- finish(L)}
+[[0,L.W,"YOU"],[1,L.oppW,L.oppN]].forEach(([i,w,n])=>{$("#e"+i).textContent=w[0];$("#s"+i).textContent=w[1]+w[2];$("#n"+i).textContent=n;$("#f"+i).className="f";setHp(i,100)});
+$("#tick").textContent="READY...";$("#turn").textContent="相性:"+mu(A,B);await sleep(1900);
+const nm=i=>i?L.oppN:"YOU",F=[$("#f0"),$("#f1")];
+const float=(i,t,c)=>{const d=document.createElement("div");d.className="dmg "+(c||"");d.textContent=t;F[i].appendChild(d);setTimeout(()=>d.remove(),850)};
+for(const e of r.log){
+if(e.type==="turn"){$("#turn").textContent="TURN "+e.t+" / 10";await sleep(350)}
+else if(e.type==="hit"){F[e.who].classList.add("a"+e.who);sfxHit(e.crit);await sleep(130);F[e.who].classList.remove("a"+e.who);const t=1-e.who;F[t].classList.add("hit");setTimeout(()=>F[t].classList.remove("hit"),300);float(t,"-"+e.v,e.crit?"c":"");setHp(0,e.hp[0]);setHp(1,e.hp[1]);$("#tick").textContent=(e.crit?"💥 CRITICAL! ":"")+nm(e.who)+" の攻撃 -"+e.v;if(e.crit){shake();vib(60)}await sleep(e.hits>1?260:420)}
+else if(e.type==="dot"){float(e.who,"-"+e.v);setHp(0,e.hp[0]);setHp(1,e.hp[1]);$("#tick").textContent=e.why+" "+nm(e.who)+" に継続ダメージ";await sleep(250)}
+else if(e.type==="heal"){float(e.who,"+"+e.v,"h");setHp(0,e.hp[0]);setHp(1,e.hp[1]);await sleep(160)}
+else if(e.type==="miss"){$("#tick").textContent="💨 "+nm(1-e.who)+" が回避!";await sleep(450)}
+else if(e.type==="frozen"){$("#tick").textContent="🧊 "+nm(e.who)+" は動けない!";await sleep(400)}
+else if(e.type==="nocl"){$("#tick").textContent="…"+nm(e.who)+" は逆転できなかった";await sleep(500)}
+else if(e.type==="clutch"){music(null);document.body.classList.add("dark");if(AC){kick(now(),.7);kick(now()+.38,.5)}vib([120,200,120]);$("#tick").textContent="…";await sleep(1100);document.body.classList.remove("dark");
+fl(e.who?"#ff4d4d":"#ffd23f");shake();banner("⚡ CLUTCH!");vib([80,40,200]);$("#tick").textContent="⚡ "+nm(e.who)+" の逆転技!「"+e.text+"」";setHp(0,e.hp[0]);setHp(1,e.hp[1]);music("clutch");await sleep(1300)}
+else if(e.type==="end"){await sleep(500)}
+}
+music(null);if(replay){show("result");return}
+finish(L)}
 // ---- 共有 ----
 const cpy=async(b,t)=>{t=tr(t);try{await navigator.clipboard.writeText(t);b.textContent="コピーしました!"}catch(e){window.prompt(tr("コピーして友達に送ってください"),t)}};
 const baseUrl=()=>SHARE||location.href.split("#")[0];
 function setChal(c){chal=c;const d=$("#chal");d.classList.toggle("hide",!c);$("#unchal").classList.toggle("hide",!c);if(c)d.textContent="⚔️ 友達の戦士 "+c.w.join("")+(c.n?"("+c.n+")":"")+" と対戦します!"}
 function finish(L){const {r,A}=L,win=r.win===0,draw=r.win<0;
- const cb=win&&A.minhp<=25;
- if(win){rec.w++;rec.st++;rec.best=Math.max(rec.best,rec.st);if(cb)rec.cb++}else if(!draw){rec.l++;rec.st=0}
- if(!draw)saveRank();if(ROOM)ROOM.round++;
- const titles=[];if(cb)titles.push("🔥 HP "+A.minhp+"から逆転勝利");if(win&&norm(L.W[0])==="💩"&&norm(L.oppW[0])==="🐉")titles.push("💩でドラゴンに勝利");
- if(win&&!BODY[norm(L.W[0])])titles.push("🆕 未登録の絵文字で勝利");if(win&&rec.st>=3)titles.push("🔥 "+rec.st+"連勝中");if(win&&r.log.length<12)titles.push("⚡ 秒殺");
- music(null);if(win){fl("#ffd23f");confetti(cb?260:120);jWin();vib([60,40,60,40,200])}else if(draw){}else{fl("#ff4d4d");shake();jLose();vib(400)}
- const txt=draw?"DRAW":win?"WIN!":"LOSE",isGhost=L.oppN.startsWith("👻");
- $("#result").innerHTML=`<div class="verdict ${win?"w":"l"}">${win?"🏆 ":draw?"🤝 ":"💀 "}${txt}</div><div style="text-align:center;font-size:32px">${esc(L.W.join(""))} <span class="mut" style="font-size:16px">VS</span> ${esc(L.oppW.join(""))}</div><div class="mut" style="text-align:center">${esc(L.oppN)}(${isGhost?"CPUの戦士":"友達の戦士"})</div><div class="mut" style="text-align:center">相性:${mu(L.A,L.B)}</div>${isGhost?"":'<div class="mut" style="text-align:center">※友達側の画面でも同じ勝敗になります</div>'}<div style="text-align:center;margin:8px 0">${titles.map(t=>`<span class="ttl">${t}</span>`).join("")}</div>
- <button class="btn" id="again">⚔️ もう一戦(同じ戦士)</button><button class="btn alt" id="edit">✏️ 戦士を作り直す</button><button class="btn alt" id="rep">🎬 リプレイ</button><button class="btn alt" id="shr">📋 結果をシェア</button><button class="btn alt" id="chl">🔗 友達に挑戦状(この戦士)</button><button class="btn alt" id="rk2">🏆 ランキング</button>`;
- $("#rec").innerHTML=`<b>戦績</b> <span class="mut">${rec.w}勝 ${rec.l}敗 / 連勝 ${rec.st}(最高 ${rec.best}) / 逆転勝利 ${rec.cb}回</span>`;
- show("result");busy=false;if(chal&&!ROOM){const b=document.createElement("button");b.className="btn alt";b.textContent="👻 ゴースト戦に切り替え";b.onclick=()=>{setChal(null);b.remove()};$("#result").appendChild(b)}
- const link=baseUrl()+"#"+tokOf(L.W);
- $("#again").onclick=()=>{if(!busy){music(null);battleNow()}};$("#edit").onclick=()=>{busy=false;openBuild()};
- $("#rep").onclick=()=>{if(!busy)play(L,true)};
- $("#shr").onclick=e=>cpy(e.target,"EMOJI CLASH ⚔️ "+L.W.join("")+" で"+(win?(cb?"HP "+A.minhp+"から逆転勝利":"勝利")+"!🏆":draw?"引き分け🤝":"惜敗…")+"\n"+link);
- $("#chl").onclick=e=>sendChallenge(e.target,L.W);$("#rk2").onclick=showRank}
+const cb=win&&A.minhp<=25;
+if(win){rec.w++;rec.st++;rec.best=Math.max(rec.best,rec.st);if(cb)rec.cb++}else if(!draw){rec.l++;rec.st=0}
+if(!draw)saveRank();if(ROOM)ROOM.round++;
+const titles=[];if(cb)titles.push("🔥 HP "+A.minhp+"から逆転勝利");if(win&&norm(L.W[0])==="💩"&&norm(L.oppW[0])==="🐉")titles.push("💩でドラゴンに勝利");
+if(win&&!BODY[norm(L.W[0])])titles.push("🆕 未登録の絵文字で勝利");if(win&&rec.st>=3)titles.push("🔥 "+rec.st+"連勝中");if(win&&r.log.length<12)titles.push("⚡ 秒殺");
+music(null);if(win){fl("#ffd23f");confetti(cb?260:120);jWin();vib([60,40,60,40,200])}else if(draw){}else{fl("#ff4d4d");shake();jLose();vib(400)}
+const txt=draw?"DRAW":win?"WIN!":"LOSE",isGhost=L.oppN.startsWith("👻");
+$("#result").innerHTML=`<div class="verdict ${win?"w":"l"}">${win?"🏆 ":draw?"🤝 ":"💀 "}${txt}</div><div style="text-align:center;font-size:32px">${esc(L.W.join(""))} <span class="mut" style="font-size:16px">VS</span> ${esc(L.oppW.join(""))}</div><div class="mut" style="text-align:center">${esc(L.oppN)}(${isGhost?"CPUの戦士":"友達の戦士"})</div><div class="mut" style="text-align:center">相性:${mu(L.A,L.B)}</div>${isGhost?"":'<div class="mut" style="text-align:center">※友達側の画面でも同じ勝敗になります</div>'}<div style="text-align:center;margin:8px 0">${titles.map(t=>`<span class="ttl">${t}</span>`).join("")}</div>
+<button class="btn" id="again">⚔️ もう一戦(同じ戦士)</button><button class="btn alt" id="edit">✏️ 戦士を作り直す</button><button class="btn alt" id="rep">🎬 リプレイ</button><button class="btn alt" id="shr">📋 結果をシェア</button><button class="btn alt" id="chl">🔗 友達に挑戦状(この戦士)</button><button class="btn alt" id="rk2">🏆 ランキング</button>`;
+$("#rec").innerHTML=`<b>戦績</b> <span class="mut">${rec.w}勝 ${rec.l}敗 / 連勝 ${rec.st}(最高 ${rec.best}) / 逆転勝利 ${rec.cb}回</span>`;
+show("result");busy=false;if(chal&&!ROOM){const b=document.createElement("button");b.className="btn alt";b.textContent="👻 ゴースト戦に切り替え";b.onclick=()=>{setChal(null);b.remove()};$("#result").appendChild(b)}
+const link=baseUrl()+"#"+tokOf(L.W);
+$("#again").onclick=()=>{if(!busy){music(null);battleNow()}};$("#edit").onclick=()=>{busy=false;openBuild()};
+$("#rep").onclick=()=>{if(!busy)play(L,true)};
+$("#shr").onclick=e=>cpy(e.target,"EMOJI CLASH ⚔️ "+L.W.join("")+" で"+(win?(cb?"HP "+A.minhp+"から逆転勝利":"勝利")+"!🏆":draw?"引き分け🤝":"惜敗…")+"\n"+link);
+$("#chl").onclick=e=>sendChallenge(e.target,L.W);$("#rk2").onclick=showRank}
 async function shareText(btn,t){t=tr(t);if(navigator.share){try{await navigator.share({text:t});return}catch(x){if(x&&x.name==="AbortError")return}}cpy(btn,t)}
 const sendChallenge=(btn,w)=>shareText(btn,"この戦士に勝てる? "+w.join("")+"\n"+baseUrl()+"#"+tokOf(w));
 function battleNow(){busy=false;battle()}
@@ -302,17 +302,17 @@ addEventListener("hashchange",()=>{const c=parseTok(location.hash);if(c&&!busy)s
 async function saveRank(){try{localStorage.setItem("ecrec",JSON.stringify(rec))}catch(e){}if(!FIREBASE_URL)return;try{await db("PUT","players/"+PID,{n:(NICK||"名無し").slice(0,10),w:W.slice(),wins:rec.w,losses:rec.l,best:rec.best,cb:rec.cb,t:Date.now()})}catch(e){}}
 const dm=t=>{$("#dbmsg").textContent=t};
 async function mkRoom(){if(!FIREBASE_URL)return dm("⚠️ FIREBASE_URL が未設定です");sndOn=$("#snd").checked;if(sndOn)ctx();dm("作成中…");
- try{let c,ok=false;for(let i=0;i<6&&!ok;i++){c=String(1000+Math.random()*9000|0);const ex=await db("GET","rooms/"+c+"/t");if(!ex||Date.now()-ex>72e5){await db("PUT","rooms/"+c,{t:Date.now()});ok=true}}if(!ok)throw 0;ROOM={code:c,role:"a",round:1};chal=null;dm("");openBuild()}catch(e){dm("❌ 通信に失敗しました。設定を確認してください")}}
+try{let c,ok=false;for(let i=0;i<6&&!ok;i++){c=String(1000+Math.random()*9000|0);const ex=await db("GET","rooms/"+c+"/t");if(!ex||Date.now()-ex>72e5){await db("PUT","rooms/"+c,{t:Date.now()});ok=true}}if(!ok)throw 0;ROOM={code:c,role:"a",round:1};chal=null;dm("");openBuild()}catch(e){dm("❌ 通信に失敗しました。設定を確認してください")}}
 async function joinRoom(c){if(!FIREBASE_URL)return dm("⚠️ FIREBASE_URL が未設定です");if(!/^\d{4}$/.test(c))return dm("4桁の数字を入れてください");sndOn=$("#snd").checked;if(sndOn)ctx();dm("接続中…");
- try{const ex=await db("GET","rooms/"+c+"/t");if(!ex)return dm("ルームが見つかりません");const p=await db("GET","rooms/"+c+"/p")||{};const round=Math.max(1,...Object.values(p).map(x=>+x.r||0));ROOM={code:c,role:"b",round};chal=null;dm("");openBuild()}catch(e){dm("❌ 通信に失敗しました")}}
+try{const ex=await db("GET","rooms/"+c+"/t");if(!ex)return dm("ルームが見つかりません");const p=await db("GET","rooms/"+c+"/p")||{};const round=Math.max(1,...Object.values(p).map(x=>+x.r||0));ROOM={code:c,role:"b",round};chal=null;dm("");openBuild()}catch(e){dm("❌ 通信に失敗しました")}}
 async function showRank(){if($("#snd")){sndOn=$("#snd").checked;if(sndOn)ctx()}show("rank");const el=$("#rank"),hd='<div class="row"><b>🏆 ランキング</b><span class="mut">勝利数順</span></div>',bk='<button class="btn alt" id="rback">← 戻る</button>';
- const back=()=>{$("#rback").onclick=()=>{ROOM=null;music(null);show("start")}};
- if(!FIREBASE_URL){el.innerHTML=hd+'<p class="mut">FIREBASE_URL が未設定のため使えません。</p>'+bk;back();return}
- el.innerHTML=hd+'<p class="mut">読み込み中…</p>';
- try{const d=await db("GET","players")||{};const a=Object.entries(d).map(([id,v])=>({id,n:String(v.n||"名無し").slice(0,10),w:okW(v.w),wins:+v.wins||0,losses:+v.losses||0,best:+v.best||0})).filter(x=>x.w).sort((x,y)=>y.wins-x.wins||x.losses-y.losses||y.best-x.best).slice(0,30);
-  el.innerHTML=hd+(a.length?a.map((x,i)=>'<div class="rr"'+(x.id===PID?' style="outline:2px solid var(--gold)"':'')+'><b style="width:28px">'+(["🥇","🥈","🥉"][i]||i+1)+'</b><span style="font-size:22px">'+esc(x.w.join(""))+'</span><span style="flex:1"><b>'+esc(x.n)+'</b><div class="stat">'+x.wins+'勝 '+x.losses+'敗 / 最高'+x.best+'連勝</div></span>'+(x.id===PID?'':'<button class="btn" data-i="'+i+'" style="width:auto;margin:0;padding:8px 12px">挑戦</button>')+'</div>').join(""):'<p class="mut">まだ誰もいません。勝ってランクインしよう!</p>')+'<div class="mut">「挑戦」でその人の戦士と戦えます(結果は相手には反映されません)。</div>'+bk;
-  back();el.querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>{const x=a[+b.dataset.i];ROOM=null;setChal({w:x.w,n:x.n});openBuild()})}
- catch(e){el.innerHTML=hd+'<p class="mut">❌ 読み込みに失敗しました。</p>'+bk;back()}}
+const back=()=>{$("#rback").onclick=()=>{ROOM=null;music(null);show("start")}};
+if(!FIREBASE_URL){el.innerHTML=hd+'<p class="mut">FIREBASE_URL が未設定のため使えません。</p>'+bk;back();return}
+el.innerHTML=hd+'<p class="mut">読み込み中…</p>';
+try{const d=await db("GET","players")||{};const a=Object.entries(d).map(([id,v])=>({id,n:String(v.n||"名無し").slice(0,10),w:okW(v.w),wins:+v.wins||0,losses:+v.losses||0,best:+v.best||0})).filter(x=>x.w).sort((x,y)=>y.wins-x.wins||x.losses-y.losses||y.best-x.best).slice(0,30);
+el.innerHTML=hd+(a.length?a.map((x,i)=>'<div class="rr"'+(x.id===PID?' style="outline:2px solid var(--gold)"':'')+'><b style="width:28px">'+(["🥇","🥈","🥉"][i]||i+1)+'</b><span style="font-size:22px">'+esc(x.w.join(""))+'</span><span style="flex:1"><b>'+esc(x.n)+'</b><div class="stat">'+x.wins+'勝 '+x.losses+'敗 / 最高'+x.best+'連勝</div></span>'+(x.id===PID?'':'<button class="btn" data-i="'+i+'" style="width:auto;margin:0;padding:8px 12px">挑戦</button>')+'</div>').join(""):'<p class="mut">まだ誰もいません。勝ってランクインしよう!</p>')+'<div class="mut">「挑戦」でその人の戦士と戦えます(結果は相手には反映されません)。</div>'+bk;
+back();el.querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>{const x=a[+b.dataset.i];ROOM=null;setChal({w:x.w,n:x.n});openBuild()})}
+catch(e){el.innerHTML=hd+'<p class="mut">❌ 読み込みに失敗しました。</p>'+bk;back()}}
 $("#mk").onclick=mkRoom;$("#jn").onclick=()=>joinRoom($("#rc").value.trim());$("#rk").onclick=showRank;
 if(!FIREBASE_URL)dm("※ルーム対戦・ランキングは FIREBASE_URL の設定が必要です");
 const rm0=/^#r(\d{4})$/.exec(location.hash);if(rm0){$("#rc").value=rm0[1];dm("ルーム番号を入力済みです。「参加」を押してください")}
@@ -327,6 +327,279 @@ function applyLang(){document.documentElement.lang=LANG;$("#lang").textContent=L
 $("#lang").onclick=()=>{LANG=LANG==="en"?"ja":"en";try{localStorage.setItem("eclang",LANG)}catch(e){}applyLang()};
 applyLang();
 </script>
+<style>
+#cv{z-index:90}.arena{position:relative}
+.gw{position:absolute;left:0;top:0;z-index:5;pointer-events:none;filter:drop-shadow(0 0 6px #fff8)}
+.gfx-p{position:absolute;left:50%;top:42%;pointer-events:none;z-index:6;line-height:1}
+.gfx-t{position:absolute;inset:-10px;border-radius:50%;pointer-events:none;z-index:4}
+.vz{display:inline-block;width:1.15em;height:1.15em;line-height:1.15em;text-align:center;vertical-align:middle;overflow:visible}
+img.px{image-rendering:pixelated;image-rendering:crisp-edges}
+.vA{filter:saturate(1.25) contrast(1.1)}.vS{filter:saturate(1.4) drop-shadow(0 0 6px #ffd23f);animation:vsh 1.6s ease-in-out infinite alternate}
+.vSS.rainbow{animation:vrb 3.5s linear infinite}.vSS.mono{filter:grayscale(1) contrast(1.6) drop-shadow(0 0 8px #fff);animation:vmn 1.4s steps(2) infinite}
+@keyframes vsh{to{filter:saturate(1.7) drop-shadow(0 0 12px #ffd23f)}}
+@keyframes vrb{0%{filter:hue-rotate(0deg) saturate(1.9) drop-shadow(0 0 8px #ff3df2)}100%{filter:hue-rotate(360deg) saturate(1.9) drop-shadow(0 0 8px #ff3df2)}}
+@keyframes vmn{0%{filter:grayscale(1) contrast(1.6) brightness(1) drop-shadow(0 0 8px #fff)}100%{filter:grayscale(1) contrast(1.9) brightness(1.3) drop-shadow(0 0 14px #fff)}}
+.gbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--card2);border-radius:14px;padding:8px 10px;margin-bottom:10px}
+.gbar .btn{width:auto;margin:0;padding:8px 14px;font-size:14px}
+.gtkp{font-weight:900;color:var(--gold);white-space:nowrap}.gtkp b{font-size:20px}
+.gh{margin:0;font-size:22px;background:linear-gradient(90deg,#ff3df2,var(--gold),#4dd2ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gb{font-size:18px;padding:14px;background:linear-gradient(90deg,#7a2cff,var(--acc));box-shadow:0 0 18px #ff4d8d66}
+.gb small{display:block;font-size:12px;font-weight:600;opacity:.9}.gb.dis{filter:grayscale(.8) brightness(.7)}
+.gwarn{color:var(--ng);font-weight:700;min-height:20px;margin-top:6px;font-size:13px}
+.gbd{display:inline-block;min-width:34px;text-align:center;border-radius:8px;padding:1px 6px;font-weight:900;color:#111;background:var(--c)}
+.grt{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--card2)}.grt .mut{font-size:16px}
+.gtkb{text-align:center;font-weight:900;font-size:18px;color:var(--gold);background:linear-gradient(90deg,#3a2a00,#6b4b00,#3a2a00);border:2px solid var(--gold);border-radius:14px;padding:8px;margin:8px 0;animation:gpop .7s,gglow 1.5s infinite alternate}
+.gtkb small{display:block;font-size:12px;color:var(--tx);font-weight:600}
+#gov{position:fixed;inset:0;z-index:70;background:radial-gradient(circle at 50% 42%,#2a1a55,#05030d 70%);overflow:auto;padding:env(safe-area-inset-top,0) 10px env(safe-area-inset-bottom,0);display:flex;flex-direction:column;align-items:center}
+#gov.hide{display:none}#gov.ssbg:before{content:"";position:fixed;inset:-50%;background:repeating-conic-gradient(#ff3df255 0 6deg,transparent 6deg 18deg);animation:grot 6s linear infinite;pointer-events:none}
+#gst{position:relative;flex:1;display:flex;align-items:center;justify-content:center;width:100%;min-height:340px;z-index:1}
+#gfl{position:fixed;inset:0;pointer-events:none;opacity:0;z-index:5}
+#gact{position:relative;z-index:2;width:100%;max-width:420px;padding-bottom:10px}
+#gskip{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:10px;width:auto;z-index:6;padding:8px 14px;font-size:13px;margin:0}
+.gcr{position:relative;font-size:110px;filter:drop-shadow(0 0 28px var(--c));animation:gpulse 1s infinite}
+.gcr i{position:absolute;inset:-26px;border-radius:50%;border:3px solid var(--c);animation:gring 1s infinite}
+.gcr.chg{font-size:150px;animation:gshk .07s infinite}
+.gss{font-size:64px;font-weight:900;color:#fff;text-align:center;text-shadow:0 0 30px #ff3df2,0 0 60px #ffd23f;animation:gpop .8s}.gss small{display:block;font-size:20px;letter-spacing:.3em;color:var(--gold)}
+.gcard1{position:relative;text-align:center;width:min(86vw,320px);padding:22px 14px;border-radius:22px;background:linear-gradient(160deg,#1c1740,#0d0a22);border:3px solid var(--c);box-shadow:0 0 40px var(--c)}
+.gcard1.on{animation:gpop .6s}.gcard1 .gtag{position:absolute;top:10px;left:14px;font-size:30px;font-weight:900;color:var(--c);text-shadow:0 0 12px var(--c)}
+.gcard1 .gem{font-size:110px;line-height:1.2}.gem.sil{filter:brightness(0);opacity:.8}
+.gnm{font-size:22px;font-weight:900;margin-top:6px}.gds{font-size:13px;color:var(--mut);margin-top:4px}
+.ggrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;width:100%;max-width:440px}
+.gc{position:relative;text-align:center;background:var(--card);border:2px solid var(--c);border-radius:12px;padding:4px 2px 6px;animation:gpop .4s}
+.gc b{position:absolute;top:2px;left:4px;font-size:11px;color:var(--c)}.gc span.gi{display:block;font-size:28px;margin-top:10px}
+.gc small{display:block;font-size:9px;line-height:1.2;color:var(--mut);overflow:hidden;height:22px}.gc u{position:absolute;top:2px;right:3px;font-size:9px;font-weight:900;color:#111;background:var(--gold);padding:0 3px;border-radius:5px;text-decoration:none}
+.gc.rSS{box-shadow:0 0 18px var(--c),inset 0 0 14px var(--c);animation:gpop .5s,gglow 1s infinite alternate}.gc.rS{box-shadow:0 0 12px var(--c)}
+.gtab{display:flex;gap:6px;margin:8px 0}.gtab .btn{margin:0;padding:8px 4px;font-size:13px}.gtab .btn.on{background:var(--acc)}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.ci{position:relative;text-align:center;border:2px solid var(--c);background:var(--card2);border-radius:12px;padding:4px 2px;cursor:pointer;font-size:11px}
+.ci span.gi{display:block;font-size:30px}.ci.no{border-style:dashed}.ci.no .gi{opacity:.4;filter:grayscale(1)}.ci.sel{outline:3px solid var(--tx)}.ci i{position:absolute;top:1px;right:3px;font-style:normal;font-size:10px;font-weight:900;color:var(--gold)}
+.ci em{position:absolute;top:1px;left:3px;font-style:normal;font-size:10px;font-weight:900;color:var(--c)}
+.cdet{border:2px solid var(--c);border-radius:14px;padding:10px;margin-top:10px;background:var(--card2)}
+.cpv{position:relative;display:inline-block;font-size:56px;padding:6px 20px}
+.ceq{display:flex;gap:6px;flex-wrap:wrap}.ceq span{background:var(--card2);border-radius:10px;padding:3px 8px;font-size:13px}
+.stp{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}.stp button{font-size:26px;border:0;border-radius:14px;background:var(--card2);padding:6px 10px}.stp button:active{transform:scale(.88)}
+.stmp{position:absolute;left:50%;top:-6px;font-size:54px;pointer-events:none;z-index:8;filter:drop-shadow(0 2px 6px #000a)}
+#cmsgs{max-height:150px;overflow-y:auto;margin:6px 0;font-size:14px}.cm{padding:3px 0}.cm b{color:var(--gold)}.cm.op b{color:var(--acc)}
+@keyframes gpop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.15);opacity:1}100%{transform:scale(1)}}
+@keyframes gglow{to{filter:brightness(1.4)}}@keyframes grot{to{transform:rotate(360deg)}}
+@keyframes gpulse{50%{transform:scale(1.12)}}@keyframes gring{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.8);opacity:0}}
+@keyframes gshk{25%{transform:translate(-5px,3px) scale(1.05)}50%{transform:translate(5px,-3px)}75%{transform:translate(-3px,-4px) scale(1.05)}}
+</style>
+<script>
+/* 設定: window.GACHA_CONFIG={initTickets:50} または URL に ?gt=50 でテスト用チケット数 */
+(()=>{
+const CFG=Object.assign({initTickets:10,cost1:5,cost10:50,key:'ecgacha1'},window.GACHA_CONFIG||{});
+const RAR=['C','B','A','S','SS'],RATE={SS:1,S:5,A:14,B:30,C:50},RC={SS:'#ff3df2',S:'#ffd23f',A:'#c77dff',B:'#4da3ff',C:'#9a95c4'},RI=r=>RAR.indexOf(r);
+const KN={c:'キャラクター',w:'武器',e:'攻撃エフェクト'};
+const FX={slash:{p:[],mode:'slash',col:'#ffffff'},spark:{p:['✨','⚡','💫'],mode:'burst',col:'#ffe066'},fire:{p:['🔥','🔥','💥'],mode:'rise',col:'#ff7a1a'},ice:{p:['❄️','🧊','❄️'],mode:'burst',col:'#7fd8ff'},thunder:{p:['⚡','⚡','🌩️'],mode:'rain',col:'#ffe94a'},boom:{p:['💥','💥','🔥'],mode:'burst',col:'#ff9d2e'},water:{p:['💧','🌊','💦'],mode:'rain',col:'#3fa7ff'},poison:{p:['☠️','💨','🟣'],mode:'rise',col:'#a64dff'},dark:{p:['🌑','🖤','👁️'],mode:'spiral',col:'#7a2cff'},light:{p:['✨','🌟','⭐'],mode:'rain',col:'#fff6b0'},leaf:{p:['🍃','💚','🌿'],mode:'spiral',col:'#4dff88'},star:{p:['⭐','🌟','💫'],mode:'burst',col:'#ffd23f'},spiral:{p:['🌀','💫'],mode:'spiral',col:'#c77dff'},blood:{p:['🩸','💢'],mode:'burst',col:'#ff2d4d'},void:{p:['🕳️','🌑','💜'],mode:'spiral',col:'#8a2cff'},cosmos:{p:['🌌','⭐','💫','✨'],mode:'spiral',col:'#ff3df2'}};
+const ELFX=T({'🔥':'fire','❄️':'ice','💚':'leaf','💀':'dark','☠️':'poison','🌀':'spiral','🌊':'water','⭐':'star','🍀':'leaf','🩸':'blood','🌑':'dark','✨':'light'});
+const IT=[],I=(id,r,e,n,ne,d,de,x)=>IT.push(Object.assign({id,k:id[0],r,e,n,ne,d,de},x));
+I('c1','C','🐢','カメ戦士','Turtle Warrior','シンプルでかわいい基本キャラ。','A simple, cute starter character.');
+I('c2','C','🐹','ハム太','Hamuta','ほっぺに種をためる、ちいさな勇者。','A tiny hero who stores seeds in his cheeks.');
+I('c3','B','🐼','忍者パンダ','Ninja Panda','素早く動けるバランス型。','Quick and balanced.');
+I('c4','B','🐧','ペンギン隊長','Captain Penguin','氷の上なら誰にも負けない。','Unbeatable on ice.');
+I('c5','A','🐲','炎のドラゴン','Flame Dragon','強力な火の力を持つキャラ。','A character wielding mighty fire.');
+I('c6','A','🧙','魔導士ルーン','Mage Rune','古い呪文を絵文字で唱える賢者。','A sage who casts ancient spells with emoji.');
+I('c7','S','🤺','雷の騎士','Thunder Knight','雷の力を操る騎士。','A knight who commands lightning.');
+I('c8','S','🦄','ユニコーン・ノヴァ','Unicorn Nova','虹色のたてがみが戦場を照らす。','Its rainbow mane lights up the battlefield.');
+I('c9','SS','👼','混沌の神','God of Chaos','世界を揺るがす最強の存在。','The strongest being, shaking the world.',{sty:'mono'});
+I('c10','SS','🛸','星海の皇帝','Star Sea Emperor','宇宙の彼方からやって来た支配者。','A ruler from beyond the cosmos.',{sty:'rainbow'});
+I('w1','C','🗡️','木の剣','Wooden Sword','初心者向けのシンプルな剣。','A simple sword for beginners.',{st:'swing'});
+I('w2','C','🥄','銀のスプーン','Silver Spoon','すくって投げる。','Scoop and throw.',{st:'throw'});
+I('w3','B','🔱','水の槍','Water Spear','水の力を宿した槍。','A spear infused with water.',{st:'throw'});
+I('w4','B','🏏','ホームランバット','Home Run Bat','フルスイングで場外へ。','Full swing, out of the park.',{st:'swing'});
+I('w5','A','⚔️','炎の大剣','Flame Greatsword','燃え上がる炎の剣。','A blazing sword of fire.',{st:'swing'});
+I('w6','A','🧨','ダイナマイト','Dynamite','火がつく前に投げろ。','Throw it before it blows.',{st:'throw'});
+I('w7','S','🔨','雷のハンマー','Thunder Hammer','雷をまとったハンマー。','A hammer crackling with lightning.',{st:'swing'});
+I('w8','S','🌟','スターロッド','Star Rod','星屑をまとって飛ぶ。','Flies wrapped in stardust.',{st:'spin'});
+I('w9','SS','🗡️','虹の光剣','Rainbow Lightblade','虹の光をまとった伝説の剣。','A legendary blade wrapped in rainbow light.',{st:'swing',sty:'rainbow'});
+I('w10','SS','🪐','リングブレード','Ring Blade','惑星の輪が敵を切り裂く。','Planetary rings slice through foes.',{st:'spin',sty:'mono'});
+I('e1','C','🌙','通常の斬撃','Normal Slash','シンプルな斬撃エフェクト。','A simple slash effect.',{fx:'slash'});
+I('e2','C','🎇','火花','Sparks','パチパチ弾ける火花。','Crackling sparks.',{fx:'spark'});
+I('e3','B','🌊','水流の波動','Water Wave','水の力を放つエフェクト。','Unleashes the power of water.',{fx:'water'});
+I('e4','B','🧊','氷結','Deep Freeze','氷の結晶が砕け散る。','Ice crystals shatter.',{fx:'ice'});
+I('e5','A','💥','炎の爆発','Flame Burst','炎が爆発するエフェクト。','Fire erupts in an explosion.',{fx:'boom'});
+I('e6','A','🔥','業火','Hellfire','燃え上がる炎が立ちのぼる。','Roaring flames rise up.',{fx:'fire'});
+I('e7','S','⚡','雷の連鎖','Chain Lightning','雷が連鎖するエフェクト。','Lightning chains across the screen.',{fx:'thunder'});
+I('e8','S','✨','聖なる光','Holy Light','まばゆい光の雨が降る。','A rain of dazzling light.',{fx:'light'});
+I('e9','SS','🕳️','虚空の崩壊','Void Collapse','世界を飲み込むようなエフェクト。','An effect that swallows the world.',{fx:'void',sty:'mono'});
+I('e10','SS','🌌','銀河崩壊','Galaxy Collapse','銀河そのものが渦を巻く究極演出。','The galaxy itself swirls: the ultimate show.',{fx:'cosmos',sty:'rainbow'});
+const item=id=>IT.find(i=>i.id===id);
+/* ---- 見た目: C=スタンプ風(少し色違い) / B=ステッカー / A=ドット絵 / S=光るドット絵 / SS=虹 or モノクロのドット絵 ---- */
+const PXC={},HUE=id=>{let h=0;for(const c of id)h=(h*31+c.charCodeAt(0))%50;return h-25};
+function pixURL(e,res){const k=e+res;if(PXC[k]!==undefined)return PXC[k];let u='';try{const c=document.createElement('canvas');c.width=c.height=res;const x=c.getContext('2d');x.textAlign='center';x.textBaseline='middle';x.font=Math.round(res*.8)+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';x.fillText(e,res/2,res/2+res*.05);
+const d=x.getImageData(0,0,res,res),p=d.data;for(let i=0;i<p.length;i+=4){p[i+3]=p[i+3]>110?255:0;for(let j=0;j<3;j++)p[i+j]=Math.min(255,Math.round(p[i+j]/40)*40)}x.putImageData(d,0,0);u=c.toDataURL()}catch(err){}return PXC[k]=u}
+function vis(it){const r=it.r,e=it.e,h=HUE(it.id);
+if(r==='C')return `<span class="vz" style="filter:hue-rotate(${h}deg) drop-shadow(1px 1px 0 #fff) drop-shadow(-1px -1px 0 #fff)">${e}</span>`;
+if(r==='B')return `<span class="vz" style="filter:hue-rotate(${h}deg) saturate(1.3) drop-shadow(0 0 3px ${RC.B})">${e}</span>`;
+const u=pixURL(e,r==='A'?20:r==='S'?28:36);if(!u)return `<span class="vz">${e}</span>`;
+return `<img class="vz px v${r}${it.sty?' '+it.sty:''}" src="${u}" alt="">`}
+/* ---- セーブ ---- */
+let G;
+function load(){let g=null;try{g=JSON.parse(localStorage.getItem(CFG.key))}catch(e){}
+if(!g||typeof g!=='object')g={t:CFG.initTickets,inv:{},eq:{c:null,w:null,e:null},pulls:0};
+g.t=Math.max(0,+g.t||0);g.inv=g.inv||{};g.eq=Object.assign({c:null,w:null,e:null},g.eq);
+for(const k in g.eq)if(g.eq[k]&&(!g.inv[g.eq[k]]||!item(g.eq[k])))g.eq[k]=null;
+const m=/[?&]gt=(\d+)/.exec(location.search);if(m)g.t=+m[1];G=g;save()}
+function save(){try{localStorage.setItem(CFG.key,JSON.stringify(G))}catch(e){}}
+load();
+function draw(){const tot=Object.values(RATE).reduce((a,b)=>a+b,0);let x=Math.random()*tot,r='C';
+for(const k of['SS','S','A','B','C']){if(x<RATE[k]){r=k;break}x-=RATE[k]}
+const k='cwe'[Math.random()*3|0],p=IT.filter(i=>i.k===k&&i.r===r);return p[Math.random()*p.length|0]}
+/* ---- 画面 ---- */
+const main=$('main'),mkEl=h=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+main.appendChild(mkEl(`<div id="gacha" class="card hide"></div>`));main.appendChild(mkEl(`<div id="coll" class="card hide"></div>`));
+document.body.appendChild(mkEl(`<div id="gov" class="hide"><div id="gfl"></div><button id="gskip" class="btn alt">スキップ ⏭</button><div id="gst"></div><div id="gact"></div></div>`));
+$('#start').insertAdjacentHTML('afterbegin',`<div class="gbar"><span class="gtkp">🎟️ ガチャチケット <b class="gtk"></b></span><button class="btn" id="ghome">🎰 ガチャ</button><button class="btn alt" id="gch">📦 コレクション</button></div>`);
+const rates=RAR.slice().reverse().map(r=>`<div class="grt" style="--c:${RC[r]}"><span class="gbd">${r}</span><b style="flex:1">${RATE[r]}%</b><span class="mut">${['c','w','e'].map(k=>IT.filter(i=>i.k===k&&i.r===r).map(i=>RI(r)>=2?'？':i.e).join('')).join(' / ')}</span></div>`).join('');
+$('#gacha').innerHTML=`<div class="row"><h2 class="gh">🎰 EMOJI GACHA</h2><span class="gtkp">🎟️ <b class="gtk"></b></span></div>
+<div class="mut">バトルに勝つとチケット+1。1連=🎟️×${CFG.cost1} / 10連=🎟️×${CFG.cost10}(チケット1つあたりの価値は同じ)</div>
+<button class="btn gb" id="gp1">🎰 1連ガチャ<small></small></button><button class="btn gb" id="gp10">🎰 10連ガチャ<small></small></button><div id="gwarn" class="gwarn"></div>
+<b>排出確率</b><span class="mut"> (合計 ${Object.values(RATE).reduce((a,b)=>a+b,0)}%)</span>${rates}<div class="mut">右の絵文字は 🧑キャラ / 🗡️武器 / 💫エフェクト のラインナップです。A以上は秘密!</div>
+<b style="display:block;margin-top:10px">入手できるアイテム</b>${['c','w','e'].map(k=>`<div class="tc"><b>${KN[k]}</b> <span class="mut">(${IT.filter(i=>i.k===k).length})</span><div class="stat">${k==='c'?'戦闘中の自分の見た目が変わる':k==='w'?'武器の絵文字と攻撃モーションが変わる':'攻撃時のエフェクトが変わる(高レアほど派手!)'}</div></div>`).join('')}
+<button class="btn alt" id="g2c">📦 コレクションを見る</button><button class="btn alt" id="gback">← ホームへ</button>`;
+const SH=show;show=function(id){['gacha','coll'].forEach(x=>$('#'+x).classList.add('hide'));SH(id)};
+const go=id=>{SH('none');$('#'+id).classList.remove('hide');upd()};
+function upd(){document.querySelectorAll('.gtk').forEach(e=>e.textContent=G.t);
+[[1,CFG.cost1],[10,CFG.cost10]].forEach(([n,c])=>{const b=$('#gp'+n);b.classList.toggle('dis',G.t<c);b.querySelector('small').textContent='🎟️×'+c+' / 所持 '+G.t});
+$('#gwarn').textContent=G.t<CFG.cost1?'チケットが足りません':G.t<CFG.cost10?'10連はチケットが足りません':''}
+$('#ghome').onclick=()=>go('gacha');$('#gch').onclick=()=>{go('coll');renderColl()};$('#g2c').onclick=$('#gch').onclick;$('#gback').onclick=()=>show('start');
+/* ---- ガチャ演出 ---- */
+let pulling=false,skip=false;
+const wait=ms=>new Promise(r=>{const t0=Date.now(),iv=setInterval(()=>{if(skip||Date.now()-t0>=ms){clearInterval(iv);r()}},30)});
+function sfx(t,b){if(typeof AC==='undefined'||!AC||!sndOn)return;const t0=now();
+if(t==='charge'){tn(120,t0,1.6,'sawtooth',.05,900);nz(t0,1.2,.03,3000)}
+else if(t==='burst'){kick(t0,.6);nz(t0,.4,.2,1200);[523,659,784,1047,1319].slice(0,1+b).forEach((f,i)=>tn(f,t0+i*.09,.35,'square',.09))}
+else tn(660+Math.random()*200,t0,.08,'square',.06)}
+function gfl(c){const f=$('#gfl');f.style.background=c;f.animate([{opacity:.9},{opacity:0}],{duration:600})}
+function gshake(){$('#gst').animate([{transform:'translate(-10px,5px)'},{transform:'translate(9px,-6px)'},{transform:'translate(-6px,4px)'},{transform:'none'}],{duration:450})}
+function converge(col,n){const st=$('#gst');for(let i=0;i<n;i++){const s=document.createElement('span'),a=Math.random()*6.283,d=150+Math.random()*120;s.textContent='✦';s.style.cssText=`position:absolute;left:50%;top:50%;color:${col};font-size:${10+Math.random()*14}px;pointer-events:none`;st.appendChild(s);
+s.animate([{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`,opacity:0},{opacity:1,offset:.3},{transform:'translate(0,0)',opacity:0}],{duration:600+Math.random()*500,delay:Math.random()*400}).onfinish=()=>s.remove()}}
+function pull(n){if(pulling)return;const cost=n===1?CFG.cost1:CFG.cost10;
+if(G.t<cost){$('#gwarn').textContent='チケットが足りません';vib(80);return}
+pulling=true;G.t-=cost;const res=[];
+for(let i=0;i<n;i++){const it=draw(),had=G.inv[it.id]||0;G.inv[it.id]=had+1;res.push({it,isNew:!had,n:had+1})}
+G.pulls=(G.pulls||0)+n;save();upd();if(sndOn)ctx();run(res)}
+async function run(res){const st=$('#gst'),ov=$('#gov'),best=Math.max(...res.map(x=>RI(x.it.r))),col=RC[RAR[best]];
+skip=false;ov.classList.remove('hide');ov.classList.toggle('ssbg',best===4);$('#gskip').classList.remove('hide');$('#gact').innerHTML='';
+st.innerHTML=`<div class="gcr" style="--c:${col}"><i></i>💎</div>`;const cr=st.firstChild;sfx('charge');vib(30);
+await wait(900);
+if(!skip){cr.classList.add('chg');converge(col,30);vib([40,30,40,30,80]);await wait(1100)}
+if(!skip){gfl(col==='#9a95c4'?'#fff':col);sfx('burst',best);if(best>=3){gshake();vib([60,40,140])}if(best===4)confetti(220);await wait(450)}
+if(best===4&&!skip){st.innerHTML='<div class="gss">★SS★<small>SUPER RARE</small></div>';await wait(1200)}
+if(res.length===1)await reveal1(res[0]);else await reveal10(res);
+$('#gskip').classList.add('hide');
+const c1=G.t>=CFG.cost1,c10=G.t>=CFG.cost10;
+$('#gact').innerHTML=`<button class="btn" id="gx1" ${c1?'':'style="filter:grayscale(1)"'}>もう1連(🎟️×${CFG.cost1})</button><button class="btn" id="gx10" ${c10?'':'style="filter:grayscale(1)"'}>もう10連(🎟️×${CFG.cost10})</button><button class="btn alt" id="gxc">📦 装備する(コレクション)</button><button class="btn alt" id="gxx">閉じる</button><div class="gwarn" id="gxw" style="text-align:center"></div>`;
+const close=()=>{ov.classList.add('hide');pulling=false;upd()};
+$('#gxx').onclick=close;$('#gxc').onclick=()=>{close();go('coll');renderColl()};
+$('#gx1').onclick=()=>{if(G.t<CFG.cost1)return $('#gxw').textContent='チケットが足りません';close();pull(1)};
+$('#gx10').onclick=()=>{if(G.t<CFG.cost10)return $('#gxw').textContent='チケットが足りません';close();pull(10)}}
+async function reveal1(x){const st=$('#gst'),r=x.it.r;
+st.innerHTML=`<div class="gcard1" style="--c:${RC[r]}"><div class="gtag">${r}</div><div class="gem sil">${vis(x.it)}</div><div class="gnm">？？？</div><div class="gds">${KN[x.it.k]}</div></div>`;const cd=st.firstChild;
+await wait(800);cd.querySelector('.gem').classList.remove('sil');cd.classList.add('on');sfx('pop');
+cd.querySelector('.gnm').innerHTML=`${esc(x.it.n)} ${x.isNew?'<span style="color:var(--gold)">NEW!</span>':`<span class="mut">×${x.n}</span>`}`;
+cd.querySelector('.gds').innerHTML=`${KN[x.it.k]}<br>${esc(x.it.d)}${x.isNew?'':'<br>(重複:所持数が増えました)'}`;if(r==='SS'||r==='S')vib([50,30,90])}
+async function reveal10(res){const st=$('#gst');st.innerHTML='<div class="ggrid"></div>';const g=st.firstChild;
+for(const x of res){const r=x.it.r,d=document.createElement('div');d.className='gc r'+r;d.style.setProperty('--c',RC[r]);
+d.innerHTML=`<b>${r}</b><span class="gi">${vis(x.it)}</span><small>${esc(x.it.n)}</small>${x.isNew?'<u>NEW</u>':''}`;g.appendChild(d);sfx('pop');
+if(r==='SS'||r==='S'){gfl(RC[r]);vib(60);if(r==='SS')confetti(100)}await wait(r==='SS'?700:r==='S'?450:150)}}
+$('#gskip').onclick=()=>{skip=true};$('#gp1').onclick=()=>pull(1);$('#gp10').onclick=()=>pull(10);
+/* ---- コレクション(A以上の未入手は「？」で秘密) ---- */
+let tab='c',sel=null;
+function renderColl(){const el=$('#coll'),eqn=k=>{const i=item(G.eq[k]);return i?esc(i.n):'標準'};
+const list=IT.filter(i=>i.k===tab).sort((a,b)=>RI(b.r)-RI(a.r)),own=IT.filter(i=>G.inv[i.id]).length;
+el.innerHTML=`<div class="row"><b style="font-size:20px">📦 コレクション</b><span class="gtkp">🎟️ <b class="gtk"></b></span></div>
+<div class="mut">所持 ${own} / ${IT.length}</div><div class="ceq" style="margin-top:6px"><span>🧑 ${eqn('c')}</span><span>🗡️ ${eqn('w')}</span><span>💫 ${eqn('e')}</span></div>
+<div class="gtab">${['c','w','e'].map(k=>`<button class="btn alt ${k===tab?'on':''}" data-k="${k}">${KN[k]}</button>`).join('')}</div>
+<div class="cgrid">${list.map(i=>{const n=G.inv[i.id]||0,known=n||RI(i.r)<2;return `<div class="ci ${n?'':'no'} ${sel===i.id?'sel':''}" style="--c:${RC[i.r]}" data-id="${i.id}"><em>${i.r}</em>${G.eq[i.k]===i.id?'<i>装備中</i>':n>1?`<i>×${n}</i>`:''}<span class="gi">${known?vis(i):'？'}</span>${known?esc(i.n):'未入手'}</div>`}).join('')}</div>
+<div id="cdet"></div><button class="btn alt" id="c2g">🎰 ガチャへ</button><button class="btn alt" id="cback">← ホームへ</button>`;
+el.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{tab=b.dataset.k;sel=null;renderColl()});
+el.querySelectorAll('.ci').forEach(c=>c.onclick=()=>{sel=c.dataset.id;renderColl()});
+$('#c2g').onclick=()=>go('gacha');$('#cback').onclick=()=>show('start');upd();
+const i=item(sel);if(!i||i.k!==tab)return;const n=G.inv[i.id]||0,on=G.eq[i.k]===i.id,known=n||RI(i.r)<2;
+$('#cdet').innerHTML=`<div class="cdet" style="--c:${RC[i.r]}"><div class="row"><span class="gbd" style="--c:${RC[i.r]}">${i.r}</span><span class="mut">${KN[i.k]}${n?' / 所持 ×'+n:''}</span></div>
+<div style="text-align:center"><div class="cpv" id="cpv">${known?vis(i):'？'}</div></div><div style="text-align:center;font-weight:900;font-size:18px">${known?esc(i.n):'？？？'}</div><div class="mut" style="text-align:center">${known?esc(i.d):'ガチャで入手すると詳細が見られます'}</div>
+${n&&i.k==='e'?'<button class="btn alt" id="cpb">▶ エフェクトを試す</button>':''}
+<button class="btn ${on?'alt':''}" id="ceq" ${n?'':'disabled style="filter:grayscale(1);opacity:.5"'}>${n?(on?'装備中(タップで標準に戻す)':'装備する'):'未入手(装備できません)'}</button></div>`;
+if($('#cpb'))$('#cpb').onclick=()=>fx($('#cpv'),FX[i.fx],RI(i.r),false);
+$('#ceq').onclick=()=>{if(!G.inv[i.id])return;G.eq[i.k]=on?null:i.id;save();renderColl()}}
+/* ---- 戦闘エフェクト ---- */
+function fx(el,def,rank,crit){if(!el||!def)return;const R=[1,1.4,2,3,4.5][rank],n=Math.round(6*R*(crit?1.5:1));
+const t=document.createElement('div');t.className='gfx-t';t.style.background=`radial-gradient(circle,${def.col}cc,transparent 65%)`;el.appendChild(t);
+t.animate([{opacity:0,transform:'scale(.4)'},{opacity:1,offset:.25},{opacity:0,transform:`scale(${1+rank*.25})`}],{duration:650}).onfinish=()=>t.remove();
+if(def.mode==='slash'){for(let k=0;k<(rank>=3?3:crit?2:1);k++){const s=document.createElement('div');s.className='gfx-p';s.style.cssText=`width:110px;height:5px;background:linear-gradient(90deg,transparent,${def.col},transparent);box-shadow:0 0 12px ${def.col};border-radius:4px`;el.appendChild(s);
+const a=-40+k*40;s.animate([{transform:`translate(-50%,-50%) rotate(${a}deg) scaleX(0)`,opacity:1},{transform:`translate(-50%,-50%) rotate(${a}deg) scaleX(1.4)`,opacity:1,offset:.5},{transform:`translate(-50%,-50%) rotate(${a}deg) scaleX(1.6)`,opacity:0}],{duration:380,delay:k*90}).onfinish=()=>s.remove()}}
+else for(let i=0;i<n;i++){const s=document.createElement('span');s.className='gfx-p';const em=def.p[Math.random()*def.p.length|0];s.style.fontSize=(18+Math.random()*14+rank*4)+'px';
+if(rank>=3){const u=pixURL(em,20);s.innerHTML=u?`<img class="px" src="${u}" style="width:1.1em;height:1.1em;display:block">`:em;if(rank>=4)s.style.filter=`hue-rotate(${Math.random()*360|0}deg) saturate(1.6)`}else s.textContent=em;
+el.appendChild(s);
+const C='translate(-50%,-50%) ',rd=Math.random(),d=600+rd*500+rank*80,dl=Math.random()*180;let kf;
+if(def.mode==='burst'){const a=Math.random()*6.283,r=40+Math.random()*(50+rank*18);kf=[{transform:C+'scale(.3)',opacity:1},{transform:C+`translate(${Math.cos(a)*r}px,${Math.sin(a)*r}px) scale(1.2)`,opacity:1,offset:.6},{transform:C+`translate(${Math.cos(a)*r*1.3}px,${Math.sin(a)*r*1.3}px) scale(.6)`,opacity:0}]}
+else if(def.mode==='rise'){const x=(Math.random()-.5)*90;kf=[{transform:C+`translate(${x}px,40px) scale(.5)`,opacity:0},{opacity:1,offset:.3},{transform:C+`translate(${x*1.3}px,-90px) scale(1.2)`,opacity:0}]}
+else if(def.mode==='rain'){const x=(Math.random()-.5)*110;kf=[{transform:C+`translate(${x}px,-120px) scale(.8)`,opacity:0},{opacity:1,offset:.2},{transform:C+`translate(${x*.8}px,30px) scale(1.3)`,opacity:1,offset:.8},{transform:C+`translate(${x*.8}px,40px) scale(1.6)`,opacity:0}]}
+else{const a0=Math.random()*6.283;kf=[0,.25,.5,.75,1].map(q=>{const a=a0+q*9,r=80*(1-q)+8;return{transform:C+`translate(${Math.cos(a)*r}px,${Math.sin(a)*r*.7}px) scale(${.6+q*.8})`,opacity:q>.85?0:1}})}
+s.animate(kf,{duration:d,delay:dl,easing:'ease-out'}).onfinish=()=>s.remove()}
+if(rank>=3)fl(def.col);if(rank>=4){shake();vib(40)}}
+function wpn(ai,html,st,rank){const ar=$('#arena .arena'),a=$('#f'+ai),b=$('#f'+(1-ai));if(!ar||!html||!a||!b)return;
+const R=ar.getBoundingClientRect(),A=a.getBoundingClientRect(),B=b.getBoundingClientRect(),ax=A.left+A.width/2-R.left,ay=A.top+A.height*.4-R.top,bx=B.left+B.width/2-R.left,by=B.top+B.height*.4-R.top;
+const s=document.createElement('span');s.className='gw';s.innerHTML=html;s.style.fontSize=(34+rank*9)+'px';ar.appendChild(s);
+const P=(x,y,r,sc)=>`translate(${x}px,${y}px) translate(-50%,-50%) rotate(${r}deg) scale(${sc})`,mx=ax+(bx-ax)*.6;let kf;
+if(st==='swing')kf=[{transform:P(ax,ay-30,-60,1),opacity:1},{transform:P(mx,ay,80,1.3),opacity:1,offset:.6},{transform:P(mx,ay,100,1),opacity:0}];
+else if(st==='spin')kf=[{transform:P(ax,ay,0,.8),opacity:1},{transform:P(bx,by,720,1.2),opacity:1,offset:.6},{transform:P(ax,ay,1080,.6),opacity:.2}];
+else kf=[{transform:P(ax,ay,0,.8),opacity:1},{transform:P(bx,by,360,1.2),opacity:1,offset:.75},{transform:P(bx,by,400,1.6),opacity:0}];
+s.animate(kf,{duration:360,easing:'ease-in'}).onfinish=()=>s.remove()}
+function onHit(t){const LR=lastRun;if(!LR)return;const ai=1-t,ee=G.eq.e&&item(G.eq.e),ew=G.eq.w&&item(G.eq.w),mine=ai===0;
+const crit=/CRITICAL/.test($('#tick').textContent),ow=(mine?LR.W:LR.oppW);
+const wH=mine&&ew?vis(ew):ow[1],st=mine&&ew?ew.st:'swing',wr=mine&&ew?RI(ew.r):0;
+const key=mine&&ee?ee.fx:ELFX[norm(ow[2])]||'slash',rank=mine&&ee?RI(ee.r):1;
+wpn(ai,wH,st,wr);setTimeout(()=>fx($('#f'+t),FX[key],rank,crit),240)}
+[0,1].forEach(i=>{const el=$('#f'+i);let had=false;new MutationObserver(()=>{const h=el.classList.contains('hit');if(h&&!had)onHit(i);had=h}).observe(el,{attributes:true,attributeFilter:['class']})});
+/* ---- 戦闘の見た目反映 ---- */
+let stN=null,stCool=0;
+const P0=play;play=function(L,rep){const p=P0(L,rep),c=G.eq.c&&item(G.eq.c),w=G.eq.w&&item(G.eq.w);
+if(c){$('#e0').innerHTML=vis(c);$('#n0').textContent='YOU('+c.n+')'}if(w)$('#s0').innerHTML=vis(w)+esc(L.W[2]||'');stN=null;return p};
+const F0=finish;finish=function(L){F0(L);if(L.r.win===0&&!L._g){L._g=1;G.t++;save();upd();
+$('#result').insertAdjacentHTML('afterbegin',`<div class="gtkb">🎟️ ガチャチケットを1枚獲得！<small>所持 ${G.t} / 次の1連まで あと ${Math.max(0,CFG.cost1-G.t)}</small></div>`);
+if(typeof AC!=='undefined'&&AC&&sndOn){const t0=now();[880,1175,1568].forEach((f,i)=>tn(f,t0+.5+i*.08,.2,'square',.07))}
+const b=document.createElement('button');b.className='btn alt';b.textContent='🎰 ガチャを引く';b.onclick=()=>go('gacha');$('#result').appendChild(b)}};
+/* ---- スタンプ ---- */
+const STM=['😢','🤩','😡','😶','🥹','😇'];
+const fb=async(m,p,b,qs)=>{const r=await fetch(FIREBASE_URL.replace(/\/$/,'')+'/'+p+'.json'+(qs||''),{method:m,body:b===undefined?undefined:JSON.stringify(b)});if(!r.ok)throw new Error(r.status);return r.json()};
+$('#tick').insertAdjacentHTML('afterend',`<div class="mut" style="text-align:center;margin-top:8px">スタンプ</div><div class="stp" id="stp">${STM.map(e=>`<button data-e="${e}">${e}</button>`).join('')}</div>`);
+function showStamp(i,e){const f=$('#f'+i);if(!f)return;const d=document.createElement('div');d.className='stmp';d.textContent=e;f.appendChild(d);
+d.animate([{transform:'translate(-50%,10px) scale(.2)',opacity:0},{transform:'translate(-50%,-10px) scale(1.25)',opacity:1,offset:.25},{transform:'translate(-50%,-14px) scale(1)',opacity:1,offset:.75},{transform:'translate(-50%,-40px) scale(.9)',opacity:0}],{duration:1900}).onfinish=()=>d.remove();if(i===1)vib(20)}
+$('#stp').querySelectorAll('button').forEach(b=>b.onclick=()=>{const t=Date.now();if(t-stCool<1200)return;stCool=t;const e=b.dataset.e;showStamp(0,e);vib(10);
+if(ROOM&&FIREBASE_URL)fb('PUT','rooms/'+ROOM.code+'/s/'+ROOM.role,{e,n:t+':'+(Math.random()*1e6|0)}).catch(()=>{});
+else if(Math.random()<.6)setTimeout(()=>showStamp(1,STM[Math.random()*STM.length|0]),600+Math.random()*1200)});
+setInterval(async()=>{if(!ROOM||!FIREBASE_URL||$('#arena').classList.contains('hide'))return;
+try{const o=await fb('GET','rooms/'+ROOM.code+'/s/'+(ROOM.role==='a'?'b':'a'));if(o&&o.n!==stN){if(stN!==null&&STM.includes(o.e))showStamp(1,o.e);stN=o.n}else if(!o&&stN===null)stN=''}catch(e){}},900);
+/* ---- ルームチャット(キャラ選択画面) ---- */
+$('#rbar').insertAdjacentHTML('afterend',`<div id="chat" class="card hide" style="background:var(--card2);margin:8px 0"><b>💬 ルームチャット</b><div id="cmsgs"></div><div style="display:flex;gap:6px"><input id="cin" class="inp" maxlength="60" placeholder="メッセージ" style="flex:1"><button id="csd" class="btn" style="width:auto;margin-top:8px">送信</button></div></div>`);
+let chatCode=null,chatSig='',chatCool=0;
+function chatUI(){const c=$('#chat');c.classList.toggle('hide',!ROOM);if(ROOM&&chatCode!==ROOM.code){chatCode=ROOM.code;chatSig='';$('#cmsgs').innerHTML=''}if(!ROOM)chatCode=null}
+const R0=roomUI;roomUI=function(){R0();chatUI()};
+function renderChat(o){const a=Object.entries(o||{}).sort((x,y)=>x[0]<y[0]?-1:1).slice(-30),sig=a.map(x=>x[0]).join();if(sig===chatSig)return;chatSig=sig;const el=$('#cmsgs');
+el.innerHTML=a.length?a.map(([k,v])=>`<div class="cm ${v.r===ROOM.role?'':'op'}"><b>${v.r===ROOM.role?'あなた:':'相手:'}</b> ${esc(String(v.m||'').slice(0,60))}</div>`).join(''):'<div class="mut">まだメッセージはありません</div>';el.scrollTop=el.scrollHeight}
+async function pollChat(){if(!ROOM||!FIREBASE_URL||$('#build').classList.contains('hide'))return;try{renderChat(await fb('GET','rooms/'+ROOM.code+'/c',undefined,'?orderBy=%22%24key%22&limitToLast=30'))}catch(e){}}
+async function sendChat(){const i=$('#cin'),m=i.value.trim().slice(0,60),t=Date.now();if(!m||!ROOM||!FIREBASE_URL||t-chatCool<600)return;chatCool=t;i.value='';
+try{await fb('POST','rooms/'+ROOM.code+'/c',{r:ROOM.role,m,t});pollChat()}catch(e){}}
+$('#csd').onclick=sendChat;$('#cin').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat()});setInterval(pollChat,1500);
+/* ---- 英語表記 ---- */
+const EN=[['🎟️ ガチャチケット ','🎟️ Gacha tickets '],['🎰 ガチャ','🎰 Gacha'],['🎰 ガチャを引く','🎰 Pull gacha'],['🎰 ガチャへ','🎰 To gacha'],['🎰 1連ガチャ','🎰 1-Pull Gacha'],['🎰 10連ガチャ','🎰 10-Pull Gacha'],['📦 コレクション','📦 Collection'],['📦 コレクションを見る','📦 View collection'],['📦 装備する(コレクション)','📦 Equip (Collection)'],['← ホームへ','← Home'],
+['バトルに勝つとチケット+1。1連=','Win a battle to earn +1 ticket. 1-pull = '],[' / 10連=',' / 10-pull = '],['(チケット1つあたりの価値は同じ)',' (same value per ticket)'],['チケットが足りません','Not enough tickets'],['10連はチケットが足りません','Not enough tickets for 10-pull'],
+['🎟️ ガチャチケットを1枚獲得！','🎟️ Got 1 gacha ticket!'],['所持 ','Owned '],[' / 次の1連まで あと ',' / Next 1-pull in '],['排出確率','Drop rates'],[' (合計 ',' (total '],
+['右の絵文字は 🧑キャラ / 🗡️武器 / 💫エフェクト のラインナップです。A以上は秘密!','Emoji on the right: 🧑Characters / 🗡️Weapons / 💫Effects. A and above are a secret!'],['入手できるアイテム','Available items'],
+['キャラクター','Characters'],['攻撃エフェクト','Attack effects'],['武器','Weapons'],['戦闘中の自分の見た目が変わる','Changes your look in battle'],['武器の絵文字と攻撃モーションが変わる','Changes weapon look and attack motion'],['攻撃時のエフェクトが変わる(高レアほど派手!)','Changes attack effects (higher rarity = flashier!)'],
+['スキップ ⏭','Skip ⏭'],['もう1連(🎟️×','1 more pull (🎟️×'],['もう10連(🎟️×','10 more pulls (🎟️×'],['閉じる','Close'],['(重複:所持数が増えました)','(Duplicate: count increased)'],
+['標準','Default'],['未入手(装備できません)','Not owned (can\'t equip)'],['未入手','Not owned'],['装備する','Equip'],['装備中(タップで標準に戻す)','Equipped (tap to unequip)'],['装備中','Equipped'],['▶ エフェクトを試す','▶ Try effect'],['ガチャで入手すると詳細が見られます','Pull it from the gacha to see details'],
+['スタンプ','Stamps'],['💬 ルームチャット','💬 Room chat'],['メッセージ','Message'],['送信','Send'],['まだメッセージはありません','No messages yet'],['あなた:','You:'],['相手:','Friend:']];
+IT.forEach(i=>EN.push([i.n,i.ne],[i.d,i.de]));
+EN_PAIRS.push(...EN);EN_PAIRS.sort((a,b)=>b[0].length-a[0].length);
+chatUI();upd();applyLang();
+})();
+</script>
+
 </body>
 </html>
- 
+
+0
