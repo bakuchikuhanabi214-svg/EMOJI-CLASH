@@ -231,19 +231,19 @@ function roomUI(){const b=$("#rbar");b.classList.toggle("hide",!ROOM&&!chal);$("
  else if(chal)b.innerHTML='<div class="tc" style="border-left:4px solid var(--acc)">⚔️ 挑戦相手:'+esc(chal.w.join(""))+' '+esc(chal.n||"")+'</div>'}
 function tokOf(w){return "w"+w.map(e=>[...e].map(c=>c.codePointAt(0).toString(16)).join("_")).join("-")+(NICK?"-n"+[...NICK].map(c=>c.codePointAt(0).toString(16)).join("_"):"")}
 function parseTok(h){try{const m=String(h).replace("#","").trim();if(m[0]!=="w"||m.length>400)return null;const p=m.slice(1).split("-"),dec=s=>String.fromCodePoint(...s.split("_").map(x=>parseInt(x,16)));const w=p.slice(0,3).map(s=>first(dec(s)));if(w.length!==3||!w.every(Boolean))return null;let n="";if(p[3]&&p[3][0]==="n")n=dec(p[3].slice(1)).slice(0,10);return{w,n}}catch(e){return null}}
-function friendFight(me,op,salt){const key=w=>w.map(e=>[...e].map(c=>c.codePointAt(0).toString(16)).join('_')).join('-'),km=key(me),ko=key(op),first=km<=ko;const P=mk(first?me:op,''),Q=mk(first?op:me,'');let h=2166136261;for(const c of ((first?km+'|'+ko:ko+'|'+km)+(salt||'')))h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;const orig=Math.random;let s=h||1;Math.random=()=>{s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};let r;try{r=fight(P,Q)}finally{Math.random=orig}if(first)return{A:P,B:Q,r};const fl=w=>w<0?-1:1-w;const log=r.log.map(e=>{const x=Object.assign({},e);if(x.hp)x.hp=[e.hp[1],e.hp[0]];if(x.who!==undefined)x.who=1-x.who;if(x.type==='end')x.win=fl(e.win);return x});return{A:Q,B:P,r:{log,win:fl(r.win)}}}
+function friendFight(me,op,salt){const key=w=>w.map(e=>[...e].map(c=>c.codePointAt(0).toString(16)).join('_')).join('-'),km=key(me),ko=key(op),first=km<ko||(km===ko&&(!ROOM||ROOM.role==="a"));const P=mk(first?me:op,''),Q=mk(first?op:me,'');let h=2166136261;for(const c of ((first?km+'|'+ko:ko+'|'+km)+(salt||'')))h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;const orig=Math.random;let s=h||1;Math.random=()=>{s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};let r;try{r=fight(P,Q)}finally{Math.random=orig}if(first)return{A:P,B:Q,r};const fl=w=>w<0?-1:1-w;const log=r.log.map(e=>{const x=Object.assign({},e);if(x.hp)x.hp=[e.hp[1],e.hp[0]];if(x.who!==undefined)x.who=1-x.who;if(x.type==='end')x.win=fl(e.win);return x});return{A:Q,B:P,r:{log,win:fl(r.win)}}}
 async function battle(){if(busy)return;busy=true;
  let oppW,oppN,ghost=true,salt="";window.OPPEQ=null;window.OPPTI=null;
  if(ROOM){const rm=ROOM,myr=rm.round;show("wait");rm.cancel=false;
   $("#wait").innerHTML='<b>⏳ 相手の準備を待っています…</b><div class="mut">ルーム '+rm.code+' / 相手が「準備OK」を押すと自動で始まります。</div><button class="btn alt" id="wcan">やめる</button>';
   $("#wcan").onclick=()=>{rm.cancel=true};
   let o=null,err=false;try{await db("PUT","rooms/"+rm.code+"/p/"+rm.role,{w:W.slice(),n:NICK,r:myr,q:window.getEq?getEq():null,ti:window.getTitle?getTitle():null});o=await waitOpp(rm,myr)}catch(e){err=true}
-  if(!o||ROOM!==rm){busy=false;if(ROOM===rm){openBuild();if(err)alert(tr("通信に失敗しました"))}else show("start");return}
+  if(!o||ROOM!==rm){busy=false;if(ROOM===rm){openBuild();if(err)alert(tr("通信に失敗しました"));else if(rm.rnd&&!rm.cancel)alert(tr("相手が応答しませんでした"))}else show("start");return}
   oppW=o.w;oppN="友達:"+(o.n||"???");ghost=false;salt=rm.code+":"+myr;window.OPPEQ=o.q||null;window.OPPTI=o.ti||null}
  else if(chal){oppW=chal.w;oppN="友達の戦士:"+(chal.n||"???");ghost=false;window.OPPTI=chal.ti||null;window.OPPEQ=chal.q||null}
  else{const o=OPP[Math.floor(Math.random()*OPP.length)];oppW=o.slice(0,3);oppN="👻 "+o[3]}
  let A=mk(W.slice(),"YOU"),B=mk(oppW,oppN),r;if(ghost)r=fight(A,B);else{const o=friendFight(W.slice(),oppW,salt);A=o.A;B=o.B;r=o.r}lastRun={W:W.slice(),oppW,oppN,r,A,B};await play(lastRun);busy=false}
-async function waitOpp(rm,r){const o2=rm.role==="a"?"b":"a",t0=Date.now();while(ROOM===rm&&!rm.cancel&&Date.now()-t0<6e5){try{const o=await db("GET","rooms/"+rm.code+"/p/"+o2);if(o&&o.r===r){const w=okW(o.w);if(w)return{w,n:String(o.n||"").slice(0,10),q:o.q||null,ti:o.ti||null}}}catch(e){}await sleep(1200)}return null}
+async function waitOpp(rm,r){const o2=rm.role==="a"?"b":"a",t0=Date.now();while(ROOM===rm&&!rm.cancel&&Date.now()-t0<(rm.rnd?6e4:6e5)){try{const o=await db("GET","rooms/"+rm.code+"/p/"+o2);if(o&&o.r===r){const w=okW(o.w);if(w)return{w,n:String(o.n||"").slice(0,10),q:o.q||null,ti:o.ti||null}}}catch(e){}await sleep(1200)}return null}
 function setHp(i,v,low){const e=$("#h"+i);e.firstElementChild.style.width=Math.max(0,v)+"%";e.classList.toggle("low",v<=25);$("#hn"+i).textContent="HP "+Math.max(0,v)}
 async function play(L,replay){show("arena");const {A,B,r}=L;music("battle");
  [[0,L.W,"YOU"],[1,L.oppW,L.oppN]].forEach(([i,w,n])=>{$("#e"+i).textContent=w[0];$("#s"+i).textContent=w[1]+w[2];$("#n"+i).textContent=n;$("#f"+i).className="f";setHp(i,100)});
@@ -395,7 +395,7 @@ img.px{image-rendering:pixelated;image-rendering:crisp-edges}
 <script>
 /* 設定: window.GACHA_CONFIG={initTickets:0,xr:{C:1,B:1,A:3,S:8,SS:40}} */
 (()=>{
-const CFG=Object.assign({initTickets:0,cost1:5,cost10:50,key:'ecgacha2',oldKey:'ecgacha1',maxDup:3,xr:{C:1,B:1,A:3,S:8,SS:40}},window.GACHA_CONFIG||{});
+const CFG=Object.assign({onlineCap:10,initTickets:0,cost1:5,cost10:50,key:'ecgacha2',oldKey:'ecgacha1',maxDup:3,xr:{C:1,B:1,A:3,S:8,SS:40}},window.GACHA_CONFIG||{});
 const RAR=['C','B','A','S','SS'],RATE={SS:1,S:5,A:14,B:30,C:50},RC={SS:'#ff3df2',S:'#ffd23f',A:'#c77dff',B:'#4da3ff',C:'#9a95c4'},RI=r=>RAR.indexOf(r);
 const KN={c:'キャラクター',w:'武器',e:'攻撃エフェクト'};
 /* ---- 新チケットのデザイン(アイコンは .tki) ---- */
@@ -777,8 +777,8 @@ let stN=null,stCool=0;
 const P0=play;play=function(L,rep){const p=P0(L,rep),c=G.eq.c&&item(G.eq.c),w=G.eq.w&&item(G.eq.w);
 if(c){$('#e0').innerHTML=vis(c);$('#n0').textContent='YOU('+c.n+')'}if(w)$('#s0').innerHTML=vis(w)+esc(L.W[2]||'');
 const q=window.OPPEQ||{},oc=oi(q.c,'c'),ow=oi(q.w,'w');if(oc){$('#e1').innerHTML=vis(oc);$('#n1').textContent=L.oppN+'('+oc.n+')'}if(ow)$('#s1').innerHTML=vis(ow)+esc(L.oppW[2]||'');stN=null;return p};
-const F0=finish;finish=function(L){F0(L);if(L.r.win===0&&!L._g){L._g=1;G.t++;save();upd();
-$('#result').insertAdjacentHTML('afterbegin',`<div class="gtkb">${TKI} ガチャチケットを1枚獲得！<small>所持 ${G.t} / 次の1連まで あと ${Math.max(0,CFG.cost1-G.t)}</small></div>`);
+const F0=finish;finish=function(L){F0(L);if(L.r.win===0&&!L._g){L._g=1;let cap=false;if(ROOM){const nt=Date.now();G.rw=(G.rw||[]).filter(t=>nt-t<36e5);if(G.rw.length>=CFG.onlineCap)cap=true;else G.rw.push(nt)}if(!cap)G.t++;save();upd();
+$('#result').insertAdjacentHTML('afterbegin',cap?`<div class="gtkb" style="filter:grayscale(.6)">オンライン対戦のチケットは1時間に${CFG.onlineCap}枚までです<small>所持 ${G.t}</small></div>`:`<div class="gtkb">${TKI} ガチャチケットを1枚獲得！<small>所持 ${G.t} / 次の1連まで あと ${Math.max(0,CFG.cost1-G.t)}</small></div>`);
 if(typeof AC!=='undefined'&&AC&&sndOn){const t0=now();[880,1175,1568].forEach((f,i)=>tn(f,t0+.5+i*.08,.2,'square',.07))}
 const b=document.createElement('button');b.className='btn alt';b.textContent='🎰 ガチャを引く';b.onclick=()=>go('gacha');$('#result').appendChild(b)}};
 /* ---- スタンプ ---- */
@@ -796,7 +796,7 @@ try{const o=await fb('GET','rooms/'+ROOM.code+'/s/'+(ROOM.role==='a'?'b':'a'));i
 $('#rbar').insertAdjacentHTML('afterend',`<div id="chat" class="card hide" style="background:var(--card2);margin:8px 0"><b>💬 ルームチャット</b><div id="cmsgs"></div><div style="display:flex;gap:6px"><input id="cin" class="inp" maxlength="60" placeholder="メッセージ" style="flex:1"><button id="csd" class="btn" style="width:auto;margin-top:8px">送信</button></div></div>`);
 let chatCode=null,chatSig='',chatCool=0;
 function chatUI(){const c=$('#chat');c.classList.toggle('hide',!ROOM);if(ROOM&&chatCode!==ROOM.code){chatCode=ROOM.code;chatSig='';$('#cmsgs').innerHTML=''}if(!ROOM)chatCode=null}
-const R0=roomUI;roomUI=function(){R0();chatUI()};
+const R0=roomUI;roomUI=function(){R0();if(ROOM&&ROOM.rnd){const l=$('#rlink');if(l)l.remove();const st=$('#rbar .stat');if(st)st.textContent='ランダムで見つかった相手です。両方が「準備OK」で開始します。'}chatUI()};
 function renderChat(o){const a=Object.entries(o||{}).sort((x,y)=>x[0]<y[0]?-1:1).slice(-30),sig=a.map(x=>x[0]).join();if(sig===chatSig)return;chatSig=sig;const el=$('#cmsgs');
 el.innerHTML=a.length?a.map(([k,v])=>`<div class="cm ${v.r===ROOM.role?'':'op'}"><b>${v.r===ROOM.role?'あなた:':'相手:'}</b> ${esc(String(v.m||'').slice(0,60))}</div>`).join(''):'<div class="mut">まだメッセージはありません</div>';el.scrollTop=el.scrollHeight}
 async function pollChat(){if(!ROOM||!FIREBASE_URL||$('#build').classList.contains('hide'))return;try{renderChat(await fb('GET','rooms/'+ROOM.code+'/c',undefined,'?orderBy=%22%24key%22&limitToLast=30'))}catch(e){}}
@@ -817,8 +817,30 @@ el.innerHTML='<b style="display:block;margin-top:10px">♻️ ダブりをチケ
 +(d.length?d.map(drow).join('')+'<button class="btn" id="gxa">'+(xc?'もう一度タップで確定':'ダブりを全部交換')+' ('+TKI+'+'+tot+')</button>':'<div class="mut" style="margin:6px 0">ダブりはありません</div>');
 el.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>xchg(b.dataset.x,!!b.dataset.a));const a=$('#gxa');if(a)a.onclick=xchgAll}
 const U1=upd;upd=function(){U1();renderDup()};
+/* ---- ランダム対戦(Firebase必須): 待機列に入り、同じ列にいる人どうしを順番に2人1組にする ---- */
+const MM={poll:1500,fresh:12000,timeout:30000};let mmRun=0;
+const fnv=x=>{let h=2166136261;for(let i=0;i<x.length;i++)h=Math.imul(h^x.charCodeAt(i),16777619)>>>0;return h};
+$('#mk').insertAdjacentHTML('afterend','<button class="btn" id="rnm" style="background:linear-gradient(90deg,#7a2cff,var(--acc))">🎲 ランダムな人と対戦</button>');
+async function findMatch(){if(!FIREBASE_URL){dm('⚠️ FIREBASE_URL が未設定です');return}
+sndOn=$('#snd').checked;if(sndOn)ctx();const my=++mmRun,t0=Date.now();let cancelled=false,joined=false;
+show('wait');$('#wait').innerHTML='<b>🎲 対戦相手を探しています…</b><div class="mut">最大30秒。見つかると自動でルームが作られます。</div><button class="btn alt" id="mmc">やめる</button>';
+$('#mmc').onclick=()=>{cancelled=true;mmRun++};
+const left=async()=>{try{await db('DELETE','mm/q/'+PID)}catch(e){}};
+try{while(my===mmRun&&Date.now()-t0<MM.timeout){
+if(!joined){await db('PUT','mm/q/'+PID,{t:{'.sv':'timestamp'},s:{'.sv':'timestamp'}});joined=true}else await db('PUT','mm/q/'+PID+'/t',{'.sv':'timestamp'});
+const q=await db('GET','mm/q')||{},me=q[PID];if(!me){await sleep(MM.poll);continue}
+const now=+me.t,list=Object.entries(q).filter(([id,v])=>v&&now-(+v.t)<MM.fresh).map(([id,v])=>({id,t:+v.t,s:+(v.s||v.t)})).sort((a,b)=>a.s-b.s||(a.id<b.id?-1:1));
+const i=list.findIndex(x=>x.id===PID),pi=i%2===0?i+1:i-1,pa=list[pi];
+if(pa){const a=list[Math.min(i,pi)],b=list[Math.max(i,pi)],code='R'+(10000+fnv(a.id+'|'+b.id+'|'+a.s+'|'+b.s)%90000),role=i<pi?'a':'b';
+await db('PUT','mm/ok/'+code+'/'+PID,{t:{'.sv':'timestamp'}});
+let ok=false;for(let k=0;k<6&&my===mmRun;k++){const o=await db('GET','mm/ok/'+code)||{};if(o[a.id]&&o[b.id]){ok=true;break}await sleep(1000)}
+if(ok&&my===mmRun){await left();setTimeout(()=>db('DELETE','mm/ok/'+code+'/'+PID).catch(()=>{}),20000);ROOM={code,role,round:1,rnd:true};setChal(null);music(null);dm('');openBuild();return}}
+await sleep(MM.poll)}}
+catch(e){await left();if(my===mmRun){show('start');dm('❌ 通信に失敗しました。設定を確認してください')}return}
+await left();show('start');if(!cancelled)dm('相手が見つかりませんでした。もう一度試すか、ゴースト戦で遊んでください')}
+$('#rnm').onclick=findMatch;
 /* ---- 英語表記 ---- */
-const EN=[['ガチャチケット ','Gacha tickets '],['🎰 ガチャ','🎰 Gacha'],['🎰 ガチャを引く','🎰 Pull gacha'],['🎰 ガチャへ','🎰 To gacha'],['🎰 1連ガチャ','🎰 1-Pull Gacha'],['🎰 10連ガチャ','🎰 10-Pull Gacha'],['📦 コレクション','📦 Collection'],['📦 コレクションを見る','📦 View collection'],['📦 装備する(コレクション)','📦 Equip (Collection)'],['← ホームへ','← Home'],
+const EN=[['🎲 ランダムな人と対戦','🎲 Battle a random player'],['🎲 対戦相手を探しています…','🎲 Looking for an opponent…'],['最大30秒。見つかると自動でルームが作られます。','Up to 30 seconds. A room is created automatically when someone is found.'],['相手が見つかりませんでした。もう一度試すか、ゴースト戦で遊んでください','No opponent found. Try again, or play a CPU ghost battle.'],['ランダムで見つかった相手です。両方が「準備OK」で開始します。','A random opponent was found. The battle starts once both players press Ready.'],['相手が応答しませんでした','Your opponent did not respond'],['オンライン対戦のチケットは1時間に','Online battles give at most '],['枚までです',' tickets per hour'],['ガチャチケット ','Gacha tickets '],['🎰 ガチャ','🎰 Gacha'],['🎰 ガチャを引く','🎰 Pull gacha'],['🎰 ガチャへ','🎰 To gacha'],['🎰 1連ガチャ','🎰 1-Pull Gacha'],['🎰 10連ガチャ','🎰 10-Pull Gacha'],['📦 コレクション','📦 Collection'],['📦 コレクションを見る','📦 View collection'],['📦 装備する(コレクション)','📦 Equip (Collection)'],['← ホームへ','← Home'],
 ['バトルに勝つとチケット+1。1連=','Win a battle to earn +1 ticket. 1-pull = '],[' / 10連=',' / 10-pull = '],['(チケット1つあたりの価値は同じ)',' (same value per ticket)'],['チケットが足りません','Not enough tickets'],['10連はチケットが足りません','Not enough tickets for 10-pull'],
 ['ガチャチケットを1枚獲得！','Got 1 gacha ticket!'],['ガチャチケットが新しくなりました','Gacha tickets have been renewed'],['古いチケットは削除されました。キャラ・武器・エフェクトはそのままです。アイテムボックスに新チケットが届いています。','Old tickets were deleted. Your characters, weapons and effects are unchanged. New tickets are waiting in the Item Box.'],['所持 ','Owned '],[' / 次の1連まで あと ',' / Next 1-pull in '],['排出確率','Drop rates'],[' (合計 ',' (total '],
 ['右の絵文字は 🧑キャラ / 🗡️武器 / 💫エフェクト のラインナップです。A以上は秘密!','Emoji on the right: 🧑Characters / 🗡️Weapons / 💫Effects. A and above are a secret!'],['入手できるアイテム','Available items'],
