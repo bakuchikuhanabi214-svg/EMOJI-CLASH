@@ -67,13 +67,49 @@ main{transition:filter .15s}
 #howto,#lang{white-space:nowrap}
 @media(max-width:430px){.row h1{font-size:22px;margin:0}}
 :lang(km) body{font-family:"Noto Sans Khmer","Khmer UI","Leelawadee UI","Khmer OS",system-ui,sans-serif}
+.sbn{color:#f4f2ff;border-radius:14px;padding:10px 12px;margin-bottom:10px;background:linear-gradient(120deg,#0a1f3a,#1c1050 55%,#3a0f4f);border:1px solid #3df2ff88;box-shadow:0 0 18px #3df2ff33 inset;position:relative;overflow:hidden}
+.sbn .sbt{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.sbn .sbt span{font-size:12px;color:#7fe8ff;font-weight:700}
+.sbn small{display:block;color:var(--mut);font-size:11px;margin-top:2px}
+.sbn:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 40%,#3df2ff22 50%,transparent 60%);transform:translateX(-100%);animation:sbs 5s infinite;pointer-events:none}
+@keyframes sbs{to{transform:translateX(100%)}}
+.mtog{display:flex;gap:8px;margin-bottom:6px}.mtog .btn{margin:0;flex:1}.mtog .btn.on{background:var(--acc);box-shadow:0 0 0 2px var(--gold)}
+.newdot{position:absolute;top:-3px;right:-3px;width:10px;height:10px;border-radius:50%;background:var(--acc);box-shadow:0 0 8px var(--acc);animation:nd 1.2s infinite alternate}
+@keyframes nd{to{transform:scale(1.35)}}
+main>.row:first-child{flex-wrap:wrap}main>.row:first-child>span{margin-left:auto}
+.s0v{display:inline-block;filter:drop-shadow(0 0 5px #3df2ff) drop-shadow(0 0 2px #fff6)}
+.ci{position:relative}
+.s0t{position:absolute;left:3px;bottom:3px;font-size:9px;background:linear-gradient(90deg,#3df2ff,#b05cff);color:#001;padding:0 4px;border-radius:6px;font-weight:900}
+.s0b{color:#f4f2ff;border-radius:14px;padding:12px;margin:8px 0;text-align:center;background:linear-gradient(135deg,#031a2e,#1a0b4a 60%,#3a0a52);border:1px solid #3df2ff;box-shadow:0 0 22px #3df2ff44 inset,0 0 14px #b05cff44}
+.s0h{font-weight:900;font-size:20px;letter-spacing:.12em;background:linear-gradient(90deg,#3df2ff,#b05cff,#ff3df2);-webkit-background-clip:text;background-clip:text;color:transparent}
+.s0s{font-size:13px;color:#9fe8ff;margin-top:2px}.s0t2{font-size:12px;color:var(--mut);margin-top:4px}
+.gtab .btn.s0tab.on{background:linear-gradient(90deg,#0aa7c4,#7a3cff)}
+.s0m .gb{background:linear-gradient(90deg,#0aa7c4,#7a3cff)}
+.lit{display:flex;align-items:center;gap:8px;padding:6px 2px;border-top:1px solid #ffffff12}
+.litv{font-size:30px;min-width:42px;text-align:center}.litv img{width:1em;height:1em}
+.lown{color:var(--ok);font-weight:900}
+#upd{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.62);padding:16px}
+#upd.on{display:flex}
+#upd .hc{background:var(--card);color:var(--tx);border-radius:18px;max-width:560px;width:100%;max-height:86vh;overflow:auto;padding:18px;transform-origin:var(--ox,85%) var(--oy,6%);animation:howpop .3s cubic-bezier(.2,.9,.3,1.15)}
+.a2{position:relative;display:flex;gap:6px;margin-top:8px}
+.a2 .col{flex:1;display:flex;flex-direction:column;gap:6px;border-radius:12px;padding:4px;min-width:0}
+.a2 .col:first-child{background:linear-gradient(180deg,#4da3ff26,transparent)}.a2 .col:last-child{background:linear-gradient(180deg,#ff4d4d26,transparent)}
+.a2 .f .em{font-size:46px}.a2 .f .sub{font-size:20px}.a2 .f .nm{font-size:11px;word-break:break-all}
+.a2 .f.a0{transform:translateX(16px) scale(1.08)}.a2 .f.a1{transform:translateX(-16px) scale(1.08)}
+#tick2{text-align:center;min-height:48px;font-weight:700;margin-top:10px;font-size:13px}
+#turn2{text-align:center;font-weight:900;letter-spacing:.15em;color:var(--mut)}
+.lb{display:flex;gap:8px;margin:8px 0}.lt{flex:1;background:var(--card);border-radius:12px;padding:8px;min-width:0}
+.ls{background:var(--card2);border-radius:10px;padding:8px;margin-top:6px;min-height:54px;font-size:13px;display:flex;flex-direction:column;gap:4px;justify-content:center;word-break:break-all}
+.ls.me{outline:2px solid var(--gold)}
+.lbt{display:flex;gap:4px;flex-wrap:wrap}.lbt button{border:0;border-radius:99px;padding:4px 10px;font:inherit;font-size:12px;font-weight:700;background:var(--acc);color:#fff}
+.px.neon{filter:hue-rotate(170deg) saturate(2.4) brightness(1.2) drop-shadow(0 0 3px #3df2ff)}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="flash"></div><canvas id="cv"></canvas>
 <main>
-<div class="row"><h1>EMOJI CLASH</h1><span style="display:flex;gap:6px"><button id="howto" class="btn alt" style="width:auto;margin:0;padding:6px 12px;font-size:13px">📖 遊び方</button><button id="lang" class="btn alt" style="width:auto;margin:0;padding:6px 14px;font-size:13px">EN</button></span></div>
+<div class="row"><h1>EMOJI CLASH</h1><span style="display:flex;gap:6px"><button id="howto" class="btn alt" style="width:auto;margin:0;padding:6px 12px;font-size:13px">📖 遊び方</button><button id="upbtn" class="btn alt" style="width:auto;margin:0;padding:6px 10px;font-size:13px;position:relative"><span id="uplb">🆕 アプデ</span><i id="upnew" class="newdot"></i></button><button id="lang" class="btn alt" style="width:auto;margin:0;padding:6px 14px;font-size:13px">EN</button></span></div>
 <div class="mut">絵文字ひとつで、世界を倒せ。</div>
 
 <div id="start" class="card">
@@ -185,10 +221,21 @@ const OPP=[["🐉","⚔️","🔥","Fiesta"],["🗿","🔨","❄️","Buster"],[
 OPP.push(['🐘','🪓','🌑','Gus'],['🥷','🗡️','🩸','Kage'],['🐙','🔱','🌊','Ink'],['🦊','🪃','🍀','Luna'],['🐻','🥊','✨','Bruno']);
 const seg=window.Intl&&Intl.Segmenter?new Intl.Segmenter(undefined,{granularity:"grapheme"}):null;
 const first=s=>{const a=seg?[...seg.segment(s)].map(x=>x.segment):Array.from(s);return a.find(g=>/\p{Extended_Pictographic}|\p{Emoji_Presentation}/u.test(g))||""};
+const LL=(ja,en,km)=>LANG==="en"?en:LANG==="km"?km:ja;
+/* シーズン: 日本時間の毎月26日0:00に切り替わり。シーズン0=2026/10/26〜11/25 */
+const ECS={start:n=>Date.UTC(2026,9+n,25,15,0,0),end:n=>ECS.start(n+1),cur(){const t=Date.now();let n=0;while(t>=ECS.start(n+1))n++;return n},
+ fmt(ms){ms=Math.max(0,ms);const d=Math.floor(ms/864e5),hh=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);return d>0?d+LL("日 ","d ","ថ្ងៃ ")+hh+LL("時間","h","ម៉ោង"):hh+LL("時間 ","h ","ម៉ោង ")+m+LL("分","m","នាទី")}};
 let W=["🐢","⚡","🔥"],rec={w:0,l:0,st:0,best:0,cb:0},chal=null,lastRun=null,busy=false;
 let ROOM=null;const recHash=r=>{let x=2166136261;const s="ecr|"+[r.w,r.l,r.st,r.best,r.cb].join(",")+"|k7q";for(let i=0;i<s.length;i++)x=Math.imul(x^s.charCodeAt(i),16777619)>>>0;return x.toString(36)};
 try{const o=JSON.parse(localStorage.getItem("ecrec")||"{}"),n={};for(const k in rec)n[k]=Math.min(99999,Math.max(0,+o[k]||0));if(o.s===undefined||o.s===recHash(n))Object.assign(rec,n)}catch(e){}
 // ---- 音 ----
+let recSn=ECS.cur(),SEASON_NEW=null;
+try{const sv=localStorage.getItem("ecsn");
+ if(sv===null){localStorage.setItem("ecsn",String(recSn))}
+ else if(+sv<recSn){const hs=JSON.parse(localStorage.getItem("ecsh")||"[]");hs.push({sn:+sv,w:rec.w,l:rec.l,best:rec.best,cb:rec.cb});localStorage.setItem("ecsh",JSON.stringify(hs.slice(-30)));
+  SEASON_NEW={from:+sv,w:rec.w,l:rec.l,best:rec.best};rec.w=rec.l=rec.st=rec.best=rec.cb=0;
+  localStorage.setItem("ecrec",JSON.stringify(Object.assign({s:recHash(rec)},rec)));localStorage.setItem("ecsn",String(recSn))}}catch(e){}
+window.__SEASON_NEW=SEASON_NEW;
 let AC=null,master,sndOn=true,nb=null;const M={mode:null,step:0,next:0,hold:0};
 function ctx(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)();master=AC.createGain();master.gain.value=.9;master.connect(AC.destination);setInterval(sched,25)}catch(e){}}if(AC&&AC.state==="suspended")AC.resume();return AC}
 function tn(f,t,d,ty,v,f2){if(!AC||!sndOn)return;const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0008,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.02)}
@@ -330,17 +377,17 @@ let NICK='';$('#nick').oninput=e=>{NICK=e.target.value.trim().slice(0,10)};try{c
 const c0=parseTok(location.hash);if(c0)setChal(c0);
 addEventListener("hashchange",()=>{const c=parseTok(location.hash);if(c&&!busy)setChal(c)});
 // ---- ランキング / ルーム ----
-async function saveRank(){try{localStorage.setItem("ecrec",JSON.stringify(Object.assign({s:recHash(rec)},rec)))}catch(e){}if(!FIREBASE_URL)return;try{await db("PUT","players/"+PID,{n:(NICK||"名無し").slice(0,10),ti:window.getTitle?getTitle():null,q:window.getEq?getEq():null,w:W.slice(),wins:rec.w,losses:rec.l,best:rec.best,cb:rec.cb,t:Date.now()})}catch(e){}}
+async function saveRank(){try{localStorage.setItem("ecrec",JSON.stringify(Object.assign({s:recHash(rec)},rec)))}catch(e){}if(!FIREBASE_URL)return;try{await db("PUT","players/"+PID,{sn:recSn,n:(NICK||"名無し").slice(0,10),ti:window.getTitle?getTitle():null,q:window.getEq?getEq():null,w:W.slice(),wins:rec.w,losses:rec.l,best:rec.best,cb:rec.cb,t:Date.now()})}catch(e){}}
 const dm=t=>{$("#dbmsg").textContent=t};
 async function mkRoom(){if(!FIREBASE_URL)return dm("⚠️ FIREBASE_URL が未設定です");sndOn=$("#snd").checked;if(sndOn)ctx();dm("作成中…");
  try{let c,ok=false;for(let i=0;i<6&&!ok;i++){c=String(1000+Math.random()*9000|0);const ex=await db("GET","rooms/"+c+"/t");if(!ex||Date.now()-ex>72e5){await db("PUT","rooms/"+c,{t:Date.now()});ok=true}}if(!ok)throw 0;ROOM={code:c,role:"a",round:1};chal=null;dm("");openBuild()}catch(e){dm("❌ 通信に失敗しました。設定を確認してください")}}
 async function joinRoom(c){if(!FIREBASE_URL)return dm("⚠️ FIREBASE_URL が未設定です");if(!/^\d{4}$/.test(c))return dm("4桁の数字を入れてください");sndOn=$("#snd").checked;if(sndOn)ctx();dm("接続中…");
  try{const ex=await db("GET","rooms/"+c+"/t");if(!ex)return dm("ルームが見つかりません");const p=await db("GET","rooms/"+c+"/p")||{};const round=Math.max(1,...Object.values(p).map(x=>+x.r||0));ROOM={code:c,role:"b",round};chal=null;dm("");openBuild()}catch(e){dm("❌ 通信に失敗しました")}}
-async function showRank(){if($("#snd")){sndOn=$("#snd").checked;if(sndOn)ctx()}show("rank");const el=$("#rank"),hd='<div class="row"><b>🏆 ランキング</b><span class="mut">勝利数順</span></div>',bk='<button class="btn alt" id="rback">← 戻る</button>';
- const back=()=>{$("#rback").onclick=()=>{ROOM=null;music(null);show("start")}};
+async function showRank(){if($("#snd")){sndOn=$("#snd").checked;if(sndOn)ctx()}show("rank");const el=$("#rank"),hd='<div class="row"><b>🏆 ランキング</b><span class="mut">'+LL("勝利数順","By wins","តាមចំនួនឈ្នះ")+" / "+LL("シーズン","Season ","រដូវកាល ")+recSn+'</span></div>',bk='<button class="btn alt" id="rback">← 戻る</button>';
+ const back=()=>{$("#rback").onclick=()=>goHome()};
  if(!FIREBASE_URL){el.innerHTML=hd+'<p class="mut">FIREBASE_URL が未設定のため使えません。</p>'+bk;back();return}
  el.innerHTML=hd+'<p class="mut">読み込み中…</p>';
- try{const d=await db("GET","players")||{};const a=Object.entries(d).map(([id,v])=>({id,n:String(v.n||"名無し").slice(0,10),w:okW(v.w),wins:Math.min(99999,Math.max(0,+v.wins||0)),losses:Math.min(99999,Math.max(0,+v.losses||0)),best:Math.min(99999,Math.max(0,+v.best||0)),ti:typeof v.ti==="string"?v.ti.slice(0,40):null,q:v.q||null})).filter(x=>x.w).sort((x,y)=>y.wins-x.wins||x.losses-y.losses||y.best-x.best).slice(0,30);
+ try{const d=await db("GET","players")||{};const a=Object.entries(d).map(([id,v])=>({id,n:String(v.n||"名無し").slice(0,10),w:okW(v.w),sn:Math.max(0,+v.sn||0),wins:Math.min(99999,Math.max(0,+v.wins||0)),losses:Math.min(99999,Math.max(0,+v.losses||0)),best:Math.min(99999,Math.max(0,+v.best||0)),ti:typeof v.ti==="string"?v.ti.slice(0,40):null,q:v.q||null})).filter(x=>x.w&&x.sn===recSn).sort((x,y)=>y.wins-x.wins||x.losses-y.losses||y.best-x.best).slice(0,30);
   el.innerHTML=hd+(a.length?a.map((x,i)=>'<div class="rr"'+(x.id===PID?' style="outline:2px solid var(--gold)"':'')+'><b style="width:28px">'+(["🥇","🥈","🥉"][i]||i+1)+'</b><span style="font-size:22px">'+esc(x.w.join(""))+'</span><span style="flex:1"><b>'+(window.tb?tb(x.ti):'')+esc(x.n)+'</b><div class="stat">'+x.wins+'勝 '+x.losses+'敗 / 最高'+x.best+'連勝</div></span>'+(x.id===PID?'':'<button class="btn" data-i="'+i+'" style="width:auto;margin:0;padding:8px 12px">挑戦</button>')+'</div>').join(""):'<p class="mut">まだ誰もいません。勝ってランクインしよう!</p>')+'<div class="mut">「挑戦」でその人の戦士と戦えます(結果は相手には反映されません)。</div>'+bk;
   back();el.querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>{const x=a[+b.dataset.i];ROOM=null;setChal({w:x.w,n:x.n,ti:x.ti,q:x.q});openBuild()})}
  catch(e){el.innerHTML=hd+'<p class="mut">❌ 読み込みに失敗しました。</p>'+bk;back()}}
@@ -650,17 +697,38 @@ e47|SS|🪶|終末の羽|Endfall Feathers|光の羽が降りそそぐ。|Feather
 e48|SS|🔶|折りたたまれた空間|Folded Space|空間がたたまれて収束する。|Space folds and collapses inward.|fold|mono
 e49|SS|🌋|世界の終焉|World's End|砕けた世界が段階的に崩れる。|A shattered world collapses in stages.|worldend|rainbow
 e50|SS|🎭|白紙の改変|The Unwritten|ピクセルが欠けて、また組み上がる。|Pixels vanish, then reassemble.|unwritten|mono`.split('\n').forEach(l=>{const a=l.split('|');IT.push({id:a[0],k:'e',r:a[1],e:a[2],n:a[3],ne:a[4],d:a[5],de:a[6],fx:a[7],sty:a[8]||undefined})});
+/* ---- Season 0 限定: FUTURE ---- */
+const LIMS=0,RATE_L={SS:7,S:18,A:33,B:42},LIMKM=[];let gtab='n';const lmul=()=>gtab==='l'?2:1;
+const limOn=()=>ECS.cur()===LIMS;
+const LI=(id,r,e,n,ne,nk,d,de,dk,x)=>{IT.push(Object.assign({id,k:id[0],r,e,n,ne,d,de,lim:LIMS},x));LIMKM.push([n,nk],[d,dk])};
+LI('cf1','B','🛰️','サテライトくん','Satellite Kid','កូនផ្កាយរណប','ネオンの軌道をくるくる回る、小さな衛星の子。','A little satellite orbiting along neon lanes.','ផ្កាយរណបតូចដែលវិលជុំវិញគន្លងនីអុង។');
+LI('cf2','A','👾','ピクセルインベーダー','Pixel Invader','អ្នកឈ្លានពានភីកសែល','2090年から迷い込んだ、レトロ顔のデジタル侵略者。','A retro-faced digital invader who wandered in from 2090.','អ្នកឈ្លានពានឌីជីថលមុខបុរាណ ដែលវង្វេងមកពីឆ្នាំ ២០៩០។');
+LI('cf3','A','🦾','サイバーアームファイター','Cyber Arm Fighter','អ្នកប្រយុទ្ធដៃស៊ីបឺរ','機械の腕で何でもつかむ、未来の格闘家。','A fighter from the future who grabs anything with a mechanical arm.','អ្នកប្រដាល់ពីអនាគត ដែលចាប់អ្វីៗបានដោយដៃម៉ាស៊ីន។');
+LI('cf4','S','🤖','ネオン・アンドロイド','Neon Android','អង់ដ្រូអ៊ីតនីអុង','ネオンカラーに光る、感情を学習中の最新型アンドロイド。','A neon-glowing android of the latest model, still learning emotions.','អង់ដ្រូអ៊ីតទំនើបភ្លឺពណ៌នីអុង ដែលកំពុងរៀនអារម្មណ៍។',{sty:'neon'});
+LI('cf5','SS','👽','レインボー・エイリアン','Rainbow Alien','ជនបរទេសឥន្ទធនូ','虹色に輝く、未来からやって来た宇宙人。','A rainbow-glowing alien who came from the future.','ជនបរទេសពណ៌ឥន្ទធនូភ្លឺចាំង ដែលមកពីអនាគត។',{sty:'rainbow'});
+LI('wf1','B','🔦','フォトンライト','Photon Light','ភ្លើងហ្វូតុង','光の粒を飛ばす、未来のライト。','A light of the future that fires particles of light.','ភ្លើងអនាគតដែលបាញ់គ្រាប់ពន្លឺ។',{st:'throw'});
+LI('wf2','A','🔫','レイガン','Ray Gun','កាំភ្លើងកាំរស្មី','ビームを撃ち出す定番のSFブラスター。','The classic sci-fi blaster that shoots beams.','កាំភ្លើងបាញ់កាំរស្មីបែបវិទ្យាសាស្ត្រប្រឌិតបុរាណ។',{st:'thrust'});
+LI('wf3','A','🧲','マグネットランチャー','Magnet Launcher','កាំជ្រួចម៉ាញេទិក','強力な磁力の弾を打ち出す。','Launches shots of powerful magnetism.','បាញ់គ្រាប់ម៉ាញេទិកដ៏មានកម្លាំង។',{st:'throw'});
+LI('wf4','S','📡','パルスキャノン','Pulse Cannon','កាណុងជីពចរ','電磁パルスで敵をまとめて撃ち抜く。','Blasts foes with an electromagnetic pulse.','បាញ់សត្រូវដោយជីពចរអេឡិចត្រូម៉ាញេទិក។',{st:'thrust'});
+LI('wf5','SS','💠','クォンタムブレード','Quantum Blade','ដាវកង់ទិច','量子の光が回転する究極のブレード。','The ultimate blade, spinning with quantum light.','ដាវកំពូលដែលវិលដោយពន្លឺកង់ទិច។',{st:'spin',sty:'rainbow'});
+LI('ef1','B','🔆','レーザーカット','Laser Cut','កាត់ឡាស៊ែរ','ピンクのレーザーが一直線に走る。','A pink laser streaks in a straight line.','ឡាស៊ែរពណ៌ផ្កាឈូករត់ត្រង់មួយបន្ទាត់។',{fx:'laser'});
+LI('ef2','A','💠','ネオンバースト','Neon Burst','ផ្ទុះនីអុង','ネオンの結晶がはじけ飛ぶ。','Neon crystals burst apart.','គ្រីស្តាល់នីអុងផ្ទុះខ្ចាត់ខ្ចាយ។',{fx:'neon'});
+LI('ef3','A','📶','ホログラムレイン','Hologram Rain','ភ្លៀងហូឡូក្រាម','青いホログラムの雨が降り注ぐ。','Blue holograms rain down.','ភ្លៀងហូឡូក្រាមពណ៌ខៀវធ្លាក់មក។',{fx:'holo'});
+LI('ef4','S','⚛️','プラズマストーム','Plasma Storm','ព្យុះប្លាស្មា','プラズマが渦を巻いて荒れ狂う。','Plasma rages in a swirling storm.','ប្លាស្មាវិលជាព្យុះកំណាច។',{fx:'plasma'});
+LI('ef5','SS','🌐','クォンタムワープ','Quantum Warp','វ៉ាបកង់ទិច','空間がゆがみ、すべてが一点へ吸い込まれる。','Space warps and everything is pulled into a single point.','លំហកោង ហើយអ្វីៗត្រូវបូមចូលទៅចំណុចតែមួយ។',{fx:'qwarp',sty:'rainbow'});
+Object.assign(FX,{laser:{p:[],mode:'slash',col:'#ff3d8b'},neon:{p:['💠','🔷','✨'],mode:'burst',col:'#3df2ff'},holo:{p:['🔹','💠','📶'],mode:'rain',col:'#7fe8ff'},plasma:{p:['⚛️','⚡','🟣'],mode:'spiral',col:'#b05cff',rg:true},qwarp:{p:['🌐','💠','✨'],mode:'inward',col:'#3d7bff',rg:true}});
 const item=id=>IT.find(i=>i.id===id);
 const oi=(id,k)=>{const i=id&&item(id);return i&&i.k===k?i:null};
 /* ---- 見た目: C=スタンプ風(少し色違い) / B=ステッカー / A=ドット絵 / S=光るドット絵 / SS=虹 or モノクロのドット絵 ---- */
 const PXC={},HUE=id=>{let h=0;for(const c of id)h=(h*31+c.charCodeAt(0))%50;return h-25};
 function pixURL(e,res){const k=e+res;if(PXC[k]!==undefined)return PXC[k];let u='';try{const c=document.createElement('canvas');c.width=c.height=res;const x=c.getContext('2d');x.textAlign='center';x.textBaseline='middle';x.font=Math.round(res*.8)+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';x.fillText(e,res/2,res/2+res*.05);
 const d=x.getImageData(0,0,res,res),p=d.data;for(let i=0;i<p.length;i+=4){p[i+3]=p[i+3]>110?255:0;for(let j=0;j<3;j++)p[i+j]=Math.min(255,Math.round(p[i+j]/40)*40)}x.putImageData(d,0,0);u=c.toDataURL()}catch(err){}return PXC[k]=u}
-function vis(it){const r=it.r,e=it.e,h=HUE(it.id);
+function visB(it){const r=it.r,e=it.e,h=HUE(it.id);
 if(r==='C')return `<span class="vz" style="filter:hue-rotate(${h}deg) drop-shadow(1px 1px 0 #fff) drop-shadow(-1px -1px 0 #fff)">${e}</span>`;
 if(r==='B')return `<span class="vz" style="filter:hue-rotate(${h}deg) saturate(1.3) drop-shadow(0 0 3px ${RC.B})">${e}</span>`;
 const u=pixURL(e,r==='A'?20:r==='S'?28:36);if(!u)return `<span class="vz">${e}</span>`;
 return `<img class="vz px v${r}${it.sty?' '+it.sty:''}" src="${u}" alt="">`}
+const vis=it=>it.lim!==undefined?'<span class="s0v">'+visB(it)+'</span>':visB(it);
 const pe=(e,rk)=>{if(rk<2)return e;const u=pixURL(e,rk>=3?28:20);return u?`<img class="vz px" src="${u}" alt="">`:e};
 /* ---- セーブ(新チケット方式: 旧チケットは削除。改ざん検知つき) ---- */
 const SALT='ec2-k7Qx-'+CFG.key;
@@ -686,25 +754,25 @@ if(it.t==='ticket'){G.t+=Math.min(Math.max(0,Math.floor(+it.n)||0),100000)}else 
 if(key)G.gc[key]=1;save();upd();return true};
 function draw(){const tot=Object.values(RATE).reduce((a,b)=>a+b,0);let x=Math.random()*tot,r='C';
 for(const k of['SS','S','A','B','C']){if(x<RATE[k]){r=k;break}x-=RATE[k]}
-const k='cwe'[Math.random()*3|0],p=IT.filter(i=>i.k===k&&i.r===r);return p[Math.random()*p.length|0]}
+const k='cwe'[Math.random()*3|0],p=IT.filter(i=>i.k===k&&i.r===r&&i.lim===undefined);return p[Math.random()*p.length|0]}
 /* ---- 画面 ---- */
 const main=$('main'),mkEl=h=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
 main.appendChild(mkEl(`<div id="gacha" class="card hide"></div>`));main.appendChild(mkEl(`<div id="coll" class="card hide"></div>`));
 document.body.appendChild(mkEl(`<div id="gov" class="hide"><div id="gfl"></div><button id="gskip" class="btn alt">スキップ ⏭</button><div id="gst"></div><div id="gact"></div></div>`));
 $('#start').insertAdjacentHTML('afterbegin',`<div class="gbar"><span class="gtkp">${TKI} ガチャチケット <b class="gtk"></b></span><button class="btn" id="ghome">🎰 ガチャ</button><button class="btn alt" id="gch">📦 コレクション</button></div>`);
 if(migrated&&!G.noted)$('#start').insertAdjacentHTML('afterbegin',`<div class="tc" id="gnote"><b>${TKI} ガチャチケットが新しくなりました</b><div class="stat">古いチケットは削除されました。キャラ・武器・エフェクトはそのままです。アイテムボックスに新チケットが届いています。</div><button class="btn alt" id="gnok">OK</button></div>`);
-const rates=RAR.slice().reverse().map(r=>`<div class="grt" style="--c:${RC[r]}"><span class="gbd">${r}</span><b style="flex:1">${RATE[r]}%</b><span class="mut">${['c','w','e'].map(k=>IT.filter(i=>i.k===k&&i.r===r).map(i=>RI(r)>=2?'？':i.e).join('')).join(' / ')}</span></div>`).join('');
+const rates=RAR.slice().reverse().map(r=>`<div class="grt" style="--c:${RC[r]}"><span class="gbd">${r}</span><b style="flex:1">${RATE[r]}%</b><span class="mut">${['c','w','e'].map(k=>IT.filter(i=>i.k===k&&i.r===r&&i.lim===undefined).map(i=>RI(r)>=2?'？':i.e).join('')).join(' / ')}</span></div>`).join('');
 $('#gacha').innerHTML=`<div class="row"><h2 class="gh">🎰 EMOJI GACHA</h2><span class="gtkp">${TKI} <b class="gtk"></b></span></div>
-<div class="mut">バトルに勝つとチケット+1。1連=${TKI}×${CFG.cost1} / 10連=${TKI}×${CFG.cost10}(チケット1つあたりの価値は同じ)</div>
-<button class="btn gb" id="gp1">🎰 1連ガチャ<small></small></button><button class="btn gb" id="gp10">🎰 10連ガチャ<small></small></button><div id="gwarn" class="gwarn"></div>
-<b>排出確率</b><span class="mut"> (合計 ${Object.values(RATE).reduce((a,b)=>a+b,0)}%)</span>${rates}<div class="mut">右の絵文字は 🧑キャラ / 🗡️武器 / 💫エフェクト のラインナップです。A以上は秘密!</div>
-<b style="display:block;margin-top:10px">入手できるアイテム</b>${['c','w','e'].map(k=>`<div class="tc"><b>${KN[k]}</b> <span class="mut">(${IT.filter(i=>i.k===k).length})</span><div class="stat">${k==='c'?'戦闘中の自分の見た目だけが変わる(性能・ダメージは変わりません)':k==='w'?'武器の見た目だけが変わる(性能・ダメージは変わりません)':'攻撃エフェクトが派手に変わる(高レアほど派手!見た目だけでダメージは変わりません)'}</div></div>`).join('')}
-<div id="gdup"></div><button class="btn alt" id="g2c">📦 コレクションを見る</button><button class="btn alt" id="gback">← ホームへ</button>`;
+<div class="gtab" id="gtabs"></div><div class="mut">バトルに勝つとチケット+1。1連=${TKI}×${CFG.cost1} / 10連=${TKI}×${CFG.cost10}(チケット1つあたりの価値は同じ)</div>
+<button class="btn gb" id="gp1"><span class="gbt">🎰 1連ガチャ</span><small></small></button><button class="btn gb" id="gp10"><span class="gbt">🎰 10連ガチャ</span><small></small></button><div id="gwarn" class="gwarn"></div>
+<div id="gnrm"><b>排出確率</b><span class="mut"> (合計 ${Object.values(RATE).reduce((a,b)=>a+b,0)}%)</span>${rates}<div class="mut">右の絵文字は 🧑キャラ / 🗡️武器 / 💫エフェクト のラインナップです。A以上は秘密!</div>
+<b style="display:block;margin-top:10px">入手できるアイテム</b>${['c','w','e'].map(k=>`<div class="tc"><b>${KN[k]}</b> <span class="mut">(${IT.filter(i=>i.k===k&&i.lim===undefined).length})</span><div class="stat">${k==='c'?'戦闘中の自分の見た目だけが変わる(性能・ダメージは変わりません)':k==='w'?'武器の見た目だけが変わる(性能・ダメージは変わりません)':'攻撃エフェクトが派手に変わる(高レアほど派手!見た目だけでダメージは変わりません)'}</div></div>`).join('')}
+</div><div id="glimp" class="hide"></div><div id="gdup"></div><button class="btn alt" id="g2c">📦 コレクションを見る</button><button class="btn alt" id="gback">← ホームへ</button>`;
 const SH=show;show=function(id){['gacha','coll'].forEach(x=>$('#'+x).classList.add('hide'));SH(id)};
 const go=id=>{SH('none');$('#'+id).classList.remove('hide');upd()};
 function upd(){document.querySelectorAll('.gtk').forEach(e=>e.textContent=G.t);
-[[1,CFG.cost1],[10,CFG.cost10]].forEach(([n,c])=>{const b=$('#gp'+n);b.classList.toggle('dis',G.t<c);b.querySelector('small').innerHTML=TKI+'×'+c+' / 所持 '+G.t});
-$('#gwarn').textContent=G.t<CFG.cost1?'チケットが足りません':G.t<CFG.cost10?'10連はチケットが足りません':''}
+[[1,(CFG.cost1*lmul())],[10,(CFG.cost10*lmul())]].forEach(([n,c])=>{const b=$('#gp'+n);b.classList.toggle('dis',G.t<c||(gtab==='l'&&!limOn()));b.querySelector('small').innerHTML=TKI+'×'+c+' / 所持 '+G.t});
+$('#gwarn').textContent=(gtab==='l'&&!limOn())?LL('このガチャは終了しました','This banner has ended','កាឆានេះបានបញ្ចប់'):G.t<(CFG.cost1*lmul())?'チケットが足りません':G.t<(CFG.cost10*lmul())?'10連はチケットが足りません':''}
 $('#ghome').onclick=()=>go('gacha');$('#gch').onclick=()=>{go('coll');renderColl()};$('#g2c').onclick=$('#gch').onclick;$('#gback').onclick=()=>show('start');
 if($('#gnok'))$('#gnok').onclick=()=>{G.noted=1;save();$('#gnote').remove()};
 /* ---- ガチャ演出 ---- */
@@ -718,10 +786,10 @@ function gfl(c){const f=$('#gfl');f.style.background=c;f.animate([{opacity:.9},{
 function gshake(){$('#gst').animate([{transform:'translate(-10px,5px)'},{transform:'translate(9px,-6px)'},{transform:'translate(-6px,4px)'},{transform:'none'}],{duration:450})}
 function converge(col,n){const st=$('#gst');for(let i=0;i<n;i++){const s=document.createElement('span'),a=Math.random()*6.283,d=150+Math.random()*120;s.textContent='✦';s.style.cssText=`position:absolute;left:50%;top:50%;color:${col};font-size:${10+Math.random()*14}px;pointer-events:none`;st.appendChild(s);
 s.animate([{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`,opacity:0},{opacity:1,offset:.3},{transform:'translate(0,0)',opacity:0}],{duration:600+Math.random()*500,delay:Math.random()*400}).onfinish=()=>s.remove()}}
-function pull(n){if(pulling)return;const cost=n===1?CFG.cost1:CFG.cost10;
+function pull(n){if(pulling)return;if(gtab==='l'&&!limOn()){$('#gwarn').textContent=LL('このガチャは終了しました','This banner has ended','កាឆានេះបានបញ្ចប់');vib(80);return}const cost=n===1?(CFG.cost1*lmul()):(CFG.cost10*lmul());
 if(G.t<cost){$('#gwarn').textContent='チケットが足りません';vib(80);return}
 pulling=true;G.t-=cost;const res=[];
-for(let i=0;i<n;i++){const it=draw(),had=G.inv[it.id]||0;G.inv[it.id]=had+1;res.push({it,isNew:!had,n:had+1})}
+for(let i=0;i<n;i++){const it=gtab==='l'?drawL():draw(),had=G.inv[it.id]||0;G.inv[it.id]=had+1;res.push({it,isNew:!had,n:had+1})}
 G.pulls=(G.pulls||0)+n;save();upd();if(sndOn)ctx();run(res)}
 async function run(res){const st=$('#gst'),ov=$('#gov'),best=Math.max(...res.map(x=>RI(x.it.r))),col=RC[RAR[best]];
 skip=false;ov.classList.remove('hide');ov.classList.toggle('ssbg',best===4);$('#gskip').classList.remove('hide');$('#gact').innerHTML='';
@@ -732,14 +800,14 @@ if(!skip){gfl(col==='#9a95c4'?'#fff':col);sfx('burst',best);if(best>=3){gshake()
 if(best===4&&!skip){st.innerHTML='<div class="gss">★SS★<small>SUPER RARE</small></div>';await wait(1200)}
 if(res.length===1)await reveal1(res[0]);else await reveal10(res);
 $('#gskip').classList.add('hide');
-const c1=G.t>=CFG.cost1,c10=G.t>=CFG.cost10;
-$('#gact').innerHTML=`<button class="btn" id="gx1" ${c1?'':'style="filter:grayscale(1)"'}>もう1連(${TKI}×${CFG.cost1})</button><button class="btn" id="gx10" ${c10?'':'style="filter:grayscale(1)"'}>もう10連(${TKI}×${CFG.cost10})</button><button class="btn alt" id="gxc">📦 装備する(コレクション)</button><button class="btn alt" id="gxx">閉じる</button><div class="gwarn" id="gxw" style="text-align:center"></div>`;
+const c1=G.t>=(CFG.cost1*lmul()),c10=G.t>=(CFG.cost10*lmul());
+$('#gact').innerHTML=`<button class="btn" id="gx1" ${c1?'':'style="filter:grayscale(1)"'}>もう1連(${TKI}×${(CFG.cost1*lmul())})</button><button class="btn" id="gx10" ${c10?'':'style="filter:grayscale(1)"'}>もう10連(${TKI}×${(CFG.cost10*lmul())})</button><button class="btn alt" id="gxc">📦 装備する(コレクション)</button><button class="btn alt" id="gxx">閉じる</button><div class="gwarn" id="gxw" style="text-align:center"></div>`;
 const close=()=>{ov.classList.add('hide');pulling=false;upd()};
 $('#gxx').onclick=close;$('#gxc').onclick=()=>{close();go('coll');renderColl()};
-$('#gx1').onclick=()=>{if(G.t<CFG.cost1)return $('#gxw').textContent='チケットが足りません';close();pull(1)};
-$('#gx10').onclick=()=>{if(G.t<CFG.cost10)return $('#gxw').textContent='チケットが足りません';close();pull(10)}}
+$('#gx1').onclick=()=>{if(G.t<(CFG.cost1*lmul()))return $('#gxw').textContent='チケットが足りません';close();pull(1)};
+$('#gx10').onclick=()=>{if(G.t<(CFG.cost10*lmul()))return $('#gxw').textContent='チケットが足りません';close();pull(10)}}
 async function reveal1(x){const st=$('#gst'),r=x.it.r;
-st.innerHTML=`<div class="gcard1" style="--c:${RC[r]}"><div class="gtag">${r}</div><div class="gem sil">${vis(x.it)}</div><div class="gnm">？？？</div><div class="gds">${KN[x.it.k]}</div></div>`;const cd=st.firstChild;
+st.innerHTML=`<div class="gcard1" style="--c:${RC[r]}"><div class="gtag">${r}${x.it.lim!==undefined?' 🌌S0':''}</div><div class="gem sil">${vis(x.it)}</div><div class="gnm">？？？</div><div class="gds">${KN[x.it.k]}</div></div>`;const cd=st.firstChild;
 await wait(800);cd.querySelector('.gem').classList.remove('sil');cd.classList.add('on');sfx('pop');
 cd.querySelector('.gnm').innerHTML=`${esc(x.it.n)} ${x.isNew?'<span style="color:var(--gold)">NEW!</span>':`<span class="mut">×${x.n}</span>`}`;
 cd.querySelector('.gds').innerHTML=`${KN[x.it.k]}<br>${esc(x.it.d)}${x.isNew?'':'<br>(重複:所持数が増えました)'}`;if(r==='SS'||r==='S')vib([50,30,90])}
@@ -748,6 +816,22 @@ for(const x of res){const r=x.it.r,d=document.createElement('div');d.className='
 d.innerHTML=`<b>${r}</b><span class="gi">${vis(x.it)}</span><small>${esc(x.it.n)}</small>${x.isNew?'<u>NEW</u>':''}`;g.appendChild(d);sfx('pop');
 if(r==='SS'||r==='S'){gfl(RC[r]);vib(60);if(r==='SS')confetti(100)}await wait(r==='SS'?700:r==='S'?450:150)}}
 $('#gskip').onclick=()=>{skip=true};$('#gp1').onclick=()=>pull(1);$('#gp10').onclick=()=>pull(10);
+/* ---- 限定ガチャ(タブ / 排出 / 画面) ---- */
+function drawL(){let x=Math.random()*100,r='B';for(const k of['SS','S','A','B']){if(x<RATE_L[k]){r=k;break}x-=RATE_L[k]}const k='cwe'[Math.random()*3|0],p=IT.filter(i=>i.lim===LIMS&&i.k===k&&i.r===r);return p[Math.random()*p.length|0]}
+const LIMI=()=>IT.filter(i=>i.lim===LIMS);
+function gtabs(){const t=$('#gtabs');if(!t)return;t.innerHTML='<button class="btn alt '+(gtab==='n'?'on':'')+'" data-t="n">'+LL('🎰 通常ガチャ','🎰 Standard','🎰 កាឆាធម្មតា')+'</button><button class="btn alt s0tab '+(gtab==='l'?'on':'')+'" data-t="l">'+LL('🌌 S0限定ガチャ','🌌 S0 Limited','🌌 កំណត់ S0')+'</button>';
+ t.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{if(pulling)return;gtab=b.dataset.t;renderGM()})}
+function renderLim(){const P=$('#glimp'),N=$('#gnrm');if(!P||!N)return;const on=gtab==='l';P.classList.toggle('hide',!on);N.classList.toggle('hide',on);$('#gacha').classList.toggle('s0m',on);
+ const g1=$('#gp1 .gbt'),g10=$('#gp10 .gbt');if(g1){g1.innerHTML=on?LL('🌌 限定1連ガチャ','🌌 Limited 1-Pull','🌌 កាឆាកំណត់ ១ដង'):'🎰 1連ガチャ';g10.innerHTML=on?LL('🌌 限定10連ガチャ','🌌 Limited 10-Pull','🌌 កាឆាកំណត់ ១០ដង'):'🎰 10連ガチャ'}
+ if(!on){P.innerHTML='';return}
+ const end=new Date(ECS.end(LIMS)-1+9*36e5),md=(end.getUTCMonth()+1)+'/'+end.getUTCDate();
+ const rows=['SS','S','A','B'].map(r=>'<div class="grt" style="--c:'+RC[r]+'"><span class="gbd">'+r+'</span><b style="flex:1">'+RATE_L[r]+'%</b><span class="mut">'+LIMI().filter(i=>i.r===r).map(i=>i.e).join(' ')+'</span></div>').join('');
+ const kinds=['c','w','e'].map(k=>'<div class="tc"><b>'+KN[k]+'</b> <span class="mut">('+LIMI().filter(i=>i.k===k).length+')</span>'+LIMI().filter(i=>i.k===k).sort((a,b)=>RI(b.r)-RI(a.r)).map(i=>'<div class="lit"><span class="gbd" style="--c:'+RC[i.r]+'">'+i.r+'</span><span class="litv">'+vis(i)+'</span><span style="flex:1"><b>'+esc(i.n)+'</b><div class="stat">'+esc(i.d)+'</div></span>'+(G.inv[i.id]?'<span class="lown">✓</span>':'')+'</div>').join('')+'</div>').join('');
+ P.innerHTML='<div class="s0b"><div><span style="font-size:20px">🌌</span> <span class="s0h">SEASON 0 LIMITED</span></div><div class="s0s">'+LL('コンセプト:未来 / FUTURE','Concept: THE FUTURE','គំនិត៖ អនាគត / FUTURE')+'</div><div class="s0t2">'+(limOn()?LL('開催期間:〜 '+md+' ・残り ','Available until '+md+' · ','ទាញបានដល់ '+md+' · នៅសល់ ')+ECS.fmt(ECS.end(LIMS)-Date.now()):LL('このガチャは終了しました','This banner has ended','កាឆានេះបានបញ្ចប់'))+'</div><div class="s0t2">'+LL('1連 🎟×10 / 10連 🎟×100(通常の2倍)','1-pull 🎟×10 / 10-pull 🎟×100 (double the standard)','១ដង 🎟×១០ / ១០ដង 🎟×១០០ (ទ្វេដងនៃធម្មតា)')+'</div></div>'
+  +'<b>'+LL('排出確率','Drop rates','អត្រាទាញ')+'</b><span class="mut"> (100%)</span>'+rows+'<b style="display:block;margin-top:10px">'+LL('限定ラインナップ(15種)','Limited lineup (15 items)','បញ្ជីកំណត់ (១៥ មុខ)')+'</b>'+kinds
+  +'<div class="mut">'+LL('見た目だけが変わります(性能・ダメージは変わりません)。シーズン0が終わると引けなくなりますが、入手したものはずっと使えます。','Visual only (no change to stats or damage). You can\'t pull after Season 0 ends, but what you got stays yours.','សម្រាប់តែរូបរាង (មិនប្ដូរសមត្ថភាព ឬខូចខាតទេ)។ ទាញមិនបានទៀតទេនៅពេលរដូវកាល ០ ចប់ ប៉ុន្តែរបស់ដែលបានទទួលនៅតែជារបស់អ្នក។')+'</div>'}
+function renderGM(){gtabs();renderLim();upd()}
+function award(){let cap=false;if(ROOM){const nt=Date.now();G.rw=(G.rw||[]).filter(t=>nt-t<36e5);if(G.rw.length>=CFG.onlineCap)cap=true;else G.rw.push(nt)}if(!cap)G.t++;save();upd();return{cap,t:G.t}}
 /* ---- コレクション(A以上の未入手は「？」で秘密) ---- */
 let tab='c',sel=null;
 function renderColl(){const el=$('#coll'),eqn=k=>{const i=item(G.eq[k]);return i?esc(i.n):'標準'};
@@ -755,7 +839,7 @@ const list=IT.filter(i=>i.k===tab).sort((a,b)=>RI(b.r)-RI(a.r)),own=IT.filter(i=
 el.innerHTML=`<div class="row"><b style="font-size:20px">📦 コレクション</b><span class="gtkp">${TKI} <b class="gtk"></b></span></div>
 <div class="mut">所持 ${own} / ${IT.length}</div><div class="ceq" style="margin-top:6px"><span>🧑 ${eqn('c')}</span><span>🗡️ ${eqn('w')}</span><span>💫 ${eqn('e')}</span></div>
 <div class="gtab">${['c','w','e'].map(k=>`<button class="btn alt ${k===tab?'on':''}" data-k="${k}">${KN[k]}</button>`).join('')}</div>
-<div class="cgrid">${list.map(i=>{const n=G.inv[i.id]||0,known=n||RI(i.r)<2;return `<div class="ci ${n?'':'no'} ${sel===i.id?'sel':''}" style="--c:${RC[i.r]}" data-id="${i.id}"><em>${i.r}</em>${G.eq[i.k]===i.id?'<i>装備中</i>':n>1?`<i>×${n}</i>`:''}<span class="gi">${known?vis(i):'？'}</span>${known?esc(i.n):'未入手'}</div>`}).join('')}</div>
+<div class="cgrid">${list.map(i=>{const n=G.inv[i.id]||0,known=n||RI(i.r)<2;return `<div class="ci ${n?'':'no'} ${sel===i.id?'sel':''}" style="--c:${RC[i.r]}" data-id="${i.id}"><em>${i.r}</em>${i.lim!==undefined?'<b class="s0t">S0</b>':''}${G.eq[i.k]===i.id?'<i>装備中</i>':n>1?`<i>×${n}</i>`:''}<span class="gi">${known?vis(i):'？'}</span>${known?esc(i.n):'未入手'}</div>`}).join('')}</div>
 <div id="cdet"></div><button class="btn alt" id="c2g">🎰 ガチャへ</button><button class="btn alt" id="cback">← ホームへ</button>`;
 el.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{tab=b.dataset.k;sel=null;renderColl()});
 el.querySelectorAll('.ci').forEach(c=>c.onclick=()=>{sel=c.dataset.id;renderColl()});
@@ -848,7 +932,7 @@ function renderDup(){const el=$('#gdup');if(!el)return;const d=dups(),tot=d.redu
 el.innerHTML='<b style="display:block;margin-top:10px">♻️ ダブりをチケットに交換</b><div class="mut">'+RAR.map(r=>r+'='+TKI+XR[r]).join(' / ')+' (1個あたり)<br>1個は必ず手元に残ります</div>'
 +(d.length?d.map(drow).join('')+'<button class="btn" id="gxa">'+(xc?'もう一度タップで確定':'ダブりを全部交換')+' ('+TKI+'+'+tot+')</button>':'<div class="mut" style="margin:6px 0">ダブりはありません</div>');
 el.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>xchg(b.dataset.x,!!b.dataset.a));const a=$('#gxa');if(a)a.onclick=xchgAll}
-const U1=upd;upd=function(){U1();renderDup()};
+const U1=upd;upd=function(){U1();renderDup();if(gtab==='l')renderLim()};
 /* ---- ランダム対戦(Firebase必須): 待機列に入り、同じ列にいる人どうしを順番に2人1組にする ---- */
 const MM={poll:1500,fresh:12000,timeout:30000};let mmRun=0;
 const fnv=x=>{let h=2166136261;for(let i=0;i<x.length;i++)h=Math.imul(h^x.charCodeAt(i),16777619)>>>0;return h};
@@ -881,9 +965,9 @@ const EN=[['🎲 ランダムな人と対戦','🎲 Battle a random player'],['�
 ['標準','Default'],['未入手(装備できません)','Not owned (can\'t equip)'],['未入手','Not owned'],['装備する','Equip'],['装備中(タップで標準に戻す)','Equipped (tap to unequip)'],['装備中','Equipped'],['▶ エフェクトを試す','▶ Try effect'],['ガチャで入手すると詳細が見られます','Pull it from the gacha to see details'],
 ['スタンプ','Stamps'],['💬 ルームチャット','💬 Room chat'],['メッセージ','Message'],['送信','Send'],['まだメッセージはありません','No messages yet'],['あなた:','You:'],['相手:','Friend:'],
 ['♻️ ダブりをチケットに交換','♻️ Exchange duplicates for tickets'],['(1個あたり)','(per item)'],['1個は必ず手元に残ります','One copy is always kept'],['ダブり ×','Duplicates ×'],['1個交換 ','Exchange 1 '],['全部 ','All '],['ダブりを全部交換','Exchange all duplicates'],['もう一度タップで確定','Tap again to confirm'],['ダブりはありません','No duplicates']];
-IT.forEach(i=>EN.push([i.n,i.ne],[i.d,i.de]));
+IT.forEach(i=>EN.push([i.n,i.ne],[i.d,i.de]));KM_PAIRS.push(...LIMKM);KM_PAIRS.sort((a,b)=>b[0].length-a[0].length);
 EN_PAIRS.push(...EN);EN_PAIRS.sort((a,b)=>b[0].length-a[0].length);
-chatUI();upd();applyLang();
+window.ECG={get G(){return G},oi,vis,FX,ELFX,RI,fx,TKI,go,award,renderGM,findMatch1:findMatch};renderGM();chatUI();upd();applyLang();
 })();
 </script>
 
@@ -979,5 +1063,233 @@ EN_PAIRS.push(...P);EN_PAIRS.sort((a,b)=>b[0].length-a[0].length);KM_PAIRS.push(
 applyLang()})();
 </script>
 
+<script>
+/* ===== v1.1: 2対2 / シーズン / アプデ情報 ===== */
+(function(){
+'use strict';
+const ECG=window.ECG;
+const $$=s=>document.querySelector(s);
+const SLOT_OF=[0,2,1,3],teamOf=s=>s<2?0:1;
+const fnvh=x=>{let h=2166136261;for(let i=0;i<x.length;i++)h=Math.imul(h^x.charCodeAt(i),16777619)>>>0;return h};
+const dmsg=t=>{const e=$$('#dbmsg');if(e)e.textContent=t};
+const nick=()=>(NICK||LL('名無し','Anonymous','អនាមិក')).slice(0,10);
+const cpuPick=seed=>{const o=OPP[Math.abs(seed)%OPP.length];return{cpu:true,w:o.slice(0,3),n:'🤖 '+o[3]}};
+let TEAM=false;try{TEAM=localStorage.getItem('ecmode')==='2'}catch(e){}
+let T2=null;
+/* ---------- ヘッダー / モード切替 / シーズン表示 ---------- */
+$$('#start').insertAdjacentHTML('afterbegin','<div id="season" class="sbn"></div><div id="snewbox"></div><div id="mtog" class="mtog"><button class="btn alt" id="m1"></button><button class="btn alt" id="m2"></button></div><div class="mut" id="mhint" style="margin:-4px 0 10px"></div>');
+$$('#m1').onclick=()=>{TEAM=false;try{localStorage.setItem('ecmode','1')}catch(e){}modeUI()};
+$$('#m2').onclick=()=>{TEAM=true;try{localStorage.setItem('ecmode','2')}catch(e){}modeUI()};
+function modeUI(){$$('#m1').textContent=LL('⚔️ 1対1','⚔️ 1v1','⚔️ ១ទល់១');$$('#m2').textContent=LL('👥 2対2','👥 2v2','👥 ២ទល់២');
+ $$('#m1').classList.toggle('on',!TEAM);$$('#m2').classList.toggle('on',TEAM);
+ $$('#mhint').textContent=TEAM?LL('2対2:2人チーム同士の4人対戦。通常マッチはCPUが味方と相手になります。ルーム・ランダムは人数が足りなければCPUで補充できます。','2v2: 4-player battles between two teams of two. Normal matches use CPU allies and foes. In rooms and random matches, missing players can be filled by CPUs.','២ទល់២៖ ការប្រយុទ្ធ ៤នាក់រវាងក្រុម ២នាក់។ ការប្រកួតធម្មតាមាន CPU ជាមិត្ត និងសត្រូវ។ ក្នុងបន្ទប់ និងការប្រកួតចៃដន្យ អាចបំពេញកន្លែងខ្វះដោយ CPU។'):''}
+function seasonUI(){const n=ECS.cur(),end=ECS.end(n),left=end-Date.now(),d=new Date(end-1+9*36e5),md=(d.getUTCMonth()+1)+'/'+d.getUTCDate();
+ $$('#season').innerHTML='<div class="sbt"><b style="font-size:17px">🌌 '+LL('シーズン','SEASON ','រដូវកាល ')+n+'</b><span>'+LL('残り ','Time left: ','នៅសល់ ')+ECS.fmt(left)+'</span></div><small>'+LL('〜 '+md+' まで / 戦績・ランキングは毎シーズンリセットされます','Until '+md+' / Records and ranking reset every season','ដល់ '+md+' / កំណត់ត្រា និងចំណាត់ថ្នាក់កំណត់ឡើងវិញរៀងរាល់រដូវកាល')+'</small>';
+ const sn=window.__SEASON_NEW,box=$$('#snewbox');if(sn&&!seasonUI.hide){box.innerHTML='<div class="tc" style="border-left:4px solid #3df2ff"><b>🌌 '+LL('新シーズンが始まりました!','A new season has started!','រដូវកាលថ្មីបានចាប់ផ្ដើម!')+'</b><div class="stat">'+LL('戦績とランキングがリセットされました。前シーズン('+sn.from+'):'+sn.w+'勝 '+sn.l+'敗 / 最高'+sn.best+'連勝','Records and ranking were reset. Last season ('+sn.from+'): '+sn.w+'W '+sn.l+'L / best streak '+sn.best,'កំណត់ត្រា និងចំណាត់ថ្នាក់ត្រូវបានកំណត់ឡើងវិញ។ រដូវកាលមុន ('+sn.from+')៖ ឈ្នះ '+sn.w+' ចាញ់ '+sn.l+' / ឈ្នះជាប់គ្នាល្អបំផុត '+sn.best)+'</div><button class="btn alt" id="snok">OK</button></div>';$$('#snok').onclick=()=>{seasonUI.hide=1;box.innerHTML=''}}}
+/* ---------- アプデ情報 ---------- */
+const UPV='1.1';
+function seen(){try{return localStorage.getItem('ecup')===UPV}catch(e){return false}}
+document.body.insertAdjacentHTML('beforeend','<div id="upd"><div class="hc" id="updc"></div></div>');
+$$('#upd').onclick=e=>{if(e.target===$$('#upd'))$$('#upd').classList.remove('on')};
+function updHTML(){const B=(a,b,c)=>'<b style="display:block;margin:12px 0 2px;font-size:15px">'+a+'</b><p style="margin:0;line-height:1.6;font-size:14px">'+b+'</p>';
+ return '<div class="row" style="margin-bottom:6px"><b style="font-size:18px">'+LL('🆕 アプデ情報','🆕 Update Notes','🆕 ព័ត៌មានអាប់ដេត')+'</b><button class="btn alt" id="updx" style="width:auto;margin:0;padding:6px 14px;font-size:13px">'+LL('閉じる','Close','បិទ')+'</button></div>'
+ +'<div class="tc"><b>Ver 1.1</b> <span class="mut">2026/10/26</span></div>'
+ +B(LL('⚔️ 2対2モードを追加','⚔️ 2v2 mode added','⚔️ បន្ថែមមុខងារ ២ទល់២'),LL('2人チーム同士の4人対戦です。通常マッチ(CPUが味方と相手)・ルーム・ランダムマッチで遊べます。ルームでは空席にCPUを入れられます。','Two teams of two fight in a 4-player battle. Play it in normal matches (CPU allies and foes), rooms and random matches. In rooms you can put CPUs in empty seats.','ក្រុម ២នាក់ ប្រយុទ្ធគ្នា ៤នាក់។ លេងបានក្នុងការប្រកួតធម្មតា (CPU ជាមិត្ត និងសត្រូវ) បន្ទប់ និងការប្រកួតចៃដន្យ។ ក្នុងបន្ទប់អាចដាក់ CPU ក្នុងកៅអីទំនេរ។'))
+ +B(LL('🌌 シーズン制がスタート(シーズン0)','🌌 Seasons begin (Season 0)','🌌 ប្រព័ន្ធរដូវកាលចាប់ផ្ដើម (រដូវកាល ០)'),LL('シーズンは1か月ごとに切り替わります。戦績とランキングは毎シーズンリセットされます。シーズン0は 10/26 〜 11/25 です。','A season lasts one month. Records and ranking reset every season. Season 0 runs from 10/26 to 11/25.','រដូវកាលមួយមានរយៈពេល ១ខែ។ កំណត់ត្រា និងចំណាត់ថ្នាក់កំណត់ឡើងវិញរៀងរាល់រដូវកាល។ រដូវកាល ០ ចាប់ពី ១០/២៦ ដល់ ១១/២៥។'))
+ +B(LL('🎰 シーズン0限定ガチャ(コンセプト:未来)','🎰 Season 0 limited gacha (concept: future)','🎰 កាឆាកំណត់រដូវកាល ០ (គំនិត៖ អនាគត)'),LL('未来感のあるキャラ・武器・エフェクトが各5種類。シーズン0の間だけ引けます(手に入れたものは終了後も使えます)。見た目だけで強さは変わりません。チケットは通常の2倍(1連10枚/10連100枚)ですが、レアの排出率がアップしています。','5 futuristic characters, 5 weapons and 5 effects. Available only during Season 0 (what you get stays yours afterwards). Visual only: no change to strength. Costs double the tickets (10 / 100), with boosted rare rates.','តួអង្គ អាវុធ និងអេហ្វេកត៌បែបអនាគត មួយប្រភេទ ៥ ។ ទាញបានតែក្នុងរដូវកាល ០ ប៉ុណ្ណោះ (របស់ដែលបានទទួលនៅតែប្រើបានបន្ទាប់ពីនោះ)។ សម្រាប់តែរូបរាង មិនប្ដូរកម្លាំងទេ។ តម្លៃសំបុត្រទ្វេដង (១០ / ១០០) ប៉ុន្តែអត្រាកម្រខ្ពស់ជាង។'))
+ +B(LL('📖 遊び方 / 🆕 アプデ情報','📖 How to Play / 🆕 Update Notes','📖 របៀបលេង / 🆕 ព័ត៌មានអាប់ដេត'),LL('ホーム画面の右上から、いつでも確認できます。','Check them any time from the top right of the home screen.','អាចមើលបានគ្រប់ពេលពីជ្រុងខាងលើស្ដាំនៃទំព័រដើម។'))
+ +B(LL('↩️ 戻るボタンと 🇰🇭 クメール語','↩️ Back buttons and 🇰🇭 Khmer','↩️ ប៊ូតុងត្រឡប់ និង 🇰🇭 ភាសាខ្មែរ'),LL('各画面から「ホームに戻る」ができるようになり、言語に ខ្មែរ が加わりました。','You can now go back home from each screen, and ខ្មែរ was added as a language.','ឥឡូវអាចត្រឡប់ទៅទំព័រដើមពីអេក្រង់នីមួយៗ ហើយបានបន្ថែមភាសា ខ្មែរ។'))
+ +'<button class="btn" id="updx2" style="margin-top:14px">'+LL('閉じる','Close','បិទ')+'</button>'}
+function openUpd(){const b=$$('#upbtn'),r=b.getBoundingClientRect(),H=$$('#upd');$$('#updc').innerHTML=updHTML();$$('#updx').onclick=$$('#updx2').onclick=()=>H.classList.remove('on');
+ $$('#updc').style.setProperty('--ox',(r.left+r.width/2)+'px');$$('#updc').style.setProperty('--oy',(r.top+r.height/2)+'px');H.classList.remove('on');void H.offsetWidth;H.classList.add('on');
+ try{localStorage.setItem('ecup',UPV)}catch(e){}$$('#upnew').classList.add('hide')}
+$$('#upbtn').onclick=openUpd;
+function setLabels(){$$('#uplb').textContent=LL('🆕 アプデ情報','🆕 Updates','🆕 អាប់ដេត');$$('#upnew').classList.toggle('hide',seen());
+ const h=$$('#how .hc');if(h&&!$$('#howx3')){const b=$$('#howx2');b.insertAdjacentHTML('beforebegin','<div id="howx3"></div>')}
+ const x=$$('#howx3');if(x){const B=(a,b)=>'<b style="display:block;margin:14px 0 4px;font-size:15px">'+a+'</b><p style="margin:0 0 4px;line-height:1.6;font-size:14px">'+b+'</p>';
+  x.innerHTML=B(LL('👥 2対2モード','👥 2v2 mode','👥 មុខងារ ២ទល់២'),LL('ホームの「2対2」を選ぶと、2人チーム同士の4人対戦になります。1人1体の戦士を作ります。通常マッチはCPUが味方と相手。ルームは4席(空席にCPUを入れられます)。ランダムは集まった人+CPUで始まります。','Choose “2v2” on the home screen for 4-player battles between two teams of two. Everyone builds one warrior. Normal matches use CPU allies and foes. Rooms have 4 seats (CPUs can fill empty ones). Random matches start with whoever is found plus CPUs.','ជ្រើស «២ទល់២» នៅទំព័រដើម ដើម្បីប្រយុទ្ធ ៤នាក់រវាងក្រុម ២នាក់។ មនុស្សម្នាក់ៗបង្កើតអ្នកចម្បាំងម្នាក់។ ការប្រកួតធម្មតាមាន CPU ជាមិត្ត និងសត្រូវ។ បន្ទប់មាន ៤កៅអី (អាចដាក់ CPU ក្នុងកៅអីទំនេរ)។ ចៃដន្យចាប់ផ្ដើមជាមួយអ្នកដែលរកឃើញ + CPU។'))
+   +B(LL('🌌 シーズンと限定ガチャ','🌌 Seasons & limited gacha','🌌 រដូវកាល និងកាឆាកំណត់'),LL('シーズンは1か月ごと。戦績とランキングはシーズンごとにリセットされます。ガチャには、そのシーズンだけの限定スキンが並びます。','A season lasts one month. Records and ranking reset every season. The gacha also features skins that are limited to that season.','រដូវកាលមួយមានរយៈពេល ១ខែ។ កំណត់ត្រា និងចំណាត់ថ្នាក់កំណត់ឡើងវិញរៀងរាល់រដូវកាល។ កាឆាក៏មានស្គីនកំណត់សម្រាប់រដូវកាលនោះដែរ។'))}}
+/* ---------- 2対2エンジン ---------- */
+function fight4(F){const log=[],tm=teamOf,alive=i=>F[i].hp>0,ev=o=>log.push(Object.assign({hp:F.map(f=>f.hp)},o));
+ const foes=i=>[0,1,2,3].filter(j=>tm(j)!==tm(i)&&alive(j)),pick=i=>{const a=foes(i);return a.length?a[Math.random()*a.length|0]:-1};
+ const tAlive=t=>[0,1,2,3].some(i=>tm(i)===t&&alive(i));
+ const clutch=i=>{const f=F[i];if(f.hp<=0||f.hp>25||f.clutched)return;f.clutched=true;if(Math.random()>.75){ev({type:'nocl',who:i});return}
+  const fx=[f.b.c,f.el.c].filter(Boolean),txt=[],j=pick(i),o=j>=0?F[j]:null;
+  fx.forEach(c=>{if(c==='def'){f.def+=8}else if(c==='dodge'){f.dodge=1}else if(c==='atk'){f.atkBuf=3}else if(c==='stink'){if(o)o.deb=3}else if(c==='heal'){f.hp=Math.min(100,f.hp+(f.b.c==='heal'?15:12))}else if(c==='x2'){f.x2=1}else if(c==='freeze'){if(o)o.freeze=2}txt.push(CL[c])});
+  if(!fx.length){f.atkBuf=3;txt.push(CL.atk)}
+  ev({type:'clutch',who:i,text:txt.join(' + ')})};
+ const dmg=(i,v,why)=>{const f=F[i];if(f.hp<=0)return;f.hp=Math.max(0,f.hp-v);f.minhp=Math.min(f.minhp,f.hp);ev({type:'dot',who:i,v,why});clutch(i)};
+ const atk=(i,j)=>{const f=F[i],o=F[j];if(o.dodge>0){o.dodge--;ev({type:'miss',who:i,to:j});return}if(o.evade&&Math.random()<o.evade){ev({type:'miss',who:i,to:j});return}
+  for(let h=0;h<f.hits&&o.hp>0;h++){let m=adv(f,o);if(f.atkBuf>0)m*=1.6;if(f.x2){m*=2}if(f.deb>0)m*=.6;
+   const cr=Math.random()<f.crit;if(cr)m*=1.5;const d=Math.max(1,Math.round(f.atk*m-o.def*(1-f.pierce)*.8+(Math.random()*4-2)));
+   o.hp=Math.max(0,o.hp-d);o.minhp=Math.min(o.minhp,o.hp);
+   if(f.el.steal)f.hp=Math.min(100,f.hp+Math.round(d*f.el.steal));
+   if(f.el.burn)o.burn=3;if(f.el.slow)o.slow=3;if(f.el.curse)o.deb=2;if(f.el.poison)o.poison=4;if(f.el.stun&&Math.random()<f.el.stun)o.freeze=1;
+   ev({type:'hit',who:i,to:j,v:d,crit:cr,hits:f.hits});clutch(j)}
+  if(f.atkBuf>0)f.atkBuf--;f.x2=0;if(f.deb>0)f.deb--};
+ for(let t=1;t<=12&&tAlive(0)&&tAlive(1);t++){ev({type:'turn',t});
+  F.forEach((f,i)=>{if(f.hp<=0)return;if(f.burn>0){f.burn--;dmg(i,3,'🔥')}if(f.poison>0){f.poison--;dmg(i,2,'☠️')}if(f.el.heal&&f.hp>0){f.hp=Math.min(100,f.hp+f.el.heal);ev({type:'heal',who:i,v:f.el.heal})}});
+  const ord=[0,1,2,3].filter(alive).sort((a,b)=>F[b].spd-F[a].spd||a-b);
+  ord.forEach(i=>{const f=F[i];if(f.hp<=0||!foes(i).length)return;if(f.freeze>0){f.freeze--;ev({type:'frozen',who:i});return}
+   f.acc+=f.spd*(f.slow>0?.7:1);if(f.slow>0)f.slow--;let n=0;while(f.acc>=1&&n++<3&&f.hp>0){const j=pick(i);if(j<0)break;f.acc-=1;atk(i,j)}})}
+ const s0=F[0].hp+F[1].hp,s1=F[2].hp+F[3].hp,a0=tAlive(0),a1=tAlive(1);
+ const win=a0&&!a1?0:a1&&!a0?1:s0>s1?0:s1>s0?1:-1;ev({type:'end',win});return{log,win}}
+function seeded(seed,fn){let h=fnvh(seed)||1;const orig=Math.random;let s=h;Math.random=()=>{s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};try{return fn()}finally{Math.random=orig}}
+/* ---------- 画面(2対2アリーナ) ---------- */
+const card=i=>'<div class="f g" id="g'+i+'"><div class="em"></div><div class="sub"></div><div class="nm"></div><div class="hp"><i></i></div><div class="hpn"></div></div>';
+$$('#arena').insertAdjacentHTML('afterend','<div id="arena2" class="card hide"><div id="turn2"></div><div class="a2" id="a2"><div class="col">'+card(0)+card(1)+'</div><div class="col">'+card(2)+card(3)+'</div></div><div id="tick2"></div><button class="btn alt" id="aback2">🏳️</button></div>');
+const SHB=show;show=function(id){const a=$$('#arena2');if(a)a.classList.toggle('hide',id!=='arena2');SHB(id);if(id==='start')T2=null};
+const setHp2=(el,v)=>{el.querySelector('.hp').firstElementChild.style.width=Math.max(0,v)+'%';el.querySelector('.hp').classList.toggle('low',v<=25);el.querySelector('.hpn').textContent='HP '+Math.max(0,v);el.classList.toggle('dead',v<=0)};
+function wpn2(a,b,html){const ar=$$('#a2');if(!ar||!html)return;const R=ar.getBoundingClientRect(),A=a.getBoundingClientRect(),B=b.getBoundingClientRect(),ax=A.left+A.width/2-R.left,ay=A.top+A.height*.4-R.top,bx=B.left+B.width/2-R.left,by=B.top+B.height*.4-R.top;
+ const s=document.createElement('span');s.className='gw';s.innerHTML=html;s.style.fontSize='34px';ar.appendChild(s);const P=(x,y,r,sc)=>'translate('+x+'px,'+y+'px) translate(-50%,-50%) rotate('+r+'deg) scale('+sc+')',mx=ax+(bx-ax)*.6,my=ay+(by-ay)*.6;
+ s.animate([{transform:P(ax,ay-30,-60,1),opacity:1},{transform:P(mx,my,80,1.3),opacity:1,offset:.6},{transform:P(mx,my,100,1),opacity:0}],{duration:420,easing:'ease-in'}).onfinish=()=>s.remove()}
+async function play2(L){const {F,slot,r}=L;show('arena2');music('battle');L.abort=false;
+ const mt=teamOf(slot),mine=[0,1,2,3].filter(i=>teamOf(i)===mt).sort((a,b)=>a===slot?-1:b===slot?1:a-b),foes=[0,1,2,3].filter(i=>teamOf(i)!==mt),ord=mine.concat(foes),cards={};
+ ord.forEach((s,k)=>cards[s]=$$('#g'+k));const side=s=>teamOf(s)===mt?0:1,eqOf=s=>s===slot?ECG.G.eq:(F[s].q||{}),nm=s=>F[s].n;
+ $$('#aback2').textContent=L.replay?LL('← 結果に戻る','← Back to result','← ត្រឡប់ទៅលទ្ធផល'):LL('🏳️ 降参してホームへ','🏳️ Forfeit & go home','🏳️ ចុះចាញ់ ហើយទៅទំព័រដើម');
+ $$('#aback2').onclick=()=>{if(L.replay){L.abort=true;return}if(confirm(tr('降参するとこの試合は負けになります。ホームに戻りますか?')))L.abort=true};
+ ord.forEach(s=>{const el=cards[s],f=F[s],q=eqOf(s),c=ECG.oi(q.c,'c'),w=ECG.oi(q.w,'w');el.className='f g';
+  el.querySelector('.em').innerHTML=c?ECG.vis(c):esc(f.w[0]);el.querySelector('.sub').innerHTML=(w?ECG.vis(w):esc(f.w[1]))+esc(f.w[2]);
+  el.querySelector('.nm').innerHTML=(window.tb?tb(f.ti):'')+esc(f.n);setHp2(el,100)});
+ $$('#tick2').textContent='READY...';$$('#turn2').textContent=LL('👥 2対2','👥 2v2','👥 ២ទល់២');await sleep(1900);
+ const float=(el,t,c)=>{const d=document.createElement('div');d.className='dmg '+(c||'');d.textContent=t;el.appendChild(d);setTimeout(()=>d.remove(),850)};
+ const hps=h=>ord.forEach(s=>setHp2(cards[s],h[s])),tick=t=>{$$('#tick2').textContent=t};
+ for(const e of r.log){if(L.abort)break;
+  if(e.type==='turn'){$$('#turn2').textContent='TURN '+e.t+' / 12';await sleep(350)}
+  else if(e.type==='hit'){const A=cards[e.who],T=cards[e.to];A.classList.add('a'+side(e.who));sfxHit(e.crit);await sleep(130);A.classList.remove('a0','a1');T.classList.add('hit');setTimeout(()=>T.classList.remove('hit'),300);float(T,'-'+e.v,e.crit?'c':'');hps(e.hp);
+   tick((e.crit?'💥 CRITICAL! ':'')+nm(e.who)+' ▶ '+nm(e.to)+'  -'+e.v);
+   const q=eqOf(e.who),ee=ECG.oi(q.e,'e'),ew=ECG.oi(q.w,'w'),ow=F[e.who].w,key=ee?ee.fx:(ECG.ELFX[norm(ow[2])]||'slash'),rank=ee?ECG.RI(ee.r):1;
+   wpn2(A,T,ew?ECG.vis(ew):esc(ow[1]));setTimeout(()=>ECG.fx(T,ECG.FX[key]||ECG.FX.slash,rank,e.crit,!!ee),240);if(e.crit){shake();vib(60)}await sleep(e.hits>1?260:420)}
+  else if(e.type==='dot'){float(cards[e.who],'-'+e.v);hps(e.hp);tick(e.why+' '+nm(e.who)+' に継続ダメージ');await sleep(250)}
+  else if(e.type==='heal'){float(cards[e.who],'+'+e.v,'h');hps(e.hp);await sleep(120)}
+  else if(e.type==='miss'){tick('💨 '+nm(e.to)+' が回避!');await sleep(450)}
+  else if(e.type==='frozen'){tick('🧊 '+nm(e.who)+' は動けない!');await sleep(400)}
+  else if(e.type==='nocl'){tick('…'+nm(e.who)+' は逆転できなかった');await sleep(500)}
+  else if(e.type==='clutch'){music(null);document.body.classList.add('dark');vib([120,200,120]);tick('…');await sleep(900);document.body.classList.remove('dark');fl(teamOf(e.who)===mt?'#ffd23f':'#ff4d4d');shake();banner('⚡ CLUTCH!');tick('⚡ '+nm(e.who)+' の逆転技!「'+e.text+'」');hps(e.hp);music('clutch');await sleep(1200)}
+  else if(e.type==='end'){await sleep(500)}}
+ music(null);document.body.classList.remove('dark');
+ if(L.abort)return L.replay?show('result'):aborted2();
+ if(L.replay){show('result');return}finish2(L)}
+function aborted2(){rec.l++;rec.st=0;saveRank();busy=false;goHome();dmsg(LL('降参しました(1敗として記録)','You forfeited (recorded as 1 loss)','អ្នកបានចុះចាញ់ (កត់ត្រាជាចាញ់ ១)'))}
+function finish2(L){const {F,slot,r}=L,mt=teamOf(slot),win=r.win===mt,draw=r.win<0,end=r.log[r.log.length-1];
+ if(win){rec.w++;rec.st++;rec.best=Math.max(rec.best,rec.st)}else if(!draw){rec.l++;rec.st=0}
+ if(!draw)saveRank();if(ROOM){ROOM.round++;if(ROOM.m===4&&!ROOM.rnd&&FIREBASE_URL)db('PUT','rooms/'+ROOM.code+'/rd',ROOM.round).catch(()=>{})}
+ music(null);if(win){fl('#ffd23f');confetti(150);jWin();vib([60,40,60,40,200])}else if(draw){}else{fl('#ff4d4d');shake();jLose();vib(400)}
+ const hp=(r.log.length?[...r.log].reverse().find(e=>e.hp):null),H=hp?hp.hp:[0,0,0,0];
+ const row=s=>'<div class="rr"><span style="font-size:26px">'+esc(F[s].w.join(''))+'</span><span style="flex:1"><b>'+(window.tb?tb(F[s].ti):'')+esc(F[s].n)+'</b><div class="stat">'+(H[s]>0?'HP '+H[s]:'☠️ KO')+'</div></span></div>';
+ const tm=t=>[0,1,2,3].filter(i=>teamOf(i)===t).map(row).join('');
+ const myt=mt,opt=1-mt;let tk='';
+ if(win){const a=ECG.award();tk=a.cap?'<div class="gtkb" style="filter:grayscale(.6)">'+LL('オンライン対戦のチケットは1時間に10枚までです','Online battles give at most 10 tickets per hour','ការប្រយុទ្ធអនឡាញផ្ដល់សំបុត្របានច្រើនបំផុត ១០សន្លឹកក្នុងមួយម៉ោង')+'<small>'+LL('所持 ','Owned ','មាន ')+a.t+'</small></div>':'<div class="gtkb">'+ECG.TKI+' '+LL('ガチャチケットを1枚獲得！','Got 1 gacha ticket!','បានទទួលសំបុត្រកាឆា ១សន្លឹក!')+'<small>'+LL('所持 ','Owned ','មាន ')+a.t+'</small></div>'}
+ $$('#result').innerHTML=tk+'<div class="verdict '+(win?'w':'l')+'">'+(win?'🏆 ':draw?'🤝 ':'💀 ')+(draw?'DRAW':win?'WIN!':'LOSE')+'</div><div class="mut" style="text-align:center">'+LL('👥 2対2チーム戦','👥 2v2 Team Battle','👥 ការប្រយុទ្ធក្រុម ២ទល់២')+'</div>'
+  +'<b>'+LL('🔵 あなたのチーム','🔵 Your team','🔵 ក្រុមរបស់អ្នក')+'</b>'+tm(myt)+'<b>'+LL('🔴 相手チーム','🔴 Opponents','🔴 ក្រុមប្រឆាំង')+'</b>'+tm(opt)
+  +'<button class="btn" id="again2">'+LL('⚔️ もう一戦(同じ戦士)','⚔️ Rematch (same warrior)','⚔️ ប្រយុទ្ធម្ដងទៀត (អ្នកចម្បាំងដដែល)')+'</button><button class="btn alt" id="edit2">'+LL('✏️ 戦士を作り直す','✏️ Rebuild warrior','✏️ បង្កើតអ្នកចម្បាំងឡើងវិញ')+'</button><button class="btn alt" id="rep2">'+LL('🎬 リプレイ','🎬 Replay','🎬 មើលឡើងវិញ')+'</button><button class="btn alt" id="rk22">'+LL('🏆 ランキング','🏆 Ranking','🏆 ចំណាត់ថ្នាក់')+'</button>'+(win?'<button class="btn alt" id="gc2">'+LL('🎰 ガチャを引く','🎰 Pull gacha','🎰 ទាញកាឆា')+'</button>':'')+'<button class="btn alt" id="hm2">'+LL('🏠 ホームへ','🏠 Home','🏠 ទំព័រដើម')+'</button>';
+ $$('#rec').innerHTML='<b>'+LL('戦績','Record','កំណត់ត្រា')+'</b> <span class="mut">'+rec.w+LL('勝 ',' W ',' ឈ្នះ ')+rec.l+LL('敗 / 連勝 ',' L / streak ',' ចាញ់ / ឈ្នះជាប់ ')+rec.st+LL('(最高 ',' (best ',' (ល្អបំផុត ')+rec.best+') </span>';
+ show('result');busy=false;
+ $$('#again2').onclick=()=>{if(!busy){music(null);battle2()}};$$('#edit2').onclick=()=>{busy=false;openBuild()};$$('#rep2').onclick=()=>{if(!busy){L.replay=true;play2(L)}};$$('#rk22').onclick=showRank;$$('#hm2').onclick=goHome;
+ if($$('#gc2'))$$('#gc2').onclick=()=>ECG.go('gacha')}
+/* ---------- 対戦の流れ ---------- */
+function mkFighters(list){return list.map(f=>mk(f.w.slice(),f.n))}
+async function battle2(){if(busy)return;busy=true;const rm=ROOM;
+ if(!rm){const sh=OPP.map((o,i)=>i).sort(()=>Math.random()-.5),pk=i=>{const o=OPP[sh[i]];return{w:o.slice(0,3),n:'👻 '+o[3],q:null,ti:null}};
+  const F=[{w:W.slice(),n:'YOU',q:ECG.G.eq,ti:window.getTitle?getTitle():null},Object.assign(pk(0),{n:'🤖 '+OPP[sh[0]][3]}),pk(1),pk(2)];
+  const M=mkFighters(F),r=fight4(M);const L={F,M,slot:0,r};lastRun2=L;await play2(L);busy=false;return}
+ const snap=slotsNow();
+ if(snap.some(x=>!x)){busy=false;alert(LL('4席すべてを埋めてください(空席にはCPUを入れられます)','Please fill all 4 seats (CPUs can fill empty seats)','សូមបំពេញកៅអីទាំង ៤ (អាចដាក់ CPU ក្នុងកៅអីទំនេរ)'));return}
+ const slot=rm.slot;if(slot<0||!(snap[slot]&&snap[slot].p===PID)){busy=false;alert(LL('先に席に座ってください','Please take a seat first','សូមអង្គុយកៅអីជាមុនសិន'));return}
+ const sig=a=>a.map(x=>x?(x.cpu?'c'+x.w.join(''):'h'+x.p):'-').join('|'),sg0=sig(snap),myr=rm.round;
+ show('wait');rm.cancel=false;const humans=[0,1,2,3].filter(i=>!snap[i].cpu);
+ const wt=n=>{$$('#wait').innerHTML='<b>'+LL('⏳ 他のプレイヤーの準備を待っています…','⏳ Waiting for the other players…','⏳ កំពុងរង់ចាំអ្នកលេងផ្សេងទៀត…')+' ('+n+'/'+humans.length+')</b><div class="mut">'+LL('ルーム ','Room ','បន្ទប់ ')+rm.code+LL(' / 全員が「準備OK」を押すと自動で始まります。',' / It starts automatically when everyone presses Ready.',' / វានឹងចាប់ផ្ដើមដោយស្វ័យប្រវត្តិនៅពេលគ្រប់គ្នាចុច «ត្រៀមខ្លួន»។')+'</div><button class="btn alt" id="wcan">'+LL('やめる','Cancel','បោះបង់')+'</button>';$$('#wcan').onclick=()=>{rm.cancel=true}};wt(0);
+ let P=null,err=false,changed=false;
+ try{await db('PUT','rooms/'+rm.code+'/p/s'+slot,{w:W.slice(),n:NICK,r:myr,pid:PID,q:window.getEq?getEq():null,ti:window.getTitle?getTitle():null});
+  const t0=Date.now();while(ROOM===rm&&!rm.cancel&&Date.now()-t0<(rm.rnd?6e4:6e5)){
+   if(!rm.rnd&&sig(slotsNow())!==sg0){changed=true;break}
+   const p=await db('GET','rooms/'+rm.code+'/p')||{};const ready=humans.filter(i=>{const v=p['s'+i];return v&&v.r===myr&&v.pid===snap[i].p&&okW(v.w)});wt(ready.length);
+   if(ready.length===humans.length){P=p;break}await sleep(1200)}}catch(e){err=true}
+ if(!P||ROOM!==rm){busy=false;if(ROOM===rm){openBuild();if(err)alert(tr('通信に失敗しました'));else if(changed)alert(LL('席の状況が変わりました。もう一度「準備OK」を押してください','The seats changed. Please press Ready again.','ស្ថានភាពកៅអីបានផ្លាស់ប្ដូរ។ សូមចុច «ត្រៀមខ្លួន» ម្ដងទៀត។'));else if(rm.rnd&&!rm.cancel)alert(tr('相手が応答しませんでした'))}else show('start');return}
+ const F=[0,1,2,3].map(i=>{const s=snap[i];if(s.cpu)return{w:s.w,n:s.n,q:null,ti:null};const v=P['s'+i];return{w:okW(v.w),n:i===slot?'YOU':String(v.n||s.n||'???').slice(0,10),q:i===slot?ECG.G.eq:(v.q||null),ti:v.ti||null}});
+ const M=mkFighters(F),seedS=F.map(f=>f.w.join('')).join('|')+'|'+rm.code+':'+myr,r=seeded(seedS,()=>fight4(M));const L={F,M,slot,r};lastRun2=L;await play2(L);busy=false}
+let lastRun2=null;
+const B0=battle;battle=function(){if((ROOM&&ROOM.m===4)||(!ROOM&&T2))return battle2();return B0.apply(this,arguments)};
+/* ---------- 開始(通常=CPU) ---------- */
+$$('#sOn').onclick=()=>{TEAM?start2(true):start(true)};$$('#sOff').onclick=()=>{TEAM?start2(false):start(false)};
+function start2(on){sndOn=on;if(on)ctx();ROOM=null;setChal(null);T2={cpu:true};openBuild()}
+/* ---------- ルーム(4席ロビー) ---------- */
+const seen2={};
+const isStale=(i,v)=>{if(!v||v.cpu)return false;const k=i,o=seen2[k];if(!o||o.t!==v.t||o.p!==v.p){seen2[k]={t:v.t,p:v.p,at:Date.now()};return false}return Date.now()-o.at>45000&&v.p!==PID};
+function slotInfo(l,i){const v=l&&l['s'+i];if(!v)return null;if(v.cpu){const w=okW(v.w);return w?{cpu:true,w,n:String(v.n||'🤖').slice(0,14)}:null}if(isStale(i,v))return null;return{p:v.p,n:String(v.n||'???').slice(0,10)}}
+function slotsNow(){const rm=ROOM;if(!rm)return[];if(rm.rnd)return rm.fixed.slice();return[0,1,2,3].map(i=>slotInfo(rm.l,i))}
+async function claim(s){const rm=ROOM;const cur=await db('GET','rooms/'+rm.code+'/l/s'+s);if(cur&&!(cur.p===PID&&!cur.cpu)&&!isStale(s,cur))return false;
+ await db('PUT','rooms/'+rm.code+'/l/s'+s,{p:PID,n:nick(),t:{'.sv':'timestamp'}});if(rm.slot>=0&&rm.slot!==s)await db('DELETE','rooms/'+rm.code+'/l/s'+rm.slot).catch(()=>{});rm.slot=s;rm.role='abcd'[s];return true}
+async function addCpu(s){const rm=ROOM,cur=await db('GET','rooms/'+rm.code+'/l/s'+s);if(cur&&!isStale(s,cur))return;const c=cpuPick(Math.random()*1e6|0);await db('PUT','rooms/'+rm.code+'/l/s'+s,{cpu:true,w:c.w,n:c.n,t:Date.now()})}
+function freeSeat(){const rm=ROOM;if(rm&&rm.m===4&&rm.slot>=0&&!rm.rnd){const s=rm.slot;rm.slot=-1;db('DELETE','rooms/'+rm.code+'/l/s'+s).catch(()=>{})}}
+const GH0=goHome;goHome=function(){freeSeat();T2=null;GH0()};
+function lobbyRender(){const rm=ROOM;if(!rm||rm.m!==4)return;const b=$$('#rbar');if(!b||$$('#build').classList.contains('hide'))return;b.classList.remove('hide');
+ const sl=slotsNow(),seated=rm.slot>=0&&sl[rm.slot]&&sl[rm.slot].p===PID;
+ const chip=i=>{const s=sl[i];let h='<div class="ls'+(s&&s.p===PID?' me':'')+'">';
+  if(!s){h+='<span class="mut">'+LL('— 空席 —','— Empty —','— ទំនេរ —')+'</span>';if(!rm.rnd){h+=seated?'<div class="lbt"><button data-act="move" data-s="'+i+'">'+LL('ここへ移る','Move here','ផ្លាស់មកទីនេះ')+'</button><button data-act="cpu" data-s="'+i+'">＋CPU</button></div>':'<div class="lbt"><button data-act="sit" data-s="'+i+'">'+LL('座る','Sit','អង្គុយ')+'</button><button data-act="cpu" data-s="'+i+'">＋CPU</button></div>'}}
+  else if(s.cpu){h+='<span>🤖 '+esc(s.n.replace('🤖 ',''))+' <span class="mut">'+esc(s.w.join(''))+'</span></span>'+(rm.rnd?'':'<div class="lbt"><button data-act="rm" data-s="'+i+'">'+LL('外す','Remove','ដកចេញ')+'</button></div>')}
+  else{h+='<span>👤 '+esc(s.n)+(s.p===PID?' <b>('+LL('あなた','You','អ្នក')+')</b>':'')+'</span>'+(s.p===PID&&!rm.rnd?'<div class="lbt"><button data-act="stand" data-s="'+i+'">'+LL('席を立つ','Stand up','ក្រោកឡើង')+'</button></div>':'')}
+  return h+'</div>'};
+ const full=sl.every(x=>x);
+ b.innerHTML='<div class="tc" style="border-left:4px solid var(--gold)"><b>'+(rm.rnd?'🎲 ':'🏠 ')+LL('2対2 ルーム ','2v2 Room ','បន្ទប់ ២ទល់២ ')+'<span style="font-size:20px">'+rm.code+'</span></b> <span class="mut">'+LL(' / ラウンド ',' / Round ',' / ជុំទី ')+rm.round+'</span>'
+  +'<div class="lb"><div class="lt"><b>🔵 '+LL('チームA','Team A','ក្រុម A')+'</b>'+chip(0)+chip(1)+'</div><div class="lt"><b>🔴 '+LL('チームB','Team B','ក្រុម B')+'</b>'+chip(2)+chip(3)+'</div></div>'
+  +'<div class="stat">'+(rm.rnd?LL('ランダムで集まったメンバーです。全員が「準備OK」で開始します。','These are the players found at random. The battle starts once everyone presses Ready.','នេះជាអ្នកលេងដែលរកឃើញដោយចៃដន្យ។ ការប្រយុទ្ធចាប់ផ្ដើមនៅពេលគ្រប់គ្នាចុច «ត្រៀមខ្លួន»។'):(full?LL('4席が埋まりました。全員が「準備OK」で開始します。','All 4 seats are filled. The battle starts once everyone presses Ready.','កៅអីទាំង ៤ ពេញហើយ។ ការប្រយុទ្ធចាប់ផ្ដើមនៅពេលគ្រប់គ្នាចុច «ត្រៀមខ្លួន»។'):LL('4席すべてが埋まると開始できます。空席には「＋CPU」を入れられます。','The battle can start once all 4 seats are filled. You can put a CPU in an empty seat with “＋CPU”.','អាចចាប់ផ្ដើមនៅពេលកៅអីទាំង ៤ ពេញ។ អាចដាក់ CPU ក្នុងកៅអីទំនេរដោយប្រើ «＋CPU»។')))+'</div>'
+  +(rm.rnd?'':'<button class="btn alt" data-act="link" style="margin-top:6px">'+LL('🔗 ルームのリンクを送る','🔗 Send room link','🔗 ផ្ញើតំណបន្ទប់')+'</button>')+'<button class="btn alt" data-act="leave" style="margin-top:6px">'+LL('🚪 ルームを出る','🚪 Leave room','🚪 ចាកចេញពីបន្ទប់')+'</button></div>';
+ const g=$$('#go');g.textContent=LL('✅ 準備OK(全員そろったら開始)','✅ Ready (starts when everyone is ready)','✅ ត្រៀមខ្លួន (ចាប់ផ្ដើមពេលគ្រប់គ្នាត្រៀមរួច)');g.classList.toggle('dis',!(full&&seated))}
+$$('#rbar').addEventListener('click',async e=>{const b=e.target.closest('[data-act]');if(!b||!ROOM||ROOM.m!==4)return;const a=b.dataset.act,s=+b.dataset.s;
+ try{if(a==='sit'||a==='move'){await claim(s)}else if(a==='cpu'){await addCpu(s)}else if(a==='rm'){await db('DELETE','rooms/'+ROOM.code+'/l/s'+s)}else if(a==='stand'){freeSeat()}
+  else if(a==='link'){shareText(b,'EMOJI CLASHで対戦しよう!ルーム番号 '+ROOM.code+'\n'+baseUrl()+'#r'+ROOM.code);return}else if(a==='leave'){goHome();return}}catch(err){}
+ await lobbyPoll(true)});
+let hb=0;
+async function lobbyPoll(force){const rm=ROOM;if(!rm||rm.m!==4||rm.rnd||!FIREBASE_URL)return;
+ try{const l=await db('GET','rooms/'+rm.code+'/l')||{};if(ROOM!==rm)return;rm.l=l;
+  if(rm.slot>=0){const v=l['s'+rm.slot];if(!v){await db('PUT','rooms/'+rm.code+'/l/s'+rm.slot,{p:PID,n:nick(),t:{'.sv':'timestamp'}})}else if(v.p!==PID||v.cpu){rm.slot=-1}else if(!force&&++hb%3===0){db('PUT','rooms/'+rm.code+'/l/s'+rm.slot+'/t',{'.sv':'timestamp'}).catch(()=>{})}}
+  lobbyRender()}catch(e){}}
+setInterval(()=>lobbyPoll(),1500);
+async function newCode(){let c,ok=false;for(let i=0;i<6&&!ok;i++){c=String(1000+Math.random()*9000|0);const ex=await db('GET','rooms/'+c+'/t');if(!ex||Date.now()-ex>72e5){ok=true}}if(!ok)throw 0;return c}
+async function mkRoom2(){if(!FIREBASE_URL)return dmsg('⚠️ FIREBASE_URL が未設定です');sndOn=$$('#snd').checked;if(sndOn)ctx();dmsg(tr('作成中…'));
+ try{const c=await newCode();await db('PUT','rooms/'+c,{t:Date.now(),m:2});await db('PUT','rooms/'+c+'/l/s0',{p:PID,n:nick(),t:{'.sv':'timestamp'}});
+  ROOM={code:c,role:'a',m:4,slot:0,round:1,l:{}};T2=null;setChal(null);dmsg('');openBuild();lobbyPoll(true)}catch(e){dmsg(tr('❌ 通信に失敗しました。設定を確認してください'))}}
+async function joinRoom2(c){try{const l=await db('GET','rooms/'+c+'/l')||{},rd=await db('GET','rooms/'+c+'/rd'),round=Math.max(1,Math.min(9999,+rd||1));
+  ROOM={code:c,role:'b',m:4,slot:-1,round,l};let s=-1;for(const i of[0,1,2,3]){const v=l['s'+i];if(v&&!v.cpu&&v.p===PID){s=i;ROOM.slot=i;ROOM.role='abcd'[i];break}}
+  if(s<0)for(const i of[2,1,3,0]){if(await claim(i)){s=i;break}}
+  if(s<0){ROOM=null;dmsg(LL('満席です(4席)','The room is full (4 seats)','បន្ទប់ពេញហើយ (៤កៅអី)'));return}
+  T2=null;setChal(null);dmsg('');openBuild();lobbyPoll(true)}catch(e){ROOM=null;dmsg(tr('❌ 通信に失敗しました'))}}
+$$('#mk').onclick=()=>TEAM?mkRoom2():mkRoom();
+const J0=joinRoom;joinRoom=async function(c){if(!FIREBASE_URL||!/^\d{4}$/.test(c))return J0(c);sndOn=$$('#snd').checked;if(sndOn)ctx();dmsg(tr('接続中…'));
+ let m=null;try{m=await db('GET','rooms/'+c+'/m')}catch(e){}if(m===2)return joinRoom2(c);return J0(c)};
+/* ---------- ランダム2対2 ---------- */
+let mm2Run=0;
+function enterRnd(code,grp){const fixed=[null,null,null,null];grp.forEach((x,p)=>{fixed[SLOT_OF[p]]={p:x.id,n:x.n||'???'}});const h=fnvh(code);for(let s=0;s<4;s++)if(!fixed[s]){const o=OPP[(h+s*3)%OPP.length];fixed[s]={cpu:true,w:o.slice(0,3),n:'🤖 '+o[3]}}
+ const ms=SLOT_OF[grp.findIndex(x=>x.id===PID)];ROOM={code,role:'abcd'[ms],m:4,slot:ms,round:1,rnd:true,fixed};T2=null;setChal(null);music(null);dmsg('');openBuild()}
+async function findMatch2(){if(!FIREBASE_URL){dmsg('⚠️ FIREBASE_URL が未設定です');return}sndOn=$$('#snd').checked;if(sndOn)ctx();
+ const my=++mm2Run,t0=Date.now(),TIMEOUT=40000,FILLAT=15000,POLL=1500,FRESH=12000;let cancelled=false,joined=false,lastSig='',stable=0;
+ show('wait');$$('#wait').innerHTML='<b>'+LL('🎲 2対2の仲間と相手を探しています…','🎲 Looking for teammates and opponents…','🎲 កំពុងស្វែងរកមិត្តរួមក្រុម និងគូប្រកួត…')+'</b><div class="mut">'+LL('最大40秒。4人そろわなくても、15秒たつと集まった人+CPUで始まります。','Up to 40 seconds. If 4 players are not found, after 15 seconds it starts with whoever is found plus CPUs.','រហូតដល់ ៤០វិនាទី។ ប្រសិនបើរកមិនបាន ៤នាក់ ក្រោយ ១៥វិនាទី វានឹងចាប់ផ្ដើមជាមួយអ្នកដែលរកឃើញ + CPU។')+'</div><button class="btn alt" id="mmc2">'+LL('やめる','Cancel','បោះបង់')+'</button>';
+ $$('#mmc2').onclick=()=>{cancelled=true;mm2Run++};const left=async()=>{try{await db('DELETE','mm2/q/'+PID)}catch(e){}};
+ try{while(my===mm2Run&&Date.now()-t0<TIMEOUT){
+  if(!joined){await db('PUT','mm2/q/'+PID,{t:{'.sv':'timestamp'},s:{'.sv':'timestamp'},n:nick()});joined=true}else await db('PUT','mm2/q/'+PID+'/t',{'.sv':'timestamp'});
+  const q=await db('GET','mm2/q')||{},me=q[PID];if(!me){await sleep(POLL);continue}
+  const now=+me.t,list=Object.entries(q).filter(([id,v])=>v&&now-(+v.t)<FRESH).map(([id,v])=>({id,s:+(v.s||v.t),n:String(v.n||'').slice(0,10)})).sort((a,b)=>a.s-b.s||(a.id<b.id?-1:1));
+  const i=list.findIndex(x=>x.id===PID);if(i<0){await sleep(POLL);continue}
+  const grp=list.slice(Math.floor(i/4)*4,Math.floor(i/4)*4+4),sig=grp.map(x=>x.id).join(',');stable=sig===lastSig?stable+1:0;lastSig=sig;
+  if(grp.length===4||(Date.now()-t0>=FILLAT&&grp.length>=2&&stable>=2)){const code='T'+(10000+fnvh(sig+'|'+grp.map(x=>x.s).join(','))%90000);
+   await db('PUT','mm2/ok/'+code+'/'+PID,{t:{'.sv':'timestamp'}});let ok=false;for(let k=0;k<6&&my===mm2Run;k++){const o=await db('GET','mm2/ok/'+code)||{};if(grp.every(x=>o[x.id])){ok=true;break}await sleep(1000)}
+   if(ok&&my===mm2Run){await left();setTimeout(()=>db('DELETE','mm2/ok/'+code+'/'+PID).catch(()=>{}),20000);enterRnd(code,grp);return}}
+  await sleep(POLL)}}
+ catch(e){await left();if(my===mm2Run){show('start');dmsg(tr('❌ 通信に失敗しました。設定を確認してください'))}return}
+ await left();show('start');if(!cancelled)dmsg(LL('見つかりませんでした。もう一度試すか、通常マッチで遊んでください','No players found. Try again, or play a normal match.','រកមិនឃើញអ្នកលេងទេ។ សាកល្បងម្ដងទៀត ឬលេងការប្រកួតធម្មតា។'))}
+$$('#rnm').onclick=()=>TEAM?findMatch2():ECG.findMatch1();
+/* ---------- roomUI(2対2) ---------- */
+const RU0=roomUI;roomUI=function(){RU0();const b=$$('#rbar');
+ if(ROOM&&ROOM.m===4){lobbyRender()}
+ else if(T2&&!ROOM){b.classList.remove('hide');b.innerHTML='<div class="tc" style="border-left:4px solid var(--acc)">'+LL('👥 2対2:あなた+CPU(味方) vs CPU×2','👥 2v2: You + CPU ally vs 2 CPUs','👥 ២ទល់២៖ អ្នក + CPU (មិត្ត) ទល់នឹង CPU ២')+'</div>';$$('#go').textContent=LL('⚔️ 2対2 バトル開始','⚔️ Start 2v2 Battle','⚔️ ចាប់ផ្ដើមប្រយុទ្ធ ២ទល់២')}};
+/* ---------- 言語切替フック ---------- */
+function refresh(){seasonUI();modeUI();setLabels();if(ROOM&&ROOM.m===4)lobbyRender();if(ECG.renderGM)ECG.renderGM()}
+const AL0=applyLang;applyLang=function(){AL0();try{refresh()}catch(e){console.error(e)}};
+refresh();setInterval(seasonUI,60000);
+window.__EC2={fight4,seeded,get TEAM(){return TEAM},set TEAM(v){TEAM=v;modeUI()},battle2,start2};
+})();
+
+</script>
 </body>
 </html>
