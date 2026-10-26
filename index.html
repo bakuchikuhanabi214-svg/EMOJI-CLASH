@@ -124,7 +124,7 @@ main{transition:filter .15s}
 const $=s=>document.querySelector(s),sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const SHARE="";
 // ★ Firebase Realtime Database のURLをここに入れる(例: https://xxxx-default-rtdb.asia-southeast1.firebasedatabase.app)
-const FIREBASE_URL="";
+const FIREBASE_URL="https://emoji1clash-default-rtdb.asia-southeast1.firebasedatabase.app";
 async function db(m,p,b){const r=await fetch(FIREBASE_URL.replace(/\/$/,"")+"/"+p+".json",{method:m,body:b===undefined?undefined:JSON.stringify(b)});if(!r.ok)throw new Error(r.status);return r.json()}
 const okW=w=>{if(!Array.isArray(w)||w.length!==3)return null;const x=w.map(e=>first(String(e)));return x.every(Boolean)?x:null};
 const PID=(()=>{try{let i=localStorage.getItem('ecid');if(!i){i=Math.random().toString(36).slice(2,8)+Date.now().toString(36);localStorage.setItem('ecid',i)}return i}catch(e){return Math.random().toString(36).slice(2,10)}})();
@@ -240,7 +240,7 @@ async function battle(){if(busy)return;busy=true;
   let o=null,err=false;try{await db("PUT","rooms/"+rm.code+"/p/"+rm.role,{w:W.slice(),n:NICK,r:myr,q:window.getEq?getEq():null,ti:window.getTitle?getTitle():null});o=await waitOpp(rm,myr)}catch(e){err=true}
   if(!o||ROOM!==rm){busy=false;if(ROOM===rm){openBuild();if(err)alert(tr("通信に失敗しました"))}else show("start");return}
   oppW=o.w;oppN="友達:"+(o.n||"???");ghost=false;salt=rm.code+":"+myr;window.OPPEQ=o.q||null;window.OPPTI=o.ti||null}
- else if(chal){oppW=chal.w;oppN="友達の戦士:"+(chal.n||"???");ghost=false;window.OPPTI=chal.ti||null}
+ else if(chal){oppW=chal.w;oppN="友達の戦士:"+(chal.n||"???");ghost=false;window.OPPTI=chal.ti||null;window.OPPEQ=chal.q||null}
  else{const o=OPP[Math.floor(Math.random()*OPP.length)];oppW=o.slice(0,3);oppN="👻 "+o[3]}
  let A=mk(W.slice(),"YOU"),B=mk(oppW,oppN),r;if(ghost)r=fight(A,B);else{const o=friendFight(W.slice(),oppW,salt);A=o.A;B=o.B;r=o.r}lastRun={W:W.slice(),oppW,oppN,r,A,B};await play(lastRun);busy=false}
 async function waitOpp(rm,r){const o2=rm.role==="a"?"b":"a",t0=Date.now();while(ROOM===rm&&!rm.cancel&&Date.now()-t0<6e5){try{const o=await db("GET","rooms/"+rm.code+"/p/"+o2);if(o&&o.r===r){const w=okW(o.w);if(w)return{w,n:String(o.n||"").slice(0,10),q:o.q||null,ti:o.ti||null}}}catch(e){}await sleep(1200)}return null}
@@ -299,7 +299,7 @@ let NICK='';$('#nick').oninput=e=>{NICK=e.target.value.trim().slice(0,10)};try{c
 const c0=parseTok(location.hash);if(c0)setChal(c0);
 addEventListener("hashchange",()=>{const c=parseTok(location.hash);if(c&&!busy)setChal(c)});
 // ---- ランキング / ルーム ----
-async function saveRank(){try{localStorage.setItem("ecrec",JSON.stringify(rec))}catch(e){}if(!FIREBASE_URL)return;try{await db("PUT","players/"+PID,{n:(NICK||"名無し").slice(0,10),ti:window.getTitle?getTitle():null,w:W.slice(),wins:rec.w,losses:rec.l,best:rec.best,cb:rec.cb,t:Date.now()})}catch(e){}}
+async function saveRank(){try{localStorage.setItem("ecrec",JSON.stringify(rec))}catch(e){}if(!FIREBASE_URL)return;try{await db("PUT","players/"+PID,{n:(NICK||"名無し").slice(0,10),ti:window.getTitle?getTitle():null,q:window.getEq?getEq():null,w:W.slice(),wins:rec.w,losses:rec.l,best:rec.best,cb:rec.cb,t:Date.now()})}catch(e){}}
 const dm=t=>{$("#dbmsg").textContent=t};
 async function mkRoom(){if(!FIREBASE_URL)return dm("⚠️ FIREBASE_URL が未設定です");sndOn=$("#snd").checked;if(sndOn)ctx();dm("作成中…");
  try{let c,ok=false;for(let i=0;i<6&&!ok;i++){c=String(1000+Math.random()*9000|0);const ex=await db("GET","rooms/"+c+"/t");if(!ex||Date.now()-ex>72e5){await db("PUT","rooms/"+c,{t:Date.now()});ok=true}}if(!ok)throw 0;ROOM={code:c,role:"a",round:1};chal=null;dm("");openBuild()}catch(e){dm("❌ 通信に失敗しました。設定を確認してください")}}
@@ -309,9 +309,9 @@ async function showRank(){if($("#snd")){sndOn=$("#snd").checked;if(sndOn)ctx()}s
  const back=()=>{$("#rback").onclick=()=>{ROOM=null;music(null);show("start")}};
  if(!FIREBASE_URL){el.innerHTML=hd+'<p class="mut">FIREBASE_URL が未設定のため使えません。</p>'+bk;back();return}
  el.innerHTML=hd+'<p class="mut">読み込み中…</p>';
- try{const d=await db("GET","players")||{};const a=Object.entries(d).map(([id,v])=>({id,n:String(v.n||"名無し").slice(0,10),w:okW(v.w),wins:+v.wins||0,losses:+v.losses||0,best:+v.best||0,ti:v.ti||null})).filter(x=>x.w).sort((x,y)=>y.wins-x.wins||x.losses-y.losses||y.best-x.best).slice(0,30);
+ try{const d=await db("GET","players")||{};const a=Object.entries(d).map(([id,v])=>({id,n:String(v.n||"名無し").slice(0,10),w:okW(v.w),wins:+v.wins||0,losses:+v.losses||0,best:+v.best||0,ti:v.ti||null,q:v.q||null})).filter(x=>x.w).sort((x,y)=>y.wins-x.wins||x.losses-y.losses||y.best-x.best).slice(0,30);
   el.innerHTML=hd+(a.length?a.map((x,i)=>'<div class="rr"'+(x.id===PID?' style="outline:2px solid var(--gold)"':'')+'><b style="width:28px">'+(["🥇","🥈","🥉"][i]||i+1)+'</b><span style="font-size:22px">'+esc(x.w.join(""))+'</span><span style="flex:1"><b>'+(window.tb?tb(x.ti):'')+esc(x.n)+'</b><div class="stat">'+x.wins+'勝 '+x.losses+'敗 / 最高'+x.best+'連勝</div></span>'+(x.id===PID?'':'<button class="btn" data-i="'+i+'" style="width:auto;margin:0;padding:8px 12px">挑戦</button>')+'</div>').join(""):'<p class="mut">まだ誰もいません。勝ってランクインしよう!</p>')+'<div class="mut">「挑戦」でその人の戦士と戦えます(結果は相手には反映されません)。</div>'+bk;
-  back();el.querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>{const x=a[+b.dataset.i];ROOM=null;setChal({w:x.w,n:x.n,ti:x.ti});openBuild()})}
+  back();el.querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>{const x=a[+b.dataset.i];ROOM=null;setChal({w:x.w,n:x.n,ti:x.ti,q:x.q});openBuild()})}
  catch(e){el.innerHTML=hd+'<p class="mut">❌ 読み込みに失敗しました。</p>'+bk;back()}}
 $("#mk").onclick=mkRoom;$("#jn").onclick=()=>joinRoom($("#rc").value.trim());$("#rk").onclick=showRank;
 if(!FIREBASE_URL)dm("※ルーム対戦・ランキングは FIREBASE_URL の設定が必要です");
@@ -735,7 +735,7 @@ ${n&&fxk?'<button class="btn alt" id="cpb">▶ エフェクトを試す</button>
 if($('#cpb'))$('#cpb').onclick=()=>fx($('#cpv'),FX[fxk],RI(i.r),false);
 $('#ceq').onclick=()=>{if(!G.inv[i.id])return;G.eq[i.k]=on?null:i.id;save();renderColl()}}
 /* ---- 戦闘エフェクト(mode: burst/rise/rain/spiral/slash/inward/glitch/ring。rg=衝撃リング追加) ---- */
-function fx(el,def,rank,crit){if(!el||!def)return;const R=[1,1.4,2,3,4.5][rank],n=Math.round(6*R*(crit?1.5:1));
+function fx(el,def,rank,crit,eq){if(!el||!def)return;const R=[1,1.4,2,3,4.5][rank],n=Math.round(6*R*(crit?1.5:1)*(eq?1.5:1));
 const t=document.createElement('div');t.className='gfx-t';t.style.background=`radial-gradient(circle,${def.col}cc,transparent 65%)`;el.appendChild(t);
 t.animate([{opacity:0,transform:'scale(.4)'},{opacity:1,offset:.25},{opacity:0,transform:`scale(${1+rank*.25})`}],{duration:650}).onfinish=()=>t.remove();
 if(def.rg||def.mode==='ring'){for(let k=0;k<2+(rank>1?1:0)+(rank>3?1:0);k++){const r=document.createElement('div');r.className='gfx-r';r.style.cssText=`width:60px;height:60px;border:3px solid ${def.col};border-radius:50%;box-shadow:0 0 10px ${def.col}`;el.appendChild(r);r.animate([{transform:'translate(-50%,-50%) scale(.2)',opacity:1},{transform:`translate(-50%,-50%) scale(${1.4+rank*.35})`,opacity:0}],{duration:600,delay:k*140}).onfinish=()=>r.remove()}}
@@ -769,7 +769,7 @@ s.animate(kf,{duration:360,easing:'ease-in'}).onfinish=()=>s.remove()}
 function onHit(t){const LR=lastRun;if(!LR)return;const ai=1-t,mine=ai===0,q=mine?G.eq:(window.OPPEQ||{}),ee=oi(q.e,'e'),ew=oi(q.w,'w');
 const crit=/CRITICAL/.test($('#tick').textContent),ow=(mine?LR.W:LR.oppW);
 const wH=ew?vis(ew):ow[1],key=ee?ee.fx:(ELFX[norm(ow[2])]||'slash'),rank=ee?RI(ee.r):1;
-wpn(ai,wH,'swing',0);setTimeout(()=>fx($('#f'+t),FX[key]||FX.slash,rank,crit),240)}
+wpn(ai,wH,'swing',0);setTimeout(()=>fx($('#f'+t),FX[key]||FX.slash,rank,crit,!!ee),240)}
 [0,1].forEach(i=>{const el=$('#f'+i);let had=false;new MutationObserver(()=>{const h=el.classList.contains('hit');if(h&&!had)onHit(i);had=h}).observe(el,{attributes:true,attributeFilter:['class']})});
 /* ---- 戦闘の見た目反映 ---- */
 let stN=null,stCool=0;
@@ -836,7 +836,7 @@ chatUI();upd();applyLang();
 <style>
 .tti{display:block;flex:none;height:28px;aspect-ratio:4.5;max-width:100%;margin:0 0 3px;border-radius:6px;object-fit:contain;background:#0b1530;box-shadow:0 0 8px #6cc0ff66}
 .tc .tti,.mut[style*="center"]>.tti{margin:0 auto 4px}
-.tl{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:3px 6px}.tl .tti{margin:0}
+.tl{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3px}.tl .tti{margin:0}.f .tl .tti{height:36px}
 .tsel{outline:2px solid var(--gold)}
 .gbdg{display:inline-block;min-width:18px;height:18px;line-height:18px;margin-left:6px;border-radius:99px;background:var(--ng);color:#fff;font-size:11px;font-weight:900;text-align:center;padding:0 4px}
 .gbdg:empty{display:none}
