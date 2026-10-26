@@ -176,7 +176,7 @@ async function db(m,p,b){await FBREADY;const r=await fetch(FIREBASE_URL.replace(
 const okW=w=>{if(!Array.isArray(w)||w.length!==3)return null;const x=w.map(e=>first(String(e)));return x.every(Boolean)?x:null};
 let PID=(()=>{try{let i=localStorage.getItem('ecid');if(!i){i=Math.random().toString(36).slice(2,8)+Date.now().toString(36);localStorage.setItem('ecid',i)}return i}catch(e){return Math.random().toString(36).slice(2,10)}})();
 
-const FIREBASE_API_KEY="";
+const FIREBASE_API_KEY="AIzaSyB6p4wFQG95c5ypUcmqfNEOiiHI0Usn7n0";
 let FBTOK=null,FBREADY=Promise.resolve();
 if(FIREBASE_API_KEY&&FIREBASE_URL){
  const AK=FIREBASE_API_KEY,sv=(j)=>{FBTOK=j.idToken;PID=j.localId;try{localStorage.setItem('ecrt',j.refreshToken);localStorage.setItem('ecid',j.localId)}catch(e){}};
