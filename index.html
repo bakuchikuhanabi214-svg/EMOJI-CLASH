@@ -2565,23 +2565,30 @@ const addTickets=n=>{const key='ecgacha2',SALT='ec2-k7Qx-'+key;let g;try{g=JSON.
  let h=2166136261;for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619)>>>0;g.s=h.toString(36);localStorage.setItem(key,JSON.stringify(g))};
 const loadSdk=()=>window.firebase?Promise.resolve():new Promise((ok,ng)=>{const a=document.createElement('script');a.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js';a.onload=()=>{const b=document.createElement('script');b.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js';b.onload=ok;b.onerror=ng;document.head.appendChild(b)};a.onerror=ng;document.head.appendChild(a)});
 let msg='';
+const INAPP=/Line\/|Instagram|FBAN|FBAV|Twitter|TwitterAndroid|MicroMessenger|KAKAOTALK|; wv\)/i.test(navigator.userAgent||'');
+const tips=()=>((INAPP?'<div class="tc" style="border-left:4px solid #ff4d4d;text-align:left"><b>⚠️ '+L('アプリの中のブラウザで開いています','You are in an in-app browser','អ្នកកំពុងប្រើកម្មវិធីរុករកក្នុងកម្មវិធី')+'</b><div class="stat">'+L('このままではGoogleログインできません。右上の「…」から「Safariで開く」または「ブラウザで開く」を選んでください。','Google sign-in does not work here. Use the “…” menu at the top right and choose “Open in Safari” or “Open in browser”.','មិនអាចចូល Google នៅទីនេះទេ។ ចុច «…» ខាងលើស្ដាំ ហើយជ្រើស «បើកក្នុង Safari» ឬ «បើកក្នុងកម្មវិធីរុករក»។')+'</div></div>':'')
+ +'<details class="mut" style="margin-top:6px;text-align:left"><summary style="cursor:pointer">❓ '+L('ログインできないときは','If you can\'t sign in','ប្រសិនបើមិនអាចចូលបាន')+'</summary><div style="margin-top:6px;line-height:1.6">'
+ +'<b>📱 '+L('LINE・Instagram・Xなどのアプリの中で開いているとき','When opened inside LINE, Instagram, X, etc.','ពេលបើកក្នុង LINE, Instagram, X ជាដើម')+'</b><br>'+L('Googleがアプリの中でのログインを禁止しているため、エラーになります。右上の「…」から「Safariで開く」または「ブラウザで開く」を選んでから、もう一度押してください。','Google blocks sign-in inside apps, so you will get an error. Tap “…” at the top right, choose “Open in Safari” or “Open in browser”, then try again.','Google ហាមការចូលក្នុងកម្មវិធី ដូច្នេះនឹងមានកំហុស។ ចុច «…» ខាងលើស្ដាំ ជ្រើស «បើកក្នុង Safari» ឬ «បើកក្នុងកម្មវិធីរុករក» រួចសាកម្ដងទៀត។')
+ +'<br><b>🚫 '+L('ボタンを押しても何も出ないとき','When nothing happens after tapping','ពេលចុចហើយគ្មានអ្វីកើតឡើង')+'</b><br>'+L('ポップアップがブロックされています。ブラウザの設定でポップアップを許可してください(iPhoneのSafari: 設定アプリ →「Safari」→「ポップアップブロック」をオフ)。','Pop-ups are blocked. Allow pop-ups in your browser settings (iPhone Safari: Settings app → Safari → turn off “Block Pop-ups”).','ផ្ទាំងលេចឡើងត្រូវបានរារាំង។ សូមអនុញ្ញាតផ្ទាំងលេចឡើងក្នុងការកំណត់កម្មវិធីរុករក (iPhone Safari៖ ការកំណត់ → Safari → បិទ «Block Pop-ups»)។')
+ +'</div></details>');
 function render(){const el=$$('#cloudbox');if(!el)return;const a=acct();
  el.innerHTML=a?('<div class="stat" style="margin:8px 0">☁️ '+L('ログイン中: ','Signed in: ','បានចូល: ')+esc(a.name||'Google')+'</div>'
    +'<button class="btn alt" id="csave">☁️ '+L('今すぐクラウドに保存','Save to cloud now','រក្សាទុកក្នុងពពកឥឡូវ')+'</button>'
    +'<button class="btn alt" id="cout" style="opacity:.7">'+L('ログアウト','Sign out','ចាកចេញ')+'</button>')
-  :('<button class="btn alt" id="clink">☁️ '+L('Googleでデータを引き継ぐ','Back up with Google','បម្រុងទុកជាមួយ Google')+'</button>'
-   +'<div class="mut">'+L('初めて引き継ぐとガチャチケット'+LINK_BONUS+'枚プレゼント！別の端末でも同じデータで遊べます。','First-time bonus: '+LINK_BONUS+' gacha tickets! Play with the same data on any device.','ការភ្ជាប់លើកដំបូង៖ ទទួលបានសំបុត្រកាឆា '+LINK_BONUS+' សន្លឹក! លេងជាមួយទិន្នន័យដដែលលើឧបករណ៍ណាមួយក៏បាន។')+'</div>')
-  +(msg?'<div class="mut">'+msg+'</div>':'');
- if(a){$$('#csave').onclick=()=>push(true);$$('#cout').onclick=logout}else $$('#clink').onclick=link}
+  :('<button class="btn alt" id="clogin">🔑 '+L('Googleでログイン','Sign in with Google','ចូលជាមួយ Google')+'</button>'
+   +'<button class="btn alt" id="clink">☁️ '+L('Googleでデータを引き継ぐ','Back up with Google','បម្រុងទុកជាមួយ Google')+'</button>'
+   +'<div class="mut">'+L('すでに引き継いだ人は「ログイン」、初めての人は「引き継ぐ」を押してください。初めて引き継ぐとガチャチケット'+LINK_BONUS+'枚プレゼント！別の端末でも同じデータで遊べます。','Already backed up? Tap “Sign in”. First time? Tap “Back up” and get '+LINK_BONUS+' gacha tickets! Play with the same data on any device.','ធ្លាប់បម្រុងទុករួច? ចុច «ចូល»។ លើកដំបូង? ចុច «បម្រុងទុក» ហើយទទួលបានសំបុត្រកាឆា '+LINK_BONUS+' សន្លឹក! លេងជាមួយទិន្នន័យដដែលលើឧបករណ៍ណាមួយក៏បាន។')+'</div>')
+  +(msg?'<div class="mut">'+msg+'</div>':'')+(acct()?'':tips());
+ if(a){$$('#csave').onclick=()=>push(true);$$('#cout').onclick=logout}else{$$('#clink').onclick=()=>link('backup');$$('#clogin').onclick=()=>link('login')}}
 async function push(manual){const a=acct();if(!a||PID!==a.uid)return;try{const t=Date.now();await db('PUT','users/'+a.uid,{d:snap(),t});localStorage.setItem(SYNC,String(t));if(manual){msg='✅ '+L('保存しました','Saved','បានរក្សាទុក');render()}}catch(e){if(manual){msg='❌ '+L('保存に失敗しました','Save failed','រក្សាទុកមិនបាន');render()}}}
-async function link(){msg=L('ログイン中…','Signing in…','កំពុងចូល…');render();
+async function link(mode){msg=L('ログイン中…','Signing in…','កំពុងចូល…');render();
  try{await loadSdk();if(!firebase.apps.length)firebase.initializeApp({apiKey:FIREBASE_API_KEY,authDomain:AUTH_DOMAIN,databaseURL:FIREBASE_URL});
   const res=await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());const u=res.user;
   window.ecSetAuth({idToken:await u.getIdToken(),refreshToken:u.refreshToken,localId:u.uid});
   localStorage.setItem(ACC,JSON.stringify({uid:u.uid,name:(u.displayName||'').slice(0,20)}));
   const cloud=await db('GET','users/'+u.uid);
   if(cloud&&cloud.d){ // すでにクラウドにデータがある → 読み込む
-   if(confirm(L('クラウドに保存されたデータが見つかりました。この端末のデータを、クラウドのデータで上書きしますか？','Cloud data found. Replace this device\'s data with the cloud data?','រកឃើញទិន្នន័យក្នុងពពក។ ជំនួសទិន្នន័យលើឧបករណ៍នេះ?'))){restore(cloud.d);localStorage.setItem(SYNC,String(cloud.t||Date.now()));location.reload();return}
+   if(mode==='login'?confirm(L('ログインしました。保存されたデータで遊びますか？(この端末のデータは上書きされます)','Signed in. Play with your saved data? (This device\'s data will be replaced)','បានចូល។ លេងជាមួយទិន្នន័យដែលបានរក្សាទុក? (ទិន្នន័យលើឧបករណ៍នេះនឹងត្រូវជំនួស)')):confirm(L('クラウドに保存されたデータが見つかりました。この端末のデータを、クラウドのデータで上書きしますか？','Cloud data found. Replace this device\'s data with the cloud data?','រកឃើញទិន្នន័យក្នុងពពក។ ជំនួសទិន្នន័យលើឧបករណ៍នេះ?'))){restore(cloud.d);localStorage.setItem(SYNC,String(cloud.t||Date.now()));location.reload();return}
    await push(false);msg='✅ '+L('この端末のデータをクラウドに保存しました','Saved this device\'s data to the cloud','បានរក្សាទុកទិន្នន័យឧបករណ៍នេះក្នុងពពក');render();return}
   // 初めて → 特典(1つのGoogleアカウントにつき1回だけ)
   let got=false;try{const b=await db('GET','bonus/'+u.uid);if(!b){await db('PUT','bonus/'+u.uid,{t:Date.now()});got=true}}catch(e){}
