@@ -542,8 +542,8 @@ html:root[data-ui="neon"]{--bg:#04050f;--card:#0a0d24;--card2:#141a44;--tx:#e8f4
 <div id="arena" class="card hide">
  <div id="turn"></div>
  <div class="arena">
-  <div class="f" id="f0"><div class="em" id="e0"></div><div class="sub" id="s0"></div><div class="nm" id="n0"></div><div class="hp" id="h0"><i></i></div><div class="hpn" id="hn0"></div></div>
-  <div class="f" id="f1"><div class="em" id="e1"></div><div class="sub" id="s1"></div><div class="nm" id="n1"></div><div class="hp" id="h1"><i></i></div><div class="hpn" id="hn1"></div></div>
+  <div class="f" id="f0"><div class="em" id="e0"></div><div class="sub" id="s0"></div><div class="inf"><div class="nm" id="n0"></div><div class="hp" id="h0"><i></i></div><div class="hpn" id="hn0"></div></div></div>
+  <div class="f" id="f1"><div class="em" id="e1"></div><div class="sub" id="s1"></div><div class="inf"><div class="nm" id="n1"></div><div class="hp" id="h1"><i></i></div><div class="hpn" id="hn1"></div></div></div>
  </div>
  <div id="tick"></div>
  <button class="btn alt" id="aback" style="margin-top:10px">🏳️ 降参してホームへ</button>
@@ -1150,7 +1150,7 @@ if(!g||typeof g!=='object'){let o=null;try{o=JSON.parse(localStorage.getItem(CFG
 g={t:Math.max(0,Math.floor(+CFG.initTickets)||0),inv:{},eq:{c:null,w:null,e:null},pulls:0,gc:{}};
 if(o&&typeof o==='object'){migrated=true;g.pulls=Math.min(Math.floor(+o.pulls)||0,1e6);g.inv=cleanInv(o.inv,CFG.maxDup);g.eq=Object.assign(g.eq,o.eq||{})}}
 else{const ok=g.s===sg(g);g.gc=g.gc&&typeof g.gc==='object'?g.gc:{};g.inv=cleanInv(g.inv,ok?1e6:CFG.maxDup);g.t=ok?Math.max(0,Math.floor(+g.t)||0):0}
-if(CFG.testAll||window.EC_CHAR_TEST)IT.forEach(i=>{if((CFG.testAll||i.k==='c')&&!g.inv[i.id])g.inv[i.id]=1});
+if(CFG.testAll||window.EC_CHAR_TEST)IT.forEach(i=>{if(!g.inv[i.id])g.inv[i.id]=1});
 g.eq=Object.assign({c:null,w:null,e:null},g.eq);
 for(const k in g.eq)if(g.eq[k]&&(!g.inv[g.eq[k]]||!item(g.eq[k])))g.eq[k]=null;
 G=g;try{localStorage.removeItem(CFG.oldKey)}catch(e){}save()}
@@ -1333,21 +1333,21 @@ else if(gl){const x=(Math.random()-.5)*150,y=(Math.random()-.5)*110;kf=[{transfo
 else{const a0=Math.random()*6.283;kf=[0,.25,.5,.75,1].map(q=>{const a=a0+q*9,r=80*(1-q)+8;return{transform:C+`translate(${Math.cos(a)*r}px,${Math.sin(a)*r*.7}px) scale(${.6+q*.8})`,opacity:q>.85?0:1}})}
 s.animate(kf,{duration:d,delay:dl,easing:'ease-out'}).onfinish=()=>s.remove()}
 if(rank>=3)fl(def.col);if(rank>=4){shake();vib(40)}}
-function wpn(ai,html,st,rank){const ar=$('#arena .arena'),a=$('#f'+ai),b=$('#f'+(1-ai));if(!ar||!html||!a||!b)return;
-const R=ar.getBoundingClientRect(),A=a.getBoundingClientRect(),B=b.getBoundingClientRect(),ax=A.left+A.width/2-R.left,ay=A.top+A.height*.4-R.top,bx=B.left+B.width/2-R.left,by=B.top+B.height*.4-R.top;
+function wpn(ai,html,st,rank){const ar=$('#arena .arena'),a=$('#e'+ai)||$('#f'+ai),b=$('#e'+(1-ai))||$('#f'+(1-ai));if(!ar||!html||!a||!b)return;
+const R=ar.getBoundingClientRect(),A=a.getBoundingClientRect(),B=b.getBoundingClientRect(),ax=A.left+A.width/2-R.left,ay=A.top+A.height*.45-R.top,bx=B.left+B.width/2-R.left,by=B.top+B.height*.45-R.top;
 const s=document.createElement('span');s.className='gw';s.innerHTML=html;s.style.fontSize=(34+rank*9)+'px';ar.appendChild(s);
 const P=(x,y,r,sc)=>`translate(${x}px,${y}px) translate(-50%,-50%) rotate(${r}deg) scale(${sc})`,mx=ax+(bx-ax)*.6;let kf;
-if(st==='swing')kf=[{transform:P(ax,ay-30,-60,1),opacity:1},{transform:P(mx,ay,80,1.3),opacity:1,offset:.6},{transform:P(mx,ay,100,1),opacity:0}];
+if(st==='swing')kf=[{transform:P(ax,ay-20,-60,1),opacity:1},{transform:P(bx,by,80,1.35),opacity:1,offset:.62},{transform:P(bx+(bx-ax)*.08,by+(by-ay)*.08,110,1),opacity:0}];
 else if(st==='spin')kf=[{transform:P(ax,ay,0,.8),opacity:1},{transform:P(bx,by,720,1.2),opacity:1,offset:.6},{transform:P(ax,ay,1080,.6),opacity:.2}];
 else if(st==='thrust')kf=[{transform:P(ax,ay,0,.9),opacity:1},{transform:P(bx,by,0,1.3),opacity:1,offset:.55},{transform:P(bx+(bx-ax)*.12,by,0,.9),opacity:0}];
 else if(st==='slam')kf=[{transform:P(bx,by-100,-25,1),opacity:1},{transform:P(bx,by,10,1.6),opacity:1,offset:.6},{transform:P(bx,by+6,10,1.2),opacity:0}];
 else kf=[{transform:P(ax,ay,0,.8),opacity:1},{transform:P(bx,by,360,1.2),opacity:1,offset:.75},{transform:P(bx,by,400,1.6),opacity:0}];
-s.animate(kf,{duration:360,easing:'ease-in'}).onfinish=()=>s.remove()}
+s.animate(kf,{duration:420,easing:'ease-in'}).onfinish=()=>s.remove()}
 /* 見た目だけ: 武器=飛ぶ武器の絵文字が変わる(動きと大きさは共通) / エフェクト=装備した時だけ攻撃演出が派手に(レアほど)。ダメージ・ステータスには一切影響しない */
 function onHit(t){const LR=lastRun;if(!LR)return;const ai=1-t,mine=ai===0,q=mine?G.eq:(window.OPPEQ||{}),ee=oi(q.e,'e'),ew=oi(q.w,'w');
 const crit=/CRITICAL/.test($('#tick').textContent),ow=(mine?LR.W:LR.oppW);
 const wH=ew?vis(ew):ow[1],key=ee?ee.fx:(ELFX[norm(ow[2])]||'slash'),rank=ee?RI(ee.r):1;
-wpn(ai,wH,'swing',0);setTimeout(()=>fx($('#f'+t),FX[key]||FX.slash,rank,crit,!!ee),240)}
+wpn(ai,wH,'swing',0);setTimeout(()=>fx($('#e'+t)||$('#f'+t),FX[key]||FX.slash,rank,crit,!!ee),260)}
 [0,1].forEach(i=>{const el=$('#f'+i);let had=false;new MutationObserver(()=>{const h=el.classList.contains('hit');if(h&&!had)onHit(i);had=h}).observe(el,{attributes:true,attributeFilter:['class']})});
 /* ---- 戦闘の見た目反映 ---- */
 let stN=null,stCool=0;
@@ -1362,8 +1362,8 @@ const b=document.createElement('button');b.className='btn alt';b.textContent='�
 const STM=['😢','🤩','😡','😶','🥹','😇'];
 const fb=async(m,p,b,qs)=>{await FBREADY;qs=(qs||'')+(FBTOK?((qs?'&':'?')+'auth='+FBTOK):'');const r=await fetch(FIREBASE_URL.replace(/\/$/,'')+'/'+p+'.json'+qs,{method:m,body:b===undefined?undefined:JSON.stringify(b)});if(!r.ok)throw new Error(r.status);return r.json()};
 $('#tick').insertAdjacentHTML('afterend',`<div class="mut" style="text-align:center;margin-top:8px">スタンプ</div><div class="stp" id="stp">${STM.map(e=>`<button data-e="${e}">${e}</button>`).join('')}</div>`);
-function showStamp(i,e){const f=$('#f'+i);if(!f)return;const d=document.createElement('div');d.className='stmp';d.textContent=e;f.appendChild(d);
-d.animate([{transform:'translate(-50%,10px) scale(.2)',opacity:0},{transform:'translate(-50%,-10px) scale(1.25)',opacity:1,offset:.25},{transform:'translate(-50%,-14px) scale(1)',opacity:1,offset:.75},{transform:'translate(-50%,-40px) scale(.9)',opacity:0}],{duration:1900}).onfinish=()=>d.remove();if(i===1)vib(20)}
+function showStamp(i,e){const f=$('#f'+i);if(!f)return;const em=$('#arena .arena #e'+i),box=em&&em.offsetParent?em:f,X=box===em?'0':'-50%';const d=document.createElement('div');d.className='stmp';d.textContent=e;box.appendChild(d);
+d.animate([{transform:`translate(${X},10px) scale(.2)`,opacity:0},{transform:`translate(${X},-4px) scale(1.2)`,opacity:1,offset:.25},{transform:`translate(${X},-6px) scale(1)`,opacity:1,offset:.75},{transform:`translate(${X},-22px) scale(.9)`,opacity:0}],{duration:1900}).onfinish=()=>d.remove();if(i===1)vib(20)}
 $('#stp').querySelectorAll('button').forEach(b=>b.onclick=()=>{const t=Date.now();if(t-stCool<1200)return;stCool=t;const e=b.dataset.e;showStamp(0,e);vib(10);
 if(ROOM&&FIREBASE_URL)fb('PUT','rooms/'+ROOM.code+'/s/'+ROOM.role,{e,n:t+':'+(Math.random()*1e6|0)}).catch(()=>{});
 else if(Math.random()<.6)setTimeout(()=>showStamp(1,STM[Math.random()*STM.length|0]),600+Math.random()*1200)});
@@ -1430,7 +1430,7 @@ const EN=[['🎲 ランダムな人と対戦','🎲 Battle a random player'],['�
 [['cr0a','SS','🐆','疾風の覇王チーター','Gale Emperor Cheetah','ខ្លារខិនអធិរាជខ្យល់','シーズン0で1位になった者だけが持つ、風より速い覇王。','An emperor faster than the wind, owned only by the Season 0 champion.','អធិរាជលឿនជាងខ្យល់ សម្រាប់តែជើងឯករដូវកាល 0។','gale'],
  ['cr0b','S','🦓','白黒の将軍ゼブラ','Zebra General','ឧត្តមសេនីយ៍សេះបង្កង់','シーズン0で2位・3位に入った者に贈られる、縞模様の将軍。','A striped general awarded to Season 0 runners-up.','ឧត្តមសេនីយ៍ឆ្នូតសម្រាប់លេខ 2 និង 3 រដូវកាល 0។','gen']
 ].forEach(a=>{IT.push({id:a[0],k:'c',r:a[1],e:a[2],n:a[3],ne:a[4],d:a[6],de:a[7],lim:'rw',deco:a[9]});LIMKM.push([a[3],a[5]],[a[6],a[8]])});
-if(window.EC_CHAR_TEST){IT.forEach(i=>{if(i.k==='c'&&!G.inv[i.id])G.inv[i.id]=1});save()}
+if(window.EC_CHAR_TEST){IT.forEach(i=>{if(!G.inv[i.id])G.inv[i.id]=1});save()}
 IT.forEach(i=>EN.push([i.n,i.ne],[i.d,i.de]));KM_PAIRS.push(...LIMKM);KM_PAIRS.sort((a,b)=>b[0].length-a[0].length);
 EN_PAIRS.push(...EN);EN_PAIRS.sort((a,b)=>b[0].length-a[0].length);
 
@@ -1459,6 +1459,73 @@ window.ECG={get G(){return G},oi,vis,FX,ELFX,RI,fx,TKI,go,award,renderGM,findMat
 .gbdg{display:inline-block;min-width:18px;height:18px;line-height:18px;margin-left:6px;border-radius:99px;background:var(--ng);color:#fff;font-size:11px;font-weight:900;text-align:center;padding:0 4px}
 .gbdg:empty{display:none}
 .bxg.done{opacity:.6}
+
+/* ---- 対戦画面: 長い称号・名前でもはみ出さない / 揺れは戦闘画面の中だけ ---- */
+.arena{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+#arena .arena,#a2{overflow:hidden;contain:paint}
+.arena .f,#a2 .f{min-width:0}
+.arena .tl,#a2 .tl{max-width:100%;min-width:0}
+.arena .tl .u_w,.arena .tl .utw,.arena .tl .tti,#a2 .tl .u_w,#a2 .tl .utw,#a2 .tl .tti{zoom:.62;max-width:160%}
+.arena .tl .lvb,#a2 .tl .lvb{zoom:.85}
+.arena .nm,#a2 .nm{max-width:100%;overflow:hidden}
+.arena .tl>span:last-child,#a2 .tl>span:last-child{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.arena .nm:not(:has(.tl)),#a2 .nm:not(:has(.tl)){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html,body{overflow-x:hidden}
+body.shake main{animation:none!important}
+body.shake #arena .arena>*,body.shake #a2>*{animation:shk .5s}
+body.shake #arena .arena,body.shake #a2{animation:bgshk .5s}
+@keyframes bgshk{20%{background-position:calc(50% - 6px) calc(100% + 3px)}40%{background-position:calc(50% + 5px) calc(100% - 3px)}60%{background-position:calc(50% - 4px) calc(100% + 2px)}80%{background-position:calc(50% + 3px) 100%}}
+
+/* ---- 1対1の対戦画面: 奥行きのある配置(相手=右奥・小さめ / 自分=左手前・大きめ) ---- */
+#arena .arena{display:flex;flex-direction:column;gap:0;min-height:330px;justify-content:space-between}
+#arena .arena .f{display:grid;column-gap:10px;align-items:center;min-width:0}
+#arena .arena #f1{order:0;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"inf em" "inf sub";text-align:left;padding:2px 4px 0 0}
+#arena .arena #f0{order:1;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"em inf" "sub inf";text-align:right;padding:0 0 2px 4px;margin-top:-6px}
+#arena .arena .f>.em{grid-area:em;justify-self:center}
+#arena .arena .f>.sub{grid-area:sub;justify-self:center}
+#arena .arena .f>.inf{grid-area:inf;min-width:0;align-self:center;padding:6px 10px 8px;border-radius:10px;background:rgba(8,6,28,.62);box-shadow:inset 0 0 0 2px rgba(255,255,255,.12)}
+#arena .arena #f1>.inf{border-bottom-right-radius:2px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.12),6px 6px 0 -3px rgba(255,255,255,.18)}
+#arena .arena #f0>.inf{border-top-left-radius:2px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.12),-6px -6px 0 -3px rgba(255,255,255,.18)}
+#arena .arena .inf .nm{display:block;background:none;padding:0;margin:0}
+#arena .arena .inf .hp{margin-top:5px}
+#arena .arena .inf .hpn{background:none;padding:0;margin-top:2px}
+/* 奥行き: 遠くの相手は小さく少し暗く、手前の自分は大きく */
+#arena .arena #f1 .em{font-size:60px;filter:brightness(.93) drop-shadow(0 2px 2px #000a)}
+#arena .arena #f0 .em{font-size:78px}
+#arena .arena #f1 .sub{font-size:22px}
+#arena .arena #f0 .sub{font-size:26px}
+/* 足元の影(地面) */
+#arena .arena .f .em{padding:0 .12em .12em;background:radial-gradient(ellipse 52% 15% at 50% 90%,rgba(0,0,0,.55),rgba(0,0,0,0) 100%)!important}
+/* 攻撃のときは斜めに踏み込む */
+#arena .arena .f.a0{transform:translate(22px,-16px) scale(1.05)}
+#arena .arena .f.a1{transform:translate(-22px,16px) scale(1.05)}
+#arena .arena .f>.em{position:relative;z-index:2}#arena .arena .gw{z-index:8}
+
+/* スタンプ: 送った人のキャラの横に吹き出しで出す */
+#arena .arena .em>.stmp{top:-10px;left:auto;font-size:32px;line-height:1;padding:7px 9px;background:#fff;border-radius:18px;filter:drop-shadow(0 2px 5px #0009);z-index:9}
+#arena .arena .em>.stmp::after{content:'';position:absolute;bottom:4px;width:12px;height:12px;background:#fff;transform:rotate(45deg);z-index:-1}
+#arena .arena #e1>.stmp{right:78%;transform-origin:100% 100%}
+#arena .arena #e1>.stmp::after{right:-4px}
+#arena .arena #e0>.stmp{left:78%;transform-origin:0 100%}
+#arena .arena #e0>.stmp::after{left:-4px}
+
+/* 名前・HPの枠をコンパクトに */
+#arena .arena .f>.inf{padding:4px 8px 5px;max-width:68%;justify-self:stretch}
+#arena .arena #f1>.inf{justify-self:start;width:68%}
+#arena .arena #f0>.inf{justify-self:end;width:68%}
+#arena .arena .inf .nm,#arena .arena .inf .nm .tl>span:last-child{font-size:11px!important}
+#arena .arena .inf .tl .u_w,#arena .arena .inf .tl .utw,#arena .arena .inf .tl .tti{zoom:.5}
+#arena .arena .inf .tl .lvb{zoom:.75}
+#arena .arena .inf .hp{height:9px;margin-top:3px}
+#arena .arena .inf .hpn{font-size:11px;margin-top:1px}
+
+/* ホームのレベル表示: 称号が右のボタンに重ならないよう小さめに */
+.lvc .lvmid .u_w,.lvc .lvmid .utw,.lvc .lvmid .tti{zoom:.7;max-width:142%}
+.lvc .lvmid{padding:2px 0}
+
+/* ホーム: 名前を称号の真ん中にそろえる */
+.lvc .lvmid{display:flex;flex-direction:column;align-items:center;text-align:center}
+.lvc .lvmid .lvnm{max-width:100%}
 </style>
 <script>window.EC_TITLE_TEST=false; /* テスト用: true ですべての称号を所持 */</script>
 <script>
@@ -1568,13 +1635,19 @@ function seasonUI(){const n=ECS.cur(),end=ECS.end(n),left=end-Date.now(),d=new D
  $$('#season').innerHTML='<div class="sbt"><b style="font-size:17px">🌌 '+LL('シーズン','SEASON ','រដូវកាល ')+n+'</b><span>'+LL('残り ','Time left: ','នៅសល់ ')+ECS.fmt(left)+'</span></div><small>'+LL('〜 '+md+' まで / 戦績・ランキングは毎シーズンリセットされます','Until '+md+' / Records and ranking reset every season','ដល់ '+md+' / កំណត់ត្រា និងចំណាត់ថ្នាក់កំណត់ឡើងវិញរៀងរាល់រដូវកាល')+'</small>';
  const sn=window.__SEASON_NEW,box=$$('#snewbox');if(sn&&!seasonUI.hide){box.innerHTML='<div class="tc" style="border-left:4px solid #3df2ff"><b>🌌 '+LL('新シーズンが始まりました!','A new season has started!','រដូវកាលថ្មីបានចាប់ផ្ដើម!')+'</b><div class="stat">'+LL('戦績とランキングがリセットされました。前シーズン('+sn.from+'):'+sn.w+'勝 '+sn.l+'敗 / 最高'+sn.best+'連勝','Records and ranking were reset. Last season ('+sn.from+'): '+sn.w+'W '+sn.l+'L / best streak '+sn.best,'កំណត់ត្រា និងចំណាត់ថ្នាក់ត្រូវបានកំណត់ឡើងវិញ។ រដូវកាលមុន ('+sn.from+')៖ ឈ្នះ '+sn.w+' ចាញ់ '+sn.l+' / ឈ្នះជាប់គ្នាល្អបំផុត '+sn.best)+'</div><button class="btn alt" id="snok">OK</button></div>';$$('#snok').onclick=()=>{seasonUI.hide=1;box.innerHTML=''}}}
 /* ---------- アプデ情報 ---------- */
-const UPV='1.3';
+const UPV='1.35';
 function seen(){try{return localStorage.getItem('ecup')===UPV}catch(e){return false}}
 document.body.insertAdjacentHTML('beforeend','<div id="upd"><div class="hc" id="updc"></div></div>');
 $$('#upd').onclick=e=>{if(e.target===$$('#upd'))$$('#upd').classList.remove('on')};
 function updHTML(){const B=(a,b,c)=>'<b style="display:block;margin:12px 0 2px;font-size:15px">'+a+'</b><p style="margin:0;line-height:1.6;font-size:14px">'+b+'</p>';
  return '<div class="row" style="margin-bottom:6px"><b style="font-size:18px">'+LL('🆕 アプデ情報','🆕 Update Notes','🆕 ព័ត៌មានអាប់ដេត')+'</b><button class="btn alt" id="updx" style="width:auto;margin:0;padding:6px 14px;font-size:13px">'+LL('閉じる','Close','បិទ')+'</button></div>'
- +'<div class="tc"><b>Ver 1.3</b> <span class="mut">2026/10/28</span></div>'
+ +'<div class="tc"><b>Ver 1.35</b> <span class="mut">2026/10/28</span></div>'
+ +B(LL('⚔️ 対戦画面に奥行き','⚔️ Battle screen with depth','⚔️ អេក្រង់ប្រយុទ្ធមានជម្រៅ'),LL('1対1の対戦で、相手は右奥に小さく、自分は左手前に表示されるようになりました。名前とHPの枠もコンパクトにして、背景がよく見えるようにしました。','In 1v1 battles, your opponent now stands at the back right and you stand at the front left. The name and HP boxes are more compact so you can see more of the stage.','ក្នុងការប្រយុទ្ធ ១ទល់១ គូប្រកួតឈរខាងក្រោយស្ដាំ ហើយអ្នកឈរខាងមុខឆ្វេង។ ប្រអប់ឈ្មោះ និង HP តូចជាងមុន ដើម្បីមើលឃើញឆាកកាន់តែច្រើន។'))
+ +B(LL('💥 武器とエフェクトが相手に当たる','💥 Weapons and effects hit the opponent','💥 អាវុធ និងអេហ្វេកត៌ប៉ះគូប្រកួត'),LL('攻撃のとき、武器が相手のキャラまで飛んでいき、エフェクトも相手のキャラの上に出るようになりました。','Weapons now fly all the way to the opponent, and effects appear right on the opponent.','ពេលវាយប្រហារ អាវុធហោះទៅដល់គូប្រកួត ហើយអេហ្វេកត៌បង្ហាញនៅលើគូប្រកួត។'))
+ +B(LL('💬 スタンプが吹き出しに','💬 Stamps in speech bubbles','💬 ស្ទីកគ័រក្នុងពពុះសម្ដី'),LL('スタンプが、送った人のキャラの横に吹き出しで出るので、どちらが送ったか分かりやすくなりました。','Stamps now pop up in a speech bubble next to the sender’s character, so you can tell who sent them.','ស្ទីកគ័រលេចឡើងក្នុងពពុះសម្ដីក្បែរតួអង្គអ្នកផ្ញើ ដូច្នេះដឹងថាអ្នកណាផ្ញើ។'))
+ +B(LL('🛠 表示の修正','🛠 Display fixes','🛠 កែការបង្ហាញ'),LL('長い称号や名前でキャラが画面の外に出る不具合と、強いエフェクトで画面全体が揺れる不具合を直しました(揺れるのは戦闘画面の中だけになりました)。ホームの称号の位置も整えました。','Fixed characters being pushed off-screen by long titles or names, and the whole screen shaking with strong effects (now only the battle area shakes). The title position on the home screen was also tidied up.','បានកែកំហុសដែលងារ ឬឈ្មោះវែងរុញតួអង្គចេញពីអេក្រង់ និងអេក្រង់ទាំងមូលញ័រពេលមានអេហ្វេកត៌ខ្លាំង (ឥឡូវញ័រតែក្នុងតំបន់ប្រយុទ្ធ)។ ទីតាំងងារនៅទំព័រដើមក៏ត្រូវបានរៀបចំឡើងវិញ។'))
+ +B(LL('🎁 ガチャチケット500枚プレゼント','🎁 500 gacha tickets','🎁 សំបុត្រកាឆា ៥០០សន្លឹក'),LL('ガチャ演出リニューアル記念に、ボックスへ500枚届いています。受け取り期限はありません。','To celebrate the new gacha effects, 500 tickets are waiting in your Box. There is no deadline.','ដើម្បីអបអរចលនាកាឆាថ្មី សំបុត្រ ៥០០សន្លឹកកំពុងរង់ចាំក្នុងប្រអប់។ គ្មានកាលកំណត់។'))
+ +'<div class="tc" style="margin-top:12px"><b>Ver 1.3</b> <span class="mut">2026/10/28</span></div>'
  +B(LL('🏞 バトルの背景をリニューアル','🏞 Battle stages renewed','🏞 ឆាកប្រយុទ្ធថ្មី'),LL('ニューヨークを朝の自由の女神とビル群に、アンコールワットを朝焼けに、京都を東山と大文字に描き直しました。新しく「🏯 万里の長城」も追加しました。','New York now shows the Statue of Liberty and the skyline in the morning, Angkor Wat glows at sunrise, and Kyoto shows the Higashiyama hills with the Daimonji. A new “🏯 Great Wall” stage was added.','ញូវយ៉កឥឡូវបង្ហាញរូបសំណាកសេរីភាព និងអគារខ្ពស់ៗនៅពេលព្រឹក អង្គរវត្តភ្លឺនៅពេលថ្ងៃរះ ហើយគីយ៉ូតូបង្ហាញភ្នំ Higashiyama និងអក្សរ «大»។ បានបន្ថែមឆាកថ្មី «🏯 មហាកំពែងចិន»។'))
  +B(LL('⚡ クラッチで昼と夜が入れかわる','⚡ Clutch can turn day into night','⚡ Clutch អាចប្ដូរថ្ងៃទៅយប់'),LL('対戦中にクラッチが出ると、たまに背景の朝と夜が入れかわります(宇宙をのぞく)。','When a clutch triggers in battle, the stage sometimes switches between day and night (except Space).','ពេល Clutch កើតឡើង ឆាកខ្លះប្ដូររវាងថ្ងៃ និងយប់ (លើកលែងតែអវកាស)។'))
  +B(LL('🎰 ガチャの演出を変更','🎰 Gacha effects updated','🎰 បានកែប្រែចលនាកាឆា'),LL('ガチャの演出を変えました。','The gacha effects have been changed.','ចលនានៃកាឆាត្រូវបានផ្លាស់ប្ដូរ។'))
@@ -2610,6 +2683,12 @@ window.ecSRView=function(){const sn=recSn,end=new Date(ECS.start(sn+1)-1),ed=end
 if(location.hash==='#ecadmin')setTimeout(admin,1500);
 addEventListener('hashchange',()=>{if(location.hash==='#ecadmin')admin()});
 })();
+</script>
+<script>
+/* ホームの称号: 横幅に収まるように自動で縮める */
+(()=>{const fit=()=>{const m=document.querySelector('#lvc .lvmid');if(!m)return;const c=m.querySelector('.u_w,.utw,.tti');if(!c||c.dataset.fit===m.clientWidth+'')return;
+ c.style.zoom='1';const rs=[c,...c.querySelectorAll('*')].map(e=>e.getBoundingClientRect()).filter(r=>r.width),w=Math.max(...rs.map(r=>r.right))-Math.min(...rs.map(r=>r.left)),mw=m.clientWidth;const z=Math.max(.4,Math.min(.7,(mw-4)/w));c.style.zoom=z;c.dataset.fit=mw+''};
+ const st=document.querySelector('#start');if(st)new MutationObserver(()=>requestAnimationFrame(fit)).observe(st,{childList:true,subtree:true});addEventListener('resize',()=>{const c=document.querySelector('#lvc .lvmid [data-fit]');if(c)c.dataset.fit='';fit()});setTimeout(fit,300)})();
 </script>
 </body>
 </html>
