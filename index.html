@@ -478,6 +478,7 @@ html:root[data-ui="neon"]{--bg:#04050f;--card:#0a0d24;--card2:#141a44;--tx:#e8f4
   <button class="btn alt" id="lnkb" style="background:var(--card)">読み込む</button>
  </div>
  <button class="btn alt" id="rk">🏆 ランキングを見る</button>
+ <div id="cloudbox"></div>
 </div>
 
 <div id="build" class="card hide">
@@ -523,7 +524,7 @@ let PID=(()=>{try{let i=localStorage.getItem('ecid');if(!i){i=Math.random().toSt
 const FIREBASE_API_KEY="AIzaSyB6p4wFQG95c5ypUcmqfNEOiiHI0Usn7n0";
 let FBTOK=null,FBREADY=Promise.resolve();
 if(FIREBASE_API_KEY&&FIREBASE_URL){
- const AK=FIREBASE_API_KEY,sv=(j)=>{FBTOK=j.idToken;PID=j.localId;try{localStorage.setItem('ecrt',j.refreshToken);localStorage.setItem('ecid',j.localId)}catch(e){}};
+ const AK=FIREBASE_API_KEY,sv=(j)=>{FBTOK=j.idToken;PID=j.localId;try{localStorage.setItem('ecrt',j.refreshToken);localStorage.setItem('ecid',j.localId)}catch(e){}};window.ecSetAuth=sv;
  const refresh=async()=>{let rt=null;try{rt=localStorage.getItem('ecrt')}catch(e){}
   if(rt){try{const r=await fetch('https://securetoken.googleapis.com/v1/token?key='+AK,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'grant_type=refresh_token&refresh_token='+encodeURIComponent(rt)});if(r.ok){const x=await r.json();return sv({idToken:x.id_token,refreshToken:x.refresh_token,localId:x.user_id})}}catch(e){}}
   const r=await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+AK,{method:'POST',headers:{'Content-Type':'application/json'},body:'{"returnSecureToken":true}'});if(!r.ok)throw new Error('auth');sv(await r.json())};
@@ -2327,6 +2328,59 @@ const AL4=applyLang;applyLang=function(){AL4();try{if(M.classList.contains('on')
 if(!ok(clean(NICK))){NICK='';openName(true)}else{NICK=clean(NICK)}
 })();
 
+</script>
+<script>
+// ===== ☁️ クラウドセーブ + Googleログイン引き継ぎ =====
+(()=>{
+const LINK_BONUS=100; // 初めてGoogleで引き継いだ人への特典チケット枚数
+const AUTH_DOMAIN='emoji1clash.firebaseapp.com';
+const ACC='ecgacct',SYNC='ecsync',SKIP=['ecid','ecrt','ecgacct','ecsync','eclv_test'];
+const $$=s=>document.querySelector(s);
+const L=(j,e,k)=>LL(j,e,k);
+const acct=()=>{try{return JSON.parse(localStorage.getItem(ACC)||'null')}catch(e){return null}};
+const snap=()=>{const o={};try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if((/^ec/.test(k)||k==='en')&&!SKIP.includes(k))o[k]=localStorage.getItem(k)}}catch(e){}return JSON.stringify(o)};
+const restore=s=>{const o=JSON.parse(s);for(const k in o)if((/^ec/.test(k)||k==='en')&&!SKIP.includes(k))localStorage.setItem(k,o[k])};
+// ガチャのチケットを足す(署名もつけ直す)
+const addTickets=n=>{const key='ecgacha2',SALT='ec2-k7Qx-'+key;let g;try{g=JSON.parse(localStorage.getItem(key)||'null')}catch(e){}if(!g)return;
+ g.t=Math.max(0,Math.floor(+g.t)||0)+n;const s=(g.t|0)+'|'+Object.keys(g.gc||{}).sort().join(',')+'|'+Object.values(g.inv||{}).reduce((a,b)=>a+(+b||0),0)+'|'+SALT;
+ let h=2166136261;for(let i=0;i<s.length;i++)h=Math.imul(h^s.charCodeAt(i),16777619)>>>0;g.s=h.toString(36);localStorage.setItem(key,JSON.stringify(g))};
+const loadSdk=()=>window.firebase?Promise.resolve():new Promise((ok,ng)=>{const a=document.createElement('script');a.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js';a.onload=()=>{const b=document.createElement('script');b.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js';b.onload=ok;b.onerror=ng;document.head.appendChild(b)};a.onerror=ng;document.head.appendChild(a)});
+let msg='';
+function render(){const el=$$('#cloudbox');if(!el)return;const a=acct();
+ el.innerHTML=a?('<div class="stat" style="margin:8px 0">☁️ '+L('ログイン中: ','Signed in: ','បានចូល: ')+esc(a.name||'Google')+'</div>'
+   +'<button class="btn alt" id="csave">☁️ '+L('今すぐクラウドに保存','Save to cloud now','រក្សាទុកក្នុងពពកឥឡូវ')+'</button>'
+   +'<button class="btn alt" id="cout" style="opacity:.7">'+L('ログアウト','Sign out','ចាកចេញ')+'</button>')
+  :('<button class="btn alt" id="clink">☁️ '+L('Googleでデータを引き継ぐ','Back up with Google','បម្រុងទុកជាមួយ Google')+'</button>'
+   +'<div class="mut">'+L('初めて引き継ぐとガチャチケット'+LINK_BONUS+'枚プレゼント！別の端末でも同じデータで遊べます。','First-time bonus: '+LINK_BONUS+' gacha tickets! Play with the same data on any device.','ការភ្ជាប់លើកដំបូង៖ ទទួលបានសំបុត្រកាឆា '+LINK_BONUS+' សន្លឹក! លេងជាមួយទិន្នន័យដដែលលើឧបករណ៍ណាមួយក៏បាន។')+'</div>')
+  +(msg?'<div class="mut">'+msg+'</div>':'');
+ if(a){$$('#csave').onclick=()=>push(true);$$('#cout').onclick=logout}else $$('#clink').onclick=link}
+async function push(manual){const a=acct();if(!a||PID!==a.uid)return;try{const t=Date.now();await db('PUT','users/'+a.uid,{d:snap(),t});localStorage.setItem(SYNC,String(t));if(manual){msg='✅ '+L('保存しました','Saved','បានរក្សាទុក');render()}}catch(e){if(manual){msg='❌ '+L('保存に失敗しました','Save failed','រក្សាទុកមិនបាន');render()}}}
+async function link(){msg=L('ログイン中…','Signing in…','កំពុងចូល…');render();
+ try{await loadSdk();if(!firebase.apps.length)firebase.initializeApp({apiKey:FIREBASE_API_KEY,authDomain:AUTH_DOMAIN,databaseURL:FIREBASE_URL});
+  const res=await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());const u=res.user;
+  window.ecSetAuth({idToken:await u.getIdToken(),refreshToken:u.refreshToken,localId:u.uid});
+  localStorage.setItem(ACC,JSON.stringify({uid:u.uid,name:(u.displayName||'').slice(0,20)}));
+  const cloud=await db('GET','users/'+u.uid);
+  if(cloud&&cloud.d){ // すでにクラウドにデータがある → 読み込む
+   if(confirm(L('クラウドに保存されたデータが見つかりました。この端末のデータを、クラウドのデータで上書きしますか？','Cloud data found. Replace this device\'s data with the cloud data?','រកឃើញទិន្នន័យក្នុងពពក។ ជំនួសទិន្នន័យលើឧបករណ៍នេះ?'))){restore(cloud.d);localStorage.setItem(SYNC,String(cloud.t||Date.now()));location.reload();return}
+   await push(false);msg='✅ '+L('この端末のデータをクラウドに保存しました','Saved this device\'s data to the cloud','បានរក្សាទុកទិន្នន័យឧបករណ៍នេះក្នុងពពក');render();return}
+  // 初めて → 特典(1つのGoogleアカウントにつき1回だけ)
+  let got=false;try{const b=await db('GET','bonus/'+u.uid);if(!b){await db('PUT','bonus/'+u.uid,{t:Date.now()});got=true}}catch(e){}
+  if(got)addTickets(LINK_BONUS);
+  const t=Date.now();await db('PUT','users/'+u.uid,{d:snap(),t});localStorage.setItem(SYNC,String(t));
+  alert(got?L('🎉 引き継ぎ完了！ガチャチケット'+LINK_BONUS+'枚をプレゼントしました','🎉 Backup complete! You got '+LINK_BONUS+' gacha tickets','🎉 បម្រុងទុករួចរាល់! អ្នកទទួលបានសំបុត្រកាឆា '+LINK_BONUS+' សន្លឹក'):L('✅ 引き継ぎ完了！','✅ Backup complete!','✅ បម្រុងទុករួចរាល់!'));
+  location.reload()}
+ catch(e){console.log(e);msg='❌ '+L('ログインできませんでした。SafariやChromeで開いて、もう一度試してください','Could not sign in. Open the game in Safari or Chrome and try again','មិនអាចចូលបានទេ។ សូមបើកក្នុង Safari ឬ Chrome ហើយសាកម្ដងទៀត');render()}}
+async function logout(){if(!confirm(L('ログアウトしますか？(データはクラウドに残ります)','Sign out? (Your data stays in the cloud)','ចាកចេញ? (ទិន្នន័យនៅក្នុងពពក)')))return;await push(false);
+ try{await loadSdk();if(firebase.apps.length)await firebase.auth().signOut()}catch(e){}['ecrt','ecid',ACC,SYNC].forEach(k=>localStorage.removeItem(k));location.reload()}
+// 起動時: クラウドの方が新しければ読み込む。あとは自動保存
+(async()=>{const a=acct();if(!a)return;await FBREADY;if(PID!==a.uid)return;
+ try{const c=await db('GET','users/'+a.uid);const ls=+(localStorage.getItem(SYNC)||0);
+  if(c&&c.d&&(+c.t||0)>ls){restore(c.d);localStorage.setItem(SYNC,String(c.t));location.reload();return}}catch(e){}
+ let last=snap();setInterval(()=>{const s=snap();if(s!==last){last=s;push(false)}},60000);
+ document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){const s=snap();if(s!==last){last=s;push(false)}}})})();
+render();const lb=$$('#lang');if(lb)lb.addEventListener('click',()=>setTimeout(render,0));
+})();
 </script>
 </body>
 </html>
