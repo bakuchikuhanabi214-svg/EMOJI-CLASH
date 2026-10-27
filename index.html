@@ -727,12 +727,29 @@ async function mkRoom(){if(!FIREBASE_URL)return dm("⚠️ FIREBASE_URL が未�
  try{let c,ok=false;for(let i=0;i<6&&!ok;i++){c=String(1000+Math.random()*9000|0);const ex=await db("GET","rooms/"+c+"/t");if(!ex||Date.now()-ex>72e5){await db("PUT","rooms/"+c,{t:Date.now()});ok=true}}if(!ok)throw 0;ROOM={code:c,role:"a",round:1};chal=null;dm("");openBuild()}catch(e){dm("❌ 通信に失敗しました。設定を確認してください")}}
 async function joinRoom(c){if(!FIREBASE_URL)return dm("⚠️ FIREBASE_URL が未設定です");if(!/^\d{4}$/.test(c))return dm("4桁の数字を入れてください");sndOn=$("#snd").checked;if(sndOn)ctx();dm("接続中…");
  try{const ex=await db("GET","rooms/"+c+"/t");if(!ex)return dm("ルームが見つかりません");const p=await db("GET","rooms/"+c+"/p")||{};const round=Math.max(1,...Object.values(p).map(x=>+x.r||0));ROOM={code:c,role:"b",round};chal=null;dm("");openBuild()}catch(e){dm("❌ 通信に失敗しました")}}
-async function showRank(){if($("#snd")){sndOn=$("#snd").checked;if(sndOn)ctx()}show("rank");const el=$("#rank"),hd='<div class="row"><b>🏆 ランキング</b><span class="mut">'+LL("勝利数順","By wins","តាមចំនួនឈ្នះ")+" / "+LL("シーズン","Season ","រដូវកាល ")+recSn+'</span></div>',bk='<button class="btn alt" id="rback">← 戻る</button>';
- const back=()=>{$("#rback").onclick=()=>goHome()};
+let RKM='rate';try{RKM=localStorage.getItem('ecrkm')==='wins'?'wins':'rate'}catch(e){}
+const RK_MIN=20;
+async function showRank(){if($("#snd")){sndOn=$("#snd").checked;if(sndOn)ctx()}show("rank");const el=$("#rank");
+ const tab=(m,t)=>'<button class="btn'+(RKM===m?'':' alt')+'" data-m="'+m+'" style="width:auto;flex:1;margin:0;padding:8px">'+t+'</button>';
+ const hd='<div class="row"><b>🏆 '+LL("ランキング","Ranking","ចំណាត់ថ្នាក់")+'</b><span class="mut">'+LL("シーズン","Season ","រដូវកាល ")+recSn+'</span></div>'
+  +'<div style="display:flex;gap:8px;margin:8px 0">'+tab('rate',LL('📈 勝率','📈 Win rate','📈 អត្រាឈ្នះ'))+tab('wins',LL('🏅 勝利数','🏅 Wins','🏅 ចំនួនឈ្នះ'))+'</div>'
+  +(RKM==='rate'?'<div class="mut">'+LL(RK_MIN+'戦以上した人だけが載ります',RK_MIN+'+ battles required','តម្រូវឲ្យប្រយុទ្ធ '+RK_MIN+' ដងឡើងទៅ')+'</div>':'');
+ const bk='<button class="btn alt" id="rback">'+LL('← 戻る','← Back','← ត្រឡប់')+'</button>';
+ const back=()=>{$("#rback").onclick=()=>goHome();el.querySelectorAll("button[data-m]").forEach(b=>b.onclick=()=>{RKM=b.dataset.m;try{localStorage.setItem('ecrkm',RKM)}catch(e){}showRank()})};
  if(!FIREBASE_URL){el.innerHTML=hd+'<p class="mut">FIREBASE_URL が未設定のため使えません。</p>'+bk;back();return}
  el.innerHTML=hd+'<p class="mut">読み込み中…</p>';
- try{const d=await db("GET","players")||{};const a=Object.entries(d).map(([id,v])=>({id,n:String(v.n||"名無し").slice(0,10),w:okW(v.w),sn:Math.max(0,+v.sn||0),wins:Math.min(99999,Math.max(0,+v.wins||0)),losses:Math.min(99999,Math.max(0,+v.losses||0)),best:Math.min(99999,Math.max(0,+v.best||0)),ti:typeof v.ti==="string"?v.ti.slice(0,40):null,q:v.q||null})).filter(x=>x.w&&x.sn===recSn).sort((x,y)=>y.wins-x.wins||x.losses-y.losses||y.best-x.best).slice(0,30);
-  el.innerHTML=hd+(a.length?a.map((x,i)=>'<div class="rr"'+(x.id===PID?' style="outline:2px solid var(--gold)"':'')+'><b style="width:28px">'+(["🥇","🥈","🥉"][i]||i+1)+'</b><span style="font-size:22px">'+esc(x.w.join(""))+'</span><span style="flex:1"><b>'+(window.tb?tb(x.ti):'')+esc(x.n)+'</b><div class="stat">'+x.wins+'勝 '+x.losses+'敗 / 最高'+x.best+'連勝</div></span>'+(x.id===PID?'':'<button class="btn" data-i="'+i+'" style="width:auto;margin:0;padding:8px 12px">挑戦</button>')+'</div>').join(""):'<p class="mut">まだ誰もいません。勝ってランクインしよう!</p>')+'<div class="mut">「挑戦」でその人の戦士と戦えます(結果は相手には反映されません)。</div>'+bk;
+ try{const d=await db("GET","players")||{};
+  let a=Object.entries(d).map(([id,v])=>({id,n:String(v.n||"名無し").slice(0,10),w:okW(v.w),sn:Math.max(0,+v.sn||0),wins:Math.min(99999,Math.max(0,+v.wins||0)),losses:Math.min(99999,Math.max(0,+v.losses||0)),best:Math.min(99999,Math.max(0,+v.best||0)),t:+v.t||0,ti:typeof v.ti==="string"?v.ti.slice(0,40):null,q:v.q||null})).filter(x=>x.w&&x.sn===recSn);
+  // 同じ名前のダブりは1つにまとめる(自分のデータ>新しい方>勝利数が多い方)。「名無し」はまとめない
+  const pick=(x,y)=>(x.id===PID)!==(y.id===PID)?(x.id===PID?x:y):(x.t!==y.t?(x.t>y.t?x:y):(x.wins>=y.wins?x:y));
+  const by={},solo=[];a.forEach(x=>{if(x.n==="名無し"){solo.push(x);return}const k=x.n.toLowerCase();by[k]=by[k]?pick(by[k],x):x});
+  a=Object.values(by).concat(solo);
+  a.forEach(x=>{const g=x.wins+x.losses;x.g=g;x.rt=g?x.wins/g:0});
+  if(RKM==='rate')a=a.filter(x=>x.g>=RK_MIN).sort((x,y)=>y.rt-x.rt||y.wins-x.wins||y.best-x.best);
+  else a.sort((x,y)=>y.wins-x.wins||x.losses-y.losses||y.best-x.best);
+  a=a.slice(0,30);
+  const pct=x=>(Math.round(x.rt*1000)/10).toFixed(1)+'%';
+  el.innerHTML=hd+(a.length?a.map((x,i)=>'<div class="rr"'+(x.id===PID?' style="outline:2px solid var(--gold)"':'')+'><b style="width:28px">'+(["🥇","🥈","🥉"][i]||i+1)+'</b><span style="font-size:22px">'+esc(x.w.join(""))+'</span><span style="flex:1"><b>'+(window.tb?tb(x.ti):'')+esc(x.n)+'</b><div class="stat">'+(RKM==='rate'?'<b>'+LL('勝率 ','Win rate ','អត្រាឈ្នះ ')+pct(x)+'</b> · ':'')+x.wins+'勝 '+x.losses+'敗 / 最高'+x.best+'連勝</div></span>'+(x.id===PID?'':'<button class="btn" data-i="'+i+'" style="width:auto;margin:0;padding:8px 12px">挑戦</button>')+'</div>').join(""):'<p class="mut">'+(RKM==='rate'?LL('まだ'+RK_MIN+'戦以上した人がいません。','No one has '+RK_MIN+'+ battles yet.','មិនទាន់មានអ្នកប្រយុទ្ធ '+RK_MIN+' ដងឡើងទៅនៅឡើយទេ។'):'まだ誰もいません。勝ってランクインしよう!')+'</p>')+'<div class="mut">「挑戦」でその人の戦士と戦えます(結果は相手には反映されません)。</div>'+bk;
   back();el.querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>{const x=a[+b.dataset.i];ROOM=null;setChal({w:x.w,n:x.n,ti:x.ti,q:x.q});openBuild()})}
  catch(e){el.innerHTML=hd+'<p class="mut">❌ 読み込みに失敗しました。</p>'+bk;back()}}
 $("#mk").onclick=mkRoom;$("#jn").onclick=()=>joinRoom($("#rc").value.trim());$("#rk").onclick=showRank;
