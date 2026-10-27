@@ -447,6 +447,26 @@ html:root[data-ui="neon"]{--bg:#04050f;--card:#0a0d24;--card2:#141a44;--tx:#e8f4
 .lvmid .u_w,.tl .u_w,.row .u_w{margin:0}
 .lvu .u_w{display:inline-flex}
 @media (prefers-reduced-motion:reduce){.u_w *,.u_w{animation:none!important}}
+
+/* ---- オリジナルキャラ(絵文字+装飾) ---- */
+.ocr{position:relative;display:inline-block;width:1.15em;height:1.15em;line-height:1.15em;vertical-align:middle;text-align:center}
+.ocr>.ob{position:relative;z-index:2;display:inline-block;width:100%;height:100%}
+.ocr>.ob>.vz{width:1.15em;height:1.15em}
+.ocr i{font-style:normal;position:absolute;pointer-events:none;line-height:1}
+.ocr .oa{inset:-.24em;border-radius:50%;z-index:1}
+.ocr .oc{left:50%;top:-.38em;font-size:.5em;z-index:4;transform:translateX(-50%) rotate(-10deg)}
+.ocr .ow{right:-.32em;bottom:-.06em;font-size:.44em;z-index:4}
+.ocr .ox{left:-.3em;bottom:-.04em;font-size:.44em;z-index:4}
+.ocr .os{inset:-.12em;z-index:3;background:radial-gradient(circle at 18% 22%,#fff 0 .035em,transparent .06em),radial-gradient(circle at 84% 30%,#fff 0 .03em,transparent .055em),radial-gradient(circle at 72% 88%,#fff 0 .035em,transparent .06em),radial-gradient(circle at 12% 78%,#fff 0 .025em,transparent .05em);animation:ocrtw 1.1s ease-in-out infinite alternate}
+.ocr-gale .oa{background:conic-gradient(#3df2ff00,#3df2ffdd,#ffffff00 28%,#7affc8dd 50%,#3df2ff00 66%,#ffffffbb 84%,#3df2ff00);-webkit-mask:radial-gradient(circle,transparent 50%,#000 55%,#000 68%,transparent 73%);mask:radial-gradient(circle,transparent 50%,#000 55%,#000 68%,transparent 73%);animation:ocrsp 1.4s linear infinite}
+.ocr-gale .ob{filter:drop-shadow(0 0 .08em #3df2ff) drop-shadow(0 0 .16em #7affc8)}
+.ocr-gale .oc{filter:drop-shadow(0 0 .12em #ffd23f);animation:ocrbob 1.6s ease-in-out infinite}
+.ocr-gale .ow{left:50%;top:50%;right:auto;bottom:auto;animation:ocrorb 2.4s linear infinite}@keyframes ocrorb{0.00%{transform:translate(calc(-50% + 1.750em),calc(-50% + 0.300em)) scale(1.00);z-index:4}6.25%{transform:translate(calc(-50% + 1.617em),calc(-50% + 0.530em)) scale(1.08);z-index:4}12.50%{transform:translate(calc(-50% + 1.237em),calc(-50% + 0.724em)) scale(1.14);z-index:4}18.75%{transform:translate(calc(-50% + 0.670em),calc(-50% + 0.854em)) scale(1.18);z-index:4}25.00%{transform:translate(calc(-50% + 0.000em),calc(-50% + 0.900em)) scale(1.20);z-index:4}31.25%{transform:translate(calc(-50% + -0.670em),calc(-50% + 0.854em)) scale(1.18);z-index:4}37.50%{transform:translate(calc(-50% + -1.237em),calc(-50% + 0.724em)) scale(1.14);z-index:4}43.75%{transform:translate(calc(-50% + -1.617em),calc(-50% + 0.530em)) scale(1.08);z-index:4}50.00%{transform:translate(calc(-50% + -1.750em),calc(-50% + 0.300em)) scale(1.00);z-index:4}56.25%{transform:translate(calc(-50% + -1.617em),calc(-50% + 0.070em)) scale(0.92);z-index:1}62.50%{transform:translate(calc(-50% + -1.237em),calc(-50% + -0.124em)) scale(0.86);z-index:1}68.75%{transform:translate(calc(-50% + -0.670em),calc(-50% + -0.254em)) scale(0.82);z-index:1}75.00%{transform:translate(calc(-50% + -0.000em),calc(-50% + -0.300em)) scale(0.80);z-index:1}81.25%{transform:translate(calc(-50% + 0.670em),calc(-50% + -0.254em)) scale(0.82);z-index:1}87.50%{transform:translate(calc(-50% + 1.237em),calc(-50% + -0.124em)) scale(0.86);z-index:1}93.75%{transform:translate(calc(-50% + 1.617em),calc(-50% + 0.070em)) scale(0.92);z-index:1}100.00%{transform:translate(calc(-50% + 1.750em),calc(-50% + 0.300em)) scale(1.00);z-index:1}}
+.ocr-gen .oa{background:radial-gradient(circle,#ffd23f66 30%,#ff4d4d33 55%,transparent 70%);animation:ocrpl 1.8s ease-in-out infinite}
+.ocr-gen .ob{filter:drop-shadow(0 0 .07em #ffd23f)}
+.ocr-gen .ox{z-index:1;left:auto;right:-.18em;top:-.12em;bottom:auto;font-size:.55em;opacity:.9;transform:rotate(15deg)}
+@keyframes ocrsp{to{transform:rotate(360deg)}}@keyframes ocrtw{from{opacity:.15}to{opacity:1}}
+@keyframes ocrbob{50%{transform:translate(-50%,-.06em) rotate(-4deg)}}@keyframes ocrpl{50%{transform:scale(1.12);opacity:.7}}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -722,7 +742,7 @@ let NICK='';$('#nick').oninput=e=>{NICK=e.target.value.trim().slice(0,10)};try{c
 const c0=parseTok(location.hash);if(c0)setChal(c0);
 addEventListener("hashchange",()=>{const c=parseTok(location.hash);if(c&&!busy)setChal(c)});
 // ---- ランキング / ルーム ----
-async function saveRank(){try{localStorage.setItem("ecrec",JSON.stringify(Object.assign({s:recHash(rec)},rec)))}catch(e){}if(!FIREBASE_URL)return;try{await db("PUT","players/"+PID,{sn:recSn,n:(NICK||"名無し").slice(0,10),ti:window.getTiLv?getTiLv():null,q:window.getEq?getEq():null,w:W.slice(),wins:rec.w,losses:rec.l,best:rec.best,cb:rec.cb,t:Date.now()})}catch(e){}}
+async function saveRank(){try{localStorage.setItem("ecrec",JSON.stringify(Object.assign({s:recHash(rec)},rec)))}catch(e){}if(!FIREBASE_URL)return;const pv={sn:recSn,n:(NICK||"名無し").slice(0,10),ti:window.getTiLv?getTiLv():null,q:window.getEq?getEq():null,w:W.slice(),wins:rec.w,losses:rec.l,best:rec.best,cb:rec.cb,t:Date.now()};try{await db("PUT","players/"+PID,pv)}catch(e){}try{await db("PUT","ps/"+recSn+"/"+PID,pv)}catch(e){}}
 const dm=t=>{$("#dbmsg").textContent=t};
 async function mkRoom(){if(!FIREBASE_URL)return dm("⚠️ FIREBASE_URL が未設定です");sndOn=$("#snd").checked;if(sndOn)ctx();dm("作成中…");
  try{let c,ok=false;for(let i=0;i<6&&!ok;i++){c=String(1000+Math.random()*9000|0);const ex=await db("GET","rooms/"+c+"/t");if(!ex||Date.now()-ex>72e5){await db("PUT","rooms/"+c,{t:Date.now()});ok=true}}if(!ok)throw 0;ROOM={code:c,role:"a",round:1};chal=null;dm("");openBuild()}catch(e){dm("❌ 通信に失敗しました。設定を確認してください")}}
@@ -734,15 +754,16 @@ async function showRank(){if($("#snd")){sndOn=$("#snd").checked;if(sndOn)ctx()}s
  const tab=(m,t)=>'<button class="btn'+(RKM===m?'':' alt')+'" data-m="'+m+'" style="width:auto;flex:1;margin:0;padding:8px">'+t+'</button>';
  const hd='<div class="row"><b>🏆 '+LL("ランキング","Ranking","ចំណាត់ថ្នាក់")+'</b><span class="mut">'+LL("シーズン","Season ","រដូវកាល ")+recSn+'</span></div>'
   +'<div style="display:flex;gap:8px;margin:8px 0">'+tab('rate',LL('📈 勝率','📈 Win rate','📈 អត្រាឈ្នះ'))+tab('wins',LL('🏅 勝利数','🏅 Wins','🏅 ចំនួនឈ្នះ'))+'</div>'
+  +(window.ecSRView?'<button class="btn alt" id="rkrw">🎁 '+LL('ランキング報酬を見る','View ranking rewards','មើលរង្វាន់ចំណាត់ថ្នាក់')+'</button>':'')
   +(RKM==='rate'?'<div class="mut">'+LL(RK_MIN+'戦以上した人だけが載ります',RK_MIN+'+ battles required','តម្រូវឲ្យប្រយុទ្ធ '+RK_MIN+' ដងឡើងទៅ')+'</div>':'');
  const bk='<button class="btn alt" id="rback">'+LL('← 戻る','← Back','← ត្រឡប់')+'</button>';
- const back=()=>{$("#rback").onclick=()=>goHome();el.querySelectorAll("button[data-m]").forEach(b=>b.onclick=()=>{RKM=b.dataset.m;try{localStorage.setItem('ecrkm',RKM)}catch(e){}showRank()})};
+ const back=()=>{$("#rback").onclick=()=>goHome();if($("#rkrw"))$("#rkrw").onclick=()=>ecSRView();el.querySelectorAll("button[data-m]").forEach(b=>b.onclick=()=>{RKM=b.dataset.m;try{localStorage.setItem('ecrkm',RKM)}catch(e){}showRank()})};
  if(!FIREBASE_URL){el.innerHTML=hd+'<p class="mut">FIREBASE_URL が未設定のため使えません。</p>'+bk;back();return}
  el.innerHTML=hd+'<p class="mut">読み込み中…</p>';
  try{const d=await db("GET","players")||{};
   let a=Object.entries(d).map(([id,v])=>({id,n:String(v.n||"名無し").slice(0,10),w:okW(v.w),sn:Math.max(0,+v.sn||0),wins:Math.min(99999,Math.max(0,+v.wins||0)),losses:Math.min(99999,Math.max(0,+v.losses||0)),best:Math.min(99999,Math.max(0,+v.best||0)),t:+v.t||0,ti:typeof v.ti==="string"?v.ti.slice(0,40):null,q:v.q||null})).filter(x=>x.w&&x.sn===recSn);
-  // 同じ名前のダブりは1つにまとめる(自分のデータ>新しい方>勝利数が多い方)。「名無し」はまとめない
-  const pick=(x,y)=>(x.id===PID)!==(y.id===PID)?(x.id===PID?x:y):(x.t!==y.t?(x.t>y.t?x:y):(x.wins>=y.wins?x:y));
+  // 同じ名前のダブりは1つにまとめる(自分のデータ>試合数が多い方>新しい方)。「名無し」はまとめない
+  const gm=x=>x.wins+x.losses,pick=(x,y)=>(x.id===PID)!==(y.id===PID)?(x.id===PID?x:y):(gm(x)!==gm(y)?(gm(x)>gm(y)?x:y):(x.t>=y.t?x:y));
   const by={},solo=[];a.forEach(x=>{if(x.n==="名無し"){solo.push(x);return}const k=x.n.toLowerCase();by[k]=by[k]?pick(by[k],x):x});
   a=Object.values(by).concat(solo);
   a.forEach(x=>{const g=x.wins+x.losses;x.g=g;x.rt=g?x.wins/g:0});
@@ -833,6 +854,8 @@ img.px{image-rendering:pixelated;image-rendering:crisp-edges}
 #gnote{border:2px solid var(--gold);background:linear-gradient(90deg,#2a1f00,#3d2d00);margin:0 0 10px}
 #gnote{color:#f4f2ff}#gnote b{color:var(--gold)}#gnote .stat{color:#d8d3ff}.gtkb small{color:#f4f2ff!important}
 </style>
+<script>window.EC_CHAR_TEST=false; /* テスト用: true で全キャラ解放(ガチャのデータは本番と別に保存) */
+if(window.EC_CHAR_TEST)window.GACHA_CONFIG=Object.assign(window.GACHA_CONFIG||{},{key:'ecgacha_test',oldKey:'ecgacha_test_old'});</script>
 <script>
 /* 設定: window.GACHA_CONFIG={initTickets:0,xr:{C:1,B:1,A:3,S:8,SS:40}} */
 (()=>{
@@ -1090,7 +1113,9 @@ if(r==='C')return `<span class="vz" style="filter:hue-rotate(${h}deg) drop-shado
 if(r==='B')return `<span class="vz" style="filter:hue-rotate(${h}deg) saturate(1.3) drop-shadow(0 0 3px ${RC.B})">${e}</span>`;
 const u=pixURL(e,r==='A'?20:r==='S'?28:36);if(!u)return `<span class="vz">${e}</span>`;
 return `<img class="vz px v${r}${it.sty?' '+it.sty:''}" src="${u}" alt="">`}
-const vis=it=>it.lim!==undefined?'<span class="s0v">'+visB(it)+'</span>':visB(it);
+const DECO={gale:{c:'👑',w:'🌪️',s:true},gen:{c:'🪖',w:'🎖️',x:'⚔️',s:true}}; /* c=上 / w=右下 / x=後ろ の飾り絵文字。s:true でキラキラ */
+const deco=it=>{const d=DECO[it.deco]||{};return '<span class="ocr ocr-'+it.deco+'"><i class="oa"></i>'+(d.x?'<i class="ox">'+d.x+'</i>':'')+'<span class="ob">'+visB(it)+'</span>'+(d.c?'<i class="oc">'+d.c+'</i>':'')+(d.w?'<i class="ow">'+d.w+'</i>':'')+(d.s?'<i class="os"></i>':'')+'</span>'};
+const vis=it=>it.deco?deco(it):it.lim!==undefined?'<span class="s0v">'+visB(it)+'</span>':visB(it);
 const pe=(e,rk)=>{if(rk<2)return e;const u=pixURL(e,rk>=3?28:20);return u?`<img class="vz px" src="${u}" alt="">`:e};
 /* ---- セーブ(新チケット方式: 旧チケットは削除。改ざん検知つき) ---- */
 const SALT='ec2-k7Qx-'+CFG.key;
@@ -1102,7 +1127,7 @@ if(!g||typeof g!=='object'){let o=null;try{o=JSON.parse(localStorage.getItem(CFG
 g={t:Math.max(0,Math.floor(+CFG.initTickets)||0),inv:{},eq:{c:null,w:null,e:null},pulls:0,gc:{}};
 if(o&&typeof o==='object'){migrated=true;g.pulls=Math.min(Math.floor(+o.pulls)||0,1e6);g.inv=cleanInv(o.inv,CFG.maxDup);g.eq=Object.assign(g.eq,o.eq||{})}}
 else{const ok=g.s===sg(g);g.gc=g.gc&&typeof g.gc==='object'?g.gc:{};g.inv=cleanInv(g.inv,ok?1e6:CFG.maxDup);g.t=ok?Math.max(0,Math.floor(+g.t)||0):0}
-if(CFG.testAll)IT.forEach(i=>{if(!g.inv[i.id])g.inv[i.id]=1});
+if(CFG.testAll||window.EC_CHAR_TEST)IT.forEach(i=>{if((CFG.testAll||i.k==='c')&&!g.inv[i.id])g.inv[i.id]=1});
 g.eq=Object.assign({c:null,w:null,e:null},g.eq);
 for(const k in g.eq)if(g.eq[k]&&(!g.inv[g.eq[k]]||!item(g.eq[k])))g.eq[k]=null;
 G=g;try{localStorage.removeItem(CFG.oldKey)}catch(e){}save()}
@@ -1328,6 +1353,11 @@ const EN=[['🎲 ランダムな人と対戦','🎲 Battle a random player'],['�
 ['標準','Default'],['未入手(装備できません)','Not owned (can\'t equip)'],['未入手','Not owned'],['装備する','Equip'],['装備中(タップで標準に戻す)','Equipped (tap to unequip)'],['装備中','Equipped'],['▶ エフェクトを試す','▶ Try effect'],['ガチャで入手すると詳細が見られます','Pull it from the gacha to see details'],
 ['スタンプ','Stamps'],['💬 ルームチャット','💬 Room chat'],['メッセージ','Message'],['送信','Send'],['まだメッセージはありません','No messages yet'],['あなた:','You:'],['相手:','Friend:'],
 ['♻️ ダブりをチケットに交換','♻️ Exchange duplicates for tickets'],['(1個あたり)','(per item)'],['1個は必ず手元に残ります','One copy is always kept'],['ダブり ×','Duplicates ×'],['1個交換 ','Exchange 1 '],['全部 ','All '],['ダブりを全部交換','Exchange all duplicates'],['もう一度タップで確定','Tap again to confirm'],['ダブりはありません','No duplicates']];
+/* ---- シーズン報酬専用キャラ(ガチャには出ない) ---- */
+[['cr0a','SS','🐆','疾風の覇王チーター','Gale Emperor Cheetah','ខ្លារខិនអធិរាជខ្យល់','シーズン0で1位になった者だけが持つ、風より速い覇王。','An emperor faster than the wind, owned only by the Season 0 champion.','អធិរាជលឿនជាងខ្យល់ សម្រាប់តែជើងឯករដូវកាល 0។','gale'],
+ ['cr0b','S','🦓','白黒の将軍ゼブラ','Zebra General','ឧត្តមសេនីយ៍សេះបង្កង់','シーズン0で2位・3位に入った者に贈られる、縞模様の将軍。','A striped general awarded to Season 0 runners-up.','ឧត្តមសេនីយ៍ឆ្នូតសម្រាប់លេខ 2 និង 3 រដូវកាល 0។','gen']
+].forEach(a=>{IT.push({id:a[0],k:'c',r:a[1],e:a[2],n:a[3],ne:a[4],d:a[6],de:a[7],lim:'rw',deco:a[9]});LIMKM.push([a[3],a[5]],[a[6],a[8]])});
+if(window.EC_CHAR_TEST){IT.forEach(i=>{if(i.k==='c'&&!G.inv[i.id])G.inv[i.id]=1});save()}
 IT.forEach(i=>EN.push([i.n,i.ne],[i.d,i.de]));KM_PAIRS.push(...LIMKM);KM_PAIRS.sort((a,b)=>b[0].length-a[0].length);
 EN_PAIRS.push(...EN);EN_PAIRS.sort((a,b)=>b[0].length-a[0].length);
 window.ECG={get G(){return G},oi,vis,FX,ELFX,RI,fx,TKI,go,award,renderGM,findMatch1:findMatch,items:()=>IT,grant:n=>{G.t+=Math.max(0,Math.floor(+n)||0);save();upd()},grantItem:(f=>(id,gid)=>f({t:'gitem',id},gid))(window.ecGrant)};renderGM();chatUI();upd();applyLang();
@@ -1344,6 +1374,7 @@ window.ECG={get G(){return G},oi,vis,FX,ELFX,RI,fx,TKI,go,award,renderGM,findMat
 .gbdg:empty{display:none}
 .bxg.done{opacity:.6}
 </style>
+<script>window.EC_TITLE_TEST=false; /* テスト用: true ですべての称号を所持 */</script>
 <script>
 /* アイテムボックス & 称号
    配布の追加方法: GIFTS に1件足す。until(日本時間)までにページを開いた人のボックスに届く。
@@ -1369,7 +1400,7 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const nowT=Date.now();let fresh=0;
 GIFTS.forEach(g=>{if(!g.closed&&!S.inbox[g.id]&&nowT<=g.until&&(!g.from||nowT>=g.from)){S.inbox[g.id]={t:nowT,c:0};fresh++}});save();
 const gid=id=>GIFTS.find(g=>g.id===id);
-window.getTitle=()=>S.eq&&((has(TITLES,S.eq)&&S.titles[S.eq])||(window.LV&&LV.owns(S.eq)))?S.eq:null;window.getEqRaw=()=>S.eq;window.setEqT=id=>{S.eq=id;save()};
+window.getTitle=()=>S.eq&&((has(TITLES,S.eq)&&(S.titles[S.eq]||window.EC_TITLE_TEST))||(window.LV&&LV.owns(S.eq)))?S.eq:null;window.getEqRaw=()=>S.eq;window.setEqT=id=>{S.eq=id;save()};
 /* 称号は画像で表示 */
 window.tb=id=>id&&has(TITLES,id)?'<img class="tti" alt="'+esc(TITLES[id].n)+'" style="aspect-ratio:'+(TITLES[id].ar||4.5)+'" src="'+TITLES[id].img+'">':'';
 const itemHtml=it=>it.t==='title'&&has(TITLES,it.id)?'🏅 称号:'+tb(it.id):it.t==='ticket'?'<i class="tki"></i> ガチャチケット ×'+(+it.n||0):it.t==='gitem'&&window.ecItemName&&ecItemName(it.id)?'🎁 '+esc(ecItemName(it.id)):'';
@@ -1398,9 +1429,9 @@ if(my)$('#n0').innerHTML=nmH(my,$('#n0').textContent);if(ot&&tb(ot))$('#n1').inn
 /* ---- 称号欄 ---- 新しい称号は TITLES に1行足すだけ */
 $('main').appendChild(Object.assign(document.createElement('div'),{id:'ttl',className:'card hide'}));
 $('.gbar').insertAdjacentHTML('beforeend','<button class="btn alt" id="gttl">🏅 称号</button>');
-function renderTtl(){const el=$('#ttl'),ids=Object.keys(TITLES),own=ids.filter(k=>S.titles[k]),cur=getTitle();
+function renderTtl(){const el=$('#ttl'),ids=Object.keys(TITLES),own=ids.filter(k=>S.titles[k]||window.EC_TITLE_TEST),cur=getTitle();
 el.innerHTML='<div class="row"><b style="font-size:20px">🏅 称号</b><span class="mut">所持 '+own.length+' / '+ids.length+'</span></div><div class="mut">選んだ称号が、ランキングや対戦中の名前に表示されます。</div><div class="tc" style="text-align:center"><div class="mut">現在の称号</div>'+(cur?tb(cur):'<div>称号なし</div>')+'</div>'
-+ids.map(k=>{const o=!!S.titles[k],t=TITLES[k];return '<div class="tc'+(S.eq===k?' tsel':'')+'"'+(o?'':' style="opacity:.5"')+'>'+(o?tb(k):'<div class="mut" style="text-align:center">？？？</div>')+(t.d?'<div class="stat" style="text-align:center">'+esc(t.d)+'</div>':'')+'<button class="btn '+(S.eq===k?'alt':'')+'" data-t="'+k+'"'+(o?'':' disabled')+'>'+(!o?'未入手':S.eq===k?'外す':'装備する')+'</button></div>'}).join('')
++ids.map(k=>{const o=!!(S.titles[k]||window.EC_TITLE_TEST),t=TITLES[k];return '<div class="tc'+(S.eq===k?' tsel':'')+'"'+(o?'':' style="opacity:.5"')+'>'+(o?tb(k):'<div class="mut" style="text-align:center">？？？</div>')+(t.d?'<div class="stat" style="text-align:center">'+esc(t.d)+'</div>':'')+'<button class="btn '+(S.eq===k?'alt':'')+'" data-t="'+k+'"'+(o?'':' disabled')+'>'+(!o?'未入手':S.eq===k?'外す':'装備する')+'</button></div>'}).join('')
 +(window.LV?LV.ttl():'')+'<button class="btn alt" id="tback">← ホームへ</button>';
 el.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{S.eq=S.eq===b.dataset.t?null:b.dataset.t;save();renderTtl();if(rec.w+rec.l>0&&window.saveRank)saveRank()});
 $('#tback').onclick=()=>show('start')}
@@ -1758,7 +1789,10 @@ const SP={
  uh1:T('虚空の支配者','Ruler of the Void','អ្នកគ្រប់គ្រងភាពទទេ','通常ガチャのSSを全種類そろえる','Collect every SS item from the standard gacha','ប្រមូល SS ទាំងអស់ពីកាឆាធម្មតា',5,'hidden',()=>allSS(),true),
  uh2:T('終焉を超えし者','Beyond the End','អ្នកហួសទីបញ្ចប់','Lv.99に到達し、通算1000勝する','Reach Lv.99 and win 1000 battles','ដល់កម្រិត 99 និងឈ្នះ ១០០០ដង',5,'hidden',()=>lvOf(S.x).l>=MAXL&&S.wn>=1000,true),
  uh3:T('ミリ残りの奇跡','Miracle at 1 HP','អព្ភូតហេតុ HP 1','HP1で生き残って勝利する','Win while surviving with just 1 HP','ឈ្នះដោយនៅសល់ HP 1',4,'hidden',()=>S.mh>=1,true)};
-const CATS=[['rank','🎖 階級','🎖 Rank','🎖 ឋានន្តរស័ក្ដិ'],['battle','⚔️ 戦闘','⚔️ Battle','⚔️ ការប្រយុទ្ធ'],['gacha','🎰 ガチャ','🎰 Gacha','🎰 កាឆា'],['login','📅 ログイン','📅 Login','📅 ចូលប្រចាំថ្ងៃ'],['misc','✨ その他','✨ Other','✨ ផ្សេងៗ'],['hidden','🕳 隠し称号','🕳 Hidden','🕳 ងារលាក់']];
+/* シーズン報酬の称号 */
+for(let n=0;n<=ECS.cur();n++)[[1,'覇王','Overlord','អធិរាជ','1位','1st place','លេខ 1',5],[2,'英雄','Hero','វីរបុរស','2〜3位','2nd-3rd','លេខ 2-3',4],[3,'精鋭','Elite','ឥស្សរជន','4〜10位','4th-10th','លេខ 4-10',3],[4,'挑戦者','Challenger','អ្នកប្រកួត','11〜30位','11th-30th','លេខ 11-30',2]].forEach(x=>{const id='sr'+n+'_'+x[0];
+ SP[id]=T('S'+n+' '+x[1],'S'+n+' '+x[2],'S'+n+' '+x[3],'シーズン'+n+'ランキング '+x[4],'Season '+n+' ranking: '+x[5],'ចំណាត់ថ្នាក់រដូវកាល '+n+' '+x[6],x[7],'season',()=>{try{return !!(JSON.parse(localStorage.getItem('ecsrw')||'{}').t||{})[id]}catch(e){return false}})});
+const CATS=[['rank','🎖 階級','🎖 Rank','🎖 ឋានន្តរស័ក្ដិ'],['battle','⚔️ 戦闘','⚔️ Battle','⚔️ ការប្រយុទ្ធ'],['gacha','🎰 ガチャ','🎰 Gacha','🎰 កាឆា'],['login','📅 ログイン','📅 Login','📅 ចូលប្រចាំថ្ងៃ'],['misc','✨ その他','✨ Other','✨ ផ្សេងៗ'],['season','🏆 シーズン','🏆 Season','🏆 រដូវកាល'],['hidden','🕳 隠し称号','🕳 Hidden','🕳 ងារលាក់']];
 const SPK=Object.keys(SP);
 function tinfo(id){if(typeof id!=='string')return null;const m=/^u([123]):(.+)$/.exec(id);if(m&&CH.includes(m[2]))return{id,tier:+m[1],e:m[2]};if(Object.prototype.hasOwnProperty.call(SP,id))return{id,tier:0,sp:SP[id]};return null}
 function tname(id){const t=tinfo(id);if(!t)return'';if(t.sp)return LL(t.sp.ja,t.sp.en,t.sp.km);
@@ -1766,7 +1800,7 @@ function tname(id){const t=tinfo(id);if(!t)return'';if(t.sp)return LL(t.sp.ja,t.
  return LL(['駆け出しの'+n,n+'の使い手',n+'を極めし者'][i],['Novice '+en,en+' Adept',en+' Master'][i],['អ្នកចាប់ផ្ដើម'+en,'អ្នកជំនាញ'+en,'ម្ចាស់'+en][i])}
 function treq(id){const t=tinfo(id);if(!t)return'';if(t.sp)return LL(t.sp.rj,t.sp.re,t.sp.rk);const n=TIERS[t.tier-1];return LL(nm(t.e)+'を'+n+'回使う',tr(nm(t.e))+' used '+n+'+ times','ប្រើ '+tr(nm(t.e))+' '+n+' ដងឡើងទៅ')}
 let ALLT=false;if(TEST){try{ALLT=localStorage.getItem(KEY+'_all')!=='0'}catch(e){ALLT=true}}
-function owns(id){const t=tinfo(id);if(!t)return false;if(ALLT)return true;if(t.sp)return t.sp.own();return(S.u[t.e]||0)>=TIERS[t.tier-1]}
+function owns(id){const t=tinfo(id);if(!t)return false;if(ALLT||window.EC_TITLE_TEST)return true;if(t.sp)return t.sp.own();return(S.u[t.e]||0)>=TIERS[t.tier-1]}
 const allIds=()=>{const a=[];CH.forEach(e=>[1,2,3].forEach(t=>a.push('u'+t+':'+e)));return a.concat(SPK)};
 const ownedIds=()=>allIds().filter(owns);
 const tcls=id=>{const t=tinfo(id);return t&&t.sp?'ts q'+(t.sp.q||1)+(t.sp.hid?' hd':''):'t'+(t?t.tier:1)};
@@ -2334,7 +2368,7 @@ if(!ok(clean(NICK))){NICK='';openName(true)}else{NICK=clean(NICK)}
 (()=>{
 const LINK_BONUS=100; // 初めてGoogleで引き継いだ人への特典チケット枚数
 const AUTH_DOMAIN='emoji1clash.firebaseapp.com';
-const ACC='ecgacct',SYNC='ecsync',SKIP=['ecid','ecrt','ecgacct','ecsync','eclv_test'];
+const ACC='ecgacct',SYNC='ecsync',SKIP=['ecid','ecrt','ecgacct','ecsync','eclv_test','ecgacha_test','ecgacha_test_old'];
 const $$=s=>document.querySelector(s);
 const L=(j,e,k)=>LL(j,e,k);
 const acct=()=>{try{return JSON.parse(localStorage.getItem(ACC)||'null')}catch(e){return null}};
@@ -2380,6 +2414,89 @@ async function logout(){if(!confirm(L('ログアウトしますか？(データ�
  let last=snap();setInterval(()=>{const s=snap();if(s!==last){last=s;push(false)}},60000);
  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){const s=snap();if(s!==last){last=s;push(false)}}})})();
 render();const lb=$$('#lang');if(lb)lb.addEventListener('click',()=>setTimeout(render,0));
+})();
+</script>
+<script>
+/* ===== 🏆 シーズンランキング報酬 =====
+   ・シーズン終了と同時にルールで成績が固まり、各プレイヤーがゲームを開いたとき自動で報酬を受け取れる
+   ・報酬の内容は SR_TIERS を書き換えるだけで変更できます(キャラは SR_CHARS) */
+(()=>{
+const SR_BY='rate',SR_MIN=20; // 順位の決め方: 'rate'=勝率(SR_MIN戦以上) / 'wins'=勝利数
+const SR_TIERS=[ // from〜to位の報酬。t=称号の段階(1〜4)、c=キャラ(SR_CHARSの番号)
+ {from:1,to:1,tk:1000,c:1,t:1},
+ {from:2,to:3,tk:500,c:2,t:2},
+ {from:4,to:10,tk:300,t:3},
+ {from:11,to:30,tk:100,t:4}];
+const SR_JOIN=20; // 参加賞(そのシーズンに1戦以上)
+const SR_CHARS={0:{1:'cr0a',2:'cr0b'}}; // シーズンごとの報酬キャラ
+const $$=s=>document.querySelector(s),KEY='ecsrw';
+let S={};try{S=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
+S.done=Array.isArray(S.done)?S.done:[];S.t=S.t||{};S.ids=Array.isArray(S.ids)?S.ids:[];
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const tierOf=r=>r>0?SR_TIERS.find(x=>r>=x.from&&r<=x.to)||null:null;
+const TN=[null,['覇王','Overlord','អធិរាជ'],['英雄','Hero','វីរបុរស'],['精鋭','Elite','ឥស្សរជន'],['挑戦者','Challenger','អ្នកប្រកួត']];
+const itName=id=>{const i=(window.ECG?ECG.items():[]).find(x=>x.id===id);return i?i.e+' '+LL(i.n,i.ne,i.n):id};
+const rwHtml=(sn,r)=>{const t=tierOf(r),a=[];
+ if(t){const c=t.c&&(SR_CHARS[sn]||{})[t.c];if(c)a.push('🎁 '+LL('限定キャラ','Exclusive character','តួអង្គពិសេស')+': '+esc(itName(c)));
+  a.push('🏅 '+LL('称号','Title','ងារ')+': '+(window.tb?tb('sr'+sn+'_'+t.t):''));a.push('🎟 '+LL('ガチャチケット','Gacha tickets','សំបុត្រកាឆា')+' ×'+t.tk)}
+ else a.push('🎟 '+LL('参加賞 ガチャチケット','Participation: gacha tickets','រង្វាន់ចូលរួម៖ សំបុត្រកាឆា')+' ×'+SR_JOIN);
+ return a.map(x=>'<div style="margin:6px 0">'+x+'</div>').join('')};
+function grant(sn,r){const t=tierOf(r),g='sr'+sn;
+ if(t){ECG.grant(t.tk);const c=t.c&&(SR_CHARS[sn]||{})[t.c];if(c)ECG.grantItem(c,g);const id='sr'+sn+'_'+t.t;S.t[id]=1;if(window.getEqRaw&&!getEqRaw()&&window.setEqT)setEqT(id)}
+ else ECG.grant(SR_JOIN)}
+function popup(sn,r,total,preview){
+ const ov=document.createElement('div');ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100001;display:flex;align-items:center;justify-content:center;padding:16px';
+ ov.innerHTML='<div class="card" style="max-width:420px;width:100%;text-align:center">'+(preview?'<div class="mut">👀 '+LL('プレビュー(受け取りはできません)','Preview (nothing is granted)','មើលជាមុន')+'</div>':'')
+  +'<b style="font-size:22px">🏆 '+LL('シーズン','Season ','រដូវកាល ')+sn+' '+LL('結果発表','Results','លទ្ធផល')+'</b>'
+  +'<div style="font-size:40px;margin:10px 0">'+(r>0?(["🥇","🥈","🥉"][r-1]||'')+' '+r+LL('位',' place',' ចំណាត់ថ្នាក់'):'🎖')+'</div>'
+  +'<div class="mut">'+(r>0?LL('参加者 '+total+'人中',total+' players',total+' នាក់'):LL('参加ありがとう!','Thanks for playing!','អរគុណសម្រាប់ការចូលរួម!'))+'</div>'
+  +'<div class="tc">'+rwHtml(sn,r)+'</div><button class="btn" id="srok">'+(preview?LL('閉じる','Close','បិទ'):LL('受け取る','Claim','ទទួល'))+'</button></div>';
+ document.body.appendChild(ov);
+ $$('#srok').onclick=()=>{if(!preview){grant(sn,r);if(!S.done.includes(sn))S.done.push(sn);save();try{banner(LL('🏆 報酬を受け取りました!','🏆 Reward claimed!','🏆 បានទទួលរង្វាន់!'));confetti(200)}catch(e){}}ov.remove()}}
+// ---- 順位の計算(シーズン終了後はルールで成績が固まるので、全員が同じ結果になる) ----
+function ranks(d){let a=Object.entries(d||{}).map(([id,v])=>({id,n:String(v.n||'名無し').slice(0,10),wins:Math.max(0,+v.wins||0),losses:Math.max(0,+v.losses||0),best:+v.best||0,t:+v.t||0})).filter(x=>x.wins+x.losses>0);
+ const r={};a.forEach(x=>r[x.id]=0);
+ const gm=x=>x.wins+x.losses,pick=(x,y)=>gm(x)!==gm(y)?(gm(x)>gm(y)?x:y):x.t!==y.t?(x.t>y.t?x:y):(x.id<y.id?x:y);
+ const by={},solo=[];a.forEach(x=>{if(x.n==='名無し'){solo.push(x);return}const k=x.n.toLowerCase();by[k]=by[k]?pick(by[k],x):x});
+ let L=Object.values(by).concat(solo);L.forEach(x=>{x.g=gm(x);x.rt=x.wins/x.g});
+ const tie=(x,y)=>x.id<y.id?-1:1;
+ if(SR_BY==='rate')L=L.filter(x=>x.g>=SR_MIN).sort((x,y)=>y.rt-x.rt||y.wins-x.wins||y.best-x.best||tie(x,y));
+ else L.sort((x,y)=>y.wins-x.wins||x.losses-y.losses||y.best-x.best||tie(x,y));
+ L.forEach((x,i)=>r[x.id]=i+1);return{r,n:a.length,L}}
+// ---- 起動時: 終わったシーズンの報酬を自動で配る ----
+(async()=>{if(!FIREBASE_URL)return;await FBREADY;if(PID&&!S.ids.includes(PID)){S.ids.push(PID);S.ids=S.ids.slice(-10);save()}
+ try{if(rec.w+rec.l>0&&window.saveRank)saveRank()}catch(e){} // 今シーズンの成績をシーズン別の記録にも残す
+ for(let sn=0;sn<recSn;sn++){if(S.done.includes(sn))continue;
+  if(Date.now()<ECS.start(sn+1)+30*60*1000)continue; // 終了直後の30分は待つ(時計のずれ対策)
+  let d=null;try{d=await db('GET','ps/'+sn)}catch(e){continue}
+  const f=ranks(d);let r=-1;S.ids.forEach(id=>{const v=f.r[id];if(v!==undefined&&(r<0||(v>0&&(r===0||v<r))))r=v});
+  if(r<0){S.done.push(sn);save();continue} // 参加していない
+  popup(sn,r,f.n,false);return}})();
+// ---- 確認用画面(URLの最後に #ecadmin): 報酬のプレビューと今の順位 ----
+async function admin(){const ov=document.createElement('div');ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:100000;overflow:auto;padding:16px';
+ let h='<div class="card" style="max-width:480px;margin:0 auto"><b style="font-size:20px">🛠 '+LL('シーズン報酬 確認','Season rewards check','ពិនិត្យ')+'</b>'
+  +'<div class="mut">'+LL('報酬はシーズン終了の30分後から、各プレイヤーがゲームを開いたときに自動で配られます。','Rewards are sent automatically from 30 minutes after the season ends, when each player opens the game.','')+'</div>'
+  +'<div class="tc"><b>👀 '+LL('報酬プレビュー','Reward preview','')+'</b>'+[1,2,5,20,0].map(r=>'<button class="btn alt" data-pv="'+r+'">'+(r?r+LL('位',' place',''):LL('参加賞','Participation',''))+'</button>').join('')+'</div>';
+ try{const f=ranks(await db('GET','ps/'+recSn));h+='<div class="tc"><b>'+LL('今シーズンの暫定順位','Current standings','')+'</b> ('+f.n+LL('人','','')+')'+f.L.slice(0,10).map((x,i)=>'<div>'+(i+1)+'. '+esc(x.n)+' <span class="mut">'+x.wins+'-'+x.losses+'</span></div>').join('')+'</div>'}catch(e){}
+ ov.innerHTML=h+'<button class="btn alt" id="adx">'+LL('閉じる','Close','បិទ')+'</button></div>';document.body.appendChild(ov);
+ ov.querySelector('#adx').onclick=()=>{ov.remove();history.replaceState(null,'',location.pathname+location.search)};
+ ov.querySelectorAll('[data-pv]').forEach(b=>b.onclick=()=>popup(recSn,+b.dataset.pv,57,true))}
+// ---- ランキング報酬の一覧 ----
+window.ecSRView=function(){const sn=recSn,end=new Date(ECS.start(sn+1)-1),ed=end.toLocaleString('ja-JP',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+ const ov=document.createElement('div');ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100000;overflow:auto;padding:16px';
+ const row=(lbl,t,tk)=>{const c=t&&t.c&&(SR_CHARS[sn]||{})[t.c];const it=c&&(ECG.items().find(x=>x.id===c));
+  return '<div class="tc"><b style="font-size:18px">'+lbl+'</b>'
+   +(it?'<div style="margin:6px 0">🎁 <span style="font-size:34px;margin:0 8px">'+(ECG.vis?ECG.vis(it):it.e)+'</span> '+esc(LL(it.n,it.ne,it.n))+' <b>['+it.r+']</b><div class="stat">'+esc(LL(it.d,it.de,it.d))+'</div></div>':'')
+   +(t?'<div style="margin:6px 0">🏅 '+tb('sr'+sn+'_'+t.t)+'</div>':'')
+   +'<div>🎟 '+LL('ガチャチケット','Gacha tickets','សំបុត្រកាឆា')+' ×'+tk+'</div></div>'};
+ ov.innerHTML='<div class="card" style="max-width:460px;margin:0 auto"><b style="font-size:20px">🎁 '+LL('シーズン','Season ','រដូវកាល ')+sn+' '+LL('ランキング報酬','Ranking rewards','រង្វាន់ចំណាត់ថ្នាក់')+'</b>'
+  +'<div class="mut">'+LL('締め切り: ','Ends: ','បញ្ចប់: ')+ed+LL('(日本時間)',' (JST)',' (JST)')+'<br>'+(SR_BY==='rate'?LL('順位は勝率で決まります('+SR_MIN+'戦以上した人のみ)','Ranked by win rate ('+SR_MIN+'+ battles)','តាមអត្រាឈ្នះ ('+SR_MIN+'+)'):LL('順位は勝利数で決まります','Ranked by wins','តាមចំនួនឈ្នះ'))+'<br>'+LL('シーズン終了後、ゲームを開くと受け取れます。','Claim it by opening the game after the season ends.','ទទួលបានក្រោយរដូវកាលបញ្ចប់។')+'</div>'
+  +SR_TIERS.map(t=>{const lbl=(t.from===t.to?(["🥇","🥈","🥉"][t.from-1]||'')+' '+t.from:t.from+'〜'+t.to)+LL('位',' place','');return row(lbl,t,t.tk)}).join('')
+  +row('🎖 '+LL('参加賞(1戦以上)','Participation (1+ battle)','រង្វាន់ចូលរួម'),null,SR_JOIN)
+  +'<button class="btn alt" id="srvx">'+LL('← 戻る','← Back','← ត្រឡប់')+'</button></div>';
+ document.body.appendChild(ov);ov.querySelector('#srvx').onclick=()=>ov.remove()};
+if(location.hash==='#ecadmin')setTimeout(admin,1500);
+addEventListener('hashchange',()=>{if(location.hash==='#ecadmin')admin()});
 })();
 </script>
 </body>
