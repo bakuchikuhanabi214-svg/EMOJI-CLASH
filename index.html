@@ -467,6 +467,29 @@ html:root[data-ui="neon"]{--bg:#04050f;--card:#0a0d24;--card2:#141a44;--tx:#e8f4
 .ocr-gen .ox{z-index:1;left:auto;right:-.18em;top:-.12em;bottom:auto;font-size:.55em;opacity:.9;transform:rotate(15deg)}
 @keyframes ocrsp{to{transform:rotate(360deg)}}@keyframes ocrtw{from{opacity:.15}to{opacity:1}}
 @keyframes ocrbob{50%{transform:translate(-50%,-.06em) rotate(-4deg)}}@keyframes ocrpl{50%{transform:scale(1.12);opacity:.7}}
+
+/* ---- SS演出(復活・カットイン・フリーズ・パチンコ風) ---- */
+.fxw{position:relative;width:100%;min-height:340px;display:flex;align-items:center;justify-content:center;flex-direction:column;overflow:hidden}
+.fxgray{filter:grayscale(1) brightness(.6);transition:filter .4s}
+.fxmsg{font-size:30px;font-weight:900;color:#aaa;letter-spacing:4px;margin-top:10px}
+.fxbig{font-size:54px;font-weight:900;color:#fff;text-shadow:0 0 18px #ff3df2,0 0 36px #ffd23f,0 0 4px #000;animation:gpop .5s}
+.fxcrack{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(115deg,transparent 0 22px,#fff8 23px,transparent 25px),repeating-linear-gradient(25deg,transparent 0 31px,#fff6 32px,transparent 34px);opacity:0}
+.fxbeat{animation:fxbeat .5s ease-out}
+@keyframes fxbeat{0%{transform:scale(1)}30%{transform:scale(1.25)}100%{transform:scale(1)}}
+.fxrb{animation:fxrb 1s linear infinite}@keyframes fxrb{to{filter:hue-rotate(360deg)}}
+.fxband{position:absolute;left:-10%;right:-10%;top:50%;height:150px;margin-top:-75px;transform:skewY(-8deg);background:linear-gradient(90deg,#ff2d6f,#ffb02d,#ff2d6f);box-shadow:0 0 30px #ff2d6f;overflow:hidden}
+.fxband i{position:absolute;height:3px;background:#fff9;left:100%}
+.fxrun{position:absolute;top:50%;font-size:110px;line-height:1;margin-top:-60px;filter:drop-shadow(0 0 10px #fff)}
+.fxtxt{position:absolute;bottom:14%;width:100%;text-align:center;font-size:44px;font-weight:900;color:#fff;-webkit-text-stroke:2px #c0003a;text-shadow:0 4px 0 #7a0024}
+.fxblack{position:fixed;inset:0;background:#000;z-index:80;display:flex;align-items:center;justify-content:center}
+.fxglitch{font-size:56px;font-weight:900;color:#fff;letter-spacing:6px;text-shadow:3px 0 #ff2d6f,-3px 0 #2df2ff}
+.fxslot{display:flex;gap:10px;padding:16px;border-radius:18px;background:linear-gradient(#3a2a00,#1a1000);border:4px solid #ffd23f;box-shadow:0 0 30px #ffd23f88}
+.fxreel{width:74px;height:96px;overflow:hidden;border-radius:10px;background:#fff;box-shadow:inset 0 6px 10px #0006,inset 0 -6px 10px #0006;position:relative}
+.fxreel div{position:absolute;left:0;right:0;text-align:center;font-size:64px;font-weight:900;line-height:96px}
+.fxs7{color:#e8002d;text-shadow:2px 2px 0 #ffd23f}
+.fxreach{margin-top:14px;font-size:38px;font-weight:900;color:#ffd23f;text-shadow:0 0 14px #ff2d6f;animation:fxbeat .6s infinite}
+.fxtest{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.fxtest .btn{flex:1 1 30%;margin:0;padding:8px 4px;font-size:13px}
+.gcr.fxodd{filter:drop-shadow(0 0 22px #fff);animation:gpulse 1s infinite,fxrb .9s linear infinite}#gskip.fxodd{background:linear-gradient(90deg,#ff2d6f,#ffd23f,#2dff8a,#2df2ff,#7a2dff);color:#fff;animation:fxrb 1.2s linear infinite}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -1175,25 +1198,75 @@ function converge(col,n){const st=$('#gst');for(let i=0;i<n;i++){const s=documen
 s.animate([{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`,opacity:0},{opacity:1,offset:.3},{transform:'translate(0,0)',opacity:0}],{duration:600+Math.random()*500,delay:Math.random()*400}).onfinish=()=>s.remove()}}
 function pull(n){if(pulling)return;if(gtab==='l'&&!limOn()){$('#gwarn').textContent=LL('このガチャは終了しました','This banner has ended','កាឆានេះបានបញ្ចប់');vib(80);return}const cost=n===1?(CFG.cost1*lmul()):(CFG.cost10*lmul());
 const useV=gtab==='l'&&n===1&&window.LV&&LV.vc()>0;
-if(!useV&&G.t<cost){$('#gwarn').textContent='チケットが足りません';vib(80);return}
-pulling=true;if(useV)LV.useVc();else G.t-=cost;const res=[];
+const FREE=!!window.EC_GACHA_FREE;if(!FREE&&!useV&&G.t<cost){$('#gwarn').textContent='チケットが足りません';vib(80);return}
+pulling=true;if(FREE){}else if(useV)LV.useVc();else G.t-=cost;const res=[];
 for(let i=0;i<n;i++){const it=gtab==='l'?drawL():draw(),had=G.inv[it.id]||0;G.inv[it.id]=had+1;res.push({it,isNew:!had,n:had+1})}
 G.pulls=(G.pulls||0)+n;save();upd();if(window.LV&&LV.onPull)LV.onPull(res);if(sndOn)ctx();run(res)}
+
+/* ---- SS確定時の特別演出(ランダムで1つ) ---- */
+/* 出やすさ: [演出, ピンク(SSと分かる光)のとき, 金・青(ハズレっぽい光)のとき] */
+const SSFX=[['rev',1,5],['frz',1,5],['cut',3,1],['pac',3,1],['none',2,0]];
+function pickFx(fake){if(window.EC_FX_FORCE){const f=window.EC_FX_FORCE;window.EC_FX_FORCE=null;return f==='none'&&fake?'rev':f}const j=fake?2:1;let t=SSFX.reduce((a,b)=>a+b[j],0),x=Math.random()*t;for(const e of SSFX){if((x-=e[j])<0)return e[0]}return fake?'rev':'none'}
+const beep=(f,d,ty,v,at)=>{try{if(typeof AC!=='undefined'&&AC&&sndOn)tn(f,now()+(at||0),d,ty||'square',v||.08)}catch(e){}};
+async function ssFx(st,res,fake){const k=pickFx(fake);if(k==='none'||skip)return;
+ const ssIt=(res.find(x=>x.it.r==='SS')||res[0]).it;
+ if(k==='rev'){/* 復活: 一度ハズレに見せてから復活 */
+  st.innerHTML='<div class="fxw"><div class="gcr" style="--c:#888">💎</div><div class="fxmsg">…ざんねん</div><div class="fxcrack"></div></div>';const w=st.firstChild,cr=w.firstChild;
+  cr.style.animation='none';w.classList.add('fxgray');beep(220,.4,'sawtooth',.06);beep(160,.6,'sawtooth',.06,.3);await wait(1500);if(skip)return;
+  w.querySelector('.fxmsg').textContent='';for(let i=0;i<3&&!skip;i++){cr.classList.remove('fxbeat');void cr.offsetWidth;cr.classList.add('fxbeat');beep(70,.15,'sine',.25);beep(60,.15,'sine',.2,.15);vib([40,80,40]);await wait(650)}
+  if(skip)return;w.classList.remove('fxgray');cr.classList.add('fxrb');w.querySelector('.fxcrack').animate([{opacity:0},{opacity:1}],{duration:400,fill:'forwards'});gfl('#fff');
+  [523,659,784,1047].forEach((f,i)=>beep(f,.25,'square',.08,i*.08));w.querySelector('.fxmsg').outerHTML='<div class="fxbig">復活!!</div>';await wait(1300);return}
+ if(k==='cut'){/* カットイン: キャラが横切る */
+  st.innerHTML='<div class="fxw"><div class="fxband"></div><div class="fxrun">'+vis(ssIt.k==='c'?ssIt:(()=>{const ch=IT.filter(i=>i.k==='c'&&i.r==='SS');return ch[Math.random()*ch.length|0]})())+'</div><div class="fxtxt">激アツ!!</div></div>';const w=st.firstChild,band=w.querySelector('.fxband'),run=w.querySelector('.fxrun'),tx=w.querySelector('.fxtxt');
+  for(let i=0;i<14;i++){const l=document.createElement('i');l.style.top=(Math.random()*100)+'%';l.style.width=(40+Math.random()*120)+'px';band.appendChild(l);l.animate([{left:'100%'},{left:'-30%'}],{duration:260+Math.random()*200,iterations:Infinity,delay:Math.random()*200})}
+  band.animate([{transform:'skewY(-8deg) scaleY(0)'},{transform:'skewY(-8deg) scaleY(1)'}],{duration:220,fill:'forwards'});tx.style.opacity=0;
+  for(let i=0;i<6;i++)beep(900-i*90,.05,'square',.05,i*.05);
+  await run.animate([{left:'110%',transform:'scaleX(1)'},{left:'38%',offset:.45},{left:'34%',offset:.6},{left:'-40%'}],{duration:1500,easing:'ease-in-out',fill:'forwards'}).finished.catch(()=>{});
+  if(skip)return;tx.style.opacity=1;tx.animate([{transform:'scale(2)',opacity:0},{transform:'scale(1)',opacity:1}],{duration:300});beep(1319,.3,'square',.1);vib([60,40,60]);await wait(900);return}
+ if(k==='frz'){/* フリーズ: 「ぷちゅん」で真っ暗 → 無音 → キュインキュイン */
+  try{music(null)}catch(e){}const bl=document.createElement('div');bl.className='fxblack';document.body.appendChild(bl);
+  try{if(typeof AC!=='undefined'&&AC&&sndOn){const t=now();tn(1800,t,.05,'square',.22,90);tn(900,t,.07,'sine',.2,40);nz(t,.04,.25,3000)}}catch(e){}vib(40);
+  await wait(1700);if(skip){bl.remove();return}
+  bl.innerHTML='<div class="fxglitch" style="opacity:0">FREEZE</div>';const tx=bl.firstChild;
+  const kyuin=(i)=>{try{if(typeof AC!=='undefined'&&AC&&sndOn){const t=now(),b=600+i*140;tn(b,t,.22,'square',.07,b*4.5);tn(b*1.5,t,.22,'sine',.06,b*6);tn(b*2,t+.02,.2,'triangle',.04,b*8)}}catch(e){}};
+  const C=['#ff2d6f','#ffd23f','#2df2ff','#7a2dff','#2dff8a','#ffffff'];
+  for(let i=0;i<7&&!skip;i++){kyuin(i);bl.style.boxShadow='inset 0 0 '+(40+i*18)+'px '+C[i%C.length];tx.style.opacity=i>1?1:0;
+   tx.style.transform='translate('+((Math.random()-.5)*14)+'px,'+((Math.random()-.5)*8)+'px) scale('+(1+i*.05)+')';tx.style.color=C[(i+2)%C.length];vib(30);await wait(i<3?420:280)}
+  if(skip){bl.remove();return}
+  try{if(typeof AC!=='undefined'&&AC&&sndOn){const t=now();tn(400,t,.9,'square',.09,3600);tn(600,t,.9,'sine',.08,5200)}}catch(e){}
+  await wait(700);bl.animate([{background:'#000'},{background:'#fff'},{background:'#fff0'}],{duration:700}).onfinish=()=>bl.remove();
+  [784,988,1175,1568,2093].forEach((f,i)=>beep(f,.3,'square',.09,i*.06));vib([100,50,200]);await wait(600);return}
+ if(k==='pac'){/* パチンコ風: 7がそろう */
+  const SY=['7','🍒','🔔','⭐','🍀','💎'],cls=s=>s==='7'?' class="fxs7"':'';
+  st.innerHTML='<div class="fxw"><div class="fxslot">'+[0,1,2].map(()=>'<div class="fxreel"><div></div></div>').join('')+'</div><div class="fxreach" style="visibility:hidden">リーチ!</div></div>';
+  const reels=[...st.querySelectorAll('.fxreel div')],rc=st.querySelector('.fxreach');const spin=[true,true,true];
+  const tick=async i=>{let n=0;while(spin[i]){reels[i].innerHTML='<span'+cls(SY[n%SY.length])+'>'+SY[n%SY.length]+'</span>';n++;if(i===0)beep(600+(n%2)*80,.03,'square',.03);await wait(i===2&&spin.reach?140:60)}};
+  [0,1,2].forEach(i=>tick(i));
+  const stop=async(i)=>{spin[i]=false;await wait(70);reels[i].innerHTML='<span class="fxs7">7</span>';reels[i].animate([{transform:'translateY(-20px)'},{transform:'none'}],{duration:180});beep(330,.12,'square',.1)};
+  await wait(900);if(skip){spin.fill(false);return}await stop(0);await wait(500);await stop(1);
+  rc.style.visibility='visible';spin.reach=true;beep(880,.2,'square',.08);beep(1175,.3,'square',.08,.2);await wait(2200);if(skip){spin.fill(false);return}
+  /* 最後のリールはわざと一度ズレてから7で止まる */
+  spin[2]=false;await wait(150);reels[2].innerHTML='<span>🍒</span>';beep(200,.2,'sawtooth',.06);await wait(700);if(skip)return;
+  reels[2].innerHTML='<span class="fxs7">7</span>';reels[2].animate([{transform:'translateY(-96px)'},{transform:'none'}],{duration:220});
+  rc.textContent='大当たり!!';rc.style.color='#fff';gfl('#ffd23f');[523,659,784,1047,1319,1568].forEach((f,i)=>beep(f,.2,'square',.09,i*.07));vib([60,30,60,30,160]);await wait(1300);return}}
 async function run(res){const st=$('#gst'),ov=$('#gov'),best=Math.max(...res.map(x=>RI(x.it.r))),col=RC[RAR[best]];
-skip=false;ov.classList.remove('hide');ov.classList.toggle('ssbg',best===4);$('#gskip').classList.remove('hide');$('#gact').innerHTML='';
-st.innerHTML=`<div class="gcr" style="--c:${col}"><i></i>💎</div>`;const cr=st.firstChild;sfx('charge');vib(30);
+skip=false;ov.classList.remove('hide');ov.classList.remove('ssbg');$('#gskip').classList.remove('hide');$('#gact').innerHTML='';
+let fake=false,dcol=col;if(best===4){const fc=window.EC_COL_FORCE||'';window.EC_COL_FORCE='';fake=fc?fc!=='ss':Math.random()<.5;if(fake)dcol=fc==='blue'?RC.B:fc==='gold'?RC.S:(Math.random()<.5?RC.S:RC.B)}
+st.innerHTML=`<div class="gcr" style="--c:${dcol}"><i></i>💎</div>`;const cr=st.firstChild;
+const odd=best===4&&(window.EC_ODD_FORCE||Math.random()<.35);window.EC_ODD_FORCE=false;if(odd){cr.classList.add('fxodd');$('#gskip').classList.add('fxodd')}else $('#gskip').classList.remove('fxodd');sfx('charge');vib(30);
 await wait(900);
-if(!skip){cr.classList.add('chg');converge(col,30);vib([40,30,40,30,80]);await wait(1100)}
+if(!skip){cr.classList.add('chg');converge(dcol,30);vib([40,30,40,30,80]);await wait(1100)}
+if(best===4&&!skip)await ssFx(st,res,fake);if(best===4)ov.classList.add('ssbg');
 if(!skip){gfl(col==='#9a95c4'?'#fff':col);sfx('burst',best);if(best>=3){gshake();vib([60,40,140])}if(best===4)confetti(220);await wait(450)}
 if(best===4&&!skip){st.innerHTML='<div class="gss">★SS★<small>SUPER RARE</small></div>';await wait(1200)}
 if(res.length===1)await reveal1(res[0]);else await reveal10(res);
-$('#gskip').classList.add('hide');
+$('#gskip').classList.add('hide');$('#gskip').classList.remove('fxodd');
 const c1=G.t>=(CFG.cost1*lmul()),c10=G.t>=(CFG.cost10*lmul());
 $('#gact').innerHTML=`<button class="btn" id="gx1" ${c1?'':'style="filter:grayscale(1)"'}>もう1連(${TKI}×${(CFG.cost1*lmul())})</button><button class="btn" id="gx10" ${c10?'':'style="filter:grayscale(1)"'}>もう10連(${TKI}×${(CFG.cost10*lmul())})</button><button class="btn alt" id="gxc">📦 装備する(コレクション)</button><button class="btn alt" id="gxx">閉じる</button><div class="gwarn" id="gxw" style="text-align:center"></div>`;
 const close=()=>{ov.classList.add('hide');pulling=false;upd()};
 $('#gxx').onclick=close;$('#gxc').onclick=()=>{close();go('coll');renderColl()};
-$('#gx1').onclick=()=>{if(G.t<(CFG.cost1*lmul()))return $('#gxw').textContent='チケットが足りません';close();pull(1)};
-$('#gx10').onclick=()=>{if(G.t<(CFG.cost10*lmul()))return $('#gxw').textContent='チケットが足りません';close();pull(10)}}
+$('#gx1').onclick=()=>{if(!window.EC_GACHA_FREE&&G.t<(CFG.cost1*lmul()))return $('#gxw').textContent='チケットが足りません';close();pull(1)};
+$('#gx10').onclick=()=>{if(!window.EC_GACHA_FREE&&G.t<(CFG.cost10*lmul()))return $('#gxw').textContent='チケットが足りません';close();pull(10)}}
 async function reveal1(x){const st=$('#gst'),r=x.it.r;
 st.innerHTML=`<div class="gcard1" style="--c:${RC[r]}"><div class="gtag">${r}${x.it.lim!==undefined?' 🌌S0':''}</div><div class="gem sil">${vis(x.it)}</div><div class="gnm">？？？</div><div class="gds">${KN[x.it.k]}</div></div>`;const cd=st.firstChild;
 await wait(800);cd.querySelector('.gem').classList.remove('sil');cd.classList.add('on');sfx('pop');
@@ -1360,6 +1433,19 @@ const EN=[['🎲 ランダムな人と対戦','🎲 Battle a random player'],['�
 if(window.EC_CHAR_TEST){IT.forEach(i=>{if(i.k==='c'&&!G.inv[i.id])G.inv[i.id]=1});save()}
 IT.forEach(i=>EN.push([i.n,i.ne],[i.d,i.de]));KM_PAIRS.push(...LIMKM);KM_PAIRS.sort((a,b)=>b[0].length-a[0].length);
 EN_PAIRS.push(...EN);EN_PAIRS.sort((a,b)=>b[0].length-a[0].length);
+
+/* ---- テスト用: 演出の確認ボタン(EC_FX_TEST が true のときだけ表示) ---- */
+function addFxTest(){if(!window.EC_FX_TEST)return;const gm=$('#gacha');if(!gm||$('#fxtest'))return;
+ const d=document.createElement('div');d.id='fxtest';d.className='tc';
+ d.innerHTML='<b>🧪 テスト: SS演出を確認</b><div class="mut">チケットは減りません。アイテムももらえません(見るだけ)。</div><div class="fxtest">'
+  +[['rev','💀 復活'],['cut','🏃 横切り'],['frz','🧊 フリーズ'],['pac','🎰 パチンコ'],['none','✨ 通常のSS'],['rnd','🎲 ランダム']].map(([k,n])=>'<button class="btn alt" data-fx="'+k+'">'+n+'</button>').join('')
+  +'</div><label class="mut"><input type="checkbox" id="fx10"> 10連で見る</label> <label class="mut"><input type="checkbox" id="fxodd"> 🌈 違和感(虹色ダイヤ)</label><div class="mut">最初の光: <select id="fxcol"><option value="">ランダム</option><option value="gold">金</option><option value="blue">青</option><option value="ss">ピンク(SS)</option></select></div>';
+ gm.insertBefore(d,gm.firstChild.nextSibling);
+ d.querySelectorAll('[data-fx]').forEach(b=>b.onclick=()=>{if(pulling)return;const f=b.dataset.fx;if(f!=='rnd')window.EC_FX_FORCE=f;
+  const ss=IT.filter(i=>i.r==='SS'),one=ss[Math.random()*ss.length|0],res=[{it:one,isNew:false,n:1}];
+  if($('#fx10').checked){for(let i=0;i<9;i++){const it=draw();res.push({it,isNew:false,n:1})}res.sort(()=>Math.random()-.5)}
+  window.EC_ODD_FORCE=$('#fxodd').checked;window.EC_COL_FORCE=$('#fxcol').value;pulling=true;if(sndOn)ctx();run(res)})}
+const RGM0=renderGM;renderGM=function(){RGM0.apply(this,arguments);try{addFxTest()}catch(e){console.error(e)}};
 window.ECG={get G(){return G},oi,vis,FX,ELFX,RI,fx,TKI,go,award,renderGM,findMatch1:findMatch,items:()=>IT,grant:n=>{G.t+=Math.max(0,Math.floor(+n)||0);save();upd()},grantItem:(f=>(id,gid)=>f({t:'gitem',id},gid))(window.ecGrant)};renderGM();chatUI();upd();applyLang();
 })();
 </script>
@@ -1481,13 +1567,17 @@ function seasonUI(){const n=ECS.cur(),end=ECS.end(n),left=end-Date.now(),d=new D
  $$('#season').innerHTML='<div class="sbt"><b style="font-size:17px">🌌 '+LL('シーズン','SEASON ','រដូវកាល ')+n+'</b><span>'+LL('残り ','Time left: ','នៅសល់ ')+ECS.fmt(left)+'</span></div><small>'+LL('〜 '+md+' まで / 戦績・ランキングは毎シーズンリセットされます','Until '+md+' / Records and ranking reset every season','ដល់ '+md+' / កំណត់ត្រា និងចំណាត់ថ្នាក់កំណត់ឡើងវិញរៀងរាល់រដូវកាល')+'</small>';
  const sn=window.__SEASON_NEW,box=$$('#snewbox');if(sn&&!seasonUI.hide){box.innerHTML='<div class="tc" style="border-left:4px solid #3df2ff"><b>🌌 '+LL('新シーズンが始まりました!','A new season has started!','រដូវកាលថ្មីបានចាប់ផ្ដើម!')+'</b><div class="stat">'+LL('戦績とランキングがリセットされました。前シーズン('+sn.from+'):'+sn.w+'勝 '+sn.l+'敗 / 最高'+sn.best+'連勝','Records and ranking were reset. Last season ('+sn.from+'): '+sn.w+'W '+sn.l+'L / best streak '+sn.best,'កំណត់ត្រា និងចំណាត់ថ្នាក់ត្រូវបានកំណត់ឡើងវិញ។ រដូវកាលមុន ('+sn.from+')៖ ឈ្នះ '+sn.w+' ចាញ់ '+sn.l+' / ឈ្នះជាប់គ្នាល្អបំផុត '+sn.best)+'</div><button class="btn alt" id="snok">OK</button></div>';$$('#snok').onclick=()=>{seasonUI.hide=1;box.innerHTML=''}}}
 /* ---------- アプデ情報 ---------- */
-const UPV='1.25';
+const UPV='1.3';
 function seen(){try{return localStorage.getItem('ecup')===UPV}catch(e){return false}}
 document.body.insertAdjacentHTML('beforeend','<div id="upd"><div class="hc" id="updc"></div></div>');
 $$('#upd').onclick=e=>{if(e.target===$$('#upd'))$$('#upd').classList.remove('on')};
 function updHTML(){const B=(a,b,c)=>'<b style="display:block;margin:12px 0 2px;font-size:15px">'+a+'</b><p style="margin:0;line-height:1.6;font-size:14px">'+b+'</p>';
  return '<div class="row" style="margin-bottom:6px"><b style="font-size:18px">'+LL('🆕 アプデ情報','🆕 Update Notes','🆕 ព័ត៌មានអាប់ដេត')+'</b><button class="btn alt" id="updx" style="width:auto;margin:0;padding:6px 14px;font-size:13px">'+LL('閉じる','Close','បិទ')+'</button></div>'
- +'<div class="tc"><b>Ver 1.25</b> <span class="mut">2026/10/27</span></div>'
+ +'<div class="tc"><b>Ver 1.3</b> <span class="mut">2026/10/28</span></div>'
+ +B(LL('🏞 バトルの背景をリニューアル','🏞 Battle stages renewed','🏞 ឆាកប្រយុទ្ធថ្មី'),LL('ニューヨークを朝の自由の女神とビル群に、アンコールワットを朝焼けに、京都を東山と大文字に描き直しました。新しく「🏯 万里の長城」も追加しました。','New York now shows the Statue of Liberty and the skyline in the morning, Angkor Wat glows at sunrise, and Kyoto shows the Higashiyama hills with the Daimonji. A new “🏯 Great Wall” stage was added.','ញូវយ៉កឥឡូវបង្ហាញរូបសំណាកសេរីភាព និងអគារខ្ពស់ៗនៅពេលព្រឹក អង្គរវត្តភ្លឺនៅពេលថ្ងៃរះ ហើយគីយ៉ូតូបង្ហាញភ្នំ Higashiyama និងអក្សរ «大»។ បានបន្ថែមឆាកថ្មី «🏯 មហាកំពែងចិន»។'))
+ +B(LL('⚡ クラッチで昼と夜が入れかわる','⚡ Clutch can turn day into night','⚡ Clutch អាចប្ដូរថ្ងៃទៅយប់'),LL('対戦中にクラッチが出ると、たまに背景の朝と夜が入れかわります(宇宙をのぞく)。','When a clutch triggers in battle, the stage sometimes switches between day and night (except Space).','ពេល Clutch កើតឡើង ឆាកខ្លះប្ដូររវាងថ្ងៃ និងយប់ (លើកលែងតែអវកាស)។'))
+ +B(LL('🎰 ガチャの演出を変更','🎰 Gacha effects updated','🎰 បានកែប្រែចលនាកាឆា'),LL('ガチャの演出を変えました。','The gacha effects have been changed.','ចលនានៃកាឆាត្រូវបានផ្លាស់ប្ដូរ។'))
+ +'<div class="tc" style="margin-top:12px"><b>Ver 1.25</b> <span class="mut">2026/10/27</span></div>'
  +B(LL('🏆 シーズンランキング報酬','🏆 Season ranking rewards','🏆 រង្វាន់ចំណាត់ថ្នាក់រដូវកាល'),LL('シーズン終了時の順位に応じて、限定キャラ・称号・ガチャチケットがもらえます。1位はチケット1000枚、2〜3位は500枚、4〜10位は300枚、11〜30位は100枚、1戦以上した人には参加賞20枚。シーズン終了後にゲームを開くと自動で受け取れます。内容はランキング画面の「🎁 ランキング報酬を見る」で確認できます。','Get exclusive characters, titles and gacha tickets based on your final season rank: 1st 1000 tickets, 2nd-3rd 500, 4th-10th 300, 11th-30th 100, and 20 for everyone who fought at least once. Rewards arrive automatically when you open the game after the season ends. See them via “🎁 View ranking rewards” on the ranking screen.','ទទួលតួអង្គពិសេស ងារ និងសំបុត្រកាឆាតាមចំណាត់ថ្នាក់ចុងរដូវកាល៖ លេខ 1 សំបុត្រ 1000 លេខ 2-3 ចំនួន 500 លេខ 4-10 ចំនួន 300 លេខ 11-30 ចំនួន 100 និង 20 សម្រាប់អ្នកដែលបានប្រយុទ្ធយ៉ាងហោចណាស់ម្តង។ រង្វាន់មកដល់ដោយស្វ័យប្រវត្តិពេលបើកហ្គេមក្រោយរដូវកាលបញ្ចប់។ មើលបានក្នុង «🎁 មើលរង្វាន់ចំណាត់ថ្នាក់»។'))
  +B(LL('🐆 報酬限定キャラ','🐆 Reward-only characters','🐆 តួអង្គសម្រាប់តែរង្វាន់'),LL('1位には「疾風の覇王チーター」(SS)、2〜3位には「白黒の将軍ゼブラ」(S)。ガチャでは手に入らない特別なキャラです。見た目だけで強さは変わりません。','1st place gets “Gale Emperor Cheetah” (SS), 2nd-3rd get “Zebra General” (S). They can’t be pulled from the gacha. Visual only: no change to strength.','លេខ 1 ទទួល «ខ្លារខិនអធិរាជខ្យល់» (SS) លេខ 2-3 ទទួល «ឧត្តមសេនីយ៍សេះបង្កង់» (S)។ មិនអាចទាញពីកាឆាបានទេ។ សម្រាប់តែរូបរាង មិនប្ដូរកម្លាំងទេ។'))
  +B(LL('📈 ランキングの改善','📈 Ranking improvements','📈 ការកែលម្អចំណាត់ថ្នាក់'),LL('「勝率」と「勝利数」をタブで切り替えられるようになりました。勝率は20戦以上した人だけが載り、シーズン報酬も勝率の順位で決まります。同じ人が2回表示される不具合も直しました。','You can now switch between “Win rate” and “Wins” tabs. The win-rate board shows players with 20+ battles, and season rewards use the win-rate rank. Fixed a bug where the same player appeared twice.','ឥឡូវអាចប្ដូររវាង «អត្រាឈ្នះ» និង «ចំនួនឈ្នះ»។ តារាងអត្រាឈ្នះបង្ហាញអ្នកដែលប្រយុទ្ធ 20 ដងឡើងទៅ ហើយរង្វាន់រដូវកាលប្រើចំណាត់ថ្នាក់អត្រាឈ្នះ។ បានកែកំហុសដែលអ្នកលេងដដែលបង្ហាញពីរដង។'))
@@ -2116,33 +2206,6 @@ function skyline(g,r,col,base,minH,maxH,wins,dens,neon){
   if(wins)for(let wy=base-h+2;wy<base-2;wy+=3)for(let wx=x+1;wx<x+bw-1;wx+=3)if(r()<dens)px(g,wx,wy,wins[r()*wins.length|0]);
   if(neon&&r()<.3){const nc=neon[r()*neon.length|0],ny=base-h+4+(r()*Math.max(1,h-12)|0);px(g,x+bw-2,ny,1,5,nc)}
   x+=bw+(r()<.3?1:0)}}
-function tokyo(){const [c,g]=mk(),r=rng(11);
- bands(g,['#080824','#100f3a','#1d1752','#3a1f6c','#6b2f80','#b24a82','#f0707a','#ffa07a'],0,92);
- for(let i=0;i<80;i++){const y=r()*48|0;px(g,r()*W|0,y,r()<.3?'#ffffff':'#aab4ff')}
- disc(g,156,20,8,'#fff4c8');disc(g,159,18,7,'#3a1f6c');disc(g,156,20,8,'#fff4c8');/* 月 */
- for(let y=-8;y<=8;y++)for(let x=-8;x<=8;x++)if(x*x+y*y<=60&&(x+4)*(x+4)+(y-2)*(y-2)<=44)px(g,156+x,20+y,'#3a1f6c');
- for(let y=40;y<90;y++){const hw=Math.floor((y-40)*1.2)+2,j=((y*7)%3)-1;px(g,70-hw,y,hw*2+1,1,'#2d2160');if(y<52)px(g,70-Math.floor(hw*.9)+j,y,Math.floor(hw*1.8),1,'#e6eaff')}/* 富士山 */
- skyline(g,r,'#2a2058',90,14,34,['#6a5cb0'],.08);
- /* スカイツリー */
- const st=(cx,top,base)=>{for(let y=top;y<base;y++){const t=(y-top)/(base-top),hw=t<.12?0:t<.5?1:Math.round(1+(t-.5)*5);px(g,cx-hw,y,hw*2+1,1,y%6<3?'#dfe8ff':'#9fb2ff')}
-  [[.3,5],[.22,3]].forEach(([t,w])=>{const y=top+Math.round((base-top)*t);px(g,cx-w,y,w*2+1,3,'#cfe8ff');px(g,cx-w+1,y+1,w*2-1,1,'#7fe8ff')});
-  px(g,cx,top-9,1,9,'#ffffff');px(g,cx,top-9,1,1,'#ff4d4d')};
- st(30,16,92);
- skyline(g,r,'#16133a',92,20,56,['#ffd866','#ffd866','#7fe8ff','#ff9ad5'],.28,['#ff3df2','#3df2ff','#ffd23f']);
- /* 東京タワー */
- const cx=138,top=26,base=92;
- for(let y=top;y<base;y++){const t=(y-top)/(base-top),hw=Math.round(1+Math.pow(t,1.35)*15);
-  const col=(y>top+22&&y<top+34)||(y>top+46&&y<top+54)?'#ffffff':'#ff5a36';
-  px(g,cx-hw,y,1,1,col);px(g,cx+hw,y,1,1,col);if(hw>2){if(y%5===0){for(let x=cx-hw;x<=cx+hw;x++)if((x+y)%2===0)px(g,x,y,col)}}
-  const k=y%10;if(hw>2){const xx=cx-hw+Math.round(k*(hw*2)/10);px(g,xx,y,1,1,'#ff8a5a');px(g,cx+hw-Math.round(k*(hw*2)/10),y,1,1,'#ff8a5a')}}
- [[.4,7],[.24,4]].forEach(([t,w])=>{const y=top+Math.round((base-top)*t);px(g,cx-w,y,w*2+1,3,'#ff5a36');px(g,cx-w,y+1,w*2+1,1,'#ffffff')});
- px(g,cx,top-12,1,12,'#ffffff');px(g,cx,top-12,1,3,'#ff5a36');px(g,cx,top-13,1,1,'#ff4d4d');
- skyline(g,r,'#0d0b26',100,10,30,['#ffd866','#ffd866','#7fe8ff'],.18,['#ff3df2','#3df2ff']);
- /* 道路 */
- px(g,0,92,W,H-92,'#14112b');px(g,0,92,W,1,'#3b3380');px(g,0,93,W,1,'#241f52');
- for(let x=2;x<W;x+=14)px(g,x,101,8,1,'#ffd23f');
- for(let i=0;i<4;i++){const x=10+r()*170|0,y=96+(r()*3|0);px(g,x,y,5,2,i%2?'#e84060':'#3a8fe0');px(g,x,y,1,1,'#fff');px(g,x+4,y,1,1,'#ff4d4d')}
- return c}
 function tower(g,cx,baseY,h,w,col,tip){
  const r=(x,y,ww,hh)=>px(g,cx-Math.floor(ww/2)+x,baseY-y-hh,ww,hh,col);
  r(0,0,w,Math.round(h*.22));
@@ -2156,152 +2219,195 @@ function palm(g,x,baseY,h,lean,col){
  for(let k=0;k<7;k++){const a=-Math.PI*(.05+k*.15)-(k>3?0:0),dir=k<4?1:-1;
   for(let t=0;t<11;t++){const ang=(k*Math.PI/6)-Math.PI*.08;const fx=tx+Math.cos(ang)*t*(k>3?1:1)*(k%2?1:-1)*(1+0)+0,fy=ty-Math.sin(Math.abs(ang)+.4)*t*.55+t*t*.05;
    px(g,fx,fy,1,1,col);px(g,fx,fy+1,1,1,col)}}}
-function angkor(){const [c,g]=mk(),r=rng(23);
- bands(g,['#1b0c46','#331262','#6a1f78','#b0336e','#e85a4c','#ff8f48','#ffc66e','#ffe29a'],0,86);
- for(let i=0;i<30;i++)px(g,r()*W|0,r()*26|0,1,1,'#c9b8ff');
- /* 太陽(中央の塔の後ろ) */
- for(let y=-22;y<=22;y++)for(let x=-22;x<=22;x++){const d=x*x+y*y;if(d<=400&&d>196&&((x+y)&1)===0)px(g,96+x,70+y,'#ffd890')}
- disc(g,96,70,12,'#fff4c0');
- /* 雲 */
- [[10,22,26,'#a02a70'],[120,16,34,'#8a2672'],[150,36,30,'#e0506a'],[16,44,30,'#e0506a'],[64,30,22,'#c23c70'],[100,52,26,'#ff8a74']].forEach(([x,y,w,col])=>{px(g,x,y,w,1,col);px(g,x+3,y+1,w-6,1,col);px(g,x+6,y-1,w-14,1,col)});
- /* 遠くの木立 */
- const TR='#34173f';for(let x=0;x<W;x+=2){const h=3+(r()*5|0);px(g,x,86-h,2,h,TR)}
- /* アンコールワット */
- const S='#1a0d2a';
- px(g,18,81,156,5,S);px(g,34,77,124,5,S);px(g,46,72,100,6,S);
- for(let x=48;x<144;x+=4)px(g,x,70,2,3,S);/* 回廊の屋根飾り */
- tower(g,58,72,26,13,S,'#ffd27a');tower(g,134,72,26,13,S,'#ffd27a');
- tower(g,77,72,36,15,S,'#ffd27a');tower(g,115,72,36,15,S,'#ffd27a');
- tower(g,96,72,52,19,S,'#ffe6a0');
- /* 回廊の柱の隙間 */
- for(let x=22;x<172;x+=5)px(g,x,83,1,3,'#3a1a4a');
- for(let x=40;x<154;x+=6)px(g,x,79,1,2,'#3a1a4a');
- for(let y=60;y<=70;y++)px(g,95,y,1,1,'#3a1a4a');
- /* 水面(堀) */
- bands(g,['#6a2a78','#8a2f78','#b0407a','#d0605e'],86,H);
- const rows=H-86;
- g.globalAlpha=.55;
- for(let i=0;i<rows;i++){const sy=85-i,dy=86+i,wob=((i>>1)&1)?1:0;g.drawImage(c,0,sy,W,1,wob,dy,W,1)}
- g.globalAlpha=.32;g.fillStyle='#2a0f4a';g.fillRect(0,86,W,rows);g.globalAlpha=1;
- for(let i=0;i<38;i++){const y=88+(r()*18|0);px(g,r()*W|0,y,3+(r()*8|0),1,r()<.5?'#ffd890':'#ff9a7a')}
- for(let x=0;x<W;x++)px(g,x,86,1,1,'#2a0f3a');
- /* 手前の椰子 */
- const P='#0c0618';palm(g,14,100,60,.6,P);palm(g,28,104,42,.5,P);palm(g,176,102,56,-.6,P);palm(g,164,106,38,-.5,P);
- for(let x=0;x<W;x++){const h=((x*13)%5===0)?3:2;if(x<46||x>146)px(g,x,H-h,1,h,P)}
- return c}
-
-/* ---- 追加ステージ ---- */
 function water(g,c,y0,cols,alpha,tint,r,hl){
  bands(g,cols,y0,H);const rows=H-y0;g.globalAlpha=alpha;
  for(let i=0;i<rows;i++){g.drawImage(c,0,y0-1-i,W,1,((i>>1)&1)?1:0,y0+i,W,1)}
  g.globalAlpha=.3;g.fillStyle=tint;g.fillRect(0,y0,W,rows);g.globalAlpha=1;
  for(let i=0;i<34;i++)px(g,r()*W|0,y0+2+(r()*(rows-3)|0),3+(r()*8|0),1,hl[r()*hl.length|0])}
-function newyork(){const [c,g]=mk(),r=rng(31);
- bands(g,['#0a1030','#142252','#27397a','#56498a','#b95f7c','#ff9a6a','#ffd08a'],0,88);
- for(let i=0;i<40;i++)px(g,r()*W|0,r()*36|0,1,1,'#cdd6ff');
- skyline(g,r,'#2b3366',88,14,40,['#8a90d0'],.1);
- skyline(g,r,'#1a2048',88,26,58,['#ffd866','#ffd866','#9fd8ff'],.25);
- /* エンパイアステートビル */
- const cx=78,S='#10142f';
- px(g,cx-11,58,22,30,S);px(g,cx-8,48,16,10,S);px(g,cx-6,40,12,8,S);px(g,cx-4,32,8,8,S);px(g,cx-2,26,4,6,S);px(g,cx,12,1,14,S);
- for(let y=60;y<88;y+=3)for(let x=cx-10;x<cx+10;x+=3)if(r()<.45)px(g,x,y,1,1,r()<.8?'#ffd866':'#fff3b0');
- for(let y=42;y<58;y+=3)for(let x=cx-7;x<cx+7;x+=3)if(r()<.5)px(g,x,y,1,1,'#ffd866');
- px(g,cx-3,32,6,1,'#ff9ad5');px(g,cx-2,26,4,1,'#ffffff');px(g,cx,11,1,1,'#ff4d4d');px(g,cx-11,58,1,30,'#2a3470');
- skyline(g,r,'#0b0e26',92,10,34,['#ffd866','#ffd866','#ff9ad5'],.2,['#ff3df2','#3df2ff']);
- /* 川 */
- water(g,c,92,['#2a2f66','#463a7a','#8a4a80','#c8607a'],.55,'#0a1030',r,['#ffd08a','#ff9a7a','#9fd8ff']);
- /* 自由の女神(右の島) */
- const lx=164,G='#1d5a50',G2='#2f8a78';
- px(g,lx-12,90,24,4,'#101a24');px(g,lx-7,80,14,10,'#6a7a80');px(g,lx-5,77,10,3,'#8a9a9a');
- for(let y=0;y<24;y++){const hw=4+Math.round(y*.12);px(g,lx-hw,77-y,hw*2+1,1,y%3?G:G2)}
- disc(g,lx,52,3,G2);[[-4,-5],[-2,-6],[0,-7],[2,-6],[4,-5]].forEach(([dx,dy])=>px(g,lx+dx,52+dy,1,2,G2));
- for(let i=0;i<14;i++)px(g,lx+3+Math.round(i*.35),60-i,2,1,G);
- px(g,lx+7,43,3,5,'#ffd23f');px(g,lx+8,41,1,2,'#ffffff');px(g,lx-6,62,3,8,G);
- g.globalAlpha=.25;disc(g,lx+8,44,5,'#ffd23f');g.globalAlpha=1;
- for(let x=0;x<W;x++)px(g,x,92,1,1,'#0b0e26');
+/* ---- 空(昼/朝/夕/夜) ---- */
+const SKY={day:['#4f94ec','#6aa6f0','#8cbcf4','#b0d0f6','#d4e4f8','#f0f4f4'],morn:['#6a8ad8','#86a2e4','#b0b8ea','#e6c0cc','#ffd2b0','#ffe6bc','#fff4d4'],dusk:['#241a5a','#4a2a80','#a8407a','#e8604e','#ff9a4a','#ffc86a','#ffe6a0'],night:['#080824','#100f3a','#1d1752','#2a2062','#3a2870','#4a3078']};
+function sun(g,x,y,rr,halo,core){for(let yy=-rr*2;yy<=rr*2;yy++)for(let xx=-rr*2;xx<=rr*2;xx++){const d=xx*xx+yy*yy;if(d<=rr*rr*4&&d>rr*rr*1.4&&((xx+yy)&1)===0)px(g,x+xx,y+yy,halo)}disc(g,x,y,rr,core)}
+function moon(g,x,y,rr,bg){disc(g,x,y,rr,'#fff4c8');for(let yy=-rr;yy<=rr;yy++)for(let xx=-rr;xx<=rr;xx++)if(xx*xx+yy*yy<=rr*rr&&(xx+rr*.45)*(xx+rr*.45)+(yy-rr*.25)*(yy-rr*.25)<=rr*rr*.7)px(g,x+xx,y+yy,bg)}
+function stars(g,r,n,maxY){for(let i=0;i<n;i++)px(g,r()*W|0,r()*maxY|0,1,1,r()<.3?'#ffffff':'#aab4ff')}
+function clouds(g,r,n,col,maxY){for(let i=0;i<n;i++){const x=r()*W|0,y=6+(r()*maxY|0),w=14+(r()*22|0);px(g,x,y,w,2,col);px(g,x+3,y-1,w-8,1,col);px(g,x+5,y-2,w-14,1,col)}}
+/* 昼/夜の変換: 前景レイヤーだけを暗く(夜)または明るく(昼)する */
+function retint(L,toNight){const g=L.getContext('2d');g.save();g.globalCompositeOperation='source-atop';
+ if(toNight){g.globalCompositeOperation='multiply';g.fillStyle='#3c3c86';g.fillRect(0,0,W,H);g.globalCompositeOperation='destination-in';g.drawImage(L,0,0)}
+ else{g.globalCompositeOperation='screen';g.fillStyle='#5a6690';g.fillRect(0,0,W,H);g.globalCompositeOperation='destination-in';g.drawImage(L,0,0)}
+ g.restore()}
+/* シーン = 空(sky) + 前景(fg) + 水面や手前の物(post)。base は本来の時間帯 */
+function build(S,night){const [c,g]=mk(),r=rng(S.seed);
+ S.sky(g,r,night);
+ const [L,lg]=mk();S.fg(lg,rng(S.seed+1),night);
+ if(night!==(S.base==='night')){/* 本来と違う時間帯 */const tmp=document.createElement('canvas');tmp.width=W;tmp.height=H;const tg=tmp.getContext('2d');tg.drawImage(L,0,0);
+  tg.globalCompositeOperation='source-atop';tg.fillStyle=night?'#2a2a70':'#8a9ac8';tg.globalAlpha=night?.62:.42;tg.fillRect(0,0,W,H);tg.globalAlpha=1;
+  if(night){tg.globalCompositeOperation='source-atop';const rr=rng(S.seed+7);for(let i=0;i<70;i++){const x=rr()*W|0,y=40+(rr()*60|0);if(tg.getImageData(x,y,1,1).data[3]>0)px(tg,x,y,1,1,rr()<.7?'#ffd866':'#9fd8ff')}}
+  g.drawImage(tmp,0,0)}else g.drawImage(L,0,0);
+ if(S.post)S.post(g,c,rng(S.seed+2),night);
  return c}
-function paris(){const [c,g]=mk(),r=rng(41);
- bands(g,['#060a22','#0e1440','#1d1d62','#3a2a78','#6a3a86','#a8508a'],0,88);
- for(let i=0;i<70;i++)px(g,r()*W|0,r()*46|0,1,1,r()<.3?'#fff':'#a8b4ff');
- disc(g,26,20,6,'#fff4c8');for(let y=-6;y<=6;y++)for(let x=-6;x<=6;x++)if((x+3)*(x+3)+(y-1)*(y-1)<=30&&x*x+y*y<=36)px(g,26+x,20+y,'#1d1d62');
- /* サーチライト */
- g.globalAlpha=.1;g.fillStyle='#fff';for(let k=0;k<2;k++){g.beginPath();g.moveTo(96,24);g.lineTo(k?190:2,k?4:6);g.lineTo(k?190:2,k?18:20);g.closePath();g.fill()}g.globalAlpha=1;
- /* 街並み */
- let x=-2;while(x<W){const bw=8+(r()*8|0),h=14+(r()*18|0);px(g,x,88-h,bw,h,'#1b1d4a');px(g,x,88-h-2,bw,2,'#2d3070');
-  for(let wy=88-h+2;wy<86;wy+=4)for(let wx=x+1;wx<x+bw-1;wx+=3)if(r()<.35)px(g,wx,wy,1,2,'#ffd866');if(r()<.4)px(g,x+2,88-h-5,1,3,'#1b1d4a');x+=bw}
- /* エッフェル塔 */
- const cx=96,top=22,base=90;
- for(let y=top;y<base;y++){const t=(y-top)/(base-top),hw=Math.round(1+23*Math.pow(t,2.2));
-  for(let xx=cx-hw;xx<=cx+hw;xx++){const edge=xx===cx-hw||xx===cx+hw;if(edge)px(g,xx,y,'#f0b030');else if(t<.7&&(xx+y)%4===0)px(g,xx,y,'#a8741c');else if(t<.7&&(xx+y)%2===0)px(g,xx,y,'#3a2a2a')}
-  if(t>.74){const ih=Math.round(hw*.5);px(g,cx-ih,y,1,1,'#f0b030');px(g,cx+ih,y,1,1,'#f0b030')}}
- [.3,.62].forEach(t=>{const y=top+Math.round((base-top)*t),hw=Math.round(1+23*Math.pow(t,2.2))+3;px(g,cx-hw,y,hw*2+1,2,'#ffd060');px(g,cx-hw,y+2,hw*2+1,1,'#8a5a1a')});
- for(let y=62;y<82;y++)for(let xx=cx-6;xx<=cx+6;xx++)if(((xx-cx)*(xx-cx))/36+((y-82)*(y-82))/400<1)px(g,xx,y,'#0e1440');
- px(g,cx,top-9,1,9,'#f0b030');px(g,cx,top-9,1,1,'#ffffff');
- /* セーヌ川 */
- for(let y=90;y<93;y++)px(g,0,y,W,1,y===90?'#3a3070':'#1b1d4a');
- water(g,c,93,['#10143a','#1a2060','#2a2a78'],.5,'#060a22',r,['#ffd060','#ffd060','#ff9ad5']);
- return c}
-function pyramids(){const [c,g]=mk(),r=rng(53);
- bands(g,['#241a5a','#4a2a80','#a8407a','#e8604e','#ff9a4a','#ffc86a','#ffe6a0'],0,86);
- for(let i=0;i<28;i++)px(g,r()*W|0,r()*24|0,1,1,'#d6ccff');
- for(let y=-24;y<=24;y++)for(let x=-24;x<=24;x++){const d=x*x+y*y;if(d<=576&&d>250&&((x+y)&1)===0)px(g,128+x,72+y,'#ffd890')}
- disc(g,128,72,11,'#fff2b8');
- const pyr=(cx,by,h,w,L,D)=>{for(let y=0;y<h;y++){const hw=Math.round(w/2*(y/h));px(g,cx-hw,by-h+y,hw,1,L);px(g,cx,by-h+y,hw+1,1,D);if(y%4===3){px(g,cx-hw,by-h+y,hw*2+1,1,'rgba(40,10,40,.25)')}}};
- pyr(112,90,50,96,'#d88a4a','#8a4a3a');pyr(60,90,38,70,'#c47a42','#7a3e38');pyr(158,90,26,46,'#c47a42','#7a3e38');
- for(let y=86;y<H;y++){for(let x=0;x<W;x++){const off=Math.round(Math.sin(x/17+y/5)*1.5);const k=(y+off)%7<3;px(g,x,y,k?'#c47a42':'#a8603a')}}
- for(let x=0;x<W;x++){const yy=86+Math.round(Math.sin(x/13)*2);px(g,x,yy,1,2,'#e0985a')}
- /* スフィンクス */
- const S='#5a2a2a',sx=30;px(g,sx,90,26,6,S);px(g,sx-10,94,16,2,S);px(g,sx-4,80,8,12,S);px(g,sx-5,78,10,4,S);px(g,sx-6,80,2,8,S);px(g,sx+6,80,2,8,S);px(g,sx-2,82,1,1,'#ffd890');
- for(let i=0;i<30;i++)px(g,r()*W|0,96+(r()*10|0),2+(r()*6|0),1,'#d8904a');
- return c}
-function kyoto(){const [c,g]=mk(),r=rng(67);
- bands(g,['#7fb0f0','#a8c0f4','#d8c8f4','#ffc8dc','#ffd8cc','#fff0d0'],0,80);
- for(let y=46;y<86;y++){const hw=Math.floor((y-46)*1.7)+2;px(g,60-hw,y,hw*2+1,1,'#b4a8dc');if(y<56)px(g,60-Math.floor(hw*.85),y,Math.floor(hw*1.7),1,'#ffffff')}
- for(let x=0;x<W;x+=1){const h=6+Math.round(Math.sin(x/9)*3+Math.sin(x/4)*2);px(g,x,86-h,1,h+10,'#7aa088')}
- /* 五重塔 */
- const px0=148;
- for(let k=0;k<5;k++){const w=24-k*3,y=76-k*11;px(g,px0-w/2+3,y-8,w-6,8,'#f0dcc0');px(g,px0-w/2+3,y-8,w-6,1,'#d0b890');
-  px(g,px0-w/2-3,y,w+6,2,'#7a2a3a');px(g,px0-w/2-5,y-1,3,1,'#7a2a3a');px(g,px0+w/2+2,y-1,3,1,'#7a2a3a');px(g,px0-w/2-6,y-2,2,1,'#7a2a3a');px(g,px0+w/2+4,y-2,2,1,'#7a2a3a')}
- px(g,px0-15,76,30,10,'#b8a888');px(g,px0-15,76,30,1,'#e0d0b0');px(g,px0,10,1,10,'#f0b030');px(g,px0-1,14,3,1,'#f0b030');px(g,px0-1,17,3,1,'#f0b030');
- px(g,0,86,W,H-86,'#d8c8b0');for(let x=0;x<W;x+=6)px(g,x,90+((x/6)%2)*5,5,1,'#b8a890');for(let i=0;i<30;i++)px(g,r()*W|0,88+(r()*20|0),2,1,'#c8b8a0');
- /* 鳥居 */
- const tx=40,R='#d83a2a';px(g,tx-22,48,6,44,R);px(g,tx+16,48,6,44,R);px(g,tx-28,40,56,5,'#1a1018');px(g,tx-26,45,52,4,R);px(g,tx-20,54,40,3,R);px(g,tx-22,86,6,2,'#1a1018');px(g,tx+16,86,6,2,'#1a1018');
- px(g,tx-30,38,4,3,'#1a1018');px(g,tx+26,38,4,3,'#1a1018');
- /* 桜 */
- const sakura=(x,y,rad)=>{px(g,x-1,y,3,92-y,'#4a2a2a');for(let i=0;i<rad*9;i++){const a=r()*6.28,d=Math.sqrt(r())*rad;px(g,x+Math.cos(a)*d*1.3,y-rad*.4+Math.sin(a)*d*.8,2,2,['#ffb0c8','#ff8aa8','#ffd0dc','#ff9ab8'][r()*4|0])}};
- sakura(104,50,16);sakura(176,52,13);sakura(12,56,12);
- for(let i=0;i<46;i++)px(g,r()*W|0,r()*H|0,2,1,['#ffb0c8','#ffd0dc','#ffffff'][r()*3|0]);
- return c}
-function space(){const [c,g]=mk(),r=rng(79);
+/* --- 東京(本来は夜) --- */
+const TOKYO={seed:11,base:'night',
+ sky(g,r,n){if(n){bands(g,['#080824','#100f3a','#1d1752','#3a1f6c','#6b2f80','#b24a82','#f0707a','#ffa07a'],0,92);stars(g,r,80,48);moon(g,156,20,8,'#100f3a')}else{bands(g,SKY.day,0,92);sun(g,156,22,7,'#fff6c8','#fff8dc');clouds(g,r,6,'#ffffff',36)}},
+ fg(g,r,n){for(let y=40;y<90;y++){const hw=Math.floor((y-40)*1.2)+2,j=((y*7)%3)-1;px(g,70-hw,y,hw*2+1,1,n?'#2d2160':'#7a86c8');if(y<52)px(g,70-Math.floor(hw*.9)+j,y,Math.floor(hw*1.8),1,'#f0f4ff')}
+  skyline(g,r,n?'#2a2058':'#8a94c0',90,14,34,[n?'#6a5cb0':'#c8d4f0'],.08);
+  const st=(cx,top,base)=>{for(let y=top;y<base;y++){const t=(y-top)/(base-top),hw=t<.12?0:t<.5?1:Math.round(1+(t-.5)*5);px(g,cx-hw,y,hw*2+1,1,y%6<3?'#dfe8ff':'#9fb2ff')}
+   [[.3,5],[.22,3]].forEach(([t,w])=>{const y=top+Math.round((base-top)*t);px(g,cx-w,y,w*2+1,3,'#cfe8ff');px(g,cx-w+1,y+1,w*2-1,1,'#7fe8ff')});px(g,cx,top-9,1,9,'#ffffff');px(g,cx,top-9,1,1,'#ff4d4d')};
+  st(30,16,92);
+  skyline(g,r,n?'#16133a':'#5a6496',92,20,56,n?['#ffd866','#ffd866','#7fe8ff','#ff9ad5']:['#a8d0f0','#cfe4ff'],n?.28:.2,n?['#ff3df2','#3df2ff','#ffd23f']:null);
+  const cx=138,top=26,base=92;
+  for(let y=top;y<base;y++){const t=(y-top)/(base-top),hw=Math.round(1+Math.pow(t,1.35)*15);const col=(y>top+22&&y<top+34)||(y>top+46&&y<top+54)?'#ffffff':'#ff5a36';
+   px(g,cx-hw,y,1,1,col);px(g,cx+hw,y,1,1,col);if(hw>2&&y%5===0){for(let x=cx-hw;x<=cx+hw;x++)if((x+y)%2===0)px(g,x,y,col)}
+   const k=y%10;if(hw>2){const xx=cx-hw+Math.round(k*(hw*2)/10);px(g,xx,y,1,1,'#ff8a5a');px(g,cx+hw-Math.round(k*(hw*2)/10),y,1,1,'#ff8a5a')}}
+  [[.4,7],[.24,4]].forEach(([t,w])=>{const y=top+Math.round((base-top)*t);px(g,cx-w,y,w*2+1,3,'#ff5a36');px(g,cx-w,y+1,w*2+1,1,'#ffffff')});
+  px(g,cx,top-12,1,12,'#ffffff');px(g,cx,top-12,1,3,'#ff5a36');px(g,cx,top-13,1,1,'#ff4d4d');
+  skyline(g,r,n?'#0d0b26':'#3e4672',100,10,30,n?['#ffd866','#ffd866','#7fe8ff']:['#9fc0e0'],n?.18:.12,n?['#ff3df2','#3df2ff']:null);
+  px(g,0,92,W,H-92,n?'#14112b':'#4a4a5e');px(g,0,92,W,1,n?'#3b3380':'#8a8aa0');px(g,0,93,W,1,n?'#241f52':'#5e5e74');
+  for(let x=2;x<W;x+=14)px(g,x,101,8,1,n?'#ffd23f':'#f0f0f0');
+  for(let i=0;i<4;i++){const x=10+r()*170|0,y=96+(r()*3|0);px(g,x,y,5,2,i%2?'#e84060':'#3a8fe0');px(g,x,y,1,1,'#fff');px(g,x+4,y,1,1,'#ff4d4d')}}};
+/* --- アンコールワット(本来は朝) --- */
+const ANGKOR={seed:23,base:'day',
+ sky(g,r,n){if(n){bands(g,SKY.night,0,86);stars(g,r,70,50);moon(g,150,22,7,'#1d1752')}else{bands(g,SKY.morn,0,86);sun(g,96,66,11,'#ffe2a0','#fff6d0');
+  [[10,22,26],[120,16,34],[150,36,30],[16,44,30],[64,30,22]].forEach(([x,y,w])=>{px(g,x,y,w,1,'#fff2f0');px(g,x+3,y+1,w-6,1,'#ffe0d8');px(g,x+6,y-1,w-14,1,'#ffffff')})}},
+ fg(g,r,n){const TR='#3a5a48';for(let x=0;x<W;x+=2){const h=3+(r()*5|0);px(g,x,86-h,2,h,TR)}
+  const S='#4a3a48',S2='#6a5258';
+  px(g,18,81,156,5,S);px(g,34,77,124,5,S);px(g,46,72,100,6,S);for(let x=48;x<144;x+=4)px(g,x,70,2,3,S);
+  tower(g,58,72,26,13,S,'#ffd27a');tower(g,134,72,26,13,S,'#ffd27a');tower(g,77,72,36,15,S,'#ffd27a');tower(g,115,72,36,15,S,'#ffd27a');tower(g,96,72,52,19,S,'#ffe6a0');
+  for(let x=22;x<172;x+=5)px(g,x,83,1,3,'#2a1a2a');for(let x=40;x<154;x+=6)px(g,x,79,1,2,'#2a1a2a');
+  for(let x=18;x<174;x+=3)px(g,x,81,1,1,S2);for(let x=34;x<158;x+=3)px(g,x,77,1,1,S2)},
+ post(g,c,r,n){bands(g,n?['#141040','#1c1650','#24205a','#2c2864']:['#8aa0d8','#a8b4e0','#e0b8c0','#f0c8a8'],86,H);const rows=H-86;g.globalAlpha=.55;
+  for(let i=0;i<rows;i++)g.drawImage(c,0,85-i,W,1,((i>>1)&1)?1:0,86+i,W,1);g.globalAlpha=.25;g.fillStyle=n?'#0a0a30':'#ffffff';g.fillRect(0,86,W,rows);g.globalAlpha=1;
+  for(let i=0;i<38;i++)px(g,r()*W|0,88+(r()*18|0),3+(r()*8|0),1,n?(r()<.5?'#8a90d8':'#fff4c8'):(r()<.5?'#fff6d0':'#ffd8b0'));
+  for(let x=0;x<W;x++)px(g,x,86,1,1,n?'#0a0a24':'#5a4a58');
+  const P=n?'#060418':'#1e3a2c';palm(g,14,100,60,.6,P);palm(g,28,104,42,.5,P);palm(g,176,102,56,-.6,P);palm(g,164,106,38,-.5,P);
+  for(let x=0;x<W;x++){const h=((x*13)%5===0)?3:2;if(x<46||x>146)px(g,x,H-h,1,h,P)}}};
+/* --- ニューヨーク(本来は朝): 自由の女神 + 後ろにマンハッタンのビル群 --- */
+const NEWYORK={seed:31,base:'day',
+ sky(g,r,n){if(n){bands(g,SKY.night,0,84);stars(g,r,60,40);moon(g,30,18,7,'#100f3a')}else{bands(g,SKY.morn,0,84);sun(g,28,58,9,'#ffe6b0','#fff6d8');clouds(g,r,5,'#fff4f0',30)}},
+ fg(g,r,n){/* 奥のビル群 */
+  let x=60;while(x<W){const bw=5+(r()*7|0),h=16+(r()*26|0);px(g,x,84-h,bw,h,'#8f9cc4');for(let wy=84-h+2;wy<83;wy+=3)for(let wx=x+1;wx<x+bw-1;wx+=2)if(r()<.25)px(g,wx,wy,1,1,'#c8d4f0');x+=bw}
+  x=56;while(x<W){const bw=6+(r()*8|0),h=22+(r()*30|0);px(g,x,84-h,bw,h,'#6a76a4');px(g,x,84-h,1,h,'#9aa8d4');for(let wy=84-h+2;wy<83;wy+=3)for(let wx=x+2;wx<x+bw-1;wx+=2)if(r()<.3)px(g,wx,wy,1,1,'#b8d0f0');x+=bw+1}
+  /* ワン・ワールドトレードセンター */
+  const wx=150;for(let y=18;y<84;y++){const t=(y-18)/66,hw=Math.round(2+t*7);px(g,wx-hw,y,hw*2+1,1,y%4?'#7a8ac0':'#a8c0ec');px(g,wx-hw,y,1,1,'#c8dcff')}px(g,wx,6,1,12,'#dfe8ff');
+  /* エンパイアステートビル */
+  const ex=104,S='#5a6494';px(g,ex-9,58,18,26,S);px(g,ex-7,48,14,10,S);px(g,ex-5,40,10,8,S);px(g,ex-3,32,6,8,S);px(g,ex-1,26,2,6,S);px(g,ex,14,1,12,S);
+  for(let y=60;y<84;y+=3)for(let xx=ex-8;xx<ex+8;xx+=2)if(r()<.35)px(g,xx,y,1,1,'#c0d4f4');px(g,ex-9,58,1,26,'#8a98c8');
+  /* 手前の低いビル */
+  x=50;while(x<W){const bw=8+(r()*10|0),h=8+(r()*12|0);px(g,x,86-h,bw,h,'#4a5480');for(let wy=86-h+2;wy<85;wy+=3)for(let wx2=x+1;wx2<x+bw-1;wx2+=3)if(r()<.3)px(g,wx2,wy,2,1,'#a0b8e0');x+=bw}
+  px(g,48,84,W-48,2,'#3a4266')},
+ post(g,c,r,n){/* 港の水面 */
+  bands(g,n?['#141a48','#1a2058','#202868','#263070']:['#6a90d0','#7aa0d8','#8ab0e0','#a0c0e8'],86,H);g.globalAlpha=.45;for(let i=0;i<H-86;i++)g.drawImage(c,0,85-i,W,1,((i>>1)&1)?1:0,86+i,W,1);g.globalAlpha=1;
+  for(let i=0;i<40;i++)px(g,r()*W|0,88+(r()*18|0),3+(r()*7|0),1,n?'#8a96e0':'#ffffff');
+  /* リバティ島と自由の女神(手前・大きく) */
+  const lx=40,G=n?'#2a5a58':'#5fae96',G2=n?'#1e4442':'#3f8a76',G3=n?'#3e7a70':'#8fd4b8',ST=n?'#4a4a5a':'#b8a888',ST2=n?'#36364a':'#8a7c66';
+  px(g,lx-30,96,62,6,n?'#1a2a20':'#3a6a3a');px(g,lx-34,100,70,8,n?'#141e1a':'#2e5a30');
+  for(let i=0;i<8;i++){const w=34-i*2;px(g,lx-w/2,96-i,w,1,i%2?ST:ST2)}/* 星形の台座 */
+  px(g,lx-9,70,18,18,ST);px(g,lx-9,70,18,1,'#d8ccb0');px(g,lx-9,70,1,18,ST2);for(let y=74;y<86;y+=4)px(g,lx-6,y,12,1,ST2);px(g,lx-2,78,4,6,ST2);
+  px(g,lx-11,68,22,2,ST);px(g,lx-7,64,14,4,ST2);
+  /* 体(ローブ) */
+  for(let y=0;y<26;y++){const hw=6-Math.round(y*.12);px(g,lx-hw,63-y,hw*2+1,1,G);px(g,lx-hw,63-y,1,1,G2);if(y%4===1)px(g,lx-hw+2,63-y,1,1,G3);if(y%5===2)px(g,lx+1,63-y,1,1,G2)}
+  px(g,lx-7,58,3,4,G2);/* 裾 */
+  /* 左腕と石板 */
+  px(g,lx-7,44,3,7,G);px(g,lx-9,42,4,9,G3);px(g,lx-9,42,1,9,G2);
+  /* 頭と冠 */
+  disc(g,lx,33,3,G);px(g,lx-1,33,1,1,G2);px(g,lx+1,33,1,1,G2);px(g,lx-3,30,7,1,G2);
+  [[-5,-2],[-3,-4],[0,-5],[3,-4],[5,-2]].forEach(([dx,dy])=>{px(g,lx+dx,30+dy,1,3,G3)});
+  /* 右腕とたいまつ */
+  for(let i=0;i<14;i++)px(g,lx+3+Math.round(i*.3),37-i,2,1,i%3?G:G3);
+  px(g,lx+6,20,3,4,G2);px(g,lx+5,19,5,1,G3);
+  const fl=n?['#ffe070','#ffb030','#ff7020']:['#ffe890','#ffc040','#ff8a30'];px(g,lx+6,15,3,4,fl[1]);px(g,lx+7,13,1,3,fl[0]);px(g,lx+6,17,3,2,fl[2]);
+  g.globalAlpha=n?.35:.2;disc(g,lx+7,16,6,'#ffd23f');g.globalAlpha=1}};
+/* --- パリ(本来は夜) --- */
+const PARIS={seed:41,base:'night',
+ sky(g,r,n){if(n){bands(g,['#060a22','#0e1440','#1d1d62','#3a2a78','#6a3a86','#a8508a'],0,88);stars(g,r,70,46);moon(g,26,20,6,'#0e1440');
+  g.globalAlpha=.1;g.fillStyle='#fff';for(let k=0;k<2;k++){g.beginPath();g.moveTo(96,24);g.lineTo(k?190:2,k?4:6);g.lineTo(k?190:2,k?18:20);g.closePath();g.fill()}g.globalAlpha=1}
+  else{bands(g,SKY.day,0,88);sun(g,30,20,6,'#fff6c8','#fffae0');clouds(g,r,6,'#ffffff',36)}},
+ fg(g,r,n){let x=-2;while(x<W){const bw=8+(r()*8|0),h=14+(r()*18|0);px(g,x,88-h,bw,h,'#1b1d4a');px(g,x,88-h-2,bw,2,'#2d3070');
+   for(let wy=88-h+2;wy<86;wy+=4)for(let wx=x+1;wx<x+bw-1;wx+=3)if(r()<.35)px(g,wx,wy,1,2,'#ffd866');if(r()<.4)px(g,x+2,88-h-5,1,3,'#1b1d4a');x+=bw}
+  const cx=96,top=22,base=90;
+  for(let y=top;y<base;y++){const t=(y-top)/(base-top),hw=Math.round(1+23*Math.pow(t,2.2));
+   for(let xx=cx-hw;xx<=cx+hw;xx++){const edge=xx===cx-hw||xx===cx+hw;if(edge)px(g,xx,y,'#f0b030');else if(t<.7&&(xx+y)%4===0)px(g,xx,y,'#a8741c');else if(t<.7&&(xx+y)%2===0)px(g,xx,y,'#3a2a2a')}
+   if(t>.74){const ih=Math.round(hw*.5);px(g,cx-ih,y,1,1,'#f0b030');px(g,cx+ih,y,1,1,'#f0b030')}}
+  [.3,.62].forEach(t=>{const y=top+Math.round((base-top)*t),hw=Math.round(1+23*Math.pow(t,2.2))+3;px(g,cx-hw,y,hw*2+1,2,'#ffd060');px(g,cx-hw,y+2,hw*2+1,1,'#8a5a1a')});
+  px(g,cx,top-9,1,9,'#f0b030');px(g,cx,top-9,1,1,'#ffffff');for(let y=90;y<93;y++)px(g,0,y,W,1,y===90?'#3a3070':'#1b1d4a')},
+ post(g,c,r,n){water(g,c,93,n?['#10143a','#1a2060','#2a2a78']:['#5a80c0','#6a90cc','#7aa0d8'],.5,n?'#060a22':'#ffffff',r,n?['#ffd060','#ffd060','#ff9ad5']:['#ffffff','#e0ecff'])}};
+/* --- エジプト(本来は夕方) --- */
+const EGYPT={seed:53,base:'day',
+ sky(g,r,n){if(n){bands(g,SKY.night,0,86);stars(g,r,90,60);moon(g,140,24,8,'#1d1752')}else{bands(g,SKY.dusk,0,86);stars(g,r,28,24);sun(g,128,72,11,'#ffd890','#fff2b8')}},
+ fg(g,r,n){const pyr=(cx,by,h,w,L,D)=>{for(let y=0;y<h;y++){const hw=Math.round(w/2*(y/h));px(g,cx-hw,by-h+y,hw,1,L);px(g,cx,by-h+y,hw+1,1,D);if(y%4===3)px(g,cx-hw,by-h+y,hw*2+1,1,'rgba(40,10,40,.25)')}};
+  pyr(112,90,50,96,'#d88a4a','#8a4a3a');pyr(60,90,38,70,'#c47a42','#7a3e38');pyr(158,90,26,46,'#c47a42','#7a3e38');
+  for(let y=86;y<H;y++)for(let x=0;x<W;x++){const off=Math.round(Math.sin(x/17+y/5)*1.5);px(g,x,y,(y+off)%7<3?'#c47a42':'#a8603a')}
+  for(let x=0;x<W;x++){const yy=86+Math.round(Math.sin(x/13)*2);px(g,x,yy,1,2,'#e0985a')}
+  const S='#5a2a2a',sx=30;px(g,sx,90,26,6,S);px(g,sx-10,94,16,2,S);px(g,sx-4,80,8,12,S);px(g,sx-5,78,10,4,S);px(g,sx-6,80,2,8,S);px(g,sx+6,80,2,8,S);px(g,sx-2,82,1,1,'#ffd890');
+  for(let i=0;i<30;i++)px(g,r()*W|0,96+(r()*10|0),2+(r()*6|0),1,'#d8904a')}};
+/* --- 京都(本来は昼) --- */
+const KYOTO={seed:67,base:'day',
+ sky(g,r,n){if(n){bands(g,SKY.night,0,80);stars(g,r,70,40);moon(g,170,18,7,'#100f3a')}else bands(g,['#7fb0f0','#a8c0f4','#d8c8f4','#ffc8dc','#ffd8cc','#fff0d0'],0,80)},
+ fg(g,r,n){/* 東山の山並みと「大文字」 */
+  for(let x=0;x<W;x++){const y=Math.round(42+Math.sin(x/30+.6)*8+Math.sin(x/11)*3);px(g,x,y,1,90-y,'#8aa8a0')}
+  for(let x=0;x<W;x++){const y=Math.round(58+Math.sin(x/22+2)*7+Math.sin(x/8)*2);px(g,x,y,1,90-y,'#5e8a70');if((x*7)%4===0)px(g,x,y+1,1,1,'#4e7a60')}
+  const DM='#e8dcb8',dx=78,dy=44;px(g,dx-8,dy+2,17,2,DM);px(g,dx-1,dy-4,2,6,DM);for(let i=0;i<9;i++){px(g,dx-1-i,dy+4+i,2,1,DM);px(g,dx+i,dy+4+i,2,1,DM)}
+  for(let x=0;x<W;x++){const h=6+Math.round(Math.sin(x/9)*3+Math.sin(x/4)*2);px(g,x,86-h,1,h+10,'#7aa088')}
+  const p0=148;for(let k=0;k<5;k++){const w=24-k*3,y=76-k*11;px(g,p0-w/2+3,y-8,w-6,8,'#f0dcc0');px(g,p0-w/2+3,y-8,w-6,1,'#d0b890');
+   px(g,p0-w/2-3,y,w+6,2,'#7a2a3a');px(g,p0-w/2-5,y-1,3,1,'#7a2a3a');px(g,p0+w/2+2,y-1,3,1,'#7a2a3a');px(g,p0-w/2-6,y-2,2,1,'#7a2a3a');px(g,p0+w/2+4,y-2,2,1,'#7a2a3a')}
+  px(g,p0-15,76,30,10,'#b8a888');px(g,p0-15,76,30,1,'#e0d0b0');px(g,p0,10,1,10,'#f0b030');px(g,p0-1,14,3,1,'#f0b030');px(g,p0-1,17,3,1,'#f0b030');
+  px(g,0,86,W,H-86,'#d8c8b0');for(let x=0;x<W;x+=6)px(g,x,90+((x/6)%2)*5,5,1,'#b8a890');for(let i=0;i<30;i++)px(g,r()*W|0,88+(r()*20|0),2,1,'#c8b8a0');
+  const tx=40,R='#d83a2a';px(g,tx-22,48,6,44,R);px(g,tx+16,48,6,44,R);px(g,tx-28,40,56,5,'#1a1018');px(g,tx-26,45,52,4,R);px(g,tx-20,54,40,3,R);px(g,tx-22,86,6,2,'#1a1018');px(g,tx+16,86,6,2,'#1a1018');px(g,tx-30,38,4,3,'#1a1018');px(g,tx+26,38,4,3,'#1a1018');
+  const sak=(x,y,rad)=>{px(g,x-1,y,3,92-y,'#4a2a2a');for(let i=0;i<rad*9;i++){const a=r()*6.28,d=Math.sqrt(r())*rad;px(g,x+Math.cos(a)*d*1.3,y-rad*.4+Math.sin(a)*d*.8,2,2,['#ffb0c8','#ff8aa8','#ffd0dc','#ff9ab8'][r()*4|0])}};
+  sak(104,50,16);sak(176,52,13);sak(12,56,12);for(let i=0;i<46;i++)px(g,r()*W|0,r()*H|0,2,1,['#ffb0c8','#ffd0dc','#ffffff'][r()*3|0])}};
+/* --- 万里の長城(本来は昼) --- */
+const GREATWALL={seed:89,base:'day',
+ sky(g,r,n){if(n){bands(g,SKY.night,0,70);stars(g,r,90,50);moon(g,160,20,8,'#100f3a')}else{bands(g,SKY.day,0,70);sun(g,160,20,7,'#fff6c8','#fffae0');clouds(g,r,7,'#ffffff',30)}},
+ fg(g,r,n){const ridge=(x,b,a1,a2,f1,f2,ph)=>b+Math.sin(x/f1+ph)*a1+Math.sin(x/f2+ph*2)*a2;
+  /* 遠くの山並み(3層) */
+  for(let x=0;x<W;x++){const y=ridge(x,50,6,3,23,9,1);px(g,x,y,1,H-y,'#9ab0d8')}
+  for(let x=0;x<W;x++){const y=ridge(x,60,8,3,19,7,2.4);px(g,x,y,1,H-y,'#6e9a8a')}
+  for(let x=0;x<W;x++){const y=ridge(x,74,9,4,26,8,4.1);px(g,x,y,1,H-y,'#4a7a5a');if((x*7)%5===0)px(g,x,y+2,1,1,'#3a6a4a')}
+  /* 長城(尾根に沿ってくねくね) */
+  const wy=x=>Math.round(ridge(x,66,10,4,30,11,3.3));
+  const WL='#c8ac80',WD='#8e744e',WT='#e6d2a8';
+  for(let x=0;x<W;x++){const y=wy(x),t=3+Math.round((x/W)*3);px(g,x,y,1,t,WL);px(g,x,y+t,1,2,WD);px(g,x,y-1,1,1,WT);if(x%3===0)px(g,x,y-2,1,1,WL)}
+  /* 見張り台 */
+  [18,70,124,176].forEach((tx,i)=>{const y=wy(tx),w=8+i,h=8+i;px(g,tx-w/2,y-h,w,h+3,WL);px(g,tx-w/2,y-h,w,1,WT);px(g,tx+w/2-1,y-h,1,h+3,WD);for(let k=0;k<w;k+=2)px(g,tx-w/2+k,y-h-2,1,2,WL);px(g,tx-1,y-h+3,2,3,'#3a2a1a')});
+  /* 手前の丘と木 */
+  for(let x=0;x<W;x++){const y=ridge(x,92,4,2,15,6,5.5);px(g,x,y,1,H-y,'#2e5a3a');if((x*11)%7===0)px(g,x,y-1,1,1,'#3e7a4a')}
+  for(let i=0;i<14;i++){const x=r()*W|0,y=ridge(x,92,4,2,15,6,5.5);px(g,x-2,y-6,5,4,'#24482e');px(g,x-1,y-8,3,2,'#24482e');px(g,x,y-2,1,2,'#3a2a1a')}}};
+function SPACE_(){const [c,g]=mk(),r=rng(79);
  px(g,0,0,W,H,'#05061a');
  for(let k=0;k<5;k++){const nx=r()*W,ny=r()*70,nr=20+r()*26,col=['#6a1f88','#1f5a88','#88306a'][k%3];for(let i=0;i<260;i++){const a=r()*6.28,d=Math.sqrt(r())*nr;if(((i)&1)===0)px(g,nx+Math.cos(a)*d*1.6,ny+Math.sin(a)*d*.7,2,1,col)}}
  for(let i=0;i<150;i++)px(g,r()*W|0,r()*92|0,1,1,['#ffffff','#cfd8ff','#ffe6a0','#a8f0ff'][r()*4|0]);
- /* 輪っかの惑星 */
  const pxc=136,pyc=40,pr=20,B=['#e8a860','#d89050','#f0c080','#c87a48','#e8b070'];
  for(let y=-pr;y<=pr;y++)for(let x=-pr;x<=pr;x++)if(x*x+y*y<=pr*pr){const shade=(x+y*.4)>8?.45:0;px(g,pxc+x,pyc+y,B[Math.floor((y+pr)/4)%5]);if(shade){g.globalAlpha=shade;px(g,pxc+x,pyc+y,'#2a0f2a');g.globalAlpha=1}}
  for(let a=0;a<6.28;a+=.02){const rx=Math.cos(a)*34,ry=Math.sin(a)*9;const front=Math.sin(a)>0;if(front||Math.abs(rx)>pr){px(g,pxc+rx,pyc+ry-4,2,1,'#f0d8a8');px(g,pxc+rx*.88,pyc+ry*.88-4,1,1,'#b8986a')}}
- /* 地球 */
  for(let y=-26;y<=26;y++)for(let x=-26;x<=26;x++)if(x*x+y*y<=676){const land=Math.sin(x/5)+Math.cos(y/4)>.9;px(g,22+x,100+y,land?'#3aa05a':'#2a6ad0');if(x+y*.6<-6){g.globalAlpha=.18;px(g,22+x,100+y,'#ffffff');g.globalAlpha=1}}
  disc(g,170,100,3,'#9a9aa8');
- /* 床 */
  px(g,0,96,W,12,'#161a3a');px(g,0,96,W,1,'#5a6ad8');for(let x=0;x<W;x+=12)px(g,x,97,1,11,'#262c5a');for(let y=100;y<H;y+=5)px(g,0,y,W,1,'#262c5a');
  for(let x=6;x<W;x+=24)px(g,x,96,4,1,'#3df2ff');
  return c}
-
-const SC={tk:tokyo,ak:angkor,ny:newyork,pa:paris,eg:pyramids,ky:kyoto,sp:space},cache={};
-const url=k=>cache[k]||(cache[k]=SC[k]().toDataURL('image/png'));
-const KEYS=['tk','ak','ny','pa','eg','ky','sp'];window.BG={url,keys:KEYS};
+const SCN={tk:TOKYO,ak:ANGKOR,ny:NEWYORK,pa:PARIS,eg:EGYPT,ky:KYOTO,gw:GREATWALL};
+const BASEN=k=>k==='sp'?true:SCN[k].base==='night';
+const cache={};
+const url=(k,night)=>{if(night===undefined)night=BASEN(k);const ck=k+(night?'n':'d');return cache[ck]||(cache[ck]=(k==='sp'?SPACE_():build(SCN[k],night)).toDataURL('image/png'))};
+const KEYS=['tk','ak','ny','pa','eg','ky','gw','sp'];window.BG={url,keys:KEYS};
 const lk=k=>{try{const n=window.LV?LV.bgLock(k):0;return n&&LV.lv()<n?n:0}catch(e){return 0}};
 let pref='r';try{const v=localStorage.getItem(KEY);if(['r','off'].concat(KEYS).includes(v))pref=v}catch(e){}
 const pick=()=>{if(pref==='off')return'off';if(pref!=='r'&&!lk(pref))return pref;const a=KEYS.filter(k=>!lk(k));return a[Math.random()*a.length|0]};
+const BGG='linear-gradient(rgba(8,6,28,.44),rgba(8,6,28,.3) 45%,rgba(8,6,28,.58))';
+let curEl=null;
 function apply(el){if(!el)return;const k=pick();el.classList.toggle('bgs',k!=='off');el.classList.toggle('bgp',k!=='off');
- if(k==='off'){el.style.backgroundImage='';return}el.style.backgroundImage='linear-gradient(rgba(8,6,28,.44),rgba(8,6,28,.3) 45%,rgba(8,6,28,.58)),url('+url(k)+')'}
+ if(k==='off'){el.style.backgroundImage='';el.dataset.bgk='';return}el.dataset.bgk=k;el.dataset.bgn=BASEN(k)?'1':'0';el.style.backgroundImage=BGG+',url('+url(k)+')';curEl=el}
+/* ---- クラッチ演出: たまに朝⇔夜が切り替わる(宇宙はそのまま) ---- */
+const FLIP_RATE=.5;
+function flipTime(){const el=curEl;if(!el||!el.dataset.bgk||el.dataset.bgk==='sp'||!el.isConnected)return;if(Math.random()>FLIP_RATE)return;
+ const k=el.dataset.bgk,nn=el.dataset.bgn!=='1';el.dataset.bgn=nn?'1':'0';
+ try{el.animate([{filter:'brightness(1)'},{filter:'brightness(3) saturate(0)',offset:.35},{filter:'brightness(1)'}],{duration:900})}catch(e){}
+ setTimeout(()=>{el.style.backgroundImage=BGG+',url('+url(k,nn)+')'},300)}
+const BN0=banner;banner=function(t){BN0(t);try{if(/CLUTCH/i.test(String(t)))setTimeout(flipTime,700)}catch(e){}};
 const SHG=show;show=function(id){SHG(id);try{if(id==='arena')apply($$('#arena .arena'));if(id==='arena2')apply($$('#a2'))}catch(e){console.error(e)}};
 /* ---- 背景の選択(ビルダー画面) ---- */
 const sel=document.createElement('div');sel.id='bgsel';sel.className='card';sel.style.cssText='background:var(--card2);margin:8px 0';
 $$('#go').insertAdjacentElement('beforebegin',sel);
 function renderSel(){
- const nmk={tk:LL('🗼 東京','🗼 Tokyo','🗼 តូក្យូ'),ak:LL('🛕 アンコールワット','🛕 Angkor Wat','🛕 អង្គរវត្ត'),ny:LL('🗽 ニューヨーク','🗽 New York','🗽 ញូវយ៉ក'),pa:LL('🥖 パリ','🥖 Paris','🥖 ប៉ារីស'),eg:LL('🐪 エジプト','🐪 Egypt','🐪 អេហ្ស៊ីប'),ky:LL('⛩️ 京都','⛩️ Kyoto','⛩️ គីយ៉ូតូ'),sp:LL('🪐 宇宙','🪐 Space','🪐 អវកាស')};
+ const nmk={tk:LL('🗼 東京','🗼 Tokyo','🗼 តូក្យូ'),ak:LL('🛕 アンコールワット','🛕 Angkor Wat','🛕 អង្គរវត្ត'),ny:LL('🗽 ニューヨーク','🗽 New York','🗽 ញូវយ៉ក'),pa:LL('🥖 パリ','🥖 Paris','🥖 ប៉ារីស'),eg:LL('🐪 エジプト','🐪 Egypt','🐪 អេហ្ស៊ីប'),ky:LL('⛩️ 京都','⛩️ Kyoto','⛩️ គីយ៉ូតូ'),gw:LL('🏯 万里の長城','🏯 Great Wall','🏯 មហាកំពែងចិន'),sp:LL('🪐 宇宙','🪐 Space','🪐 អវកាស')};
  sel.innerHTML='<b>🏞 '+LL('バトルの背景','Battle stage','ឆាកប្រយុទ្ធ')+'</b><div class="bgg">'+KEYS.map(k=>{const n=lk(k);return '<div class="bgt'+(pref===k&&!n?' on':'')+(n?' lock':'')+'" data-b="'+k+'"><img alt="" src="'+url(k)+'"><span>'+nmk[k]+'</span>'+(n?'<em class="bgl">🔒 Lv.'+n+'</em>':'')+'</div>'}).join('')+'</div>'
  +'<div class="mtog" style="margin:6px 0 0"><button class="btn alt'+(pref==='r'?' on':'')+'" data-b="r">🎲 '+LL('ランダム','Random','ចៃដន្យ')+'</button><button class="btn alt'+(pref==='off'?' on':'')+'" data-b="off">🚫 '+LL('なし','None','គ្មាន')+'</button></div>';
  sel.querySelectorAll('[data-b]').forEach(b=>b.onclick=()=>{if(lk(b.dataset.b)){banner('🔒 Lv.'+lk(b.dataset.b)+LL(' で解放',' to unlock',' ដើម្បីដោះសោ'));return}pref=b.dataset.b;try{localStorage.setItem(KEY,pref)}catch(e){}renderSel()})}
