@@ -521,7 +521,7 @@ html:root[data-ui="neon"]{--bg:#04050f;--card:#0a0d24;--card2:#141a44;--tx:#e8f4
   <button class="btn alt" id="lnkb" style="background:var(--card)">読み込む</button>
  </div>
  <button class="btn alt" id="rk">🏆 ランキングを見る</button>
- <div id="cloudbox"></div>
+ <div id="cloudbox"></div><div id="xferbox"></div>
 </div>
 
 <div id="build" class="card hide">
@@ -1526,6 +1526,25 @@ body.shake #arena .arena,body.shake #a2{animation:bgshk .5s}
 /* ホーム: 名前を称号の真ん中にそろえる */
 .lvc .lvmid{display:flex;flex-direction:column;align-items:center;text-align:center}
 .lvc .lvmid .lvnm{max-width:100%}
+
+/* ---- 称号: シーズン0コレクター(ホログラム+回る光の枠+周回する衛星+スキャン線) ---- */
+.u_d-uc0{padding:0}
+.u_d-uc0 .u_pl{position:relative;overflow:hidden;color:#fff;letter-spacing:.12em;padding:10px 26px;border-radius:6px;border:3px solid transparent;
+ background-image:linear-gradient(135deg,#140a2e,#0a1838 50%,#1a0838),conic-gradient(from var(--ua,0deg),#3df2ff,#ff3df2,#ffd23f,#7affc8,#8f4dff,#3df2ff);background-origin:border-box;background-clip:padding-box,border-box;
+ box-shadow:0 0 18px #3df2ffaa,0 0 36px #ff3df266;animation:u_uc0b 3s linear infinite}
+@property --ua{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes u_uc0b{to{--ua:360deg}}
+.u_d-uc0 .u_tx{position:relative;z-index:2;background:linear-gradient(90deg,#9ff8ff,#ffffff,#ffb3f6,#fff2a8,#9ff8ff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 4px #3df2ff);animation:u_uc0t 2.4s linear infinite}
+@keyframes u_uc0t{to{background-position:300% 0}}
+.u_d-uc0 .u_scan{position:absolute;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,#ffffff10 0 1px,transparent 1px 3px)}
+.u_d-uc0 .u_shine{position:absolute;top:-20%;bottom:-20%;width:30%;left:-40%;z-index:3;pointer-events:none;background:linear-gradient(100deg,transparent,#ffffffaa,transparent);animation:u_uc0s 2.2s ease-in-out infinite}
+@keyframes u_uc0s{0%,40%{left:-40%}80%,100%{left:120%}}
+.u_d-uc0 .u_s0{position:absolute;right:-8px;top:-9px;z-index:4;font-size:10px;font-weight:900;color:#140a2e;background:linear-gradient(135deg,#fff2a8,#ffd23f);border-radius:8px;padding:2px 5px;box-shadow:0 0 8px #ffd23f;letter-spacing:0}
+.u_d-uc0 .u_orb{position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px;border-radius:50%;z-index:5;pointer-events:none;background:radial-gradient(circle,#fff,#3df2ff 60%,transparent 70%);box-shadow:0 0 10px #3df2ff,0 0 18px #3df2ff;animation:u_uc0o 3.2s linear infinite}
+.u_d-uc0 .u_orb.u_o2{width:6px;height:6px;margin:-3px;background:radial-gradient(circle,#fff,#ff3df2 60%,transparent 70%);box-shadow:0 0 10px #ff3df2;animation-delay:-1.6s}
+@keyframes u_uc0o{0%{transform:translate(-62px,0) scale(.7);z-index:0;opacity:.6}25%{transform:translate(0,15px) scale(1.15);z-index:5;opacity:1}50%{transform:translate(62px,0) scale(.8);opacity:.8}75%{transform:translate(0,-15px) scale(.6);z-index:0;opacity:.5}100%{transform:translate(-62px,0) scale(.7);opacity:.6}}
+.u_d-uc0 .u_px{position:absolute;width:3px;height:3px;background:#fff;z-index:5;pointer-events:none;box-shadow:0 0 6px #fff;animation:u_uc0p 1.4s steps(2) infinite}
+@keyframes u_uc0p{50%{opacity:0}}
 </style>
 <script>window.EC_TITLE_TEST=false; /* テスト用: true ですべての称号を所持 */</script>
 <script>
@@ -1929,6 +1948,7 @@ function parts(q){const a=[];
 const rwHtml=q=>'🎁 Lv.'+q.lv+' '+LL('到達報酬','reward','រង្វាន់')+': '+parts(q);
 /* ---- 称号 ---- */
 const T=(ja,en,km,rj,re,rk,q,cat,own,hid)=>({ja,en,km,rj,re,rk,q,cat,own,hid});
+const allS0=()=>{try{const inv=(ECG.G&&ECG.G.inv)||{},a=ECG.items().filter(i=>i.lim===0);return a.length>0&&a.every(i=>inv[i.id])}catch(e){return false}};
 const allSS=()=>{try{const inv=(ECG.G&&ECG.G.inv)||{},a=ECG.items().filter(i=>i.r==='SS'&&i.lim===undefined);return a.length>0&&a.every(i=>inv[i.id])}catch(e){return false}};
 const SP={
  ur1:T('駆け出し','Rookie','អ្នកចាប់ផ្ដើម','Lv.5 到達','Reach Lv.5','ដល់កម្រិត 5',1,'rank',()=>lvOf(S.x).l>=5),
@@ -1948,6 +1968,7 @@ const SP={
  ug1:T('ガチャの沼','Gacha Addict','ជាប់ចិត្តកាឆា','ガチャを通算100連引く','Pull the gacha 100 times','ទាញកាឆា ១០០ដង',2,'gacha',()=>S.gp>=100),
  ug2:T('ガチャの求道者','Gacha Seeker','អ្នកស្វែងរកកាឆា','ガチャを通算500連引く','Pull the gacha 500 times','ទាញកាឆា ៥០០ដង',3,'gacha',()=>S.gp>=500),
  ug3:T('豪運の持ち主','Lucky Star','មានសំណាងធំ','ガチャでSSを引く','Pull an SS from the gacha','ទាញបាន SS ពីកាឆា',3,'gacha',()=>S.gs>=1),
+ uc0:T('原初の支配者','Primordial Sovereign','អ្នកគ្រប់គ្រងដើមកំណើត','シーズン0限定ガチャのアイテムを全部そろえる','Collect every Season 0 limited gacha item','ប្រមូលរបស់កាឆាកំណត់រដូវកាល 0 ទាំងអស់',5,'gacha',()=>allS0()),
  ug4:T('虹を呼ぶ者','Rainbow Caller','អ្នកហៅឥន្ទធនូ','ガチャでSSを3個引く','Pull 3 SS from the gacha','ទាញបាន SS ៣',4,'gacha',()=>S.gs>=3),
  ua:T('全キャラを知る者','Knower of All','អ្នកស្គាល់តួអង្គទាំងអស់','全キャラを'+TIERS[0]+'回以上使う','Use every character '+TIERS[0]+'+ times','ប្រើតួអង្គទាំងអស់ '+TIERS[0]+' ដងឡើងទៅ',3,'misc',()=>CH.every(e=>(S.u[e]||0)>=TIERS[0])),
  us7:T('七日の誓い','Seven-Day Oath','ពាក្យសន្យាប្រាំពីរថ្ងៃ','7日連続ログイン','7-day login streak','ចូលបន្តគ្នា ៧ថ្ងៃ',1,'login',()=>S.lm>=7),
@@ -2042,6 +2063,7 @@ D('uf','皆勤の達人',4,'login','1シーズン(約1か月)毎日ログイン'
 D('uh1','虚空の支配者',5,'hidden','通常ガチャのSSを全種類そろえる','ブラックホールの降着円盤が回り、光の粒が吸い込まれる。文字が歪む',tt('d-uh1','<i class="disc"></i>'+pl('虚空の支配者')+[[-44,-26],[50,-20],[-36,24],[46,26],[0,-34],[0,34]].map((p,i)=>`<i class="pt" style="--sx:${p[0]}px;--sy:${p[1]}px;animation-delay:${i*.4}s"></i>`).join('')));
 D('uh2','終焉を超えし者',5,'hidden','Lv.99に到達し、通算1000勝する','砕けた鎖が両脇に散り、板は闇から夜明けの光へ',tt('d-uh2',A('l',brokenChain(false))+A('r',brokenChain(true))+pl('終焉を超えし者','<i class="sh"></i>')+'<i class="spk" style="left:-8px;top:30%"></i><i class="spk" style="right:-8px;top:60%;animation-delay:.7s"></i><i class="spk" style="left:50%;top:-6px;animation-delay:.3s"></i>'));
 D('uh3','ミリ残りの奇跡',4,'hidden','HP1で生き残って勝利する','ほぼ空のHPゲージが点滅し、心電図が走る。頭上に光輪',tt('d-uh3',A('t','<span class="halo"></span>')+pl('ミリ残りの奇跡','<svg class="ecg" viewBox="0 0 120 30" preserveAspectRatio="none"><polyline points="0,15 20,15 26,15 30,5 34,25 38,15 70,15 76,15 80,3 84,26 88,15 120,15" fill="none" stroke="#ff2a3a" stroke-width="1.2" stroke-dasharray="60 60" opacity=".35" style="animation:u_ecg 2.4s linear infinite"/></svg><span class="hp"></span>')));
+D('uc0','原初の支配者',5,'gacha','シーズン0限定ガチャのアイテムを全部そろえる','ホログラムの板の周りを七色の光が回り、2つの衛星が周回する。右上に「S0」',tt('d-uc0',pl('<span class="tx">原初の支配者</span>','<i class="scan"></i><i class="shine"></i>')+'<i class="s0">S0</i><i class="orb"></i><i class="orb o2"></i><i class="px" style="left:6%;top:-5px"></i><i class="px" style="right:14%;bottom:-5px;animation-delay:.5s"></i><i class="px" style="left:40%;top:-6px;animation-delay:.9s"></i>'));
 /* ---- キャラ使用称号 ---- */
 D('t1','駆け出しの○○',1,'usage','そのキャラを10回使う','革の荷札。縫い目の破線と紐通しの穴',tt('d-t1',A('l','<i class="hole"></i>')+pl('駆け出しのカメ')));
 D('t2','○○の使い手',2,'usage','そのキャラを50回使う','銀の看板。上から二本の鎖で吊るされ、六角ボルトで留める',tt('d-t2',A('t','<span style="display:flex;justify-content:space-between;width:100%;padding:0 12px">'+chainV(3,'#7d889a')+chainV(3,'#7d889a')+'</span>')+pl('カメの使い手','<i class="hex hx1"></i><i class="hex hx2"></i>')));
@@ -2049,7 +2071,7 @@ D('t3','○○を極めし者',3,'usage','そのキャラを150回使う','金�
 
 return Object.fromEntries(ds.map(d=>[d.id,d.html]))})();
 
-const UPAD={ur1:[24,18,4,18],ur2:[6,30,6,30],ur3:[20,28,6,28],ur4:[20,8,20,8],ub1:[6,14,14,14],ub2:[6,26,6,26],ub3:[8,26,8,26],ub4:[8,50,12,50],ub5:[6,30,6,30],ub6:[14,12,6,12],ub7:[6,6,6,22],ub8:[8,26,8,26],ub9:[6,42,6,42],ub10:[6,6,14,6],ug1:[6,6,16,6],ug2:[10,32,10,32],ug3:[10,26,6,26],ug4:[26,30,6,30],ua:[6,40,6,40],us7:[6,6,14,6],us30:[6,26,14,26],us100:[18,24,10,24],us365:[8,8,14,8],uf:[8,16,14,8],uh1:[16,22,16,22],uh2:[8,48,8,48],uh3:[18,8,6,8],t1:[6,6,6,16],t2:[34,8,6,8],t3:[26,8,6,8]};
+const UPAD={ur1:[24,18,4,18],ur2:[6,30,6,30],ur3:[20,28,6,28],ur4:[20,8,20,8],ub1:[6,14,14,14],ub2:[6,26,6,26],ub3:[8,26,8,26],ub4:[8,50,12,50],ub5:[6,30,6,30],ub6:[14,12,6,12],ub7:[6,6,6,22],ub8:[8,26,8,26],ub9:[6,42,6,42],ub10:[6,6,14,6],ug1:[6,6,16,6],ug2:[10,32,10,32],ug3:[10,26,6,26],ug4:[26,30,6,30],ua:[6,40,6,40],us7:[6,6,14,6],us30:[6,26,14,26],us100:[18,24,10,24],us365:[8,8,14,8],uf:[8,16,14,8],uh1:[16,22,16,22],uh2:[8,48,8,48],uh3:[18,8,6,8],uc0:[14,20,10,20],t1:[6,6,6,16],t2:[34,8,6,8],t3:[26,8,6,8]};
 const USAMP={t1:'駆け出しのカメ',t2:'カメの使い手',t3:'カメを極めし者'};
 const chip=id=>{const t=tinfo(id);if(!t)return'';const key=t.sp?id:'t'+t.tier;let h=UTD[key];if(!h)return chipOld(id);
  h=h.split(t.sp?SP[id].ja:USAMP[key]).join(esc(tname(id)));
@@ -2605,7 +2627,41 @@ async function logout(){if(!confirm(L('ログアウトしますか？(データ�
   if(c&&c.d&&(+c.t||0)>ls){restore(c.d);localStorage.setItem(SYNC,String(c.t));location.reload();return}}catch(e){}
  let last=snap();setInterval(()=>{const s=snap();if(s!==last){last=s;push(false)}},60000);
  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){const s=snap();if(s!==last){last=s;push(false)}}})})();
-render();const lb=$$('#lang');if(lb)lb.addEventListener('click',()=>setTimeout(render,0));
+
+/* ---- 🔢 引き継ぎコード(Googleログインが使えない人向け) ----
+   発行は1アカウント2回まで / コードは1回だけ使える。コードはハッシュにして保存(コードそのものはサーバーに残らない) */
+const XMAX=2,XAB='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const genCode=()=>{const a=new Uint32Array(12);crypto.getRandomValues(a);let c='';for(let i=0;i<12;i++){c+=XAB[a[i]%XAB.length];if(i===3||i===7)c+='-'}return c};
+const normCode=c=>String(c||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+async function hashCode(c){const t=new TextEncoder().encode('ecx|'+normCode(c));try{const h=await crypto.subtle.digest('SHA-256',t);return [...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,'0')).join('')}catch(e){let h=2166136261;for(const b of t)h=Math.imul(h^b,16777619)>>>0;return 'f'+h.toString(16)}}
+async function xUsed(){try{const x=await db('GET','xidx/'+PID);return x?Object.keys(x).length:0}catch(e){return 0}}
+function xBox(){const el=$$('#xferbox');if(!el)return;
+ el.innerHTML='<details class="tc" style="text-align:left;margin-top:8px"><summary style="cursor:pointer;font-weight:800">🔢 '+L('引き継ぎコード(LINEなどでGoogleログインできない人向け)','Transfer code (if Google sign-in doesn\'t work, e.g. in LINE)','លេខកូដផ្ទេរ (បើមិនអាចចូល Google ដូចក្នុង LINE)')+'</summary>'
+ +'<div class="stat" style="margin:6px 0">'+L('今の端末で「コードを発行」→ 新しい端末で「コードを入力」すると、データを引き継げます。','Issue a code on this device, then enter it on the new device to move your data.','ចេញលេខកូដលើឧបករណ៍នេះ រួចបញ្ចូលវានៅឧបករណ៍ថ្មី ដើម្បីផ្ទេរទិន្នន័យ។')+'</div>'
+ +'<button class="btn alt" id="xiss">🔑 '+L('コードを発行する','Issue a code','ចេញលេខកូដ')+' <span id="xleft" class="mut"></span></button><div id="xout"></div>'
+ +'<div class="row" style="gap:6px;margin-top:6px"><input id="xin" placeholder="XXXX-XXXX-XXXX" autocomplete="off" style="flex:1;min-width:0;text-transform:uppercase;font-size:16px;padding:10px;border-radius:10px;border:2px solid var(--card2);background:var(--card);color:var(--tx)"><button class="btn" id="xgo" style="width:auto;margin:0;padding:10px 14px">'+L('入力して引き継ぐ','Transfer','ផ្ទេរ')+'</button></div><div id="xmsg" class="mut"></div></details>';
+ const left=async()=>{await FBREADY;const u=await xUsed();$$('#xleft').textContent='('+L('残り','left: ','នៅសល់ ')+Math.max(0,XMAX-u)+L('回','',' ដង')+')';return u};left();
+ $$('#xiss').onclick=async()=>{const out=$$('#xout');out.textContent=L('発行中…','Issuing…','កំពុងចេញ…');
+  try{await FBREADY;const u=await xUsed();if(u>=XMAX){out.innerHTML='<div class="mut">❌ '+L('コードの発行は1アカウント'+XMAX+'回までです。','You can issue up to '+XMAX+' codes per account.','អាចចេញលេខកូដបាន '+XMAX+' ដងក្នុងមួយគណនី។')+'</div>';return}
+   if(!confirm(L('引き継ぎコードを発行します(残り'+(XMAX-u)+'回)。発行したあとに遊んだ分は引き継がれません。よろしいですか？','Issue a transfer code ('+(XMAX-u)+' left)? Progress made after issuing will not be transferred.','ចេញលេខកូដផ្ទេរ? (នៅសល់ '+(XMAX-u)+') វឌ្ឍនភាពក្រោយពេលចេញនឹងមិនត្រូវផ្ទេរទេ។')))return void(out.textContent='');
+   const code=genCode(),h=await hashCode(code),n=u+1;
+   await db('PUT','xidx/'+PID+'/'+n,h);
+   await db('PUT','xfer/'+h,{d:snap(),o:PID,n,t:Date.now()});
+   out.innerHTML='<div class="tc" style="text-align:center"><div class="mut">'+L('あなたの引き継ぎコード','Your transfer code','លេខកូដផ្ទេររបស់អ្នក')+'</div><div style="font-size:26px;font-weight:900;letter-spacing:2px;user-select:all">'+code+'</div><button class="btn alt" id="xcp" style="margin-top:6px">📋 '+L('コピー','Copy','ចម្លង')+'</button><div class="stat">⚠️ '+L('このコードは1回だけ使えます。スクショかメモをして、他の人には絶対に教えないでください。','This code works only once. Screenshot or write it down, and never share it with anyone.','លេខកូដនេះប្រើបានតែម្តង។ ថតអេក្រង់ ឬកត់ទុក ហើយកុំប្រាប់អ្នកដទៃ។')+'</div></div>';
+   $$('#xcp').onclick=()=>{try{navigator.clipboard.writeText(code);$$('#xcp').textContent='✅ '+L('コピーしました','Copied','បានចម្លង')}catch(e){}};left()}
+  catch(e){out.innerHTML='<div class="mut">❌ '+L('発行できませんでした。通信やルールの設定を確認してください。','Could not issue a code. Check your connection.','មិនអាចចេញលេខកូដបានទេ។')+'</div>'}};
+ $$('#xgo').onclick=async()=>{const m=$$('#xmsg'),c=normCode($$('#xin').value);if(c.length!==12){m.textContent='❌ '+L('12文字のコードを入れてください','Enter the 12-character code','សូមបញ្ចូលលេខកូដ 12 តួ');return}
+  m.textContent=L('確認中…','Checking…','កំពុងពិនិត្យ…');
+  try{await FBREADY;const h=await hashCode(c),x=await db('GET','xfer/'+h);
+   if(!x||!x.d){m.textContent='❌ '+L('コードが見つかりません','Code not found','រកមិនឃើញលេខកូដ');return}
+   if(x.u){m.textContent='❌ '+L('このコードはもう使われています','This code has already been used','លេខកូដនេះត្រូវបានប្រើរួចហើយ');return}
+   if(x.o===PID){m.textContent='❌ '+L('発行した端末では使えません。新しい端末で入力してください','Enter this code on your new device, not this one','សូមបញ្ចូលលេខកូដនេះនៅឧបករណ៍ថ្មី');return}
+   if(!confirm(L('この端末のデータを、コードのデータで上書きします。よろしいですか？','Replace this device\'s data with the transferred data?','ជំនួសទិន្នន័យលើឧបករណ៍នេះ?'))){m.textContent='';return}
+   await db('PUT','xfer/'+h+'/u',PID); /* 先に「使用済み」にする(2回目は失敗する) */
+   restore(x.d);alert('✅ '+L('引き継ぎ完了！','Transfer complete!','ផ្ទេររួចរាល់!'));location.reload()}
+  catch(e){m.textContent='❌ '+L('引き継げませんでした(コードがもう使われた可能性があります)','Transfer failed (the code may already be used)','ផ្ទេរមិនបាន')}}}
+
+render();xBox();const lb=$$('#lang');if(lb)lb.addEventListener('click',()=>setTimeout(()=>{render();xBox()},0));
 })();
 </script>
 <script>
