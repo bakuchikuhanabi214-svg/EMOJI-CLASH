@@ -1354,7 +1354,7 @@ let stN=null,stCool=0;
 const P0=play;play=function(L,rep){const p=P0(L,rep),c=G.eq.c&&item(G.eq.c),w=G.eq.w&&item(G.eq.w);
 if(c){$('#e0').innerHTML=vis(c);$('#n0').textContent='YOU('+c.n+')'}if(w)$('#s0').innerHTML=vis(w)+esc(L.W[2]||'');
 const q=window.OPPEQ||{},oc=oi(q.c,'c'),ow=oi(q.w,'w');if(oc){$('#e1').innerHTML=vis(oc);$('#n1').textContent=L.oppN+'('+oc.n+')'}if(ow)$('#s1').innerHTML=vis(ow)+esc(L.oppW[2]||'');stN=null;return p};
-const F0=finish;finish=function(L){F0(L);if(L.r.win===0&&!L._g){L._g=1;let cap=false;if(ROOM){const nt=Date.now();G.rw=(G.rw||[]).filter(t=>nt-t<36e5);if(G.rw.length>=CFG.onlineCap)cap=true;else G.rw.push(nt)}if(!cap)G.t++;save();upd();
+const F0=finish;finish=function(L){F0(L);if(L.r.win===0&&!L._g){L._g=1;let cap=false;if(window.EC_TUT_NOTK){window.EC_TUT_NOTK=false;$('#result').insertAdjacentHTML('afterbegin','<div class="gtkb" style="filter:grayscale(.6)">'+LL('チュートリアルの2回目以降はチケットはもらえません','No tickets from repeated tutorial battles','មិនមានសំបុត្រពីការណែនាំលើកទីពីរទេ')+'</div>');return}if(ROOM){const nt=Date.now();G.rw=(G.rw||[]).filter(t=>nt-t<36e5);if(G.rw.length>=CFG.onlineCap)cap=true;else G.rw.push(nt)}if(!cap)G.t++;save();upd();
 $('#result').insertAdjacentHTML('afterbegin',cap?`<div class="gtkb" style="filter:grayscale(.6)">オンライン対戦のチケットは1時間に${CFG.onlineCap}枚までです<small>所持 ${G.t}</small></div>`:`<div class="gtkb">${TKI} ガチャチケットを1枚獲得！<small>所持 ${G.t} / 次の1連まで あと ${Math.max(0,CFG.cost1-G.t)}</small></div>`);
 if(typeof AC!=='undefined'&&AC&&sndOn){const t0=now();[880,1175,1568].forEach((f,i)=>tn(f,t0+.5+i*.08,.2,'square',.07))}
 const b=document.createElement('button');b.className='btn alt';b.textContent='🎰 ガチャを引く';b.onclick=()=>go('gacha');$('#result').appendChild(b)}};
@@ -1983,10 +1983,12 @@ const SP={
  uh1:T('虚空の支配者','Ruler of the Void','អ្នកគ្រប់គ្រងភាពទទេ','通常ガチャのSSを全種類そろえる','Collect every SS item from the standard gacha','ប្រមូល SS ទាំងអស់ពីកាឆាធម្មតា',5,'hidden',()=>allSS(),true),
  uh2:T('終焉を超えし者','Beyond the End','អ្នកហួសទីបញ្ចប់','Lv.99に到達し、通算1000勝する','Reach Lv.99 and win 1000 battles','ដល់កម្រិត 99 និងឈ្នះ ១០០០ដង',5,'hidden',()=>lvOf(S.x).l>=MAXL&&S.wn>=1000,true),
  uh3:T('ミリ残りの奇跡','Miracle at 1 HP','អព្ភូតហេតុ HP 1','HP1で生き残って勝利する','Win while surviving with just 1 HP','ឈ្នះដោយនៅសល់ HP 1',4,'hidden',()=>S.mh>=1,true)};
+/* イベント称号 */
+SP.uhw=T('ハッピーハロウィン','Happy Halloween','រីករាយថ្ងៃហាឡូវីន','ハロウィン期間(2026/10/30〜11/5)にログイン','Log in during Halloween (Oct 30 – Nov 5, 2026)','ចូលក្នុងរដូវហាឡូវីន (30 តុលា – 5 វិច្ឆិកា 2026)',3,'event',()=>{try{return !!localStorage.getItem('echw26')}catch(e){return false}});
 /* シーズン報酬の称号 */
 for(let n=0;n<=ECS.cur();n++)[[1,'覇王','Overlord','អធិរាជ','1位','1st place','លេខ 1',5],[2,'英雄','Hero','វីរបុរស','2〜3位','2nd-3rd','លេខ 2-3',4],[3,'精鋭','Elite','ឥស្សរជន','4〜10位','4th-10th','លេខ 4-10',3],[4,'挑戦者','Challenger','អ្នកប្រកួត','11〜30位','11th-30th','លេខ 11-30',2]].forEach(x=>{const id='sr'+n+'_'+x[0];
  SP[id]=T('S'+n+' '+x[1],'S'+n+' '+x[2],'S'+n+' '+x[3],'シーズン'+n+'ランキング '+x[4],'Season '+n+' ranking: '+x[5],'ចំណាត់ថ្នាក់រដូវកាល '+n+' '+x[6],x[7],'season',()=>{try{return !!(JSON.parse(localStorage.getItem('ecsrw')||'{}').t||{})[id]}catch(e){return false}})});
-const CATS=[['rank','🎖 階級','🎖 Rank','🎖 ឋានន្តរស័ក្ដិ'],['battle','⚔️ 戦闘','⚔️ Battle','⚔️ ការប្រយុទ្ធ'],['gacha','🎰 ガチャ','🎰 Gacha','🎰 កាឆា'],['login','📅 ログイン','📅 Login','📅 ចូលប្រចាំថ្ងៃ'],['misc','✨ その他','✨ Other','✨ ផ្សេងៗ'],['season','🏆 シーズン','🏆 Season','🏆 រដូវកាល'],['hidden','🕳 隠し称号','🕳 Hidden','🕳 ងារលាក់']];
+const CATS=[['rank','🎖 階級','🎖 Rank','🎖 ឋានន្តរស័ក្ដិ'],['battle','⚔️ 戦闘','⚔️ Battle','⚔️ ការប្រយុទ្ធ'],['gacha','🎰 ガチャ','🎰 Gacha','🎰 កាឆា'],['login','📅 ログイン','📅 Login','📅 ចូលប្រចាំថ្ងៃ'],['misc','✨ その他','✨ Other','✨ ផ្សេងៗ'],['event','🎉 イベント','🎉 Events','🎉 ព្រឹត្តិការណ៍'],['season','🏆 シーズン','🏆 Season','🏆 រដូវកាល'],['hidden','🕳 隠し称号','🕳 Hidden','🕳 ងារលាក់']];
 const SPK=Object.keys(SP);
 function tinfo(id){if(typeof id!=='string')return null;const m=/^u([123]):(.+)$/.exec(id);if(m&&CH.includes(m[2]))return{id,tier:+m[1],e:m[2]};if(Object.prototype.hasOwnProperty.call(SP,id))return{id,tier:0,sp:SP[id]};return null}
 function tname(id){const t=tinfo(id);if(!t)return'';if(t.sp)return LL(t.sp.ja,t.sp.en,t.sp.km);
@@ -2068,6 +2070,7 @@ D('uh1','虚空の支配者',5,'hidden','通常ガチャのSSを全種類そろ�
 D('uh2','終焉を超えし者',5,'hidden','Lv.99に到達し、通算1000勝する','砕けた鎖が両脇に散り、板は闇から夜明けの光へ',tt('d-uh2',A('l',brokenChain(false))+A('r',brokenChain(true))+pl('終焉を超えし者','<i class="sh"></i>')+'<i class="spk" style="left:-8px;top:30%"></i><i class="spk" style="right:-8px;top:60%;animation-delay:.7s"></i><i class="spk" style="left:50%;top:-6px;animation-delay:.3s"></i>'));
 D('uh3','ミリ残りの奇跡',4,'hidden','HP1で生き残って勝利する','ほぼ空のHPゲージが点滅し、心電図が走る。頭上に光輪',tt('d-uh3',A('t','<span class="halo"></span>')+pl('ミリ残りの奇跡','<svg class="ecg" viewBox="0 0 120 30" preserveAspectRatio="none"><polyline points="0,15 20,15 26,15 30,5 34,25 38,15 70,15 76,15 80,3 84,26 88,15 120,15" fill="none" stroke="#ff2a3a" stroke-width="1.2" stroke-dasharray="60 60" opacity=".35" style="animation:u_ecg 2.4s linear infinite"/></svg><span class="hp"></span>')));
 D('uc0','原初の支配者',5,'gacha','シーズン0限定ガチャのアイテムを全部そろえる','ホログラムの板の周りを七色の光が回り、2つの衛星が周回する。右上に「S0」',tt('d-uc0',pl('<span class="tx">原初の支配者</span>','<i class="scan"></i><i class="shine"></i>')+'<i class="s0">S0</i><i class="orb"></i><i class="orb o2"></i><i class="px" style="left:6%;top:-5px"></i><i class="px" style="right:14%;bottom:-5px;animation-delay:.5s"></i><i class="px" style="left:40%;top:-6px;animation-delay:.9s"></i>'));
+D('uhw','ハッピーハロウィン',3,'event','ハロウィン期間にログイン','紫と橙の板。両脇でカボチャが揺れ、上をコウモリが飛ぶ',tt('d-uhw',A('l','<span class="pk">🎃</span>')+pl('ハッピーハロウィン')+A('r','<span class="pk">🎃</span>')+'<span class="bats"><i class="bat">🦇</i><i class="bat b2">🦇</i><i class="bat b3">🦇</i></span>'));
 /* ---- キャラ使用称号 ---- */
 D('t1','駆け出しの○○',1,'usage','そのキャラを10回使う','革の荷札。縫い目の破線と紐通しの穴',tt('d-t1',A('l','<i class="hole"></i>')+pl('駆け出しのカメ')));
 D('t2','○○の使い手',2,'usage','そのキャラを50回使う','銀の看板。上から二本の鎖で吊るされ、六角ボルトで留める',tt('d-t2',A('t','<span style="display:flex;justify-content:space-between;width:100%;padding:0 12px">'+chainV(3,'#7d889a')+chainV(3,'#7d889a')+'</span>')+pl('カメの使い手','<i class="hex hx1"></i><i class="hex hx2"></i>')));
@@ -2075,7 +2078,7 @@ D('t3','○○を極めし者',3,'usage','そのキャラを150回使う','金�
 
 return Object.fromEntries(ds.map(d=>[d.id,d.html]))})();
 
-const UPAD={ur1:[24,18,4,18],ur2:[6,30,6,30],ur3:[20,28,6,28],ur4:[20,8,20,8],ub1:[6,14,14,14],ub2:[6,26,6,26],ub3:[8,26,8,26],ub4:[8,50,12,50],ub5:[6,30,6,30],ub6:[14,12,6,12],ub7:[6,6,6,22],ub8:[8,26,8,26],ub9:[6,42,6,42],ub10:[6,6,14,6],ug1:[6,6,16,6],ug2:[10,32,10,32],ug3:[10,26,6,26],ug4:[26,30,6,30],ua:[6,40,6,40],us7:[6,6,14,6],us30:[6,26,14,26],us100:[18,24,10,24],us365:[8,8,14,8],uf:[8,16,14,8],uh1:[16,22,16,22],uh2:[8,48,8,48],uh3:[18,8,6,8],uc0:[14,20,10,20],t1:[6,6,6,16],t2:[34,8,6,8],t3:[26,8,6,8]};
+const UPAD={ur1:[24,18,4,18],ur2:[6,30,6,30],ur3:[20,28,6,28],ur4:[20,8,20,8],ub1:[6,14,14,14],ub2:[6,26,6,26],ub3:[8,26,8,26],ub4:[8,50,12,50],ub5:[6,30,6,30],ub6:[14,12,6,12],ub7:[6,6,6,22],ub8:[8,26,8,26],ub9:[6,42,6,42],ub10:[6,6,14,6],ug1:[6,6,16,6],ug2:[10,32,10,32],ug3:[10,26,6,26],ug4:[26,30,6,30],ua:[6,40,6,40],us7:[6,6,14,6],us30:[6,26,14,26],us100:[18,24,10,24],us365:[8,8,14,8],uf:[8,16,14,8],uh1:[16,22,16,22],uh2:[8,48,8,48],uh3:[18,8,6,8],uc0:[14,20,10,20],uhw:[18,30,8,30],t1:[6,6,6,16],t2:[34,8,6,8],t3:[26,8,6,8]};
 const USAMP={t1:'駆け出しのカメ',t2:'カメの使い手',t3:'カメを極めし者'};
 const chip=id=>{const t=tinfo(id);if(!t)return'';const key=t.sp?id:'t'+t.tier;let h=UTD[key];if(!h)return chipOld(id);
  h=h.split(t.sp?SP[id].ja:USAMP[key]).join(esc(tname(id)));
@@ -2760,6 +2763,190 @@ addEventListener('hashchange',()=>{if(location.hash==='#ecadmin')admin()});
 (()=>{const fit=()=>{const m=document.querySelector('#lvc .lvmid');if(!m)return;const c=m.querySelector('.u_w,.utw,.tti');if(!c||c.dataset.fit===m.clientWidth+'')return;
  c.style.zoom='1';const rs=[c,...c.querySelectorAll('*')].map(e=>e.getBoundingClientRect()).filter(r=>r.width),w=Math.max(...rs.map(r=>r.right))-Math.min(...rs.map(r=>r.left)),mw=m.clientWidth;const z=Math.max(.4,Math.min(.7,(mw-4)/w));c.style.zoom=z;c.dataset.fit=mw+''};
  const st=document.querySelector('#start');if(st)new MutationObserver(()=>requestAnimationFrame(fit)).observe(st,{childList:true,subtree:true});addEventListener('resize',()=>{const c=document.querySelector('#lvc .lvmid [data-fit]');if(c)c.dataset.fit='';fit()});setTimeout(fit,300)})();
+</script>
+<style>
+#tut{position:fixed;inset:0;z-index:200000;pointer-events:none}
+#tut .th{position:fixed;border-radius:14px;box-shadow:0 0 0 9999px rgba(5,3,15,.72),0 0 0 3px var(--gold),0 0 22px var(--gold);transition:all .25s ease;pointer-events:none}
+#tut .th.none{width:0!important;height:0!important;left:50%!important;top:40%!important;box-shadow:0 0 0 9999px rgba(5,3,15,.72)}
+#tut .th.pass{box-shadow:0 0 0 3px var(--gold),0 0 22px var(--gold)}
+#tut .tp{position:fixed;left:12px;right:12px;margin:0 auto;max-width:360px;background:var(--card);color:var(--tx);border:2px solid var(--gold);border-radius:16px;padding:14px 16px;pointer-events:auto;box-shadow:0 8px 30px #000a;animation:howpop .25s}
+#tut .tp b{display:block;font-size:16px;margin-bottom:4px}
+#tut .tp p{margin:0;line-height:1.6;font-size:14px}
+#tut .tr{display:flex;gap:8px;align-items:center;margin-top:10px}
+#tut .tr .btn{margin:0;padding:9px 14px;width:auto}
+#tut .tn{flex:1;font-size:12px;color:var(--mut)}
+#tut .tk{font-size:12px;color:var(--mut);background:none;border:0;padding:4px;cursor:pointer;text-decoration:underline}
+#tut .tf{display:inline-block;animation:tutp 1s infinite}
+@keyframes tutp{50%{transform:translateY(-4px)}}
+</style>
+<script>
+/* ===== 📘 チュートリアル(初めての人だけ自動で始まる。遊び方からもう一度見られる) ===== */
+(()=>{
+const KEY='ectut',REWARD=10,$$=s=>document.querySelector(s);
+let D={};try{D=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}};
+const vis=el=>!!(el&&el.offsetParent!==null&&el.getBoundingClientRect().width>0);
+const T=(j,e,k)=>LL(j,e,k);
+const STEPS=[
+ {t:null,ti:()=>T('👋 ようこそ EMOJI CLASH へ！','👋 Welcome to EMOJI CLASH!','👋 សូមស្វាគមន៍មក EMOJI CLASH!'),tx:()=>T('絵文字3つで自分だけの戦士を作って戦うゲームです。まずは1回、一緒に戦ってみましょう！','Build your own warrior from 3 emoji and battle. Let’s fight once together!','បង្កើតអ្នកចម្បាំងពីអេម៉ូជី ៣ ហើយប្រយុទ្ធ។ តោះប្រយុទ្ធម្ដងជាមួយគ្នា!'),m:'next',pre:()=>{const b=$$('#m1');if(b&&!b.classList.contains('on'))b.click();window.goHome&&goHome()}},
+ {t:'#mtog',ti:()=>T('⚔️ 1対1 / 2対2','⚔️ 1v1 / 2v2','⚔️ ១ទល់១ / ២ទល់២'),tx:()=>T('ここで1対1と2対2を切り替えられます。今回は1対1で遊びます。','Switch between 1v1 and 2v2 here. We’ll play 1v1 this time.','ប្ដូររវាង ១ទល់១ និង ២ទល់២ នៅទីនេះ។ លើកនេះលេង ១ទល់១។'),m:'next'},
+ {t:'#sOn',ti:()=>T('🛠 戦士を作ろう','🛠 Build a warrior','🛠 បង្កើតអ្នកចម្បាំង'),tx:()=>T('「⚔️ バトルする」を押してください。','Tap “⚔️ Battle”.','ចុច «⚔️ ប្រយុទ្ធ»។'),m:'click'},
+ {t:'#slots',sel:()=>$$('#slots .slot:nth-child(1)'),ti:()=>T('① 本体を選ぼう','① Pick a body','① ជ្រើសតួ'),tx:()=>T('好きな絵文字をタップしてください。本体で守りの強さ・速さ・タイプが決まります。','Tap any emoji you like. The body decides defense, speed and type.','ចុចអេម៉ូជីដែលអ្នកចូលចិត្ត។ តួកំណត់ការពារ ល្បឿន និងប្រភេទ។'),m:'pick',w:'#build',pre:()=>{try{setChal(null);ROOM=null}catch(e){}}},
+ {t:'#slots',sel:()=>$$('#slots .slot:nth-child(2)'),ti:()=>T('② 武器を選ぼう','② Pick a weapon','② ជ្រើសអាវុធ'),tx:()=>T('武器で攻撃の強さや、何回攻撃するかが変わります。','The weapon changes attack power and how many hits you make.','អាវុធប្ដូរកម្លាំងវាយ និងចំនួនដងវាយ។'),m:'pick'},
+ {t:'#slots',sel:()=>$$('#slots .slot:nth-child(3)'),ti:()=>T('③ 属性を選ぼう','③ Pick an element','③ ជ្រើសធាតុ'),tx:()=>T('属性で炎のやけど・氷・回復などの特別な効果がつきます。','The element adds special effects like burn, freeze or healing.','ធាតុបន្ថែមឥទ្ធិពលពិសេស ដូចជាឆេះ ត្រជាក់ ឬព្យាបាល។'),m:'pick'},
+ {t:'#chart',sel:()=>{const c=$$('#chart');return c&&(c.closest('details')||c)},ti:()=>T('📊 タイプ相性','📊 Type matchups','📊 ទំនាក់ទំនងប្រភេទ'),tx:()=>T('戦士にはタイプ(守り型・速攻型・トリック型・持久型など)があります。相性が有利な相手にはダメージ×1.25、不利だと×0.8。表の左の列が攻撃する側です。上の説明にも得意・苦手が出ます。','Each warrior has a type (Defender, Rusher, Trickster, Endurer…). Against a favorable matchup you deal ×1.25 damage, against an unfavorable one ×0.8. The left column of the chart is the attacker. The box above also shows strengths and weaknesses.','អ្នកចម្បាំងនីមួយៗមានប្រភេទ។ ប្រសិនបើមានប្រៀប ការខូចខាត ×១.២៥ គ្មានប្រៀប ×០.៨។ ជួរឈរខាងឆ្វេងនៃតារាងគឺអ្នកវាយប្រហារ។'),m:'next'},
+ {t:'#go',pre:()=>{if(D.won){window.EC_TUT_WIN=false;window.EC_TUT_NOTK=true}else{window.EC_TUT_WIN=true;window.EC_TUT_NOTK=false;D.won=1;save()}},ti:()=>T('⚔️ バトル開始！','⚔️ Start the battle!','⚔️ ចាប់ផ្ដើមប្រយុទ្ធ!'),tx:()=>T('戦士が決まったら、ここを押してください。','When you’re ready, tap here.','ពេលរួចរាល់ ចុចទីនេះ។'),m:'click'},
+ {t:'#arena .arena',ti:()=>T('👀 見ているだけでOK','👀 Just watch','👀 គ្រាន់តែមើល'),tx:()=>T('戦闘は自動で進みます。HPが25%以下になると、逆転技「クラッチ」が出ることも！','Battles play out automatically. When HP drops to 25% or less, a “Clutch” comeback may trigger!','ការប្រយុទ្ធដំណើរការដោយស្វ័យប្រវត្តិ។ ពេល HP ធ្លាក់ដល់ ២៥% អាចមាន «Clutch»!'),m:'wait',w:'#arena',done:()=>vis($$('#result')),pass:true,top:true},
+ {t:'#result',ti:()=>T('🎉 おつかれさま！','🎉 Nice fight!','🎉 ប្រយុទ្ធបានល្អ!'),tx:()=>T('勝つとガチャチケットが1枚もらえます。勝っても負けてもEXPがたまってレベルが上がります。','Win to get 1 gacha ticket. Win or lose, you earn EXP and level up.','ឈ្នះដើម្បីទទួលសំបុត្រកាឆា ១។ ឈ្នះ ឬចាញ់ ក៏ទទួល EXP ដែរ។'),m:'next',w:'#result',sel:()=>$$('#result .gtkb')||$$('#result .lvr')||$$('#result')},
+ {t:'#ghome',ti:()=>T('🎰 ガチャ','🎰 Gacha','🎰 កាឆា'),tx:()=>T('チケット5枚で1回引けます。キャラ・武器・エフェクトは見た目だけ変わり、強さは変わりません。','5 tickets for one pull. Characters, weapons and effects only change the look, never the strength.','សំបុត្រ ៥ សម្រាប់ទាញម្ដង។ តួអង្គ អាវុធ និងអេហ្វេកត៌ប្ដូរតែរូបរាង។'),m:'next',pre:()=>window.goHome&&goHome()},
+ {t:'#gch',ti:()=>T('📦 当てたものを装備する','📦 Equip what you got','📦 បំពាក់អ្វីដែលទទួលបាន'),tx:()=>T('ガチャで当てたキャラ・武器・エフェクトは「📦 コレクション」に入ります。開いてアイテムを押し、「装備する」を選ぶと、次のバトルから見た目が変わります。','Characters, weapons and effects from the gacha go to “📦 Collection”. Open it, tap an item and choose “Equip” to change your look from the next battle.','របស់ពីកាឆាចូលក្នុង «📦 ការប្រមូល»។ បើក ចុចរបស់ ហើយជ្រើស «បំពាក់»។'),m:'next'},
+ {t:'#lvc',ti:()=>T('⭐ レベルと毎日のボーナス','⭐ Level & daily bonus','⭐ កម្រិត និងរង្វាន់ប្រចាំថ្ងៃ'),tx:()=>T('📅は毎日のログインボーナス、👤はプロフィールと称号です。','📅 is the daily login bonus, 👤 is your profile and titles.','📅 គឺរង្វាន់ចូលប្រចាំថ្ងៃ 👤 គឺប្រវត្តិរូប និងងារ។'),m:'next'},
+ {t:'#mk',sel:()=>{const m=$$('#mk');return m&&(m.closest('.card')||m)},ti:()=>T('🌍 オンラインで対戦','🌍 Play online','🌍 លេងអនឡាញ'),tx:()=>T('「🎲 ランダムな人と対戦」を押すと、世界のだれかと自動でマッチします。「🏠 ルームを作る」で4桁の番号を友達に送れば、友達ともリアルタイムで戦えます。2対2でもOK！','Tap “🎲 Battle a random player” to be matched with someone in the world automatically. Use “🏠 Create a room” and send the 4-digit code to battle friends in real time. Works in 2v2 too!','ចុច «🎲 ប្រយុទ្ធជាមួយអ្នកលេងចៃដន្យ» ដើម្បីផ្គូផ្គងស្វ័យប្រវត្តិ។ «🏠 បង្កើតបន្ទប់» ហើយផ្ញើលេខ ៤ខ្ទង់ទៅមិត្តភក្តិ។ ២ទល់២ក៏បាន!'),m:'next'},
+ {t:'#rk',ti:()=>T('🏆 ランキングと引き継ぎ','🏆 Ranking & backup','🏆 ចំណាត់ថ្នាក់ និងការបម្រុងទុក'),tx:()=>T('ランキングを見たり、Googleや引き継ぎコードでデータを守ったりできます。','Check the ranking, and protect your data with Google or a transfer code.','មើលចំណាត់ថ្នាក់ ហើយការពារទិន្នន័យដោយ Google ឬលេខកូដផ្ទេរ។'),m:'next'},
+ {t:null,fin:true,ti:()=>T('✅ チュートリアル完了！','✅ Tutorial complete!','✅ បញ្ចប់ការណែនាំ!'),tx:()=>D.got?T('いつでも「📖 遊び方」から見直せます。楽しんでね！','You can watch it again any time from “📖 How to Play”. Have fun!','អាចមើលម្ដងទៀតពី «📖 របៀបលេង»។ រីករាយ!'):T('記念にガチャチケット'+REWARD+'枚をプレゼント！さっそくガチャを引いてみよう。','Here are '+REWARD+' gacha tickets as a gift! Try a pull.','នេះជាសំបុត្រកាឆា '+REWARD+' សន្លឹក! សាកទាញមើល។'),m:'next'}
+];
+let cur=-1,root=null,raf=0,poll=0,blk=null;
+function el(){const s=STEPS[cur];if(!s)return null;if(s.sel)return s.sel();return s.t?$$(s.t):null}
+function place(){if(!root)return;const s=STEPS[cur],h=root.querySelector('.th'),tp=root.querySelector('.tp'),e=el();
+ if(e&&vis(e)){const r=e.getBoundingClientRect(),pd=6;h.classList.remove('none');h.classList.toggle('pass',!!s.pass);Object.assign(h.style,{left:(r.left-pd)+'px',top:(r.top-pd)+'px',width:(r.width+pd*2)+'px',height:(r.height+pd*2)+'px'});
+  const below=r.bottom+tp.offsetHeight+24<innerHeight;tp.style.top=s.top?'12px':below?(r.bottom+14)+'px':Math.max(12,r.top-tp.offsetHeight-14)+'px'}
+ else{h.classList.add('none');tp.style.top=Math.max(12,(innerHeight-tp.offsetHeight)/2)+'px'}
+ raf=requestAnimationFrame(place)}
+function render(){const s=STEPS[cur];
+ root.innerHTML='<div class="th"></div><div class="tp"><b>'+s.ti()+'</b><p>'+s.tx()+'</p><div class="tr"><span class="tn">'+(cur+1)+' / '+STEPS.length+'</span>'
+  +(s.fin?'':'<button class="btn alt" id="tsk">⏭ '+T('スキップ','Skip','រំលង')+'</button>')
+  +(s.m==='next'?'<button class="btn" id="tnx">'+(s.fin?T('はじめる！','Let’s go!','ចាប់ផ្ដើម!'):T('次へ','Next','បន្ទាប់'))+'</button>':(s.m==='click'||s.m==='pick')?'<span class="tf">👆</span>':'')+'</div></div>';
+ const nx=root.querySelector('#tnx');if(nx)nx.onclick=()=>s.fin?finish():go(cur+1);
+ const sk=root.querySelector('#tsk');if(sk){const f=e=>{e.preventDefault();e.stopPropagation();end(true)};sk.addEventListener('click',f);sk.addEventListener('touchend',f)}}
+let byp=false;
+function go(i){clearInterval(poll);cur=i;const s=STEPS[cur];if(!s)return finish();
+ byp=true;try{s.pre&&s.pre()}catch(e){}byp=false;
+ const start=()=>{render();const e=el();if(e&&vis(e))try{e.scrollIntoView({block:'center',behavior:'smooth'})}catch(x){}
+  if(s.m==='wait')poll=setInterval(()=>{if(s.done()){clearInterval(poll);setTimeout(()=>go(cur+1),900)}},300)};
+ if(s.w){const t0=Date.now();const wt=setInterval(()=>{if(vis($$(s.w))||Date.now()-t0>15000){clearInterval(wt);setTimeout(start,250)}},150)}else start()}
+/* 案内中は、光っている場所と説明以外は押せないようにする */
+let adv=0;
+function guard(ev){if(!root||byp||!ev.isTrusted)return;const s=STEPS[cur];if(!s)return;if(ev.target.closest&&ev.target.closest('#tut .tp'))return;
+ if(s.m==='click'||s.m==='pick'){const e=el();if(e&&e.contains(ev.target)){if(ev.type==='click'&&(s.m==='click'||(ev.target.closest&&ev.target.closest('.chips span,input')))&&adv!==cur+1){const nx=cur+1;adv=nx;setTimeout(()=>{if(cur===nx-1)go(nx)},s.m==='pick'?450:350)}return}}
+ ev.preventDefault();ev.stopPropagation()}
+function begin(){if(root)return;root=document.createElement('div');root.id='tut';document.body.appendChild(root);
+ blk=guard;['click','pointerdown','touchstart'].forEach(t=>document.addEventListener(t,blk,true));raf=requestAnimationFrame(place);go(0)}
+function end(skipped){window.EC_TUT_WIN=false;window.EC_TUT_NOTK=false;cancelAnimationFrame(raf);clearInterval(poll);['click','pointerdown','touchstart'].forEach(t=>document.removeEventListener(t,blk,true));if(root)root.remove();root=null;cur=-1;D.done=1;if(skipped)D.skip=1;save()}
+function finish(){const first=!D.got;end(false);if(first){D.got=1;save();try{ECG.grant(REWARD);banner(T('🎁 チケット+'+REWARD,'🎁 Tickets +'+REWARD,'🎁 សំបុត្រ +'+REWARD));confetti(160)}catch(e){}}}
+window.ecTutorial=begin;
+try{const F0=fight;fight=function(A,B){if(!window.EC_TUT_WIN)return F0(A,B);window.EC_TUT_WIN=false;
+ for(let k=0;k<200;k++){const a=mk(A.w,A.name),b=mk(B.w,B.name),f=k<20?1:k<60?.5:k<120?.25:.05;if(f<1){b.atk=Math.max(1,b.atk*f);b.def=Math.round(b.def*f);b.crit=0;b.evade=0}const r=F0(a,b);if(r.win===0){Object.assign(A,a);Object.assign(B,b);return r}}return F0(A,B)}}catch(e){console.error(e)}
+/* 初めての人(まだ1戦もしていない)だけ自動で始める。名前入力やログインボーナスが閉じるのを待つ */
+const fresh=()=>!D.done&&(typeof rec==='undefined'||rec.w+rec.l===0);
+if(fresh()){const t0=Date.now();const w=setInterval(()=>{if(!fresh()){clearInterval(w);return}
+ if(document.querySelector('#nmm.on,#lbm.on,#how.on,#upd.on,#gov:not(.hide)')||!vis($$('#start')))return;
+ if(Date.now()-t0<1800)return;clearInterval(w);begin()},400)}
+/* 遊び方からもう一度 */
+const ht=$$('#how .hc .row');if(ht){const b2=document.createElement('button');b2.className='btn';b2.id='howtut2';b2.style.cssText='margin:6px 0 4px';ht.insertAdjacentElement('afterend',b2);const lab2=()=>{b2.textContent='📘 '+T('チュートリアルをもう一度やる','Play the tutorial again','លេងការណែនាំម្ដងទៀត')};lab2();b2.onclick=()=>{const h=$$('#how');if(h)h.classList.remove('on');setTimeout(begin,250)};const l2=$$('#lang');if(l2)l2.addEventListener('click',()=>setTimeout(lab2,0))}
+const hx=$$('#howx2');if(hx){const b=document.createElement('button');b.className='btn alt';b.id='howtut';b.style.marginTop='14px';hx.insertAdjacentElement('beforebegin',b);
+ const lab=()=>{b.textContent='📘 '+T('チュートリアルを見る','Watch the tutorial','មើលការណែនាំ')};lab();
+ b.onclick=()=>{const h=$$('#how');if(h)h.classList.remove('on');setTimeout(begin,250)};
+ const l=$$('#lang');if(l)l.addEventListener('click',()=>setTimeout(lab,0))}
+})();
+</script>
+<style>
+/* ===== 🎃 ハロウィン期間のホーム ===== */
+body.hw{background:radial-gradient(ellipse at 50% -10%,#3a1a5a 0%,#1a0b2a 45%,#0a0510 100%) fixed!important}
+body.hw main>.row h1{background:linear-gradient(90deg,#ff8a1a,#ffd23f 50%,#b84dff)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;text-shadow:none!important;filter:drop-shadow(0 0 10px #ff8a1a88)}
+body.hw #start{box-shadow:0 0 0 2px #ff8a1a66,0 0 30px #7a2cff55!important}
+body.hw #start .btn:not(.alt){background:linear-gradient(90deg,#ff7a1a,#b84dff)!important;color:#fff!important}
+#hwbn{display:none}
+body.hw #hwbn{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:12px 14px;border-radius:14px;background:linear-gradient(90deg,#3a1450,#5a2410);box-shadow:inset 0 0 0 2px #ff8a1a88;color:#fff}
+#hwbn .hwi{font-size:34px;line-height:1;animation:hwbob 2.4s ease-in-out infinite}
+#hwbn b{display:block;font-size:16px;color:#ffd23f}
+#hwbn span{font-size:12px;opacity:.85}
+#hwfx{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;display:none}
+body.hw.hwhome #hwfx{display:block}
+#hwfx i{position:absolute;font-style:normal;line-height:1;opacity:.85}
+#hwfx .bat{animation:hwfly linear infinite}
+#hwfx .fl{animation:hwfloat ease-in-out infinite}
+@keyframes hwfly{0%{transform:translate(-10vw,0) scaleX(1)}25%{transform:translate(25vw,-4vh)}50%{transform:translate(55vw,3vh)}75%{transform:translate(85vw,-3vh)}100%{transform:translate(115vw,0)}}
+@keyframes hwfloat{50%{transform:translateY(-14px) rotate(6deg)}}
+@keyframes hwbob{50%{transform:translateY(-4px) rotate(-6deg)}}
+main{position:relative;z-index:2}
+
+/* ---- 称号: ハッピーハロウィン ---- */
+.u_d-uhw .u_pl{color:#ffcf5a;letter-spacing:.1em;padding:10px 24px;border-radius:8px;border:2px solid #ff8a1a;background:radial-gradient(circle at 20% 120%,#ff8a1a55,transparent 50%),radial-gradient(circle at 80% -20%,#b84dff66,transparent 55%),linear-gradient(180deg,#3a1258,#1a0828);box-shadow:0 0 14px #ff8a1a99,inset 0 0 0 2px #2a0a3a;text-shadow:0 0 8px #ff8a1a,0 2px 0 #3a1000}
+.u_d-uhw .u_pk{font-size:22px;line-height:1;filter:drop-shadow(0 0 6px #ff8a1a);animation:u_pkb 1.6s ease-in-out infinite;display:inline-block}
+.u_d-uhw .u_a.u_r .u_pk{animation-delay:-.8s}
+@keyframes u_pkb{50%{transform:translateY(-3px) rotate(-8deg)}}
+.u_d-uhw .u_bats{position:absolute;left:0;right:0;top:-14px;height:16px;pointer-events:none;z-index:3;overflow:visible}
+.u_d-uhw .u_bat{position:absolute;font-style:normal;font-size:12px;line-height:1;animation:u_batf 3.4s linear infinite}
+.u_d-uhw .u_bat.u_b2{font-size:10px;animation-duration:4.2s;animation-delay:-1.6s;top:4px}
+.u_d-uhw .u_bat.u_b3{font-size:9px;animation-duration:3.8s;animation-delay:-2.8s;top:-2px}
+@keyframes u_batf{0%{left:-6%;transform:translateY(0)}25%{transform:translateY(-4px)}50%{transform:translateY(2px)}75%{transform:translateY(-3px)}100%{left:100%;transform:translateY(0)}}
+</style>
+<script>
+/* ハロウィン期間(日本時間): FROM〜TO。期間外は自動で元に戻る */
+(()=>{const FROM=Date.parse('2026-10-30T00:00:00+09:00'),TO=Date.parse('2026-11-06T00:00:00+09:00');
+ const now=Date.now();if(window.EC_HW_FORCE!==true&&(now<FROM||now>=TO))return;
+ document.body.classList.add('hw');
+ try{if(!localStorage.getItem('echw26')){localStorage.setItem('echw26','1');setTimeout(()=>{try{if(window.getEqRaw&&!getEqRaw()&&window.setEqT)setEqT('uhw');banner(LL('🏅 新称号「ハッピーハロウィン」！','🏅 New title: Happy Halloween!','🏅 ងារថ្មី៖ រីករាយថ្ងៃហាឡូវីន!'));confetti(120)}catch(e){}},2600)}}catch(e){}
+ const st=document.querySelector('#start');if(st){const b=document.createElement('div');b.id='hwbn';
+  const lab=()=>{b.innerHTML='<span class="hwi">🎃</span><div><b>'+LL('ハッピーハロウィン！','Happy Halloween!','រីករាយថ្ងៃហាឡូវីន!')+'</b><span>'+LL('11/5まで、ホームがハロウィン仕様です 👻🦇','Halloween home until 11/5 👻🦇','ទំព័រដើមហាឡូវីនរហូតដល់ 11/5 👻🦇')+'</span></div><span class="hwi" style="margin-left:auto;animation-delay:-1.2s">👻</span>'};lab();
+  st.insertBefore(b,st.firstChild);const l=document.querySelector('#lang');if(l)l.addEventListener('click',()=>setTimeout(lab,0))}
+ const fx=document.createElement('div');fx.id='hwfx';fx.setAttribute('aria-hidden','true');
+ const add=(e,cls,css)=>{const i=document.createElement('i');i.className=cls;i.textContent=e;i.style.cssText=css;fx.appendChild(i)};
+ [['🦇',8,9,'0s'],['🦇',22,13,'-5s'],['🦇',14,16,'-10s']].forEach(([e,t,d,dl])=>add(e,'bat','top:'+t+'vh;left:0;font-size:26px;animation-duration:'+d+'s;animation-delay:'+dl));
+ [['🎃',4,86,40,'0s'],['👻',90,70,34,'-1s'],['🕸️',92,2,46,'-.5s'],['🍬',6,40,24,'-2s'],['🎃',88,92,30,'-1.5s'],['🕷️',3,8,26,'-.8s']].forEach(([e,l,t,s,dl])=>add(e,'fl','left:'+l+'vw;top:'+t+'vh;font-size:'+s+'px;animation-duration:3.6s;animation-delay:'+dl));
+ document.body.appendChild(fx);
+ const upd=()=>{const s=document.querySelector('#start');document.body.classList.toggle('hwhome',!!(s&&!s.classList.contains('hide')))};
+ const S0=show;show=function(id){S0.apply(this,arguments);upd()};upd();
+})();
+/* ボット戦: 「音あり/音なし」を1つのボタンにして、いつも音ありで始める */
+(()=>{const on=document.querySelector('#sOn'),off=document.querySelector('#sOff');if(!on)return;if(off)off.style.display='none';
+ const lab=()=>{on.textContent='⚔️ '+LL('バトルする','Battle','ប្រយុទ្ធ')};lab();
+ const AL=applyLang;applyLang=function(){AL.apply(this,arguments);try{lab()}catch(e){}};})();
+</script>
+<script>
+/* ===== 🎵 ホーム画面のBGM(5曲)。HOME_BGM で本番の曲を決める ===== */
+(()=>{
+const R=0;
+const TR={
+ h1:{name:['☕ まったり','☕ Chill','☕ ស្ងប់'],bpm:92,
+  b:[45,R,R,R,45,R,R,R,41,R,R,R,41,R,R,R,43,R,R,R,43,R,R,R,40,R,R,R,40,R,R,R],
+  l:[69,R,72,R,76,R,74,R,72,R,R,R,69,R,67,R,67,R,71,R,74,R,72,R,71,R,R,R,67,R,R,R],
+  play(s,t,x){if(x.b[s])tn(hz(x.b[s]),t,.5,'triangle',.11);if(x.l[s])tn(hz(x.l[s]),t,.35,'sine',.07);if(s%4===2)nz(t,.03,.035,8000);if(s%8===0)kick(t,.18)}},
+ h2:{name:['🎃 ハロウィン','🎃 Halloween','🎃 ហាឡូវីន'],bpm:108,
+  b:[38,R,45,R,38,R,44,R,38,R,45,R,43,R,41,R,38,R,45,R,38,R,44,R,46,R,45,R,44,R,43,R],
+  l:[74,R,77,76,R,74,R,73,74,R,R,R,69,R,R,R,77,R,81,80,R,77,R,76,74,R,73,R,74,R,R,R],
+  play(s,t,x){if(x.b[s])tn(hz(x.b[s]),t,.22,'triangle',.13);if(x.l[s])tn(hz(x.l[s]),t,.18,'square',.045);if(s%4===0)kick(t,.3);if(s%8===4)nz(t,.08,.07,2500);if(s===0||s===16)tn(hz(86),t,.6,'sine',.03)}},
+ h3:{name:['🗺️ 冒険','🗺️ Adventure','🗺️ ដំណើរផ្សងព្រេង'],bpm:128,
+  b:[48,R,55,R,48,R,55,R,45,R,52,R,45,R,52,R,41,R,48,R,41,R,48,R,43,R,50,R,43,R,47,R],
+  l:[72,R,76,79,R,76,72,R,69,R,72,76,R,72,R,R,65,R,69,72,R,69,77,R,74,R,71,R,74,R,79,R],
+  play(s,t,x){if(x.b[s])tn(hz(x.b[s]),t,.12,'triangle',.12);if(x.l[s])tn(hz(x.l[s]),t,.12,'square',.05);if(s%4===0)kick(t,.35);if(s%2===1)nz(t,.03,.05,8000);if(s%8===4)nz(t,.1,.09,1800)}},
+ h4:{name:['🌃 シンセウェーブ','🌃 Synthwave','🌃 Synthwave'],bpm:100,
+  b:[33,33,45,33,33,45,33,45,29,29,41,29,29,41,29,41,31,31,43,31,31,43,31,43,28,28,40,28,28,40,28,40],
+  c:[[57,60,64],[53,57,60],[55,59,62],[52,55,59]],l:[76,R,R,R,79,R,76,R,77,R,R,R,72,R,R,R,74,R,R,R,79,R,74,R,71,R,R,R,R,R,R,R],
+  play(s,t,x){if(x.b[s])tn(hz(x.b[s]),t,.14,'sawtooth',.06);const ch=x.c[Math.floor(s/8)];tn(hz(ch[s%3]+12),t,.12,'square',.025);if(x.l[s])tn(hz(x.l[s]),t,.6,'sawtooth',.04);if(s%8===0)kick(t,.4);if(s%8===4)nz(t,.18,.12,1200);if(s%2===1)nz(t,.02,.03,9000)}},
+ h5:{name:['🎁 オルゴール','🎁 Music box','🎁 ប្រអប់តន្ត្រី'],bpm:84,
+  b:[60,R,R,R,R,R,R,R,57,R,R,R,R,R,R,R,53,R,R,R,R,R,R,R,55,R,R,R,R,R,R,R],
+  l:[84,R,88,R,91,R,88,R,86,R,R,R,84,R,81,R,81,R,84,R,88,R,86,R,83,R,R,R,79,R,R,R],
+  play(s,t,x){if(x.b[s])tn(hz(x.b[s]),t,1.2,'sine',.11);if(x.l[s]){tn(hz(x.l[s]),t,.7,'sine',.13);tn(hz(x.l[s]+12),t,.4,'sine',.04)}}}
+};
+const KEYS=Object.keys(TR);
+const HW=(()=>{const n=Date.now();return n>=Date.parse('2026-10-30T00:00:00+09:00')&&n<Date.parse('2026-11-06T00:00:00+09:00')})();
+const HOME_BGM=HW?'h2':'h3'; /* ← 本番で流す曲(ハロウィン期間はh2) */
+let cur=HOME_BGM;if(window.EC_BGM_TEST){try{const v=localStorage.getItem('echbgm');if(TR[v])cur=v}catch(e){}}
+KEYS.forEach(k=>{BPM[k]=TR[k].bpm});
+const S0=step;step=function(m,i,t){const x=TR[m];if(!x)return S0(m,i,t);x.play(i%32,t,x)};
+const homeOn=()=>{const s=document.querySelector('#start');return s&&!s.classList.contains('hide')&&!document.querySelector('#gov:not(.hide)')};
+const play=()=>{if(!sndOn)return;if(!AC)ctx();if(AC&&M.mode!==cur)music(cur)};
+const SH=show;show=function(id){SH.apply(this,arguments);if(id==='start')setTimeout(()=>{if(homeOn())play()},0)};
+/* 最初の1タップで音を出せるようにする(ブラウザの決まり) */
+const first=()=>{if(homeOn())play();document.removeEventListener('pointerdown',first,true)};document.addEventListener('pointerdown',first,true);
+/* ---- テスト用: 曲の切り替えボタン ---- */
+if(window.EC_BGM_TEST){const st=document.querySelector('#start');if(st){const d=document.createElement('div');d.className='tc';d.id='bgmtest';
+ const draw=()=>{d.innerHTML='<b>🧪 '+LL('テスト: ホームのBGM','Test: home BGM','តេស្ត៖ BGM')+'</b><div class="mtog" style="flex-wrap:wrap;gap:6px;margin-top:6px">'+KEYS.map(k=>'<button class="btn alt'+(k===cur?' on':'')+'" data-bg="'+k+'" style="flex:1 1 30%;margin:0;padding:8px 4px;font-size:13px">'+LL(...TR[k].name)+'</button>').join('')+'<button class="btn alt" data-bg="off" style="flex:1 1 30%;margin:0;padding:8px 4px;font-size:13px">🔇 '+LL('止める','Stop','បញ្ឈប់')+'</button></div>';
+  d.querySelectorAll('[data-bg]').forEach(b=>b.onclick=()=>{const k=b.dataset.bg;if(k==='off'){music(null);return}cur=k;try{localStorage.setItem('echbgm',k)}catch(e){}sndOn=true;if(!AC)ctx();music(k);draw()})};
+ draw();st.insertBefore(d,st.firstChild);const l=document.querySelector('#lang');if(l)l.addEventListener('click',()=>setTimeout(draw,0))}}
+window.ecHomeBgm={tracks:TR,get cur(){return cur}};
+})();
 </script>
 </body>
 </html>
