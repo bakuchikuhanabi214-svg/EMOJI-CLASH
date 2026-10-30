@@ -1662,7 +1662,7 @@ $$('#upd').onclick=e=>{if(e.target===$$('#upd'))$$('#upd').classList.remove('on'
 function updHTML(){const B=(a,b,c)=>'<b style="display:block;margin:12px 0 2px;font-size:15px">'+a+'</b><p style="margin:0;line-height:1.6;font-size:14px">'+b+'</p>';
  return '<div class="row" style="margin-bottom:6px"><b style="font-size:18px">'+LL('🆕 アプデ情報','🆕 Update Notes','🆕 ព័ត៌មានអាប់ដេត')+'</b><button class="btn alt" id="updx" style="width:auto;margin:0;padding:6px 14px;font-size:13px">'+LL('閉じる','Close','បិទ')+'</button></div>'
  +'<div class="tc"><b>Ver 1.55</b> <span class="mut">2026/10/30</span></div>'
- +B(LL('🟢 いまオンラインの人数','🟢 Players online now','🟢 ចំនួនអ្នកលេងឥឡូវ'),LL('ホーム画面に、いまゲームを開いている人数をリアルタイムで表示するようにしました。ランダム対戦の下には、いま対戦相手を待っている人数も出ます。','The home screen now shows how many people have the game open right now, in real time. Under Random Match you can also see how many are waiting for an opponent.','ទំព័រដើមឥឡូវបង្ហាញចំនួនអ្នកដែលកំពុងបើកហ្គេមឥឡូវនេះ។ នៅក្រោមការប្រកួតចៃដន្យ ក៏បង្ហាញចំនួនអ្នកកំពុងរង់ចាំគូប្រកួតដែរ។'))
+ +B(LL('🟢 いまオンラインの人数','🟢 Players online now','🟢 ចំនួនអ្នកលេងឥឡូវ'),LL('ホーム画面に、いまゲームを開いている人数をリアルタイムで表示するようにしました。','The home screen now shows how many people have the game open right now, in real time.','ទំព័រដើមឥឡូវបង្ហាញចំនួនអ្នកដែលកំពុងបើកហ្គេមឥឡូវនេះ។'))
  +'<div class="tc" style="margin-top:12px"><b>Ver 1.5</b> <span class="mut">2026/10/30</span></div>'
  +B(LL('🛠 はじめて遊ぶときの不具合を修正','🛠 Fixed a first-time play issue','🛠 កែបញ្ហាពេលលេងលើកដំបូង'),LL('はじめて遊ぶとき、チュートリアルとログインボーナスが同時に出てしまい、チュートリアルをスキップしないと始められない不具合を直しました。ログインボーナスはチュートリアルが終わったあとに表示されます。','Fixed an issue where the tutorial and the login bonus appeared at the same time on your first visit, so you had to skip the tutorial to start. The login bonus now appears after the tutorial ends.','បានកែបញ្ហាដែលការណែនាំ និងរង្វាន់ចូលប្រចាំថ្ងៃលេចឡើងព្រមគ្នានៅពេលលេងលើកដំបូង ដែលធ្វើឱ្យត្រូវរំលងការណែនាំទើបអាចចាប់ផ្ដើមបាន។ ឥឡូវរង្វាន់ចូលប្រចាំថ្ងៃនឹងបង្ហាញបន្ទាប់ពីការណែនាំបញ្ចប់។'))
  +'<div class="tc" style="margin-top:12px"><b>Ver 1.45</b> <span class="mut">2026/10/30</span></div>'
@@ -3037,23 +3037,22 @@ window.ecHomeBgm={tracks:TR,get cur(){return cur}};
 <script>
 /* ---- v1.55: いまオンラインの人数(リアルタイム) ----
    Firebase: on/{uid} = {t: サーバー時刻}。30秒ごとに更新し、直近75秒以内の人を数える。
-   ランダム対戦の待ち人数は mm/q (既存) の新しいエントリを数える。 */
+ */
 (()=>{
 const $$=s=>document.querySelector(s),ACT=75e3,BEAT=3e4;
-let nOn=null,nMM=null,off=0,busy=false;
+let nOn=null,off=0,busy=false;
 const st=document.createElement('style');st.textContent=`
 #onl{display:flex;align-items:center;gap:8px;justify-content:center;margin:0 0 10px;padding:7px 12px;border-radius:99px;background:var(--card2);font-weight:800;font-size:14px}
 #onl .dot{width:10px;height:10px;border-radius:50%;background:#37d67a;box-shadow:0 0 0 0 #37d67a99;animation:onp 1.6s infinite}
 #onl.solo .dot{background:#ffd23f;box-shadow:0 0 0 0 #ffd23f99}
 @keyframes onp{70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
 #onl small{font-weight:700;color:var(--mut)}
-#mmn{font-size:12px;margin-top:4px;text-align:center}`;document.head.appendChild(st);
+`;document.head.appendChild(st);
 $$('#start').insertAdjacentHTML('afterbegin','<div id="onl" class="hide"><span class="dot"></span><span id="onlt"></span></div>');
-const rb=$$('#rnm');if(rb)rb.insertAdjacentHTML('afterend','<div class="mut hide" id="mmn"></div>');
 function render(){const b=$$('#onl'),t=$$('#onlt');if(!b)return;
  if(nOn===null){b.classList.add('hide')}else{const n=Math.max(1,nOn);b.classList.remove('hide');b.classList.toggle('solo',n===1);
   t.innerHTML=LL('いまオンライン ','Online now ','កំពុងលេងឥឡូវ ')+'<b style="font-size:17px">'+n+'</b>'+LL('人',' ',' នាក់')+(n===1?' <small>'+LL('(あなただけ😇)','(just you 😇)','(មានតែអ្នក 😇)')+'</small>':'')}
- const m=$$('#mmn');if(m){if(nMM===null)m.classList.add('hide');else{m.classList.remove('hide');m.textContent='🎲 '+LL('いまランダム対戦待ち: ','Waiting for a random match: ','កំពុងរង់ចាំការប្រកួតចៃដន្យ: ')+nMM+LL('人','',' នាក់')}}}
+}
 async function q(path,extra){await FBREADY;const u=FIREBASE_URL.replace(/\/$/,'')+'/'+path+'.json?'+(extra||'')+(FBTOK?'&auth='+FBTOK:'');const r=await fetch(u);if(!r.ok)throw new Error(r.status);return r.json()}
 async function beat(){if(busy||document.hidden||!FIREBASE_URL)return;busy=true;
  try{const me=await db('PUT','on/'+PID,{t:{'.sv':'timestamp'}});if(me&&me.t)off=me.t-Date.now();
@@ -3061,7 +3060,6 @@ async function beat(){if(busy||document.hidden||!FIREBASE_URL)return;busy=true;
   try{list=await q('on','orderBy=%22t%22&startAt='+(now-ACT))}catch(e){list=null}
   let ref=now;if(!list||!list[PID]){list=await q('on')||{};if(list[PID]&&list[PID].t)ref=+list[PID].t}
   nOn=Object.values(list||{}).filter(v=>v&&ref-(+v.t)<ACT).length;
-  try{const mm=await q('mm/q');nMM=Object.values(mm||{}).filter(v=>v&&ref-(+v.t)<12e3).length}catch(e){nMM=null}
  }catch(e){}busy=false;render()}
 setTimeout(beat,1500);setInterval(beat,BEAT);setInterval(render,2000);
 document.addEventListener('visibilitychange',()=>{if(document.hidden){try{db('DELETE','on/'+PID).catch(()=>{})}catch(e){}}else beat()});
