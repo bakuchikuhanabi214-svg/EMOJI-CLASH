@@ -1655,13 +1655,15 @@ function seasonUI(){const n=ECS.cur(),end=ECS.end(n),left=end-Date.now(),d=new D
  $$('#season').innerHTML='<div class="sbt"><b style="font-size:17px">🌌 '+LL('シーズン','SEASON ','រដូវកាល ')+n+'</b><span>'+LL('残り ','Time left: ','នៅសល់ ')+ECS.fmt(left)+'</span></div><small>'+LL('〜 '+md+' まで / 戦績・ランキングは毎シーズンリセットされます','Until '+md+' / Records and ranking reset every season','ដល់ '+md+' / កំណត់ត្រា និងចំណាត់ថ្នាក់កំណត់ឡើងវិញរៀងរាល់រដូវកាល')+'</small>';
  const sn=window.__SEASON_NEW,box=$$('#snewbox');if(sn&&!seasonUI.hide){box.innerHTML='<div class="tc" style="border-left:4px solid #3df2ff"><b>🌌 '+LL('新シーズンが始まりました!','A new season has started!','រដូវកាលថ្មីបានចាប់ផ្ដើម!')+'</b><div class="stat">'+LL('戦績とランキングがリセットされました。前シーズン('+sn.from+'):'+sn.w+'勝 '+sn.l+'敗 / 最高'+sn.best+'連勝','Records and ranking were reset. Last season ('+sn.from+'): '+sn.w+'W '+sn.l+'L / best streak '+sn.best,'កំណត់ត្រា និងចំណាត់ថ្នាក់ត្រូវបានកំណត់ឡើងវិញ។ រដូវកាលមុន ('+sn.from+')៖ ឈ្នះ '+sn.w+' ចាញ់ '+sn.l+' / ឈ្នះជាប់គ្នាល្អបំផុត '+sn.best)+'</div><button class="btn alt" id="snok">OK</button></div>';$$('#snok').onclick=()=>{seasonUI.hide=1;box.innerHTML=''}}}
 /* ---------- アプデ情報 ---------- */
-const UPV='1.45';
+const UPV='1.5';
 function seen(){try{return localStorage.getItem('ecup')===UPV}catch(e){return false}}
 document.body.insertAdjacentHTML('beforeend','<div id="upd"><div class="hc" id="updc"></div></div>');
 $$('#upd').onclick=e=>{if(e.target===$$('#upd'))$$('#upd').classList.remove('on')};
 function updHTML(){const B=(a,b,c)=>'<b style="display:block;margin:12px 0 2px;font-size:15px">'+a+'</b><p style="margin:0;line-height:1.6;font-size:14px">'+b+'</p>';
  return '<div class="row" style="margin-bottom:6px"><b style="font-size:18px">'+LL('🆕 アプデ情報','🆕 Update Notes','🆕 ព័ត៌មានអាប់ដេត')+'</b><button class="btn alt" id="updx" style="width:auto;margin:0;padding:6px 14px;font-size:13px">'+LL('閉じる','Close','បិទ')+'</button></div>'
- +'<div class="tc"><b>Ver 1.45</b> <span class="mut">2026/10/30</span></div>'
+ +'<div class="tc"><b>Ver 1.5</b> <span class="mut">2026/10/30</span></div>'
+ +B(LL('🛠 はじめて遊ぶときの不具合を修正','🛠 Fixed a first-time play issue','🛠 កែបញ្ហាពេលលេងលើកដំបូង'),LL('はじめて遊ぶとき、チュートリアルとログインボーナスが同時に出てしまい、チュートリアルをスキップしないと始められない不具合を直しました。ログインボーナスはチュートリアルが終わったあとに表示されます。','Fixed an issue where the tutorial and the login bonus appeared at the same time on your first visit, so you had to skip the tutorial to start. The login bonus now appears after the tutorial ends.','បានកែបញ្ហាដែលការណែនាំ និងរង្វាន់ចូលប្រចាំថ្ងៃលេចឡើងព្រមគ្នានៅពេលលេងលើកដំបូង ដែលធ្វើឱ្យត្រូវរំលងការណែនាំទើបអាចចាប់ផ្ដើមបាន។ ឥឡូវរង្វាន់ចូលប្រចាំថ្ងៃនឹងបង្ហាញបន្ទាប់ពីការណែនាំបញ្ចប់។'))
+ +'<div class="tc" style="margin-top:12px"><b>Ver 1.45</b> <span class="mut">2026/10/30</span></div>'
  +B(LL('🎃 ハロウィンイベント(〜11/5)','🎃 Halloween event (until 11/5)','🎃 ព្រឹត្តិការណ៍ហាឡូវីន (ដល់ 11/5)'),LL('ホーム画面がハロウィン仕様になりました。期間中にログインすると、称号「ハッピーハロウィン」がもらえます。10/31はログインボーナスが2倍！','The home screen is dressed up for Halloween. Log in during the event to get the “Happy Halloween” title. Login bonus is doubled on 10/31!','ទំព័រដើមតុបតែងសម្រាប់ហាឡូវីន។ ចូលក្នុងរដូវនេះដើម្បីទទួលងារ «រីករាយថ្ងៃហាឡូវីន»។ រង្វាន់ចូលទ្វេដងនៅ 10/31!'))
  +B(LL('🎵 ホーム画面にBGM','🎵 Home screen music','🎵 តន្ត្រីទំព័រដើម'),LL('ホーム画面でも音楽が流れるようになりました。ハロウィン期間は特別な曲です。','Music now plays on the home screen too, with a special track during Halloween.','ឥឡូវមានតន្ត្រីនៅទំព័រដើមដែរ ហើយមានបទពិសេសក្នុងរដូវហាឡូវីន។'))
  +B(LL('📘 チュートリアル','📘 Tutorial','📘 ការណែនាំ'),LL('初めての人向けに、戦士の作り方・相性・ガチャ・装備・オンライン対戦を案内するチュートリアルを追加しました。完了するとガチャチケット10枚！「📖 遊び方」からいつでも見直せます。','A tutorial now guides new players through building a warrior, matchups, the gacha, equipping and online battles. Finish it for 10 gacha tickets! Watch it again any time from “📖 How to Play”.','បានបន្ថែមការណែនាំសម្រាប់អ្នកលេងថ្មី៖ បង្កើតអ្នកចម្បាំង ទំនាក់ទំនងប្រភេទ កាឆា ការបំពាក់ និងការប្រយុទ្ធអនឡាញ។ បញ្ចប់ដើម្បីទទួលសំបុត្រកាឆា ១០! មើលម្ដងទៀតពី «📖 របៀបលេង»។'))
@@ -2288,11 +2290,12 @@ function bindTest(){document.querySelectorAll('.lvtb [data-a]').forEach(b=>b.onc
 /* ---- 言語切替での再描画 ---- */
 const AL1=applyLang;applyLang=function(){AL1();try{card();if(!$$('#lvp').classList.contains('hide'))renderProfile();if(LBM.classList.contains('on'))renderLB();if(PM.classList.contains('on'))renderPick();if(!$$('#ttl').classList.contains('hide'))$$('#gttl').onclick()}catch(e){console.error(e)}};
 /* ---- 日付またぎ・起動時 ---- */
-document.addEventListener('visibilitychange',()=>{if(!document.hidden){card();if(pending()&&!$$('#start').classList.contains('hide')&&!document.querySelector('#how.on,#upd.on,#nmm.on'))openLB()}});
-addEventListener('ecname',()=>{card();if(!$$('#lvp').classList.contains('hide'))renderProfile();if(pending())setTimeout(openLB,300)});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){card();if(pending()&&!(window.ecTutBusy&&window.ecTutBusy())&&!$$('#start').classList.contains('hide')&&!document.querySelector('#how.on,#upd.on,#nmm.on'))openLB()}});
+addEventListener('ecname',()=>{card();if(!$$('#lvp').classList.contains('hide'))renderProfile();if(pending())setTimeout(()=>{if(pending()&&!(window.ecTutBusy&&window.ecTutBusy()))openLB()},300)});
+addEventListener('ectutend',()=>setTimeout(()=>{if(pending()&&!(window.ecTutBusy&&window.ecTutBusy())&&!document.querySelector('#how.on,#upd.on,#nmm.on,#lbm.on'))openLB()},1500));
 setTimeout(()=>{try{const r=mut(()=>{});if(r.rr.length||r.cx.length||S.pk.length)announce(r)}catch(e){console.error(e)}},1800);
 card();applyLang();
-setTimeout(()=>{if(pending()&&!document.querySelector('#how.on,#upd.on,#nmm.on'))openLB()},1100);
+setTimeout(()=>{if(pending()&&!(window.ecTutBusy&&window.ecTutBusy())&&!document.querySelector('#how.on,#upd.on,#nmm.on'))openLB()},1100);
 })();
 
 </script>
@@ -2837,13 +2840,15 @@ function guard(ev){if(!root||byp||!ev.isTrusted)return;const s=STEPS[cur];if(!s)
  ev.preventDefault();ev.stopPropagation()}
 function begin(){if(root)return;root=document.createElement('div');root.id='tut';document.body.appendChild(root);
  blk=guard;['click','pointerdown','touchstart'].forEach(t=>document.addEventListener(t,blk,true));raf=requestAnimationFrame(place);go(0)}
-function end(skipped){window.EC_TUT_WIN=false;window.EC_TUT_NOTK=false;cancelAnimationFrame(raf);clearInterval(poll);['click','pointerdown','touchstart'].forEach(t=>document.removeEventListener(t,blk,true));if(root)root.remove();root=null;cur=-1;D.done=1;if(skipped)D.skip=1;save()}
+function end(skipped){window.EC_TUT_WIN=false;window.EC_TUT_NOTK=false;cancelAnimationFrame(raf);clearInterval(poll);['click','pointerdown','touchstart'].forEach(t=>document.removeEventListener(t,blk,true));if(root)root.remove();root=null;cur=-1;D.done=1;if(skipped)D.skip=1;save();try{dispatchEvent(new Event('ectutend'))}catch(e){}}
 function finish(){const first=!D.got;end(false);if(first){D.got=1;save();try{ECG.grant(REWARD);banner(T('🎁 チケット+'+REWARD,'🎁 Tickets +'+REWARD,'🎁 សំបុត្រ +'+REWARD));confetti(160)}catch(e){}}}
 window.ecTutorial=begin;
 try{const F0=fight;fight=function(A,B){if(!window.EC_TUT_WIN)return F0(A,B);window.EC_TUT_WIN=false;
  for(let k=0;k<200;k++){const a=mk(A.w,A.name),b=mk(B.w,B.name),f=k<20?1:k<60?.5:k<120?.25:.05;if(f<1){b.atk=Math.max(1,b.atk*f);b.def=Math.round(b.def*f);b.crit=0;b.evade=0}const r=F0(a,b);if(r.win===0){Object.assign(A,a);Object.assign(B,b);return r}}return F0(A,B)}}catch(e){console.error(e)}
 /* 初めての人(まだ1戦もしていない)だけ自動で始める。名前入力やログインボーナスが閉じるのを待つ */
 const fresh=()=>!D.done&&(typeof rec==='undefined'||rec.w+rec.l===0);
+/* v1.5: チュートリアル中・開始待ちの間はログインボーナスを出さない */
+window.ecTutBusy=()=>!!root||fresh();
 if(fresh()){const t0=Date.now();const w=setInterval(()=>{if(!fresh()){clearInterval(w);return}
  if(document.querySelector('#nmm.on,#lbm.on,#how.on,#upd.on,#gov:not(.hide)')||!vis($$('#start')))return;
  if(Date.now()-t0<1800)return;clearInterval(w);begin()},400)}
