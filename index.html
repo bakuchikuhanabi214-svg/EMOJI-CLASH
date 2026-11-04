@@ -1655,13 +1655,17 @@ function seasonUI(){const n=ECS.cur(),end=ECS.end(n),left=end-Date.now(),d=new D
  $$('#season').innerHTML='<div class="sbt"><b style="font-size:17px">🌌 '+LL('シーズン','SEASON ','រដូវកាល ')+n+'</b><span>'+LL('残り ','Time left: ','នៅសល់ ')+ECS.fmt(left)+'</span></div><small>'+LL('〜 '+md+' まで / 戦績・ランキングは毎シーズンリセットされます','Until '+md+' / Records and ranking reset every season','ដល់ '+md+' / កំណត់ត្រា និងចំណាត់ថ្នាក់កំណត់ឡើងវិញរៀងរាល់រដូវកាល')+'</small>';
  const sn=window.__SEASON_NEW,box=$$('#snewbox');if(sn&&!seasonUI.hide){box.innerHTML='<div class="tc" style="border-left:4px solid #3df2ff"><b>🌌 '+LL('新シーズンが始まりました!','A new season has started!','រដូវកាលថ្មីបានចាប់ផ្ដើម!')+'</b><div class="stat">'+LL('戦績とランキングがリセットされました。前シーズン('+sn.from+'):'+sn.w+'勝 '+sn.l+'敗 / 最高'+sn.best+'連勝','Records and ranking were reset. Last season ('+sn.from+'): '+sn.w+'W '+sn.l+'L / best streak '+sn.best,'កំណត់ត្រា និងចំណាត់ថ្នាក់ត្រូវបានកំណត់ឡើងវិញ។ រដូវកាលមុន ('+sn.from+')៖ ឈ្នះ '+sn.w+' ចាញ់ '+sn.l+' / ឈ្នះជាប់គ្នាល្អបំផុត '+sn.best)+'</div><button class="btn alt" id="snok">OK</button></div>';$$('#snok').onclick=()=>{seasonUI.hide=1;box.innerHTML=''}}}
 /* ---------- アプデ情報 ---------- */
-const UPV='1.55';
+const UPV='1.6';
 function seen(){try{return localStorage.getItem('ecup')===UPV}catch(e){return false}}
 document.body.insertAdjacentHTML('beforeend','<div id="upd"><div class="hc" id="updc"></div></div>');
 $$('#upd').onclick=e=>{if(e.target===$$('#upd'))$$('#upd').classList.remove('on')};
 function updHTML(){const B=(a,b,c)=>'<b style="display:block;margin:12px 0 2px;font-size:15px">'+a+'</b><p style="margin:0;line-height:1.6;font-size:14px">'+b+'</p>';
  return '<div class="row" style="margin-bottom:6px"><b style="font-size:18px">'+LL('🆕 アプデ情報','🆕 Update Notes','🆕 ព័ត៌មានអាប់ដេត')+'</b><button class="btn alt" id="updx" style="width:auto;margin:0;padding:6px 14px;font-size:13px">'+LL('閉じる','Close','បិទ')+'</button></div>'
- +'<div class="tc"><b>Ver 1.55</b> <span class="mut">2026/10/30</span></div>'
+ +'<div class="tc"><b>Ver 1.6</b> <span class="mut">2026/11/05</span></div>'
+ +B(LL('🗼 新モード「試練の塔」','🗼 New mode: Trial Tower','🗼 មុខងារថ្មី៖ ប៉មសាកល្បង'),LL('運営が用意した敵を1階ずつ倒して、30階のてっぺんを目指すモードです。上の階ほど敵が強くなり、10階ごとに特殊能力を持つボスが待っています。何回でも挑戦できます。ホーム画面の「🗼 試練の塔」から遊べます。','Defeat the enemies we prepared one floor at a time and aim for the top of 30 floors. Enemies get stronger as you climb, and every 10th floor has a boss with special abilities. Retry as many times as you like. Play from “🗼 Trial Tower” on the home screen.','កម្ចាត់សត្រូវម្ដងមួយជាន់ ហើយឡើងដល់កំពូលជាន់ទី 30។ ជាន់ខ្ពស់ សត្រូវខ្លាំងជាង ហើយរៀងរាល់ 10 ជាន់មានបុសដែលមានសមត្ថភាពពិសេស។ អាចសាកបានគ្មានដែនកំណត់។ លេងពី «🗼 ប៉មសាកល្បង» នៅទំព័រដើម។'))
+ +B(LL('🎁 塔だけの報酬','🎁 Tower-only rewards','🎁 រង្វាន់សម្រាប់តែប៉ម'),LL('初めてクリアした階ではガチャチケットがもらえます。5階ごとにガチャでは手に入らない限定キャラ・武器・エフェクト、10・20・30階では限定の称号ももらえます。30階を制覇すると、SSキャラ「塔の覇王クロコ」と称号「塔の頂点」！','Each floor gives gacha tickets the first time you clear it. Every 5 floors you get characters, weapons or effects you can’t get from the gacha, plus exclusive titles on floors 10, 20 and 30. Conquer floor 30 for the SS character “Croco, Tower Sovereign” and the title “Tower Summit”!','ជាន់នីមួយៗផ្ដល់សំបុត្រកាឆាពេលឆ្លងលើកដំបូង។ រៀងរាល់ 5 ជាន់ទទួលតួអង្គ អាវុធ ឬអេហ្វេកត៌ពិសេស ហើយជាន់ 10, 20, 30 ទទួលងារពិសេស។'))
+ +B(LL('📊 ランキングについて','📊 About the ranking','📊 អំពីចំណាត់ថ្នាក់'),LL('試練の塔の勝ち負けは、ランキングの勝利数・勝率には入りません。','Trial Tower wins and losses do not count toward the ranking.','ការឈ្នះ ឬចាញ់ក្នុងប៉ម មិនរាប់ក្នុងចំណាត់ថ្នាក់ទេ។'))
+ +'<div class="tc" style="margin-top:12px"><b>Ver 1.55</b> <span class="mut">2026/10/30</span></div>'
  +B(LL('🟢 いまオンラインの人数','🟢 Players online now','🟢 ចំនួនអ្នកលេងឥឡូវ'),LL('ホーム画面に、いまゲームを開いている人数をリアルタイムで表示するようにしました。','The home screen now shows how many people have the game open right now, in real time.','ទំព័រដើមឥឡូវបង្ហាញចំនួនអ្នកដែលកំពុងបើកហ្គេមឥឡូវនេះ។'))
  +'<div class="tc" style="margin-top:12px"><b>Ver 1.5</b> <span class="mut">2026/10/30</span></div>'
  +B(LL('🛠 はじめて遊ぶときの不具合を修正','🛠 Fixed a first-time play issue','🛠 កែបញ្ហាពេលលេងលើកដំបូង'),LL('はじめて遊ぶとき、チュートリアルとログインボーナスが同時に出てしまい、チュートリアルをスキップしないと始められない不具合を直しました。ログインボーナスはチュートリアルが終わったあとに表示されます。','Fixed an issue where the tutorial and the login bonus appeared at the same time on your first visit, so you had to skip the tutorial to start. The login bonus now appears after the tutorial ends.','បានកែបញ្ហាដែលការណែនាំ និងរង្វាន់ចូលប្រចាំថ្ងៃលេចឡើងព្រមគ្នានៅពេលលេងលើកដំបូង ដែលធ្វើឱ្យត្រូវរំលងការណែនាំទើបអាចចាប់ផ្ដើមបាន។ ឥឡូវរង្វាន់ចូលប្រចាំថ្ងៃនឹងបង្ហាញបន្ទាប់ពីការណែនាំបញ្ចប់។'))
@@ -1993,12 +1997,14 @@ const SP={
  uh1:T('虚空の支配者','Ruler of the Void','អ្នកគ្រប់គ្រងភាពទទេ','通常ガチャのSSを全種類そろえる','Collect every SS item from the standard gacha','ប្រមូល SS ទាំងអស់ពីកាឆាធម្មតា',5,'hidden',()=>allSS(),true),
  uh2:T('終焉を超えし者','Beyond the End','អ្នកហួសទីបញ្ចប់','Lv.99に到達し、通算1000勝する','Reach Lv.99 and win 1000 battles','ដល់កម្រិត 99 និងឈ្នះ ១០០០ដង',5,'hidden',()=>lvOf(S.x).l>=MAXL&&S.wn>=1000,true),
  uh3:T('ミリ残りの奇跡','Miracle at 1 HP','អព្ភូតហេតុ HP 1','HP1で生き残って勝利する','Win while surviving with just 1 HP','ឈ្នះដោយនៅសល់ HP 1',4,'hidden',()=>S.mh>=1,true)};
+/* 試練の塔の称号 */
+[['ut10','塔の挑戦者','Tower Challenger','ប៉មអ្នកប្រកួត',10,3],['ut20','天空の征服者','Sky Conqueror','អ្នកដណ្ដើមមេឃ',20,4],['ut30','塔の頂点','Tower Summit','កំពូលប៉ម',30,5]].forEach(([id,ja,en,km,f,q])=>{SP[id]=T(ja,en,km,'試練の塔 '+f+'階をクリア','Clear Trial Tower '+f+'F','ឆ្លងប៉មសាកល្បងជាន់ '+f,q,'tower',()=>{try{return (JSON.parse(localStorage.getItem('ectw')||'{}').c||[]).includes(f)}catch(e){return false}})});
 /* イベント称号 */
 SP.uhw=T('ハッピーハロウィン','Happy Halloween','រីករាយថ្ងៃហាឡូវីន','ハロウィン期間(2026/10/30〜11/5)にログイン','Log in during Halloween (Oct 30 – Nov 5, 2026)','ចូលក្នុងរដូវហាឡូវីន (30 តុលា – 5 វិច្ឆិកា 2026)',3,'event',()=>{try{return !!localStorage.getItem('echw26')}catch(e){return false}});
 /* シーズン報酬の称号 */
 for(let n=0;n<=ECS.cur();n++)[[1,'覇王','Overlord','អធិរាជ','1位','1st place','លេខ 1',5],[2,'英雄','Hero','វីរបុរស','2〜3位','2nd-3rd','លេខ 2-3',4],[3,'精鋭','Elite','ឥស្សរជន','4〜10位','4th-10th','លេខ 4-10',3],[4,'挑戦者','Challenger','អ្នកប្រកួត','11〜30位','11th-30th','លេខ 11-30',2]].forEach(x=>{const id='sr'+n+'_'+x[0];
  SP[id]=T('S'+n+' '+x[1],'S'+n+' '+x[2],'S'+n+' '+x[3],'シーズン'+n+'ランキング '+x[4],'Season '+n+' ranking: '+x[5],'ចំណាត់ថ្នាក់រដូវកាល '+n+' '+x[6],x[7],'season',()=>{try{return !!(JSON.parse(localStorage.getItem('ecsrw')||'{}').t||{})[id]}catch(e){return false}})});
-const CATS=[['rank','🎖 階級','🎖 Rank','🎖 ឋានន្តរស័ក្ដិ'],['battle','⚔️ 戦闘','⚔️ Battle','⚔️ ការប្រយុទ្ធ'],['gacha','🎰 ガチャ','🎰 Gacha','🎰 កាឆា'],['login','📅 ログイン','📅 Login','📅 ចូលប្រចាំថ្ងៃ'],['misc','✨ その他','✨ Other','✨ ផ្សេងៗ'],['event','🎉 イベント','🎉 Events','🎉 ព្រឹត្តិការណ៍'],['season','🏆 シーズン','🏆 Season','🏆 រដូវកាល'],['hidden','🕳 隠し称号','🕳 Hidden','🕳 ងារលាក់']];
+const CATS=[['rank','🎖 階級','🎖 Rank','🎖 ឋានន្តរស័ក្ដិ'],['battle','⚔️ 戦闘','⚔️ Battle','⚔️ ការប្រយុទ្ធ'],['gacha','🎰 ガチャ','🎰 Gacha','🎰 កាឆា'],['login','📅 ログイン','📅 Login','📅 ចូលប្រចាំថ្ងៃ'],['misc','✨ その他','✨ Other','✨ ផ្សេងៗ'],['tower','🗼 試練の塔','🗼 Trial Tower','🗼 ប៉មសាកល្បង'],['event','🎉 イベント','🎉 Events','🎉 ព្រឹត្តិការណ៍'],['season','🏆 シーズン','🏆 Season','🏆 រដូវកាល'],['hidden','🕳 隠し称号','🕳 Hidden','🕳 ងារលាក់']];
 const SPK=Object.keys(SP);
 function tinfo(id){if(typeof id!=='string')return null;const m=/^u([123]):(.+)$/.exec(id);if(m&&CH.includes(m[2]))return{id,tier:+m[1],e:m[2]};if(Object.prototype.hasOwnProperty.call(SP,id))return{id,tier:0,sp:SP[id]};return null}
 function tname(id){const t=tinfo(id);if(!t)return'';if(t.sp)return LL(t.sp.ja,t.sp.en,t.sp.km);
@@ -2081,6 +2087,9 @@ D('uh2','終焉を超えし者',5,'hidden','Lv.99に到達し、通算1000勝す
 D('uh3','ミリ残りの奇跡',4,'hidden','HP1で生き残って勝利する','ほぼ空のHPゲージが点滅し、心電図が走る。頭上に光輪',tt('d-uh3',A('t','<span class="halo"></span>')+pl('ミリ残りの奇跡','<svg class="ecg" viewBox="0 0 120 30" preserveAspectRatio="none"><polyline points="0,15 20,15 26,15 30,5 34,25 38,15 70,15 76,15 80,3 84,26 88,15 120,15" fill="none" stroke="#ff2a3a" stroke-width="1.2" stroke-dasharray="60 60" opacity=".35" style="animation:u_ecg 2.4s linear infinite"/></svg><span class="hp"></span>')));
 D('uc0','原初の支配者',5,'gacha','シーズン0限定ガチャのアイテムを全部そろえる','ホログラムの板の周りを七色の光が回り、2つの衛星が周回する。右上に「S0」',tt('d-uc0',pl('<span class="tx">原初の支配者</span>','<i class="scan"></i><i class="shine"></i>')+'<i class="s0">S0</i><i class="orb"></i><i class="orb o2"></i><i class="px" style="left:6%;top:-5px"></i><i class="px" style="right:14%;bottom:-5px;animation-delay:.5s"></i><i class="px" style="left:40%;top:-6px;animation-delay:.9s"></i>'));
 D('uhw','ハッピーハロウィン',3,'event','ハロウィン期間にログイン','紫と橙の板。両脇でカボチャが揺れ、上をコウモリが飛ぶ',tt('d-uhw',A('l','<span class="pk">🎃</span>')+pl('ハッピーハロウィン')+A('r','<span class="pk">🎃</span>')+'<span class="bats"><i class="bat">🦇</i><i class="bat b2">🦇</i><i class="bat b3">🦇</i></span>'));
+D('ut10','塔の挑戦者',3,'tower','試練の塔10階をクリア','石レンガの看板。左に小さな塔',tt('d-ut10',A('l','<span class="tp">🗼</span>')+pl('塔の挑戦者')));
+D('ut20','天空の征服者',4,'tower','試練の塔20階をクリア','青空と雲の板を金のふちが囲む',tt('d-ut20',A('l','<span class="tp">☁️</span>')+pl('天空の征服者')+A('r','<span class="tp">☁️</span>')));
+D('ut30','塔の頂点',5,'tower','試練の塔30階をクリア','紫と金の板に光が走り、上で塔のてっぺんが輝く',tt('d-ut30',A('t','<span class="tp">🗼</span>')+pl('塔の頂点','<i class="shn"></i>')));
 /* ---- キャラ使用称号 ---- */
 D('t1','駆け出しの○○',1,'usage','そのキャラを10回使う','革の荷札。縫い目の破線と紐通しの穴',tt('d-t1',A('l','<i class="hole"></i>')+pl('駆け出しのカメ')));
 D('t2','○○の使い手',2,'usage','そのキャラを50回使う','銀の看板。上から二本の鎖で吊るされ、六角ボルトで留める',tt('d-t2',A('t','<span style="display:flex;justify-content:space-between;width:100%;padding:0 12px">'+chainV(3,'#7d889a')+chainV(3,'#7d889a')+'</span>')+pl('カメの使い手','<i class="hex hx1"></i><i class="hex hx2"></i>')));
@@ -2088,7 +2097,7 @@ D('t3','○○を極めし者',3,'usage','そのキャラを150回使う','金�
 
 return Object.fromEntries(ds.map(d=>[d.id,d.html]))})();
 
-const UPAD={ur1:[24,18,4,18],ur2:[6,30,6,30],ur3:[20,28,6,28],ur4:[20,8,20,8],ub1:[6,14,14,14],ub2:[6,26,6,26],ub3:[8,26,8,26],ub4:[8,50,12,50],ub5:[6,30,6,30],ub6:[14,12,6,12],ub7:[6,6,6,22],ub8:[8,26,8,26],ub9:[6,42,6,42],ub10:[6,6,14,6],ug1:[6,6,16,6],ug2:[10,32,10,32],ug3:[10,26,6,26],ug4:[26,30,6,30],ua:[6,40,6,40],us7:[6,6,14,6],us30:[6,26,14,26],us100:[18,24,10,24],us365:[8,8,14,8],uf:[8,16,14,8],uh1:[16,22,16,22],uh2:[8,48,8,48],uh3:[18,8,6,8],uc0:[14,20,10,20],uhw:[18,30,8,30],t1:[6,6,6,16],t2:[34,8,6,8],t3:[26,8,6,8]};
+const UPAD={ur1:[24,18,4,18],ur2:[6,30,6,30],ur3:[20,28,6,28],ur4:[20,8,20,8],ub1:[6,14,14,14],ub2:[6,26,6,26],ub3:[8,26,8,26],ub4:[8,50,12,50],ub5:[6,30,6,30],ub6:[14,12,6,12],ub7:[6,6,6,22],ub8:[8,26,8,26],ub9:[6,42,6,42],ub10:[6,6,14,6],ug1:[6,6,16,6],ug2:[10,32,10,32],ug3:[10,26,6,26],ug4:[26,30,6,30],ua:[6,40,6,40],us7:[6,6,14,6],us30:[6,26,14,26],us100:[18,24,10,24],us365:[8,8,14,8],uf:[8,16,14,8],uh1:[16,22,16,22],uh2:[8,48,8,48],uh3:[18,8,6,8],uc0:[14,20,10,20],uhw:[18,30,8,30],ut10:[8,30,8,10],ut20:[8,34,8,34],ut30:[24,10,8,10],t1:[6,6,6,16],t2:[34,8,6,8],t3:[26,8,6,8]};
 const USAMP={t1:'駆け出しのカメ',t2:'カメの使い手',t3:'カメを極めし者'};
 const chip=id=>{const t=tinfo(id);if(!t)return'';const key=t.sp?id:'t'+t.tier;let h=UTD[key];if(!h)return chipOld(id);
  h=h.split(t.sp?SP[id].ja:USAMP[key]).join(esc(tname(id)));
@@ -3066,5 +3075,148 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden){try{db('DE
 addEventListener('pagehide',()=>{try{FBTOK&&fetch(FIREBASE_URL.replace(/\/$/,'')+'/on/'+PID+'.json?auth='+FBTOK,{method:'DELETE',keepalive:true})}catch(e){}});
 })();
 </script>
-</body>
+<style>
+/* ===== 🗼 試練の塔 ===== */
+#twbn{display:flex;align-items:center;gap:12px;width:100%;margin:0 0 12px;padding:12px 14px;border:0;border-radius:16px;cursor:pointer;text-align:left;color:#fff;font:inherit;
+ background:linear-gradient(110deg,#3a1a8a 0%,#7a2cff 45%,#ff5aa8 100%);box-shadow:0 0 0 2px #ffd23f88,0 6px 20px #7a2cff66;position:relative;overflow:hidden}
+#twbn::after{content:'';position:absolute;top:-40%;bottom:-40%;width:30%;left:-40%;background:linear-gradient(100deg,transparent,#ffffff55,transparent);animation:twbs 3s ease-in-out infinite}
+@keyframes twbs{0%,50%{left:-40%}90%,100%{left:120%}}
+#twbn .twbi{font-size:38px;line-height:1;filter:drop-shadow(0 0 8px #ffd23f)}
+#twbn .twbm{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+#twbn .twbm b{font-size:18px;display:flex;align-items:center;gap:6px}
+#twbn .twnew{font-style:normal;font-size:10px;font-weight:900;background:#ffd23f;color:#3a1000;border-radius:6px;padding:1px 5px;animation:twnp 1.2s ease-in-out infinite}
+@keyframes twnp{50%{transform:scale(1.12)}}
+#twbn .twbs{font-size:13px;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#twbn .twbp{display:block;height:6px;border-radius:3px;background:#0005;overflow:hidden}
+#twbn .twbp i{display:block;height:100%;background:linear-gradient(90deg,#7affc8,#ffd23f)}
+#twbn .twbc{font-size:24px;font-weight:900;line-height:1;text-align:right}
+#twbn .twbc small{font-size:12px;opacity:.8}
+
+#twbtn{background:linear-gradient(90deg,#6a3df0,#c23dff 55%,#ff8a3d)!important;color:#fff!important;position:relative}
+#twbtn small{opacity:.85;font-weight:700;margin-left:6px}
+#tower .twh{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#tower .twbar{height:10px;border-radius:5px;background:#0006;overflow:hidden;margin:6px 0 10px}
+#tower .twbar i{display:block;height:100%;background:linear-gradient(90deg,#7affc8,#3df2ff,#c23dff)}
+#tower .twl{display:flex;flex-direction:column;gap:8px}
+.twr{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px 10px;border-radius:12px;background:var(--card2);position:relative}
+.twr .twf{font-weight:900;font-size:15px;text-align:center;line-height:1.1}
+.twr .twf small{display:block;font-size:10px;opacity:.7;font-weight:700}
+.twr .twe{font-size:24px;line-height:1.1;white-space:nowrap}
+.twr .twn{font-weight:800;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.twr .twt{font-size:11px;opacity:.85;line-height:1.4}
+.twr .twrw{font-size:11px;margin-top:2px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.twr .twrw span{background:#0003;border-radius:8px;padding:1px 6px}
+.twr .btn{width:auto;margin:0;padding:8px 12px;font-size:13px}
+.twr.boss{background:linear-gradient(90deg,#3a0a1c,#1d0b3a);box-shadow:inset 0 0 0 2px #ff4d6d88,0 0 14px #ff4d6d44}
+.twr.boss .twf{color:#ff8aa0}
+.twr.next{box-shadow:inset 0 0 0 3px var(--gold),0 0 16px #ffd23f66}
+.twr.lock{opacity:.5}
+.twr.done .twf::after{content:'✅';display:block;font-size:12px}
+#twbar2{margin:6px 0;padding:10px 12px;border-radius:12px;background:linear-gradient(90deg,#2a1260,#3a0a2c);box-shadow:inset 0 0 0 2px #c23dff88;color:#fff}
+#twbar2 b{color:#ffd23f}
+#twres{margin:0 0 10px;padding:12px;border-radius:14px;text-align:center;background:linear-gradient(180deg,#2a1260,#160a30);box-shadow:inset 0 0 0 2px #c23dff99;color:#fff}
+#twres .twrt{font-size:20px;font-weight:900}
+#twres .row{gap:8px;justify-content:center;margin-top:8px}
+#twres .btn{width:auto;flex:1;margin:0}
+/* 称号 */
+.u_d-ut10 .u_pl{color:#f2f2f2;letter-spacing:.08em;padding:9px 22px;border:2px solid #4a4a52;border-radius:3px;background:repeating-linear-gradient(0deg,#0000 0 9px,#2a2a3088 9px 11px),repeating-linear-gradient(90deg,#0000 0 22px,#2a2a3088 22px 24px),linear-gradient(180deg,#8a8a96,#5a5a66);text-shadow:0 2px 0 #222}
+.u_d-ut20 .u_pl{color:#fff;letter-spacing:.08em;padding:10px 24px;border:2px solid #ffd23f;border-radius:20px;background:radial-gradient(circle at 15% 85%,#fff9 0 8px,transparent 9px),radial-gradient(circle at 24% 92%,#fff8 0 10px,transparent 11px),radial-gradient(circle at 82% 88%,#fff8 0 9px,transparent 10px),linear-gradient(180deg,#3d8bff,#7ec8ff 70%,#cfeeff);box-shadow:0 0 16px #ffd23f88,0 0 30px #7ec8ff66;text-shadow:0 2px 0 #1f4b8a,0 0 8px #fff}
+.u_d-ut30 .u_pl{position:relative;overflow:hidden;color:#ffe9a0;letter-spacing:.12em;padding:11px 28px;border:2px solid #ffd23f;border-radius:4px;background:linear-gradient(180deg,#3a1260,#150525);box-shadow:0 0 0 2px #7a4a00,0 0 22px #ffd23faa,0 0 40px #c23dff66;text-shadow:0 0 10px #ffd23f,0 2px 0 #3a1000}
+.u_d-ut30 .u_shn{position:absolute;top:-30%;bottom:-30%;width:26%;left:-40%;background:linear-gradient(100deg,transparent,#fff8,transparent);animation:u_tws 2.6s ease-in-out infinite}
+@keyframes u_tws{0%,45%{left:-40%}85%,100%{left:120%}}
+.u_d-ut30 .u_tp{font-size:18px;line-height:1;filter:drop-shadow(0 0 8px #ffd23f);animation:u_twp 1.8s ease-in-out infinite}
+@keyframes u_twp{50%{transform:translateY(-3px) scale(1.08)}}
+.u_d-ut20 .u_tp,.u_d-ut10 .u_tp{font-size:16px;line-height:1}
+</style>
+<script>
+/* ===== 🗼 試練の塔: 運営が決めた敵を1階ずつ攻略する(30階・10階ごとにボス) ===== */
+(()=>{
+const $$=s=>document.querySelector(s),KEY='ectw';
+let D={};try{D=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}D.c=Array.isArray(D.c)?D.c.filter(n=>n>=1&&n<=30):[];
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}};
+const top=()=>D.c.length?Math.max(...D.c):0;
+/* ---- 塔の限定アイテム(ガチャには出ない) ---- */
+const TI=[
+ {id:'ct1',k:'c',r:'A',e:'🐞',n:'てんとう騎士',ne:'Ladybug Knight',d:'試練の塔5階の証。小さな体で大きな盾を構える騎士。',de:'Proof of clearing Tower 5F. A tiny knight with a big shield.'},
+ {id:'wt1',k:'w',r:'S',e:'🗝️',n:'塔の鍵剣',ne:'Tower Keyblade',d:'試練の塔10階の証。塔の扉を開く鍵の剣。',de:'Proof of clearing Tower 10F. A key-shaped blade that opens the tower.',st:'swing'},
+ {id:'et1',k:'e',r:'A',e:'🌪️',n:'塔風',ne:'Tower Gale',d:'試練の塔15階の証。塔を吹き抜ける風。',de:'Proof of clearing Tower 15F. The wind that rushes through the tower.',fx:'wind'},
+ {id:'ct2',k:'c',r:'S',e:'🦔',n:'針の番人ハリネズミ',ne:'Needle Warden',d:'試練の塔20階の証。全身の針で塔を守る番人。',de:'Proof of clearing Tower 20F. A warden guarding the tower with needles.'},
+ {id:'wt2',k:'w',r:'SS',e:'⚒️',n:'天空の双槌',ne:'Twin Sky Hammers',d:'試練の塔25階の証。雲を割る二本の槌。',de:'Proof of clearing Tower 25F. Twin hammers that split the clouds.',st:'slam',sty:'rainbow'},
+ {id:'ct3',k:'c',r:'SS',e:'🐊',n:'塔の覇王クロコ',ne:'Croco, Tower Sovereign',d:'試練の塔30階を制した者だけが持つ覇王。',de:'Owned only by those who conquered Tower 30F.',sty:'rainbow'},
+ {id:'et2',k:'e',r:'SS',e:'🌞',n:'頂の太陽',ne:'Summit Sun',d:'試練の塔30階の証。頂上で昇る太陽。',de:'Proof of clearing Tower 30F. The sun rising over the summit.',fx:'phoenix',sty:'rainbow'}];
+try{const IT=ECG.items();TI.forEach(x=>{if(!IT.find(i=>i.id===x.id))IT.push(Object.assign({lim:'tw'},x))});if(window.EC_CHAR_TEST&&ECG.G){TI.forEach(x=>{if(!ECG.G.inv[x.id])ECG.G.inv[x.id]=1})}
+ TI.forEach(x=>{EN_PAIRS.push([x.n,x.ne],[x.d,x.de]);KM_PAIRS.push([x.n,x.ne],[x.d,x.de])});EN_PAIRS.sort((a,b)=>b[0].length-a[0].length);KM_PAIRS.sort((a,b)=>b[0].length-a[0].length)}catch(e){console.error(e)}
+const itm=id=>ECG.items().find(i=>i.id===id);
+/* ---- 30階の敵(絵文字はゲームの選択肢にあるものだけ) ---- */
+const FL=[
+ ['🍣','🍌','🍀','回転ずし小僧','Sushi Rookie'],['💩','🥊','☠️','くさいボクサー','Stinky Boxer'],['🐍','🔫','☠️','毒蛇ガンマン','Viper Gunner'],['🐍','🪄','☠️','毒の魔術師','Venom Mage'],['🦅','⚡','✨','雷鳥','Thunderbird'],
+ ['🐺','⚡','🔥','炎狼','Blaze Wolf'],['🤖','🔫','⭐','量産型ロボ','Mass-Produced Bot'],['🤡','🪃','🌀','めまいピエロ','Dizzy Clown'],['🧛','🗡️','💀','夜の貴族','Night Noble'],['🗿','🔨','💚','門番モアイ','Moai Gatekeeper'],
+ ['🦍','🥊','🌀','暴れゴリラ','Raging Gorilla'],['🐱','🪃','⭐','星猫','Star Cat'],['🦅','🏹','⭐','天空の射手','Sky Archer'],['🦊','🏹','⭐','狐の狙撃手','Fox Sniper'],['🐱','🗡️','🍀','路地裏ネコ','Alley Cat'],
+ ['🐢','🔨','❄️','氷のカメ','Frost Turtle'],['🧛','🔱','💀','吸血公','Vampire Lord'],['🐙','🔱','🌊','海の番人タコ','Octo Guard'],['🐘','💣','❄️','氷河ゾウ','Glacier Elephant'],['🐉','🔱','🌊','天空の海竜','Sky Leviathan'],
+ ['🥷','⚡','🌀','雷の忍','Thunder Ninja'],['🐻','🪓','🔥','灼熱グマ','Inferno Bear'],['👻','🎸','🌑','呪いの吟遊詩人','Cursed Bard'],['🐺','🗡️','🩸','血の狼','Blood Wolf'],['🐉','⚔️','🔥','若き炎竜','Young Fire Dragon'],
+ ['🦖','🔨','🩸','血まみれ恐竜','Bloody Dino'],['👻','🪄','🌑','呪いのゆうれい','Cursed Ghost'],['🤖','⚔️','✨','聖騎士ロボ','Paladin Bot'],['🥷','🗡️','🩸','影の刺客','Shadow Assassin'],['🐉','💣','🌑','塔の覇王・闇竜','Tower Overlord']];
+/* ボスの特殊能力 */
+const BOSS={10:{ja:'🛡 鉄壁(防御+5)',en:'🛡 Iron Wall (DEF +5)',f:B=>{B.def+=5}},20:{ja:'⚔ 連撃(攻撃回数+1)',en:'⚔ Combo (+1 hit)',f:B=>{B.hits+=1}},30:{ja:'👑 覇王(攻撃・会心・回避UP)',en:'👑 Overlord (ATK, crit, evasion up)',f:B=>{B.atk*=1.15;B.crit+=.1;B.evade+=.05;B.def+=2}}};
+/* 上の階ほど強くなる */
+const scale=(B,n)=>{B.atk*=1+(n-1)*.015;B.def+=(n-1)*.1;B.spd*=1+(n-1)*.005;if(BOSS[n])BOSS[n].f(B)};
+/* ---- 初クリア報酬 ---- */
+const RW={5:{items:['ct1']},10:{tk:30,items:['wt1'],t:'ut10'},15:{items:['et1']},20:{tk:50,items:['ct2'],t:'ut20'},25:{items:['wt2']},30:{tk:100,items:['ct3','et2'],t:'ut30'}};
+const tkOf=n=>(RW[n]&&RW[n].tk)||(2+n);
+const TT={ut10:['塔の挑戦者','Tower Challenger'],ut20:['天空の征服者','Sky Conqueror'],ut30:['塔の頂点','Tower Summit']};
+const ename=n=>LL(FL[n-1][3],FL[n-1][4],FL[n-1][4]);
+const traits=n=>{const w=FL[n-1];const el=ELEM[norm(w[2])],b=BODY[norm(w[0])],wp=WEAP[norm(w[1])];return [b&&tr(b.d),wp&&tr(wp.d),el&&tr(el.d)].filter(Boolean).join(' / ')};
+const rwHtml=n=>{const r=RW[n]||{},a=['🎟×'+tkOf(n)];(r.items||[]).forEach(id=>{const i=itm(id);if(i)a.push(ECG.vis(i)+' '+esc(LL(i.n,i.ne,i.ne)))});if(r.t)a.push('🏅 '+esc(LL(TT[r.t][0],TT[r.t][1],TT[r.t][1])));return a.map(x=>'<span>'+x+'</span>').join('')};
+/* ---- 画面 ---- */
+$$('main').appendChild(Object.assign(document.createElement('div'),{id:'tower',className:'card hide'}));
+const SH=show;show=function(id){$$('#tower').classList.add('hide');SH.apply(this,arguments)};
+let TW=null;window.ecTowerOn=()=>!!TW;
+function openTower(){TW=null;show('none');const el=$$('#tower');el.classList.remove('hide');render();window.scrollTo(0,0);setTimeout(()=>{const nx=el.querySelector('.twr.next');if(nx)nx.scrollIntoView({block:'center'})},60)}
+function render(){const el=$$('#tower'),t=top();
+ let rows='';for(let n=30;n>=1;n--){const w=FL[n-1],done=D.c.includes(n),open=n<=t+1,boss=!!BOSS[n],next=n===t+1;
+  rows+='<div class="twr'+(boss?' boss':'')+(done?' done':'')+(next?' next':'')+(open?'':' lock')+'"><div class="twf">'+n+LL('階','F','F')+(boss?'<small>👑 BOSS</small>':'')+'</div>'
+  +'<div style="min-width:0"><div class="row" style="gap:6px;justify-content:flex-start"><span class="twe">'+esc(w.slice(0,3).join(''))+'</span><span class="twn">'+esc(ename(n))+'</span></div>'
+  +'<div class="twt">'+(boss?'<b style="color:#ff8aa0">'+LL(BOSS[n].ja,BOSS[n].en,BOSS[n].en)+'</b><br>':'')+esc(traits(n))+'</div>'
+  +'<div class="twrw">'+(done?'<span>✅ '+LL('クリア済み','Cleared','បានឆ្លង')+'</span>':rwHtml(n))+'</div></div>'
+  +(open?'<button class="btn'+(next?'':' alt')+'" data-tw="'+n+'">'+(done?'↻':'⚔️ '+LL('挑戦','Fight','ប្រយុទ្ធ'))+'</button>':'<span style="font-size:20px">🔒</span>')+'</div>'}
+ el.innerHTML='<div class="twh"><b style="font-size:20px">🗼 '+LL('試練の塔','Trial Tower','ប៉មសាកល្បង')+'</b><span class="mut">'+LL('到達 ','Reached ','ដល់ ')+t+' / 30'+LL('階','F','F')+'</span></div>'
+  +'<div class="twbar"><i style="width:'+(t/30*100)+'%"></i></div>'
+  +'<div class="mut">'+LL('運営が用意した敵を1階ずつ倒して、塔のてっぺんを目指そう。上の階ほど敵が強くなり、10階ごとにボスがいます。何回でも挑戦できます。初めてクリアした階では報酬がもらえます。敵の絵文字を見て、相性のいい戦士を作るのがコツ！','Defeat the enemies we prepared, one floor at a time, and reach the top. Enemies get stronger as you climb, with a boss every 10 floors. Retry as many times as you like; each floor gives a reward the first time you clear it. Tip: check the enemy’s emoji and build a warrior with a good matchup!','កម្ចាត់សត្រូវម្ដងមួយជាន់ ហើយឡើងដល់កំពូល។ ជាន់ខ្ពស់ សត្រូវខ្លាំងជាង ហើយរៀងរាល់ 10 ជាន់មានបុស។ អាចសាកបានគ្មានដែនកំណត់។')+'</div>'
+  +'<div class="twl" style="margin-top:10px">'+rows+'</div><button class="btn alt" id="twback" style="margin-top:10px">← '+LL('ホームへ','Home','ទំព័រដើម')+'</button>';
+ el.querySelectorAll('[data-tw]').forEach(b=>b.onclick=()=>challenge(+b.dataset.tw));$$('#twback').onclick=()=>goHome()}
+function challenge(n){if(n>top()+1)return;TW={n};const old=$$('#twres');if(old)old.remove();try{ROOM=null;setChal(null)}catch(e){}sndOn=true;try{ctx()}catch(e){}openBuild();bar()}
+function bar(){let b=$$('#twbar2');if(!TW){if(b)b.remove();return}if(!b){b=document.createElement('div');b.id='twbar2';const r=$$('#rbar');r.insertAdjacentElement('afterend',b)}
+ const n=TW.n,w=FL[n-1];b.innerHTML='🗼 <b>'+n+LL('階','F','F')+(BOSS[n]?' 👑BOSS':'')+'</b> '+LL('の敵','enemy','សត្រូវ')+': <span style="font-size:22px">'+esc(w.slice(0,3).join(''))+'</span> '+esc(ename(n))+'<div class="stat">'+(BOSS[n]?LL(BOSS[n].ja,BOSS[n].en,BOSS[n].en)+' / ':'')+esc(traits(n))+'</div><button class="btn alt" id="twq" style="margin:6px 0 0;padding:6px 10px;font-size:12px;width:auto">🗼 '+LL('塔に戻る','Back to tower','ត្រឡប់ទៅប៉ម')+'</button>';
+ $$('#twq').onclick=()=>openTower()}
+const OB=openBuild;openBuild=function(){OB.apply(this,arguments);try{bar()}catch(e){}};
+const GH=goHome;goHome=function(){TW=null;try{bar()}catch(e){}return GH.apply(this,arguments)};
+/* ---- 戦い ---- */
+async function towerBattle(){if(busy)return;busy=true;const n=TW.n,w=FL[n-1];window.OPPEQ=null;window.OPPTI=null;
+ const oppW=w.slice(0,3),oppN='🗼'+n+LL('階 ','F ','F ')+ename(n),A=mk(W.slice(),'YOU'),B=mk(oppW,oppN);scale(B,n);const r=fight(A,B);
+ lastRun={W:W.slice(),oppW,oppN,r,A,B,tower:n};await play(lastRun);busy=false}
+const BT=battle;battle=function(){if(TW&&!ROOM)return towerBattle();return BT.apply(this,arguments)};
+/* 塔の戦いはランキングの勝敗に入れない */
+const SR=saveRank;saveRank=function(){if(window.__twNoRank)return;return SR.apply(this,arguments)};
+const FN=finish;finish=function(L){if(!L||!L.tower)return FN.apply(this,arguments);
+ if(L.r.win===0&&!D.c.includes(L.tower)){D.c.push(L.tower);save();L._twFirst=true}
+ const bak=Object.assign({},rec);window.__twNoRank=true;let x;try{x=FN.apply(this,arguments)}finally{window.__twNoRank=false;Object.assign(rec,bak);try{localStorage.setItem('ecrec',JSON.stringify(Object.assign({s:recHash(rec)},rec)))}catch(e){}}
+ try{result(L)}catch(e){console.error(e)}return x};
+function result(L){const n=L.tower,win=L.r.win===0,first=!!L._twFirst,R=$$('#result');let h='';
+ R.querySelectorAll('.mut').forEach(d=>{const t=d.textContent;if(t.includes(L.oppN))d.textContent=L.oppN;else if(/^※/.test(t.trim()))d.remove()});
+ if(win){if(first){const r=RW[n]||{};try{ECG.grant(tkOf(n));(r.items||[]).forEach(id=>ECG.grantItem(id,'tw'+n))}catch(e){}if(r.t&&window.getEqRaw&&!getEqRaw()&&window.setEqT)setEqT(r.t)}
+  h='<div class="twrt">🗼 '+n+LL('階 クリア！','F cleared!','F ឆ្លងហើយ!')+'</div>'+(first?'<div class="stat" style="margin-top:4px">🎁 '+LL('初クリア報酬','First-clear reward','រង្វាន់លើកដំបូង')+'</div><div class="twrw" style="justify-content:center;display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;font-size:13px">'+rwHtml(n)+'</div>':'')
+   +(n===30?'<div style="margin-top:6px;font-weight:900;color:#ffd23f">👑 '+LL('塔を制覇しました！','You conquered the tower!','អ្នកបានដណ្ដើមប៉ម!')+'</div>':'')
+   +'<div class="row">'+(n<30?'<button class="btn" id="twnx">▶ '+(n+1)+LL('階へ','F','F')+'</button>':'')+'<button class="btn alt" id="twto">🗼 '+LL('塔へ','Tower','ប៉ម')+'</button></div>'}
+ else h='<div class="twrt">🗼 '+n+LL('階 失敗…','F failed…','F បរាជ័យ…')+'</div><div class="stat">'+LL('敵の相性を見て、戦士を作り直してみよう','Check the matchup and rebuild your warrior','មើលទំនាក់ទំនង ហើយបង្កើតអ្នកចម្បាំងម្ដងទៀត')+'</div><div class="row"><button class="btn" id="twre">↻ '+LL('作り直して再挑戦','Rebuild & retry','សាកម្ដងទៀត')+'</button><button class="btn alt" id="twto">🗼 '+LL('塔へ','Tower','ប៉ម')+'</button></div>';
+ R.insertAdjacentHTML('afterbegin','<div id="twres">'+h+'</div>');
+ const nx=$$('#twnx');if(nx)nx.onclick=()=>challenge(n+1);const re=$$('#twre');if(re)re.onclick=()=>challenge(n);$$('#twto').onclick=()=>openTower();
+ if(first){try{confetti(n%10===0?260:120);banner(n%10===0?'👑 BOSS CLEAR!':'🗼 '+n+'F CLEAR!')}catch(e){}homeBtn()}}
+/* ---- ホームのボタン ---- */
+function homeBtn(){const ob=$$('#twbtn');if(ob)ob.remove();let b=$$('#twbn');const st=$$('#start');if(!st)return;
+ if(!b){b=document.createElement('button');b.id='twbn';b.type='button';const anchor=$$('#season')||$$('#mtog');if(anchor)anchor.insertAdjacentElement('afterend',b);else st.insertBefore(b,st.firstChild);b.onclick=()=>openTower()}
+ const t=top(),nx=Math.min(30,t+1),w=FL[nx-1],done=t>=30;
+ b.innerHTML='<span class="twbi">🗼</span><span class="twbm"><b>'+LL('試練の塔','Trial Tower','ប៉មសាកល្បង')+'<i class="twnew">NEW</i></b><span class="twbs">'+(done?'👑 '+LL('制覇済み！','Conquered!','បានដណ្ដើម!'):LL('次は ','Next: ','បន្ទាប់ ')+nx+LL('階','F','F')+(BOSS[nx]?' 👑BOSS':'')+' '+esc(w.slice(0,3).join('')))+'</span><span class="twbp"><i style="width:'+(t/30*100)+'%"></i></span></span><span class="twbc">'+t+'<small>/30</small></span>'}
+homeBtn();const AL=applyLang;applyLang=function(){AL.apply(this,arguments);try{homeBtn();if(!$$('#tower').classList.contains('hide'))render();bar()}catch(e){}};
+window.ecTower={open:openTower,data:D,FL,scale};
+})();
+</script></body>
 </html>
