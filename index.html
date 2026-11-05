@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<script>
+/* ===== 🚚 引っ越しデータの受け取り(新しいサイト側・ほかの処理より先に動く) ===== */
+(function(){try{
+ var m=location.hash.match(/[#&]mig=([a-f0-9]{32})/);if(!m)return;
+ var tok=m[1],U="https://emoji1clash-default-rtdb.asia-southeast1.firebasedatabase.app/mig/"+tok+".json";
+ history.replaceState(null,"",location.pathname+location.search);
+ var x=new XMLHttpRequest();x.open("GET",U,false);x.send();
+ var v=x.status==200?JSON.parse(x.responseText||"null"):null,lang=(navigator.language||"").slice(0,2);
+ var T=function(j,e,k){return lang=="ja"?j:lang=="km"?k:e};
+ if(!v||!v.d||Date.now()-(+v.t||0)>7*864e5){alert(T("引っ越しデータが見つかりませんでした。もう一度、前のサイトでボタンを押してください。","Moving data was not found. Please press the button on the old site again.","រកមិនឃើញទិន្នន័យផ្លាស់ទី។ សូមចុចប៊ូតុងនៅគេហទំព័រចាស់ម្តងទៀត។"));return}
+ var o=JSON.parse(v.d),has=false;
+ for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(/^ec(gacha2|rec|lv)$/.test(k)){has=true;break}}
+ if(has&&!confirm(T("このサイトにあるデータを、前のサイトのデータで上書きします。よろしいですか？","Replace the data on this site with your data from the old site?","ជំនួសទិន្នន័យលើគេហទំព័រនេះ ដោយទិន្នន័យពីគេហទំព័រចាស់?")))return;
+ for(var key in o)if(/^ec/.test(key)||key=="en")localStorage.setItem(key,o[key]);
+ localStorage.setItem("ecmigin",String(Date.now()));
+ try{fetch(U,{method:"DELETE",keepalive:true})}catch(e){}
+ window.__ecMigrated=true;
+}catch(e){}})();
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>EMOJI CLASH</title>
+<title>EMOJI CLASH (テスト版)</title>
 <style>
 :root{--bg:#0c0a18;--card:#17142b;--card2:#252144;--tx:#f4f2ff;--mut:#9a95c4;--acc:#ff4d8d;--gold:#ffd23f;--ok:#37d67a;--ng:#ff4d4d;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f1ff;--card:#fff;--card2:#e8e4fb;--tx:#171433;--mut:#625d8c;color-scheme:light}}
@@ -877,7 +897,7 @@ img.px{image-rendering:pixelated;image-rendering:crisp-edges}
 #gnote{border:2px solid var(--gold);background:linear-gradient(90deg,#2a1f00,#3d2d00);margin:0 0 10px}
 #gnote{color:#f4f2ff}#gnote b{color:var(--gold)}#gnote .stat{color:#d8d3ff}.gtkb small{color:#f4f2ff!important}
 </style>
-<script>window.EC_CHAR_TEST=false; /* テスト用: true で全キャラ解放(ガチャのデータは本番と別に保存) */
+<script>window.EC_CHAR_TEST=true; /* テスト用: true で全キャラ解放(ガチャのデータは本番と別に保存) */
 if(window.EC_CHAR_TEST)window.GACHA_CONFIG=Object.assign(window.GACHA_CONFIG||{},{key:'ecgacha_test',oldKey:'ecgacha_test_old'});</script>
 <script>
 /* 設定: window.GACHA_CONFIG={initTickets:0,xr:{C:1,B:1,A:3,S:8,SS:40}} */
@@ -1547,7 +1567,7 @@ body.shake #arena .arena,body.shake #a2{animation:bgshk .5s}
 .u_d-uc0 .u_px{position:absolute;width:3px;height:3px;background:#fff;z-index:5;pointer-events:none;box-shadow:0 0 6px #fff;animation:u_uc0p 1.4s steps(2) infinite}
 @keyframes u_uc0p{50%{opacity:0}}
 </style>
-<script>window.EC_TITLE_TEST=false; /* テスト用: true ですべての称号を所持 */</script>
+<script>window.EC_TITLE_TEST=true; /* テスト用: true ですべての称号を所持 */</script>
 <script>
 /* アイテムボックス & 称号
    配布の追加方法: GIFTS に1件足す。until(日本時間)までにページを開いた人のボックスに届く。
@@ -1655,13 +1675,13 @@ function seasonUI(){const n=ECS.cur(),end=ECS.end(n),left=end-Date.now(),d=new D
  $$('#season').innerHTML='<div class="sbt"><b style="font-size:17px">🌌 '+LL('シーズン','SEASON ','រដូវកាល ')+n+'</b><span>'+LL('残り ','Time left: ','នៅសល់ ')+ECS.fmt(left)+'</span></div><small>'+LL('〜 '+md+' まで / 戦績・ランキングは毎シーズンリセットされます','Until '+md+' / Records and ranking reset every season','ដល់ '+md+' / កំណត់ត្រា និងចំណាត់ថ្នាក់កំណត់ឡើងវិញរៀងរាល់រដូវកាល')+'</small>';
  const sn=window.__SEASON_NEW,box=$$('#snewbox');if(sn&&!seasonUI.hide){box.innerHTML='<div class="tc" style="border-left:4px solid #3df2ff"><b>🌌 '+LL('新シーズンが始まりました!','A new season has started!','រដូវកាលថ្មីបានចាប់ផ្ដើម!')+'</b><div class="stat">'+LL('戦績とランキングがリセットされました。前シーズン('+sn.from+'):'+sn.w+'勝 '+sn.l+'敗 / 最高'+sn.best+'連勝','Records and ranking were reset. Last season ('+sn.from+'): '+sn.w+'W '+sn.l+'L / best streak '+sn.best,'កំណត់ត្រា និងចំណាត់ថ្នាក់ត្រូវបានកំណត់ឡើងវិញ។ រដូវកាលមុន ('+sn.from+')៖ ឈ្នះ '+sn.w+' ចាញ់ '+sn.l+' / ឈ្នះជាប់គ្នាល្អបំផុត '+sn.best)+'</div><button class="btn alt" id="snok">OK</button></div>';$$('#snok').onclick=()=>{seasonUI.hide=1;box.innerHTML=''}}}
 /* ---------- アプデ情報 ---------- */
-const UPV='1.6';
+const UPV='1.65';
 function seen(){try{return localStorage.getItem('ecup')===UPV}catch(e){return false}}
 document.body.insertAdjacentHTML('beforeend','<div id="upd"><div class="hc" id="updc"></div></div>');
 $$('#upd').onclick=e=>{if(e.target===$$('#upd'))$$('#upd').classList.remove('on')};
 function updHTML(){const B=(a,b,c)=>'<b style="display:block;margin:12px 0 2px;font-size:15px">'+a+'</b><p style="margin:0;line-height:1.6;font-size:14px">'+b+'</p>';
  return '<div class="row" style="margin-bottom:6px"><b style="font-size:18px">'+LL('🆕 アプデ情報','🆕 Update Notes','🆕 ព័ត៌មានអាប់ដេត')+'</b><button class="btn alt" id="updx" style="width:auto;margin:0;padding:6px 14px;font-size:13px">'+LL('閉じる','Close','បិទ')+'</button></div>'
- +'<div class="tc"><b>Ver 1.6</b> <span class="mut">2026/11/05</span></div>'
+ +'<div class="tc"><b>Ver 1.65</b> <span class="mut">2026/11/05</span></div>'+B(LL('🚚 新しいサイトへ引っ越し','🚚 Moving to a new site','🚚 ផ្លាស់ទៅគេហទំព័រថ្មី'),LL('EMOJI CLASH は新しいアドレス <b>emojiclash.com</b> で遊べるようになりました。前のアドレスで遊んでいた人は、ホーム画面の「データごと引っ越す」ボタンを押すと、記録・ガチャ・称号をそのまま持っていけます。','EMOJI CLASH can now be played at the new address <b>emojiclash.com</b>. If you played at the old address, press “Move with my data” on the home screen to bring your records, gacha items and titles.','EMOJI CLASH អាចលេងបាននៅអាសយដ្ឋានថ្មី <b>emojiclash.com</b>។ បើអ្នកធ្លាប់លេងនៅអាសយដ្ឋានចាស់ សូមចុច “ផ្លាស់ទីជាមួយទិន្នន័យ” នៅទំព័រដើម ដើម្បីយកកំណត់ត្រា កាឆា និងងារទៅជាមួយ។'))+'<div class="tc" style="margin-top:12px"><b>Ver 1.6</b> <span class="mut">2026/11/05</span></div>'
  +B(LL('🗼 新モード「試練の塔」','🗼 New mode: Trial Tower','🗼 មុខងារថ្មី៖ ប៉មសាកល្បង'),LL('運営が用意した敵を1階ずつ倒して、30階のてっぺんを目指すモードです。上の階ほど敵が強くなり、10階ごとに特殊能力を持つボスが待っています。何回でも挑戦できます。ホーム画面の「🗼 試練の塔」から遊べます。','Defeat the enemies we prepared one floor at a time and aim for the top of 30 floors. Enemies get stronger as you climb, and every 10th floor has a boss with special abilities. Retry as many times as you like. Play from “🗼 Trial Tower” on the home screen.','កម្ចាត់សត្រូវម្ដងមួយជាន់ ហើយឡើងដល់កំពូលជាន់ទី 30។ ជាន់ខ្ពស់ សត្រូវខ្លាំងជាង ហើយរៀងរាល់ 10 ជាន់មានបុសដែលមានសមត្ថភាពពិសេស។ អាចសាកបានគ្មានដែនកំណត់។ លេងពី «🗼 ប៉មសាកល្បង» នៅទំព័រដើម។'))
  +B(LL('🎁 塔だけの報酬','🎁 Tower-only rewards','🎁 រង្វាន់សម្រាប់តែប៉ម'),LL('初めてクリアした階ではガチャチケットがもらえます。5階ごとにガチャでは手に入らない限定キャラ・武器・エフェクト、10・20・30階では限定の称号ももらえます。30階を制覇すると、SSキャラ「塔の覇王クロコ」と称号「塔の頂点」！','Each floor gives gacha tickets the first time you clear it. Every 5 floors you get characters, weapons or effects you can’t get from the gacha, plus exclusive titles on floors 10, 20 and 30. Conquer floor 30 for the SS character “Croco, Tower Sovereign” and the title “Tower Summit”!','ជាន់នីមួយៗផ្ដល់សំបុត្រកាឆាពេលឆ្លងលើកដំបូង។ រៀងរាល់ 5 ជាន់ទទួលតួអង្គ អាវុធ ឬអេហ្វេកត៌ពិសេស ហើយជាន់ 10, 20, 30 ទទួលងារពិសេស។'))
  +B(LL('📊 ランキングについて','📊 About the ranking','📊 អំពីចំណាត់ថ្នាក់'),LL('試練の塔の勝ち負けは、ランキングの勝利数・勝率には入りません。','Trial Tower wins and losses do not count toward the ranking.','ការឈ្នះ ឬចាញ់ក្នុងប៉ម មិនរាប់ក្នុងចំណាត់ថ្នាក់ទេ។'))
@@ -3131,8 +3151,9 @@ addEventListener('pagehide',()=>{try{FBTOK&&fetch(FIREBASE_URL.replace(/\/$/,'')
 <script>
 /* ===== 🗼 試練の塔: 運営が決めた敵を1階ずつ攻略する(30階・10階ごとにボス) ===== */
 (()=>{
-const $$=s=>document.querySelector(s),KEY='ectw';
+const $$=s=>document.querySelector(s),KEY=window.EC_CHAR_TEST?'ectw_test':'ectw';
 let D={};try{D=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}D.c=Array.isArray(D.c)?D.c.filter(n=>n>=1&&n<=30):[];
+const OPENALL=!!window.EC_CHAR_TEST; /* テスト版: 全階に挑戦できる */
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}};
 const top=()=>D.c.length?Math.max(...D.c):0;
 /* ---- 塔の限定アイテム(ガチャには出ない) ---- */
@@ -3172,7 +3193,7 @@ const SH=show;show=function(id){$$('#tower').classList.add('hide');SH.apply(this
 let TW=null;window.ecTowerOn=()=>!!TW;
 function openTower(){TW=null;show('none');const el=$$('#tower');el.classList.remove('hide');render();window.scrollTo(0,0);setTimeout(()=>{const nx=el.querySelector('.twr.next');if(nx)nx.scrollIntoView({block:'center'})},60)}
 function render(){const el=$$('#tower'),t=top();
- let rows='';for(let n=30;n>=1;n--){const w=FL[n-1],done=D.c.includes(n),open=n<=t+1,boss=!!BOSS[n],next=n===t+1;
+ let rows='';for(let n=30;n>=1;n--){const w=FL[n-1],done=D.c.includes(n),open=OPENALL||n<=t+1,boss=!!BOSS[n],next=n===t+1;
   rows+='<div class="twr'+(boss?' boss':'')+(done?' done':'')+(next?' next':'')+(open?'':' lock')+'"><div class="twf">'+n+LL('階','F','F')+(boss?'<small>👑 BOSS</small>':'')+'</div>'
   +'<div style="min-width:0"><div class="row" style="gap:6px;justify-content:flex-start"><span class="twe">'+esc(w.slice(0,3).join(''))+'</span><span class="twn">'+esc(ename(n))+'</span></div>'
   +'<div class="twt">'+(boss?'<b style="color:#ff8aa0">'+LL(BOSS[n].ja,BOSS[n].en,BOSS[n].en)+'</b><br>':'')+esc(traits(n))+'</div>'
@@ -3183,7 +3204,7 @@ function render(){const el=$$('#tower'),t=top();
   +'<div class="mut">'+LL('運営が用意した敵を1階ずつ倒して、塔のてっぺんを目指そう。上の階ほど敵が強くなり、10階ごとにボスがいます。何回でも挑戦できます。初めてクリアした階では報酬がもらえます。敵の絵文字を見て、相性のいい戦士を作るのがコツ！','Defeat the enemies we prepared, one floor at a time, and reach the top. Enemies get stronger as you climb, with a boss every 10 floors. Retry as many times as you like; each floor gives a reward the first time you clear it. Tip: check the enemy’s emoji and build a warrior with a good matchup!','កម្ចាត់សត្រូវម្ដងមួយជាន់ ហើយឡើងដល់កំពូល។ ជាន់ខ្ពស់ សត្រូវខ្លាំងជាង ហើយរៀងរាល់ 10 ជាន់មានបុស។ អាចសាកបានគ្មានដែនកំណត់។')+'</div>'
   +'<div class="twl" style="margin-top:10px">'+rows+'</div><button class="btn alt" id="twback" style="margin-top:10px">← '+LL('ホームへ','Home','ទំព័រដើម')+'</button>';
  el.querySelectorAll('[data-tw]').forEach(b=>b.onclick=()=>challenge(+b.dataset.tw));$$('#twback').onclick=()=>goHome()}
-function challenge(n){if(n>top()+1)return;TW={n};const old=$$('#twres');if(old)old.remove();try{ROOM=null;setChal(null)}catch(e){}sndOn=true;try{ctx()}catch(e){}openBuild();bar()}
+function challenge(n){if(!OPENALL&&n>top()+1)return;TW={n};const old=$$('#twres');if(old)old.remove();try{ROOM=null;setChal(null)}catch(e){}sndOn=true;try{ctx()}catch(e){}openBuild();bar()}
 function bar(){let b=$$('#twbar2');if(!TW){if(b)b.remove();return}if(!b){b=document.createElement('div');b.id='twbar2';const r=$$('#rbar');r.insertAdjacentElement('afterend',b)}
  const n=TW.n,w=FL[n-1];b.innerHTML='🗼 <b>'+n+LL('階','F','F')+(BOSS[n]?' 👑BOSS':'')+'</b> '+LL('の敵','enemy','សត្រូវ')+': <span style="font-size:22px">'+esc(w.slice(0,3).join(''))+'</span> '+esc(ename(n))+'<div class="stat">'+(BOSS[n]?LL(BOSS[n].ja,BOSS[n].en,BOSS[n].en)+' / ':'')+esc(traits(n))+'</div><button class="btn alt" id="twq" style="margin:6px 0 0;padding:6px 10px;font-size:12px;width:auto">🗼 '+LL('塔に戻る','Back to tower','ត្រឡប់ទៅប៉ម')+'</button>';
  $$('#twq').onclick=()=>openTower()}
@@ -3218,5 +3239,28 @@ function homeBtn(){const ob=$$('#twbtn');if(ob)ob.remove();let b=$$('#twbn');con
 homeBtn();const AL=applyLang;applyLang=function(){AL.apply(this,arguments);try{homeBtn();if(!$$('#tower').classList.contains('hide'))render();bar()}catch(e){}};
 window.ecTower={open:openTower,data:D,FL,scale};
 })();
-</script></body>
+</script><script>
+/* ===== 🚚 新しいサイト(emojiclash.com)への引っ越し ===== */
+(()=>{
+const NEW='https://emojiclash.com';
+const OLD=/github\.io$/.test(location.hostname);
+const L=(j,e,k)=>LL(j,e,k),$$=s=>document.querySelector(s);
+const target=()=>NEW+location.pathname.replace(/^\/EMOJI-CLASH/i,'').replace(/\/index\.html$/,'/');
+const full=()=>{const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(/^ec/.test(k)||k==='en')o[k]=localStorage.getItem(k)}return JSON.stringify(o)};
+const tok=()=>Array.from(crypto.getRandomValues(new Uint8Array(16)),b=>b.toString(16).padStart(2,'0')).join('');
+if(window.__ecMigrated)setTimeout(()=>alert('✅ '+L('引っ越し完了！前のサイトのデータを引き継ぎました。','Move complete! Your data from the old site is here.','ផ្លាស់ទីរួចរាល់! ទិន្នន័យពីគេហទំព័រចាស់បានមកដល់ហើយ។')),400);
+if(!OLD)return;
+const st=document.createElement('style');st.textContent=`#migbn{margin:0 0 12px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,#ff7a18,#ffb800);color:#2a1300;text-align:center;box-shadow:0 4px 14px rgba(255,140,0,.35)}#migbn b{display:block;font-size:17px;margin-bottom:4px}#migbn .s{font-size:12.5px;opacity:.9;margin-bottom:8px}#migbn button{border:0;border-radius:999px;background:#2a1300;color:#fff;font-weight:700;font-size:15px;padding:10px 18px;cursor:pointer}#migbn button:disabled{opacity:.6}#migbn .e{font-size:12px;margin-top:6px}`;document.head.appendChild(st);
+const draw=()=>{let b=$$('#migbn');if(!b){b=document.createElement('div');b.id='migbn';$$('#start').prepend(b)}
+ const done=localStorage.getItem('ecmoved');
+ b.innerHTML='<b>🚚 '+L('新しいサイトに引っ越しました！','We moved to a new site!','យើងបានផ្លាស់ទៅគេហទំព័រថ្មី!')+'</b><div class="s">emojiclash.com — '+(done?L('引っ越し済みです。これからは新しいサイトで遊んでください。','Already moved. Please play on the new site.','បានផ្លាស់រួចហើយ។ សូមលេងនៅគេហទំព័រថ្មី។'):L('ボタンを押すと、記録・ガチャ・称号をそのまま持っていけます。','Press the button to bring your records, gacha items and titles.','ចុចប៊ូតុងដើម្បីយកកំណត់ត្រា កាឆា និងងារទៅជាមួយ។'))+'</div><button id="migbtn">'+(done?L('新しいサイトを開く','Open the new site','បើកគេហទំព័រថ្មី'):L('データごと引っ越す','Move with my data','ផ្លាស់ទីជាមួយទិន្នន័យ'))+'</button><div class="e" id="migerr"></div>';
+ $$('#migbtn').onclick=async e=>{const btn=e.target;btn.disabled=true;
+  try{await FBREADY;const t=tok();await db('PUT','mig/'+t,{d:full(),t:{'.sv':'timestamp'}});
+   localStorage.setItem('ecmoved',String(Date.now()));location.href=target()+'#mig='+t}
+  catch(err){btn.disabled=false;$$('#migerr').textContent='❌ '+L('うまくいきませんでした。電波のよいところでもう一度押してください。','Something went wrong. Please try again with a better connection.','មានបញ្ហា។ សូមព្យាយាមម្តងទៀត។')}}};
+draw();
+const AL=window.applyLang;if(typeof AL==='function')window.applyLang=applyLang=function(){const r=AL.apply(this,arguments);try{draw()}catch(e){}return r};
+})();
+</script>
+</body>
 </html>
