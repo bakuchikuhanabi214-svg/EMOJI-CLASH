@@ -23,7 +23,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>EMOJI CLASH (テスト版)</title>
+<title>EMOJI CLASH</title>
 <style>
 :root{--bg:#0c0a18;--card:#17142b;--card2:#252144;--tx:#f4f2ff;--mut:#9a95c4;--acc:#ff4d8d;--gold:#ffd23f;--ok:#37d67a;--ng:#ff4d4d;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f1ff;--card:#fff;--card2:#e8e4fb;--tx:#171433;--mut:#625d8c;color-scheme:light}}
@@ -897,7 +897,7 @@ img.px{image-rendering:pixelated;image-rendering:crisp-edges}
 #gnote{border:2px solid var(--gold);background:linear-gradient(90deg,#2a1f00,#3d2d00);margin:0 0 10px}
 #gnote{color:#f4f2ff}#gnote b{color:var(--gold)}#gnote .stat{color:#d8d3ff}.gtkb small{color:#f4f2ff!important}
 </style>
-<script>window.EC_CHAR_TEST=true; /* テスト用: true で全キャラ解放(ガチャのデータは本番と別に保存) */
+<script>window.EC_CHAR_TEST=false; /* テスト用: true で全キャラ解放(ガチャのデータは本番と別に保存) */
 if(window.EC_CHAR_TEST)window.GACHA_CONFIG=Object.assign(window.GACHA_CONFIG||{},{key:'ecgacha_test',oldKey:'ecgacha_test_old'});</script>
 <script>
 /* 設定: window.GACHA_CONFIG={initTickets:0,xr:{C:1,B:1,A:3,S:8,SS:40}} */
@@ -1567,7 +1567,7 @@ body.shake #arena .arena,body.shake #a2{animation:bgshk .5s}
 .u_d-uc0 .u_px{position:absolute;width:3px;height:3px;background:#fff;z-index:5;pointer-events:none;box-shadow:0 0 6px #fff;animation:u_uc0p 1.4s steps(2) infinite}
 @keyframes u_uc0p{50%{opacity:0}}
 </style>
-<script>window.EC_TITLE_TEST=true; /* テスト用: true ですべての称号を所持 */</script>
+<script>window.EC_TITLE_TEST=false; /* テスト用: true ですべての称号を所持 */</script>
 <script>
 /* アイテムボックス & 称号
    配布の追加方法: GIFTS に1件足す。until(日本時間)までにページを開いた人のボックスに届く。
@@ -3151,9 +3151,8 @@ addEventListener('pagehide',()=>{try{FBTOK&&fetch(FIREBASE_URL.replace(/\/$/,'')
 <script>
 /* ===== 🗼 試練の塔: 運営が決めた敵を1階ずつ攻略する(30階・10階ごとにボス) ===== */
 (()=>{
-const $$=s=>document.querySelector(s),KEY=window.EC_CHAR_TEST?'ectw_test':'ectw';
+const $$=s=>document.querySelector(s),KEY='ectw';
 let D={};try{D=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}D.c=Array.isArray(D.c)?D.c.filter(n=>n>=1&&n<=30):[];
-const OPENALL=!!window.EC_CHAR_TEST; /* テスト版: 全階に挑戦できる */
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}};
 const top=()=>D.c.length?Math.max(...D.c):0;
 /* ---- 塔の限定アイテム(ガチャには出ない) ---- */
@@ -3193,7 +3192,7 @@ const SH=show;show=function(id){$$('#tower').classList.add('hide');SH.apply(this
 let TW=null;window.ecTowerOn=()=>!!TW;
 function openTower(){TW=null;show('none');const el=$$('#tower');el.classList.remove('hide');render();window.scrollTo(0,0);setTimeout(()=>{const nx=el.querySelector('.twr.next');if(nx)nx.scrollIntoView({block:'center'})},60)}
 function render(){const el=$$('#tower'),t=top();
- let rows='';for(let n=30;n>=1;n--){const w=FL[n-1],done=D.c.includes(n),open=OPENALL||n<=t+1,boss=!!BOSS[n],next=n===t+1;
+ let rows='';for(let n=30;n>=1;n--){const w=FL[n-1],done=D.c.includes(n),open=n<=t+1,boss=!!BOSS[n],next=n===t+1;
   rows+='<div class="twr'+(boss?' boss':'')+(done?' done':'')+(next?' next':'')+(open?'':' lock')+'"><div class="twf">'+n+LL('階','F','F')+(boss?'<small>👑 BOSS</small>':'')+'</div>'
   +'<div style="min-width:0"><div class="row" style="gap:6px;justify-content:flex-start"><span class="twe">'+esc(w.slice(0,3).join(''))+'</span><span class="twn">'+esc(ename(n))+'</span></div>'
   +'<div class="twt">'+(boss?'<b style="color:#ff8aa0">'+LL(BOSS[n].ja,BOSS[n].en,BOSS[n].en)+'</b><br>':'')+esc(traits(n))+'</div>'
@@ -3204,7 +3203,7 @@ function render(){const el=$$('#tower'),t=top();
   +'<div class="mut">'+LL('運営が用意した敵を1階ずつ倒して、塔のてっぺんを目指そう。上の階ほど敵が強くなり、10階ごとにボスがいます。何回でも挑戦できます。初めてクリアした階では報酬がもらえます。敵の絵文字を見て、相性のいい戦士を作るのがコツ！','Defeat the enemies we prepared, one floor at a time, and reach the top. Enemies get stronger as you climb, with a boss every 10 floors. Retry as many times as you like; each floor gives a reward the first time you clear it. Tip: check the enemy’s emoji and build a warrior with a good matchup!','កម្ចាត់សត្រូវម្ដងមួយជាន់ ហើយឡើងដល់កំពូល។ ជាន់ខ្ពស់ សត្រូវខ្លាំងជាង ហើយរៀងរាល់ 10 ជាន់មានបុស។ អាចសាកបានគ្មានដែនកំណត់។')+'</div>'
   +'<div class="twl" style="margin-top:10px">'+rows+'</div><button class="btn alt" id="twback" style="margin-top:10px">← '+LL('ホームへ','Home','ទំព័រដើម')+'</button>';
  el.querySelectorAll('[data-tw]').forEach(b=>b.onclick=()=>challenge(+b.dataset.tw));$$('#twback').onclick=()=>goHome()}
-function challenge(n){if(!OPENALL&&n>top()+1)return;TW={n};const old=$$('#twres');if(old)old.remove();try{ROOM=null;setChal(null)}catch(e){}sndOn=true;try{ctx()}catch(e){}openBuild();bar()}
+function challenge(n){if(n>top()+1)return;TW={n};const old=$$('#twres');if(old)old.remove();try{ROOM=null;setChal(null)}catch(e){}sndOn=true;try{ctx()}catch(e){}openBuild();bar()}
 function bar(){let b=$$('#twbar2');if(!TW){if(b)b.remove();return}if(!b){b=document.createElement('div');b.id='twbar2';const r=$$('#rbar');r.insertAdjacentElement('afterend',b)}
  const n=TW.n,w=FL[n-1];b.innerHTML='🗼 <b>'+n+LL('階','F','F')+(BOSS[n]?' 👑BOSS':'')+'</b> '+LL('の敵','enemy','សត្រូវ')+': <span style="font-size:22px">'+esc(w.slice(0,3).join(''))+'</span> '+esc(ename(n))+'<div class="stat">'+(BOSS[n]?LL(BOSS[n].ja,BOSS[n].en,BOSS[n].en)+' / ':'')+esc(traits(n))+'</div><button class="btn alt" id="twq" style="margin:6px 0 0;padding:6px 10px;font-size:12px;width:auto">🗼 '+LL('塔に戻る','Back to tower','ត្រឡប់ទៅប៉ម')+'</button>';
  $$('#twq').onclick=()=>openTower()}
