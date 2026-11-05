@@ -3261,5 +3261,11 @@ draw();
 const AL=window.applyLang;if(typeof AL==='function')window.applyLang=applyLang=function(){const r=AL.apply(this,arguments);try{draw()}catch(e){}return r};
 })();
 </script>
+<script>
+/* ===== 📄 ホーム下のリンク(遊び方・プライバシーポリシー・お問い合わせ) ===== */
+(()=>{const s=document.querySelector('#start');if(!s)return;const d=document.createElement('div');d.id='sitelinks';d.style.cssText='text-align:center;font-size:12.5px;margin:18px 0 6px;opacity:.8';
+const draw=()=>{d.innerHTML=[['https://emojiclash.com/about.html',LL('遊び方・キャラ一覧','How to play','របៀបលេង')],['https://emojiclash.com/privacy.html',LL('プライバシーポリシー','Privacy Policy','គោលការណ៍ឯកជនភាព')],['https://emojiclash.com/contact.html',LL('お問い合わせ','Contact','ទំនាក់ទំនង')]].map(([h,t])=>'<a href="'+h+'" style="color:inherit;margin:0 8px">'+t+'</a>').join('·')};
+draw();s.appendChild(d);const AL=window.applyLang;if(typeof AL==='function')window.applyLang=applyLang=function(){const r=AL.apply(this,arguments);try{draw()}catch(e){}return r}})();
+</script>
 </body>
 </html>
