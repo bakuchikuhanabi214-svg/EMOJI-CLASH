@@ -512,6 +512,7 @@ html:root[data-ui="neon"]{--bg:#04050f;--card:#0a0d24;--card2:#141a44;--tx:#e8f4
 .gcr.fxodd{filter:drop-shadow(0 0 22px #fff);animation:gpulse 1s infinite,fxrb .9s linear infinite}#gskip.fxodd{background:linear-gradient(90deg,#ff2d6f,#ffd23f,#2dff8a,#2df2ff,#7a2dff);color:#fff;animation:fxrb 1.2s linear infinite}
 .olist{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.olist a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 6px;border-radius:12px;background:var(--card);color:var(--tx);text-decoration:none;text-align:center}.olist a span{font-size:26px;line-height:1.1}.olist a b{font-size:13px}.olist a small{font-size:11px;opacity:.7}.olist a:active{transform:scale(.97)}
 </style>
+<meta name="author" content="宵宮ゲームズ">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;700&display=swap" rel="stylesheet">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4561313212331267" crossorigin="anonymous"></script>
 </head>
@@ -546,7 +547,7 @@ html:root[data-ui="neon"]{--bg:#04050f;--card:#0a0d24;--card2:#141a44;--tx:#e8f4
  <div id="cloudbox"></div><div id="xferbox"></div>
  <div class="card" id="others" style="background:var(--card2);margin:14px 0 0">
   <b>🎮 他のゲームで遊ぶ</b>
-  <p class="mut" style="margin:4px 0 0">EMOJI CLASH の作者が作った、ブラウザですぐ遊べるゲームを集めています。</p>
+  <p class="mut" style="margin:4px 0 0">EMOJI CLASH は、19歳の大学生がひとりで作っている「宵宮ゲームズ」のゲームです。同じ作者のほかのゲームもブラウザですぐ遊べます。</p>
   <a class="btn" href="https://game-site.emojiclash.com/" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box">🏮 宵宮ゲームズ（ゲーム一覧）</a>
   <div class="olist">
    <a href="https://hitokata.emojiclash.com/" target="_blank" rel="noopener"><span>🎎</span><b>ひとかた</b><small>京都の和製ホラー</small></a>
@@ -3277,7 +3278,7 @@ const AL=window.applyLang;if(typeof AL==='function')window.applyLang=applyLang=f
 <script>
 /* ===== 📄 ホーム下のリンク(遊び方・プライバシーポリシー・お問い合わせ) ===== */
 (()=>{const s=document.querySelector('#start');if(!s)return;const d=document.createElement('div');d.id='sitelinks';d.style.cssText='text-align:center;font-size:12.5px;margin:18px 0 6px;opacity:.8';
-const draw=()=>{d.innerHTML=[['https://emojiclash.com/about.html',LL('遊び方・キャラ一覧','How to play','របៀបលេង')],['https://emojiclash.com/privacy.html',LL('プライバシーポリシー','Privacy Policy','គោលការណ៍ឯកជនភាព')],['https://emojiclash.com/contact.html',LL('お問い合わせ','Contact','ទំនាក់ទំនង')],['https://game-site.emojiclash.com/',LL('他のゲームで遊ぶ','More games','ហ្គេមផ្សេងទៀត')]].map(([h,t])=>'<a href="'+h+'" style="color:inherit;margin:0 8px;white-space:nowrap;display:inline-block">'+t+'</a>').join('·')};
+const draw=()=>{d.innerHTML=[['https://emojiclash.com/about.html',LL('遊び方・キャラ一覧','How to play','របៀបលេង')],['https://emojiclash.com/zukan.html',LL('キャラ図鑑','Character list','បញ្ជីតួអង្គ')],['https://emojiclash.com/builds.html',LL('最強ビルド','Best builds','ការផ្សំល្អបំផុត')],['https://emojiclash.com/faq.html',LL('よくある質問','FAQ','សំណួរញឹកញាប់')],['https://emojiclash.com/privacy.html',LL('プライバシーポリシー','Privacy Policy','គោលការណ៍ឯកជនភាព')],['https://emojiclash.com/contact.html',LL('お問い合わせ','Contact','ទំនាក់ទំនង')],['https://game-site.emojiclash.com/',LL('他のゲームで遊ぶ','More games','ហ្គេមផ្សេងទៀត')]].map(([h,t])=>'<a href="'+h+'" style="color:inherit;margin:0 8px;white-space:nowrap;display:inline-block">'+t+'</a>').join('·')};
 draw();s.appendChild(d);const AL=window.applyLang;if(typeof AL==='function')window.applyLang=applyLang=function(){const r=AL.apply(this,arguments);try{draw()}catch(e){}return r}})();
 </script>
 </body>
