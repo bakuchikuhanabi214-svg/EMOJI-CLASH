@@ -526,6 +526,43 @@ html:root[data-ui="neon"]{--bg:#04050f;--card:#0a0d24;--card2:#141a44;--tx:#e8f4
 <meta name="author" content="宵宮ゲームズ">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;700&display=swap" rel="stylesheet">
 <meta name="google-adsense-account" content="ca-pub-4561313212331267">
+<style>
+/* ---- Season 1: FROST NIGHT ---- */
+.s1v{display:inline-block;filter:drop-shadow(0 0 4px #bfe4ff) drop-shadow(0 0 1px #fff)}
+.vSS.s1ss{animation:s1ss 2.4s ease-in-out infinite}
+@keyframes s1ss{0%,100%{filter:drop-shadow(0 0 6px #9fe0ff) brightness(1)}50%{filter:drop-shadow(0 0 12px #e8fbff) drop-shadow(0 0 4px #ffe066) brightness(1.18)}}
+.s0b.s1b{position:relative;overflow:hidden;background:linear-gradient(180deg,#050a26,#0d1b4a 55%,#1b2f6b);border-color:#bfe4ff;box-shadow:0 0 22px #9fe0ff44 inset,0 0 14px #5cffc844}
+.s1b .s0h{background:linear-gradient(90deg,#e8fbff,#9fe0ff,#5cffc8,#b48cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.s1b .s0s{color:#cfeeff}.s1b>*{position:relative;z-index:1}
+.s1sn{position:absolute!important;inset:0;z-index:0!important;pointer-events:none;background-image:radial-gradient(#fff 1px,transparent 1.5px),radial-gradient(#cfeeff 1px,transparent 1.5px);background-size:40px 40px,23px 23px;background-position:0 0,11px 7px;opacity:.55;animation:s1fall 6s linear infinite}
+@keyframes s1fall{to{background-position:0 160px,11px 99px}}
+.gtab .btn.s0tab.on.s1tab{background:linear-gradient(90deg,#1b4a9a,#3aa0c8,#5a4ab8)}
+.s1m .gb{background:linear-gradient(90deg,#1b4a9a,#3aa0c8 50%,#5a4ab8)}
+.s0t.s1t{background:linear-gradient(90deg,#e8fbff,#9fe0ff,#b48cff)}
+/* 称号: 星霜の君主 */
+.u_d-uc1{padding:0}
+.u_d-uc1 .u_pl{position:relative;overflow:hidden;color:#fff;letter-spacing:.14em;padding:10px 26px;border-radius:6px;background:linear-gradient(180deg,#071034,#10245a 60%,#1c3c7a);border:2px solid #bfe4ff;box-shadow:0 0 14px #9fe0ffaa,0 0 30px #5cffc855,inset 0 0 12px #9fe0ff55}
+.u_d-uc1 .u_tx{position:relative;z-index:3;background:linear-gradient(90deg,#e8fbff,#9fe0ff,#ffffff,#b48cff,#e8fbff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:u_uc1t 4s linear infinite;text-shadow:0 0 0 #0000;filter:drop-shadow(0 0 4px #9fe0ff)}
+@keyframes u_uc1t{to{background-position:300% 0}}
+.u_d-uc1 .u_au{position:absolute;left:-20%;right:-20%;top:-30%;height:80%;z-index:1;pointer-events:none;background:linear-gradient(90deg,transparent,#5cffc855,#9fe0ff66,#b48cff55,transparent);filter:blur(6px);animation:u_uc1a 5s ease-in-out infinite alternate}
+@keyframes u_uc1a{0%{transform:translateX(-18%) skewX(-12deg)}100%{transform:translateX(18%) skewX(12deg)}}
+.u_d-uc1 .u_sn{position:absolute;inset:0;z-index:2;pointer-events:none;background-image:radial-gradient(#fff 1px,transparent 1.4px),radial-gradient(#cfeeff 1px,transparent 1.4px);background-size:22px 22px,13px 13px;background-position:3px 0,9px 5px;opacity:.8;animation:u_uc1f 3s linear infinite}
+.u_d-uc1 .u_sn.u_s2{opacity:.45;background-size:31px 31px,17px 17px;animation-duration:5s}
+@keyframes u_uc1f{to{background-position:3px 66px,9px 44px}}
+.u_d-uc1 .u_st{position:absolute;left:50%;top:-15px;width:22px;height:22px;margin-left:-11px;z-index:5;pointer-events:none;background:conic-gradient(from 0deg,#fff7c2,#ffe066,#fff7c2,#ffe066,#fff7c2,#ffe066,#fff7c2,#ffe066,#fff7c2);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);filter:drop-shadow(0 0 6px #ffe066);animation:u_uc1s 3s linear infinite}
+@keyframes u_uc1s{to{transform:rotate(360deg)}}
+.u_d-uc1 .u_s1{position:absolute;right:-8px;top:-9px;z-index:6;font-size:10px;font-weight:900;color:#06103a;background:linear-gradient(135deg,#e8fbff,#9fe0ff);border-radius:8px;padding:2px 5px;box-shadow:0 0 8px #9fe0ff}
+.u_d-uc1 .u_cr{position:absolute;bottom:-6px;left:10%;width:8px;height:8px;z-index:6;pointer-events:none;background:#e8fbff;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);filter:drop-shadow(0 0 4px #9fe0ff);animation:u_uc1c 1.6s ease-in-out infinite}
+.u_d-uc1 .u_cr.u_c2{left:auto;right:12%;bottom:auto;top:-6px;animation-delay:-.8s}
+@keyframes u_uc1c{50%{transform:scale(.4) rotate(45deg);opacity:.5}}
+</style>
+<style>
+/* S1 報酬キャラの枠(絵文字の飾りなし) */
+.ocr-frost .oa{background:conic-gradient(#5cffc800,#5cffc8dd,#9fe0ff00 25%,#b48cffdd 50%,#9fe0ff00 70%,#e8fbffcc 85%,#5cffc800);-webkit-mask:radial-gradient(circle,transparent 50%,#000 55%,#000 68%,transparent 73%);mask:radial-gradient(circle,transparent 50%,#000 55%,#000 68%,transparent 73%);animation:ocrsp 2s linear infinite}
+.ocr-frost .ob{filter:drop-shadow(0 0 .08em #9fe0ff) drop-shadow(0 0 .16em #5cffc8)}
+.ocr-fgen .oa{background:radial-gradient(circle,#9fe0ff66 30%,#2c4a8a44 55%,transparent 70%);animation:ocrpl 1.8s ease-in-out infinite}
+.ocr-fgen .ob{filter:drop-shadow(0 0 .07em #bfefff)}
+</style>
 </head>
 <body>
 <div id="flash"></div><canvas id="cv"></canvas>
@@ -1151,9 +1188,10 @@ e48|SS|🔶|折りたたまれた空間|Folded Space|空間がたたまれて収
 e49|SS|🌋|世界の終焉|World's End|砕けた世界が段階的に崩れる。|A shattered world collapses in stages.|worldend|rainbow
 e50|SS|🎭|白紙の改変|The Unwritten|ピクセルが欠けて、また組み上がる。|Pixels vanish, then reassemble.|unwritten|mono`.split('\n').forEach(l=>{const a=l.split('|');IT.push({id:a[0],k:'e',r:a[1],e:a[2],n:a[3],ne:a[4],d:a[5],de:a[6],fx:a[7],sty:a[8]||undefined})});
 /* ---- Season 0 限定: FUTURE ---- */
-const LIMS=0,RATE_L={SS:7,S:18,A:33,B:42},LIMKM=[];let gtab='n';const lmul=()=>gtab==='l'?2:1;
-const limOn=()=>ECS.cur()===LIMS;
-const LI=(id,r,e,n,ne,nk,d,de,dk,x)=>{IT.push(Object.assign({id,k:id[0],r,e,n,ne,d,de,lim:LIMS},x));LIMKM.push([n,nk],[d,dk])};
+let LSN=0;const LIMS=window.EC_S1_PREVIEW?1:Math.max(0,Math.min(ECS.cur(),1)),RATE_L={SS:7,S:18,A:33,B:42},LIMKM=[];let gtab='n';const lmul=()=>gtab==='l'?2:1;
+const limOn=()=>(window.EC_S1_PREVIEW&&LIMS===1)||ECS.cur()===LIMS;
+const SEAS={0:{ic:'🌌',h:'SEASON 0 LIMITED',c:['コンセプト:未来 / FUTURE','Concept: THE FUTURE','គំនិត៖ អនាគត / FUTURE']},1:{ic:'❄️',h:'SEASON 1 LIMITED',c:['コンセプト:星降る冬夜 / FROST NIGHT','Concept: FROST NIGHT','គំនិត៖ យប់រងាផ្កាយធ្លាក់ / FROST NIGHT']}},SM=()=>SEAS[LIMS]||SEAS[0];
+const LI=(id,r,e,n,ne,nk,d,de,dk,x)=>{IT.push(Object.assign({id,k:id[0],r,e,n,ne,d,de,lim:LSN},x));LIMKM.push([n,nk],[d,dk])};
 LI('cf1','B','🛰️','サテライトくん','Satellite Kid','កូនផ្កាយរណប','ネオンの軌道をくるくる回る、小さな衛星の子。','A little satellite orbiting along neon lanes.','ផ្កាយរណបតូចដែលវិលជុំវិញគន្លងនីអុង។');
 LI('cf2','A','👾','ピクセルインベーダー','Pixel Invader','អ្នកឈ្លានពានភីកសែល','2090年から迷い込んだ、レトロ顔のデジタル侵略者。','A retro-faced digital invader who wandered in from 2090.','អ្នកឈ្លានពានឌីជីថលមុខបុរាណ ដែលវង្វេងមកពីឆ្នាំ ២០៩០។');
 LI('cf3','A','🦾','サイバーアームファイター','Cyber Arm Fighter','អ្នកប្រយុទ្ធដៃស៊ីបឺរ','機械の腕で何でもつかむ、未来の格闘家。','A fighter from the future who grabs anything with a mechanical arm.','អ្នកប្រដាល់ពីអនាគត ដែលចាប់អ្វីៗបានដោយដៃម៉ាស៊ីន។');
@@ -1170,20 +1208,223 @@ LI('ef3','A','📶','ホログラムレイン','Hologram Rain','ភ្លៀង�
 LI('ef4','S','⚛️','プラズマストーム','Plasma Storm','ព្យុះប្លាស្មា','プラズマが渦を巻いて荒れ狂う。','Plasma rages in a swirling storm.','ប្លាស្មាវិលជាព្យុះកំណាច។',{fx:'plasma'});
 LI('ef5','SS','🌐','クォンタムワープ','Quantum Warp','វ៉ាបកង់ទិច','空間がゆがみ、すべてが一点へ吸い込まれる。','Space warps and everything is pulled into a single point.','លំហកោង ហើយអ្វីៗត្រូវបូមចូលទៅចំណុចតែមួយ។',{fx:'qwarp',sty:'rainbow'});
 Object.assign(FX,{laser:{p:[],mode:'slash',col:'#ff3d8b'},neon:{p:['💠','🔷','✨'],mode:'burst',col:'#3df2ff'},holo:{p:['🔹','💠','📶'],mode:'rain',col:'#7fe8ff'},plasma:{p:['⚛️','⚡','🟣'],mode:'spiral',col:'#b05cff',rg:true},qwarp:{p:['🌐','💠','✨'],mode:'inward',col:'#3d7bff',rg:true}});
+/* ===== Season 1「星降る冬夜 / FROST NIGHT」: 自前ドット絵(絵文字は使わない) ===== */
+const S1ART=(()=>{
+const W=32,OUT='#1b1030';
+function sprite(f,noOut){const g=new Array(W*W).fill(null),G=new Array(W*W).fill(false);
+ const C=(c,x,y)=>typeof c==='function'?c(x,y):c;
+ const p=(x,y,c,gl)=>{x=Math.floor(x);y=Math.floor(y);if(x>=0&&y>=0&&x<W&&y<W&&c){g[y*W+x]=C(c,x,y);if(gl)G[y*W+x]=true}};
+ const r=(x,y,w,h,c,gl)=>{for(let j=0;j<h;j++)for(let i=0;i<w;i++)p(x+i,y+j,c,gl)};
+ const e=(cx,cy,rx,ry,c,gl)=>{for(let y=Math.floor(cy-ry-1);y<=cy+ry+1;y++)for(let x=Math.floor(cx-rx-1);x<=cx+rx+1;x++){const dx=(x+.5-cx)/rx,dy=(y+.5-cy)/ry;if(dx*dx+dy*dy<=1)p(x,y,c,gl)}};
+ const l=(x0,y0,x1,y1,c,t=1,gl)=>{const n=Math.ceil(Math.max(Math.abs(x1-x0),Math.abs(y1-y0))*2)+1;for(let k=0;k<=n;k++){const x=x0+(x1-x0)*k/n,y=y0+(y1-y0)*k/n;r(Math.round(x-(t-1)/2),Math.round(y-(t-1)/2),t,t,c,gl)}};
+ const poly=(P,c,gl)=>{let x0=99,x1=-1,y0=99,y1=-1;P.forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)});
+  for(let y=Math.floor(y0);y<=y1;y++)for(let x=Math.floor(x0);x<=x1;x++){const px=x+.5,py=y+.5;let ins=false;for(let i=0,j=P.length-1;i<P.length;j=i++){const[xi,yi]=P[i],[xj,yj]=P[j];if((yi>py)!==(yj>py)&&px<(xj-xi)*(py-yi)/(yj-yi)+xi)ins=!ins}if(ins)p(x,y,c,gl)}};
+ const star=(cx,cy,R,rr,c,gl,rot=-Math.PI/2)=>{const P=[];for(let i=0;i<10;i++){const a=rot+i*Math.PI/5,q=i%2?rr:R;P.push([cx+Math.cos(a)*q,cy+Math.sin(a)*q])}poly(P,c,gl)};
+ const flake=(cx,cy,s,c,gl)=>{['...#...','.#.#.#.','..###..','#######','..###..','.#.#.#.','...#...'].forEach((row,j)=>[...row].forEach((ch,i)=>{if(ch==='#')r(cx+(i-3)*s,cy+(j-3)*s,s,s,c,gl)}))};
+ f({p,r,e,l,poly,star,flake});
+ const o=g.slice();if(!noOut)for(let y=0;y<W;y++)for(let x=0;x<W;x++){const i=y*W+x;if(g[i])continue;
+  for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const X=x+dx,Y=y+dy;if(X>=0&&Y>=0&&X<W&&Y<W&&g[Y*W+X]&&!G[Y*W+X]){o[i]=OUT;break}}}
+ let u='';try{const cv=document.createElement('canvas');cv.width=cv.height=W;const x=cv.getContext('2d');o.forEach((c,i)=>{if(c){x.fillStyle=c;x.fillRect(i%W,(i/W)|0,1,1)}});u=cv.toDataURL()}catch(err){}return u}
+const hsl=(h,s,l)=>`hsl(${h},${s}%,${l}%)`;
+const ART={
+/* ---------- キャラ ---------- */
+cn1:()=>sprite(({p,r,e,l})=>{ // 雪うさぎ ユキモチ
+ e(12,9,2.6,7.5,'#ffffff');e(20,8,2.6,7.5,'#ffffff');r(12,4,1,9,'#ffc2d4');r(20,3,1,9,'#ffc2d4');
+ e(16,21,10,8.5,'#ffffff');e(18,24,8,5,'#e3ebf8');e(15,20,8.5,7,'#ffffff');
+ r(11,19,2,2,'#e0304a');r(19,19,2,2,'#e0304a');p(11,19,'#ffffff');p(19,19,'#ffffff');
+ r(8,22,2,1,'#ffb3c6');r(22,22,2,1,'#ffb3c6');p(15,22,'#ff8fa8');p(16,22,'#ff8fa8');p(15,23,'#c06070');p(16,23,'#c06070');
+ e(11,29,3,1.6,'#e3ebf8');e(21,29,3,1.6,'#e3ebf8');
+ e(23,13,2,1.2,'#2f9e44');e(26,12,2,1.2,'#2f9e44');p(24,14,'#e0304a');p(25,14,'#e0304a');p(24,15,'#e0304a')}),
+cn2:()=>sprite(({p,r,e,poly})=>{ // マフラーペンギン
+ e(16,20,9.5,10.5,'#26314a');e(16,22,6.5,8,'#f4f7ff');e(16,13,5.5,4,'#f4f7ff');
+ e(16,8,7.5,4.5,'#3b82f6');r(9,9,15,2,'#2563eb');for(let x=9;x<24;x+=2)p(x,9,'#93c5fd');e(16,3,2.2,2.2,'#ffffff');
+ r(13,12,2,2,'#1b1030');r(18,12,2,2,'#1b1030');p(13,12,'#ffffff');p(18,12,'#ffffff');
+ poly([[13.5,15],[18.5,15],[16,18]],'#ffab2e');
+ r(8,17,16,3,'#e0304a');for(let x=9;x<24;x+=3)r(x,17,1,3,'#ffffff');r(19,19,3,7,'#e0304a');r(19,21,3,1,'#ffffff');r(19,24,3,1,'#ffffff');
+ e(6.5,22,2.2,6,'#26314a');e(25.5,22,2.2,6,'#26314a');
+ e(12,30,3,1.4,'#ffab2e');e(20,30,3,1.4,'#ffab2e')}),
+cn3:()=>sprite(({p,r,e,l})=>{ // オーロラジカ
+ const ant=(x,y)=>hsl(165+(31-y)*4,90,64);
+ l(12,13,8,6,ant,2,true);l(9,8,5,3,ant,1,true);l(9,8,10,2,ant,1,true);l(8,6,5,7,ant,1,true);
+ l(20,13,24,6,ant,2,true);l(23,8,27,3,ant,1,true);l(23,8,22,2,ant,1,true);l(24,6,27,7,ant,1,true);
+ p(4,2,'#e8fffa',true);p(28,1,'#e8fffa',true);p(26,9,'#e8fffa',true);
+ e(8,15,3.5,1.6,'#a0673a');e(24,15,3.5,1.6,'#a0673a');e(8,15,2,.8,'#e8b9a0');e(24,15,2,.8,'#e8b9a0');
+ r(11,26,10,6,'#8a552e');r(13,27,6,5,'#f2e6d8');
+ e(16,19,6,7.5,'#a0673a');e(16,24,4,3,'#d9b38c');e(16,25.5,2,1.2,'#2b1a12');
+ r(12,18,2,2,'#1b1030');r(18,18,2,2,'#1b1030');p(12,18,'#ffffff');p(18,18,'#ffffff');p(14,13,'#f2e6d8');p(17,13,'#f2e6d8');p(15,14,'#f2e6d8');p(16,14,'#f2e6d8')}),
+cn4:()=>sprite(({p,r,e,poly})=>{ // 氷鎧のシロクマ
+ e(16,27,12,6,'#4aa8e8');e(16,26,9,4,'#7fd0f5');poly([[16,22],[19,26],[16,30],[13,26]],'#e8fbff');p(16,25,'#ffffff');
+ e(5,26,3.2,3.2,'#f3f6fb');e(27,26,3.2,3.2,'#f3f6fb');
+ e(8,6,3.2,3.2,'#f3f6fb');e(24,6,3.2,3.2,'#f3f6fb');e(8,6,1.6,1.6,'#c9d6e8');e(24,6,1.6,1.6,'#c9d6e8');
+ e(16,12,10,8.5,'#7fd7ff');poly([[13,6],[16,0],[19,6]],'#bff0ff');p(16,2,'#ffffff');r(7,11,18,2,'#4aa8e8');
+ e(16,16,8,6,'#f3f6fb');r(12,14,2,2,'#1b1030');r(18,14,2,2,'#1b1030');p(12,14,'#9fe8ff');p(18,14,'#9fe8ff');
+ e(16,18.5,4,2.6,'#dfe7f2');r(15,17,2,1,'#1b1030');p(14,17,'#1b1030');p(17,17,'#1b1030');p(16,19,'#8090a8')}),
+cn5:()=>sprite(({p,r,e,l,poly,star})=>{ // 星晶竜スノウドレイク
+ const wg=(x,y)=>hsl(250+y*2,80,72-x*.6);
+ poly([[13,15],[2,3],[5,9],[1,10],[6,13],[2,16],[9,17]],wg);l(13,15,3,4,'#e8e0ff',1);
+ l(9,25,4,28,'#5ab8ff',3);l(4,28,1,26,'#5ab8ff',2);star(2,25,3.2,1.4,'#ffe066',true);
+ e(15,22,8.5,6,'#5ab8ff');e(15,24,6,3,'#d6f3ff');r(10,26,3,5,'#3f8fd8');r(17,26,3,5,'#3f8fd8');
+ e(21,14,5.5,5,'#5ab8ff');e(26.5,16,4,2.6,'#5ab8ff');r(25,17,5,1,'#d6f3ff');p(29,15,'#1b1030');
+ l(19,10,16,3,'#e8fbff',2);l(22,10,22,2,'#e8fbff',2);
+ r(22,12,2,2,'#ffffff');p(23,13,'#2b1a62');
+ poly([[11,17],[12,14],[13,17]],'#e8fbff');poly([[14,16],[15,13],[16,16]],'#e8fbff');poly([[8,19],[8,16],[10,18]],'#e8fbff');
+ star(15,22,3,1.3,'#ffe066');p(15,22,'#fff7c2');
+ p(27,5,'#ffffff',true);p(30,9,'#bff0ff',true);p(6,30,'#ffffff',true)}),
+
+/* ---------- シーズン1 ランキング報酬(ガチャには出ない) ---------- */
+cr1a:()=>sprite(({p,r,e,l,poly,star})=>{ // 白夜の覇王シロフクロウ
+ e(16,21,10.5,10,'#ffffff');e(16,24,7.5,6.5,'#f1f5fb');
+ [[9,19],[12,23],[20,24],[23,19],[10,26],[22,27],[15,28],[18,21],[13,19]].forEach(([x,y])=>{p(x,y,'#3a3f55');p(x+1,y,'#3a3f55')});
+ e(5.5,22,2.6,7,'#e9eef6');e(26.5,22,2.6,7,'#e9eef6');p(5,25,'#3a3f55');p(27,24,'#3a3f55');
+ e(16,14,9,7.5,'#ffffff');e(11.5,14,3.6,3.6,'#f1f5fb');e(20.5,14,3.6,3.6,'#f1f5fb');
+ e(11.5,14,2.4,2.4,'#ffcf2e');e(20.5,14,2.4,2.4,'#ffcf2e');r(11,13,2,2,'#1b1030');r(20,13,2,2,'#1b1030');p(11,13,'#ffffff');p(20,13,'#ffffff');
+ poly([[14.6,16.5],[17.4,16.5],[16,19.5]],'#3a3f55');
+ r(9,30,3,2,'#ffcf2e');r(20,30,3,2,'#ffcf2e');
+ poly([[9,8],[9,3],[12,6],[16,1],[20,6],[23,3],[23,8]],'#ffd23f');r(9,7,15,2,'#e0a020');p(16,5,'#5cffc8');p(12,7,'#e0304a');p(20,7,'#b48cff');p(16,2,'#fff2a8');
+ [[2,6],[29,9],[3,15],[30,17]].forEach(([x,y],i)=>p(x,y,['#5cffc8','#9fe0ff','#b48cff','#e8fffa'][i],true))}),
+cr1b:()=>sprite(({p,r,e,l,poly})=>{ // 雪原の将軍オオカミ
+ poly([[4,32],[6,22],[16,26],[26,22],[28,32]],'#2c4a8a');poly([[10,32],[12,25],[16,27],[20,25],[22,32]],'#d6e4f5');r(14,27,4,2,'#ffd23f');p(16,28,'#e0304a');
+ poly([[7,13],[8,2],[13,9]],'#8fa2b8');poly([[25,13],[24,2],[19,9]],'#8fa2b8');poly([[9,10],[9.5,5],[12,9]],'#c9b8b0');poly([[23,10],[22.5,5],[20,9]],'#c9b8b0');
+ e(16,15,9.5,8,'#8fa2b8');e(16,19,5.5,5,'#e6edf5');e(10,18,3,3,'#e6edf5');e(22,18,3,3,'#e6edf5');
+ poly([[13,7],[16,12],[19,7],[16,9]],'#d6e4f5');
+ r(11,13,3,2,'#bfefff');r(18,13,3,2,'#bfefff');p(12,13,'#1b1030');p(19,13,'#1b1030');l(10,11,13,12,'#3a4a60');l(22,11,19,12,'#3a4a60');
+ e(16,20,2.2,1.4,'#1b1030');p(16,22,'#3a4a60');l(14,23,18,23,'#3a4a60');
+ r(5,22,4,3,'#7fd0f5');r(23,22,4,3,'#7fd0f5');p(6,22,'#e8fbff');p(24,22,'#e8fbff')}),
+/* ---------- 武器 ---------- */
+wn1:()=>sprite(({p,r,e,l,poly})=>{ // つららダガー
+ poly([[9,19],[13,23],[29,3]],'#bfefff');l(11,21,28,4,'#ffffff');l(13,23,28,5,'#7fd0f0');
+ l(7,18,14,25,'#7fa0c0',2);p(10,21,'#e8fbff');
+ l(3,29,9,23,'#4a6a8a',3);e(3,29,1.8,1.8,'#bfefff')}),
+wn2:()=>sprite(({p,r,e,l})=>{ // ペパーミントハンマー
+ for(let k=0;k<12;k++){const x=4+k*1.1,y=28-k*1.1;r(Math.round(x)-1,Math.round(y)-1,3,3,k%3===0?'#e0304a':'#ffffff')}
+ const sw=(x,y)=>{const a=Math.atan2(y+.5-10,x+.5-21),d=Math.hypot(x+.5-21,y+.5-10);return((a+d*.35+7)%(Math.PI/3))<Math.PI/6?'#e0304a':'#ffffff'};
+ e(21,10,8,8,sw);e(21,10,1.5,1.5,'#ffffff');p(17,6,'#ffffff');p(18,5,'#ffffff')}),
+wn3:()=>sprite(({p,r,e,l,poly,flake})=>{ // スノーグローブ
+ r(8,24,16,6,'#8a4b2a');r(8,25,16,1,'#ffcf4a');r(10,29,12,1,'#5a2e18');
+ e(16,14,10.5,10.5,'#1e3a6e');e(16,20,9,4,'#ffffff');
+ poly([[16,6],[11,17],[21,17]],'#2f9e44');poly([[16,9],[12.5,18],[19.5,18]],'#3fb65a');r(15,18,2,2,'#7a4a2a');
+ p(16,6,'#ffe066');p(15,7,'#ffe066');p(17,7,'#ffe066');p(14,13,'#e0304a');p(18,15,'#ffcf4a');
+ [[9,10],[22,8],[11,6],[20,13],[24,16],[8,15]].forEach(([x,y])=>p(x,y,'#ffffff'));
+ l(9,9,10,6,'#cfeeff');p(8,12,'#cfeeff')}),
+wn4:()=>sprite(({p,r,e,l,poly})=>{ // オーロラボウ
+ for(let a=-1.25;a<=1.25;a+=.02){const x=6+Math.cos(a)*15,y=16+Math.sin(a)*13.5;r(Math.round(x)-1,Math.round(y)-1,2,2,hsl(150+(a+1.25)*55,85,60))}
+ l(10,3,10,29,'#e8fbff',1,true);
+ l(10,16,27,16,'#c9d6e8',1);poly([[26,13],[31,16],[26,19]],'#e8fffa',true);p(27,16,'#5cffc8',true);
+ l(4,14,10,16,'#b48cff',1);l(4,18,10,16,'#5cffc8',1);
+ [[29,11],[30,21],[24,9]].forEach(([x,y])=>p(x,y,'#e8fffa',true))}),
+wn5:()=>sprite(({p,r,e,l,poly,star})=>{ // 星降りの大剣
+ const bl=(x,y)=>hsl(190+((x-y)+30)*3.2,85,74);
+ poly([[6,22],[10,26],[30,5],[29,2],[26,2]],bl);l(8,24,28,4,'#ffffff');
+ l(3,19,11,27,'#ffd23f',2);p(3,19,'#fff2a8');p(11,27,'#fff2a8');
+ l(2,30,6,26,'#5b3fa8',3);e(1.5,30.5,1.6,1.6,'#ffd23f');
+ star(7,23,3.4,1.5,'#ffe066');p(7,23,'#ffffff');
+ [[20,3],[27,12],[15,8],[30,9]].forEach(([x,y])=>p(x,y,'#ffffff',true))}),
+/* ---------- エフェクトのアイコン ---------- */
+en1:()=>sprite(({p,flake})=>{flake(16,16,3,'#e8f4ff');flake(16,16,1,'#ffffff');[[4,5],[27,6],[26,27],[5,26]].forEach(([x,y])=>flake(x,y,1,'#bfe4ff'))}),
+en2:()=>sprite(({p,l,poly})=>{
+ poly([[16,3],[20,13],[16,16],[12,13]],'#bfefff');poly([[16,16],[29,12],[22,19]],'#7fd0f0');poly([[16,16],[8,28],[11,19]],'#9fe0ff');poly([[16,16],[3,11],[11,13]],'#d6f3ff');poly([[16,16],[25,28],[19,21]],'#bfefff');
+ l(16,4,16,15,'#ffffff');[[28,4],[4,28],[29,24]].forEach(([x,y])=>p(x,y,'#ffffff'))}),
+en3:()=>sprite(({p,r})=>{for(let x=2;x<30;x++){const top=7+Math.round(Math.sin(x*.45)*3),h=14+Math.round(Math.cos(x*.3)*4);for(let y=top;y<top+h;y++)p(x,y,hsl(150+(y-top)/h*120,85,62-(y-top)/h*10))}
+ [[5,3],[14,2],[25,4],[9,27],[22,28]].forEach(([x,y])=>p(x,y,'#ffffff'))},true),
+en4:()=>sprite(({p,r,flake})=>{for(let d=2;d<14.5;d+=.15){for(let k=0;k<3;k++){const a=d*.32+k*2.094;const x=16+Math.cos(a)*d,y=16+Math.sin(a)*d;r(Math.round(x),Math.round(y),d>9?2:1,d>9?2:1,d<5?'#ffffff':d<10?'#bfe4ff':'#7fb8ff')}}flake(16,16,1,'#ffffff')}),
+en5:()=>sprite(({p,r,l,star})=>{
+ for(let k=0;k<12;k++){l(3+k*.9,3+k*.9,3+k*.9,3+k*.9,hsl(200+k*12,85,70),2)}
+ star(20,20,9,4,'#ffe066');star(20,20,5,2.2,'#fff7c2');
+ star(6,25,4.5,2,'#b48cff');star(27,8,4.5,2,'#5cffc8');p(20,20,'#ffffff')})
+};
+const cache={};return{img:id=>cache[id]||(cache[id]=ART[id]?ART[id]():'')}})();
+
+/* ===== Season 1 自前エフェクト(canvasで描く。絵文字は使わない) ===== */
+const S1FX=(()=>{let cv=null,cx=null,raf=0,L=[];
+const ensure=()=>{if(!cv){cv=document.createElement('canvas');cv.id='s1fxcv';cv.style.cssText='position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:9999';document.body.appendChild(cv);cx=cv.getContext('2d')}
+ const d=Math.min(2,window.devicePixelRatio||1),w=innerWidth,h=innerHeight;if(cv.width!==Math.round(w*d)||cv.height!==Math.round(h*d)){cv.width=Math.round(w*d);cv.height=Math.round(h*d)}cx.setTransform(d,0,0,d,0,0);cx.imageSmoothingEnabled=false};
+const loop=t=>{cx.clearRect(0,0,innerWidth,innerHeight);L=L.filter(o=>{const k=(t-o.t0)/o.d;if(k>=1)return false;if(k>=0){cx.save();try{o.f(cx,k,t)}catch(e){}cx.restore()}return true});raf=L.length?requestAnimationFrame(loop):0;if(!raf)cx.clearRect(0,0,innerWidth,innerHeight)};
+const add=(d,f,delay=0)=>{L.push({t0:performance.now()+delay,d,f});if(!raf)raf=requestAnimationFrame(loop)};
+const R=Math.random,ez=k=>1-Math.pow(1-k,3),TAU=Math.PI*2;
+const FL=['...#...','.#.#.#.','..###..','#######','..###..','.#.#.#.','...#...'],SP=['..#..','..#..','#####','..#..','..#..'];
+const pat=(c,P,x,y,s,col)=>{c.fillStyle=col;const n=P.length,o=(n-1)/2;P.forEach((row,j)=>{for(let i=0;i<row.length;i++)if(row[i]==='#')c.fillRect(Math.round(x+(i-o)*s),Math.round(y+(j-o)*s),Math.ceil(s),Math.ceil(s))})};
+const star=(c,x,y,R0,r0,rot,col)=>{c.beginPath();for(let i=0;i<10;i++){const a=rot+i*Math.PI/5-Math.PI/2,q=i%2?r0:R0;c.lineTo(x+Math.cos(a)*q,y+Math.sin(a)*q)}c.closePath();c.fillStyle=col;c.fill()};
+const glow=(c,x,y,r,col,a)=>{const g=c.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,col);g.addColorStop(1,'rgba(0,0,0,0)');c.globalAlpha=a;c.fillStyle=g;c.fillRect(x-r,y-r,r*2,r*2);c.globalAlpha=1};
+const ring=(c,x,y,r,w,col,a)=>{c.globalAlpha=a;c.strokeStyle=col;c.lineWidth=w;c.beginPath();c.arc(x,y,r,0,TAU);c.stroke();c.globalAlpha=1};
+const E={
+/* B 粉雪: 雪の結晶がふわっと広がる */
+snow(o){const{x,y,S,n}=o,P=[...Array(10+n*4)].map(()=>({a:R()*TAU,d:(40+R()*55)*S,s:1+(R()*2|0),dl:R()*.2,w:R()*TAU}));
+ add(900,(c,k)=>{if(k<.35)glow(c,x,y,60*S,'rgba(220,240,255,.9)',1-k/.35);
+  c.globalCompositeOperation='lighter';P.forEach(p=>{const q=Math.max(0,(k-p.dl)/(1-p.dl));if(!q)return;const e=ez(q);c.globalAlpha=1-q*q;
+   pat(c,FL,x+Math.cos(p.a)*p.d*e+Math.sin(p.w+q*6)*6*S,y+Math.sin(p.a)*p.d*e+q*28*S,p.s*S*1.4,'#eaf6ff')});})},
+/* A アイスシャード: 氷の結晶ができて、割れて飛び散る */
+shard(o){const{x,y,S,n}=o,P=[...Array(8+n*3)].map(()=>({a:R()*TAU,d:(50+R()*60)*S,sz:(6+R()*9)*S,rot:R()*TAU,sp:(R()-.5)*14,c:['#bfefff','#7fd0f0','#e8fbff','#9fe0ff'][R()*4|0]})),CR=[...Array(7)].map(()=>({a:R()*TAU,l:(30+R()*35)*S}));
+ add(1000,(c,k)=>{if(k<.22){const q=k/.22;c.globalAlpha=.9;c.strokeStyle='#e8fbff';c.lineWidth=2*S;c.beginPath();for(let i=0;i<6;i++){const a=i*TAU/6;c.lineTo(x+Math.cos(a)*22*S*q,y+Math.sin(a)*22*S*q)}c.closePath();c.stroke();c.fillStyle='rgba(191,239,255,.35)';c.fill();return}
+  const q=(k-.22)/.78,e=ez(q);
+  CR.forEach(r=>{c.globalAlpha=(1-q)*.9;c.strokeStyle='#ffffff';c.lineWidth=1.5*S;c.beginPath();c.moveTo(x,y);const m=r.l*Math.min(1,q*3);c.lineTo(x+Math.cos(r.a)*m*.5+Math.cos(r.a+.5)*6*S,y+Math.sin(r.a)*m*.5+Math.sin(r.a+.5)*6*S);c.lineTo(x+Math.cos(r.a)*m,y+Math.sin(r.a)*m);c.stroke()});
+  if(q<.3)glow(c,x,y,70*S,'rgba(200,245,255,1)',1-q/.3);
+  P.forEach(p=>{const px=x+Math.cos(p.a)*p.d*e,py=y+Math.sin(p.a)*p.d*e+q*q*40*S,r=p.rot+p.sp*q;c.globalAlpha=1-q*q;c.save();c.translate(px,py);c.rotate(r);c.beginPath();c.moveTo(0,-p.sz);c.lineTo(p.sz*.45,p.sz*.4);c.lineTo(-p.sz*.45,p.sz*.4);c.closePath();c.fillStyle=p.c;c.fill();c.strokeStyle='#ffffff';c.lineWidth=1;c.stroke();c.restore()})})},
+/* A オーロラカーテン: 光のカーテンが降りてきて包む */
+aurora(o){const{x,y,S,n}=o,Wd=(70+n*10)*S,Sp=[...Array(14+n*4)].map(()=>({x:(R()-.5)*Wd*2,v:30+R()*50,dl:R()*.5}));
+ add(1200,(c,k)=>{const top=y-130*S+ez(Math.min(1,k*1.6))*70*S,a=k<.15?k/.15:k>.7?(1-k)/.3:1;c.globalCompositeOperation='lighter';
+  for(let b=0;b<3;b++){for(let i=-Wd;i<Wd;i+=3*S){const t=i/Wd,ph=k*6+b*1.7,h=(55+Math.sin(t*5+ph)*18)*S,yy=top+Math.sin(t*3+ph*.8)*10*S+b*10*S,hu=150+b*40+t*30;
+    const g=c.createLinearGradient(0,yy,0,yy+h);g.addColorStop(0,`hsla(${hu},90%,65%,0)`);g.addColorStop(.25,`hsla(${hu},90%,65%,${.55*a})`);g.addColorStop(1,`hsla(${hu+60},90%,60%,0)`);c.fillStyle=g;c.fillRect(x+i,yy,3*S,h)}}
+  Sp.forEach(s=>{const q=Math.max(0,(k-s.dl)/(1-s.dl));if(!q)return;c.globalAlpha=(1-q)*a;pat(c,SP,x+s.x,y+20*S-q*s.v*S,1.2*S,'#e8fffa')});
+  if(k>.35&&k<.75)glow(c,x,y,55*S,'rgba(92,255,200,1)',(1-Math.abs(k-.55)/.2)*.5)})},
+/* S ブリザードスパイラル: 吹雪がうずを巻いて集まり、はじける */
+blizz(o){const{x,y,S,n}=o,P=[...Array(36+n*8)].map((_,i)=>({arm:i%3,o:R(),r0:(80+R()*40)*S,s:1+(R()*2|0)}));
+ add(1300,(c,k)=>{c.globalCompositeOperation='lighter';const sp=k*9;
+  if(k<.7){const q=k/.7;P.forEach(p=>{const a=p.arm*TAU/3+p.o*1.4+sp*(1+q),d=p.r0*Math.pow(1-q,1.15)+8*S;c.globalAlpha=.85;
+    const a2=a-.35,d2=d+10*S;c.strokeStyle='rgba(191,228,255,.7)';c.lineWidth=p.s*S;c.beginPath();c.moveTo(x+Math.cos(a2)*d2,y+Math.sin(a2)*d2*.8);c.lineTo(x+Math.cos(a)*d,y+Math.sin(a)*d*.8);c.stroke();
+    pat(c,FL,x+Math.cos(a)*d,y+Math.sin(a)*d*.8,p.s*.9*S,'#ffffff')});glow(c,x,y,(20+q*30)*S,'rgba(170,215,255,1)',q*.8)}
+  else{const q=(k-.7)/.3;glow(c,x,y,90*S,'rgba(220,240,255,1)',(1-q));ring(c,x,y,(20+q*110)*S,(6-q*5)*S,'#bfe4ff',1-q);ring(c,x,y,(10+q*70)*S,3*S,'#ffffff',1-q);
+   P.forEach(p=>{const a=p.arm*TAU/3+p.o*TAU,d=ez(q)*p.r0*.9;c.globalAlpha=1-q;pat(c,FL,x+Math.cos(a)*d,y+Math.sin(a)*d,p.s*S,'#eaf6ff')})}})},
+/* SS 星降る夜: 夜になり、流れ星が次々と降って星がはじける */
+starfall(o){const{x,y,S,n}=o,W0=innerWidth,H0=innerHeight,BG=[...Array(60)].map(()=>({x:R()*W0,y:R()*H0*.7,t:R()*TAU,s:R()<.2?2:1})),N=5+n,M=[...Array(N)].map((_,i)=>({dl:i*.09+R()*.04,sx:x-(160+R()*120)*S,sy:y-(220+R()*80)*S,ex:x+(R()-.5)*40*S,ey:y+(R()-.5)*30*S,h:(i*47)%360})),
+ B=[...Array(30+n*6)].map(()=>({a:R()*TAU,d:(50+R()*90)*S,s:(5+R()*6)*S,h:R()*360,rot:R()*TAU,i:R()*N|0}));
+ add(1700,(c,k,t)=>{const dk=k<.12?k/.12:k>.8?(1-k)/.2:1;c.fillStyle=`rgba(6,8,32,${.62*dk})`;c.fillRect(0,0,W0,H0);
+  BG.forEach(b=>{c.globalAlpha=dk*(.5+.5*Math.sin(t/180+b.t));c.fillStyle='#ffffff';c.fillRect(b.x,b.y,b.s,b.s)});c.globalAlpha=1;
+  c.globalCompositeOperation='lighter';
+  for(let i=0;i<3;i++){const yy=y-150*S+i*14*S;const g=c.createLinearGradient(x-200*S,0,x+200*S,0);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(.5,`hsla(${160+i*50},90%,60%,${.22*dk})`);g.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=g;c.beginPath();c.moveTo(x-200*S,yy);for(let xx=-200;xx<=200;xx+=10)c.lineTo(x+xx*S,yy+Math.sin(xx/40+k*5+i)*16*S);c.lineTo(x+200*S,yy+40*S);c.lineTo(x-200*S,yy+40*S);c.fill()}
+  M.forEach(m=>{const q=(k-m.dl)/.22;if(q<0)return;if(q<1){const e=q*q,hx=m.sx+(m.ex-m.sx)*e,hy=m.sy+(m.ey-m.sy)*e,tx=m.sx+(m.ex-m.sx)*Math.max(0,e-.25),ty=m.sy+(m.ey-m.sy)*Math.max(0,e-.25);
+    const g=c.createLinearGradient(tx,ty,hx,hy);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(1,`hsla(${m.h},100%,80%,1)`);c.strokeStyle=g;c.lineWidth=4*S;c.lineCap='round';c.beginPath();c.moveTo(tx,ty);c.lineTo(hx,hy);c.stroke();star(c,hx,hy,8*S,3.5*S,q*6,'#fff7c2')}
+   else{const z=Math.min(1,(q-1)*2.2);if(z<1){ring(c,m.ex,m.ey,(8+z*40)*S,3*S,`hsl(${m.h},100%,75%)`,1-z);glow(c,m.ex,m.ey,40*S,`hsla(${m.h},100%,75%,1)`,(1-z)*.8)}}});
+  B.forEach(b=>{const m=M[b.i],q=(k-m.dl-.22)/.5;if(q<=0||q>=1)return;const e=ez(q);c.globalAlpha=1-q;star(c,m.ex+Math.cos(b.a)*b.d*e,m.ey+Math.sin(b.a)*b.d*e+q*q*30*S,b.s,b.s*.45,b.rot+q*5,`hsl(${b.h},100%,78%)`)});
+  const fq=(k-.72)/.2;if(fq>0&&fq<1){glow(c,x,y,140*S,'rgba(255,247,194,1)',(1-fq)*.9);star(c,x,y,(30+fq*30)*S,(13+fq*12)*S,fq*2,`rgba(255,240,150,${1-fq})`);ring(c,x,y,(30+fq*160)*S,5*S,'#ffffff',1-fq)}})}
+};
+return{run(el,key,rank,crit,eq){const f=E[key];if(!f||!el)return false;ensure();const b=el.getBoundingClientRect();if(!b.width&&!b.height)return false;
+ const x=b.left+b.width/2,y=b.top+b.height*.45,S=Math.max(.7,Math.min(1.5,Math.max(b.width,b.height)/64)),n=(rank||0)+(crit?2:0)+(eq?1:0);f({x,y,S,n});return true}}})();
+
+
+/* ---- Season 1 限定: 星降る冬夜 / FROST NIGHT(見た目はすべて自前のドット絵・エフェクト) ---- */
+LSN=1;const LS1=(id,r,n,ne,nk,d,de,dk,x)=>LI(id,r,'❄',n,ne,nk,d,de,dk,Object.assign({img:S1ART.img(id)},x));
+LS1('cn1','B','雪うさぎユキモチ','Yukimochi the Snow Bunny','ទន្សាយព្រិល យូគីម៉ូជិ','雪の上でまんまるになる、ひいらぎを飾った白うさぎ。','A round white bunny wearing a sprig of holly, curled up in the snow.','ទន្សាយសដែលពាក់ស្លឹកហូលី ហើយកោងខ្លួនមូលលើព្រិល។');
+LS1('cn2','A','マフラーペンギン','Scarf Penguin','ភេនឃ្វីនពាក់កន្សែង','しま模様のマフラーとニット帽で、どんな吹雪も平気。','A striped scarf and knit hat keep it cozy in any blizzard.','កន្សែងឆ្នូត និងមួករោមចៀម ធ្វើឲ្យវាកក់ក្ដៅក្នុងព្យុះព្រិល។');
+LS1('cn3','A','オーロラジカ','Aurora Stag','ក្ដាន់អូរ៉ូរ៉ា','角にオーロラの光を宿す、北の森のシカ。','A stag of the northern woods whose antlers hold the aurora’s light.','ក្ដាន់ព្រៃខាងជើង ដែលស្នែងវាផ្ទុកពន្លឺអូរ៉ូរ៉ា។');
+LS1('cn4','S','氷鎧のシロクマ','Glacier-Armor Bear','ខ្លាឃ្មុំពាក់អាវក្រោះទឹកកក','氷河を削って作った鎧をまとう、北の守り手。','A guardian of the north, clad in armor carved from a glacier.','អ្នកការពារភាគខាងជើង ដែលពាក់អាវក្រោះឆ្លាក់ពីផ្ទាំងទឹកកក។');
+LS1('cn5','SS','星晶竜スノウドレイク','Snowdrake the Starfrost Dragon','នាគផ្កាយទឹកកក ស្នូដ្រេក','胸に星の結晶を抱く竜。羽ばたくと夜空に雪が舞う。','A dragon bearing a star crystal on its chest. Snow dances when it beats its wings.','នាគដែលមានគ្រីស្តាល់ផ្កាយនៅទ្រូង។ ពេលវាទះស្លាប ព្រិលរាំលើមេឃយប់។',{sty:'s1ss'});
+LS1('wn1','B','つららダガー','Icicle Dagger','កាំបិតទឹកកក','軒先のつららを研いだ、すき通った短剣。','A clear dagger sharpened from an icicle hanging off the eaves.','កាំបិតថ្លា ដែលសំលៀងពីទឹកកកព្យួរពីជាយដំបូល។',{st:'thrust'});
+LS1('wn2','A','ペパーミントハンマー','Peppermint Mallet','ញញួរមីនត៍','うずまきキャンディのハンマー。たたくとスーッとする。','A swirl-candy mallet. Every hit feels minty fresh.','ញញួរស្ករគ្រាប់វិល។ វាយម្ដងៗ ត្រជាក់ដូចមីនត៍។',{st:'slam'});
+LS1('wn3','A','スノーグローブ','Snow Globe','បាល់ព្រិល','小さな冬の森が入ったガラス玉。投げると雪が舞う。','A glass globe holding a tiny winter forest. Snow swirls when it’s thrown.','បាល់កញ្ចក់ដែលមានព្រៃរដូវរងាតូចមួយ។ ពេលបោះ ព្រិលហោះហើរ។',{st:'throw'});
+LS1('wn4','S','オーロラボウ','Aurora Bow','ធ្នូអូរ៉ូរ៉ា','オーロラを弦にした弓。矢は光の尾を引いて飛ぶ。','A bow strung with the aurora. Its arrows trail ribbons of light.','ធ្នូដែលខ្សែជាអូរ៉ូរ៉ា។ ព្រួញហោះទាញកន្ទុយពន្លឺ។',{st:'thrust'});
+LS1('wn5','SS','星降りの大剣','Starfall Greatsword','ដាវធំផ្កាយធ្លាក់','流れ星を鍛えた大剣。振るたびに刃の色が移ろう。','A greatsword forged from a falling star. Its blade shifts color with every swing.','ដាវធំដែលដំពីផ្កាយដុះ។ ពណ៌ដាវប្ដូររាល់ពេលគ្រវី។',{st:'spin',sty:'s1ss'});
+LS1('en1','B','粉雪','Powder Snow','ព្រិលម៉ដ្ឋ','雪の結晶がふわりと舞い広がる。','Snow crystals drift and spread softly.','គ្រីស្តាល់ព្រិលហោះរសាត់ ហើយរីករាលដាលថ្នមៗ។',{fx:'s1snow'});
+LS1('en2','A','アイスシャード','Ice Shatter','បំបែកទឹកកក','氷の結晶ができて、粉々に砕け散る。','An ice crystal forms, then shatters into shards.','គ្រីស្តាល់ទឹកកកកកើតឡើង រួចបែកជាបំណែក។',{fx:'s1shard'});
+LS1('en3','A','オーロラカーテン','Aurora Curtain','វាំងននអូរ៉ូរ៉ា','光のカーテンが降りてきて、相手をつつみこむ。','A curtain of light descends and wraps the opponent.','វាំងននពន្លឺធ្លាក់ចុះ ហើយរុំគូប្រកួត។',{fx:'s1aurora'});
+LS1('en4','S','ブリザードスパイラル','Blizzard Spiral','ព្យុះព្រិលវិល','吹雪がうずを巻いて集まり、一気にはじける。','A blizzard spirals inward, then bursts all at once.','ព្យុះព្រិលវិលចូលកណ្ដាល រួចផ្ទុះភ្លាមៗ។',{fx:'s1blizz'});
+LS1('en5','SS','星降る夜','Starfall Night','យប់ផ្កាយធ្លាក់','空が夜に変わり、流れ星が次々と降りそそぐ。','The sky turns to night and shooting stars rain down one after another.','មេឃប្រែជាយប់ ហើយផ្កាយដុះធ្លាក់មកម្ដងមួយៗ។',{fx:'s1star'});
+Object.assign(FX,{s1snow:{cv:'snow',p:['❄️'],mode:'burst',col:'#bfe4ff'},s1shard:{cv:'shard',p:['🧊'],mode:'burst',col:'#7fd0f0'},s1aurora:{cv:'aurora',p:['✨'],mode:'rise',col:'#5cffc8'},s1blizz:{cv:'blizz',p:['❄️'],mode:'spiral',col:'#bfe4ff',rg:true},s1star:{cv:'starfall',p:['⭐'],mode:'rain',col:'#ffe066',rg:true}});
+LSN=0;
+
 const item=id=>IT.find(i=>i.id===id);
 const oi=(id,k)=>{const i=id&&item(id);return i&&i.k===k?i:null};
 /* ---- 見た目: C=スタンプ風(少し色違い) / B=ステッカー / A=ドット絵 / S=光るドット絵 / SS=虹 or モノクロのドット絵 ---- */
 const PXC={},HUE=id=>{let h=0;for(const c of id)h=(h*31+c.charCodeAt(0))%50;return h-25};
 function pixURL(e,res){const k=e+res;if(PXC[k]!==undefined)return PXC[k];let u='';try{const c=document.createElement('canvas');c.width=c.height=res;const x=c.getContext('2d');x.textAlign='center';x.textBaseline='middle';x.font=Math.round(res*.8)+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';x.fillText(e,res/2,res/2+res*.05);
 const d=x.getImageData(0,0,res,res),p=d.data;for(let i=0;i<p.length;i+=4){p[i+3]=p[i+3]>110?255:0;for(let j=0;j<3;j++)p[i+j]=Math.min(255,Math.round(p[i+j]/40)*40)}x.putImageData(d,0,0);u=c.toDataURL()}catch(err){}return PXC[k]=u}
-function visB(it){const r=it.r,e=it.e,h=HUE(it.id);
+function visB(it){if(it.img)return `<img class="vz px v${it.r}${it.sty?' '+it.sty:''}" src="${it.img}" alt="">`;const r=it.r,e=it.e,h=HUE(it.id);
 if(r==='C')return `<span class="vz" style="filter:hue-rotate(${h}deg) drop-shadow(1px 1px 0 #fff) drop-shadow(-1px -1px 0 #fff)">${e}</span>`;
 if(r==='B')return `<span class="vz" style="filter:hue-rotate(${h}deg) saturate(1.3) drop-shadow(0 0 3px ${RC.B})">${e}</span>`;
 const u=pixURL(e,r==='A'?20:r==='S'?28:36);if(!u)return `<span class="vz">${e}</span>`;
 return `<img class="vz px v${r}${it.sty?' '+it.sty:''}" src="${u}" alt="">`}
-const DECO={gale:{c:'👑',w:'🌪️',s:true},gen:{c:'🪖',w:'🎖️',x:'⚔️',s:true}}; /* c=上 / w=右下 / x=後ろ の飾り絵文字。s:true でキラキラ */
+const DECO={gale:{c:'👑',w:'🌪️',s:true},gen:{c:'🪖',w:'🎖️',x:'⚔️',s:true},frost:{s:true},fgen:{s:true}}; /* c=上 / w=右下 / x=後ろ の飾り絵文字。s:true でキラキラ */
 const deco=it=>{const d=DECO[it.deco]||{};return '<span class="ocr ocr-'+it.deco+'"><i class="oa"></i>'+(d.x?'<i class="ox">'+d.x+'</i>':'')+'<span class="ob">'+visB(it)+'</span>'+(d.c?'<i class="oc">'+d.c+'</i>':'')+(d.w?'<i class="ow">'+d.w+'</i>':'')+(d.s?'<i class="os"></i>':'')+'</span>'};
-const vis=it=>it.deco?deco(it):it.lim!==undefined?'<span class="s0v">'+visB(it)+'</span>':visB(it);
+const vis=it=>it.deco?deco(it):it.lim===1?'<span class="s1v">'+visB(it)+'</span>':it.lim!==undefined?'<span class="s0v">'+visB(it)+'</span>':visB(it);
 const pe=(e,rk)=>{if(rk<2)return e;const u=pixURL(e,rk>=3?28:20);return u?`<img class="vz px" src="${u}" alt="">`:e};
 /* ---- セーブ(新チケット方式: 旧チケットは削除。改ざん検知つき) ---- */
 const SALT='ec2-k7Qx-'+CFG.key;
@@ -1326,17 +1567,17 @@ $('#gskip').onclick=()=>{skip=true};$('#gp1').onclick=()=>pull(1);$('#gp10').onc
 /* ---- 限定ガチャ(タブ / 排出 / 画面) ---- */
 function drawL(){let x=Math.random()*100,r='B';for(const k of['SS','S','A','B']){if(x<RATE_L[k]){r=k;break}x-=RATE_L[k]}const k='cwe'[Math.random()*3|0],p=IT.filter(i=>i.lim===LIMS&&i.k===k&&i.r===r);return p[Math.random()*p.length|0]}
 const LIMI=()=>IT.filter(i=>i.lim===LIMS);
-function gtabs(){const t=$('#gtabs');if(!t)return;t.innerHTML='<button class="btn alt '+(gtab==='n'?'on':'')+'" data-t="n">'+LL('🎰 通常ガチャ','🎰 Standard','🎰 កាឆាធម្មតា')+'</button><button class="btn alt s0tab '+(gtab==='l'?'on':'')+'" data-t="l">'+LL('🌌 S0限定ガチャ','🌌 S0 Limited','🌌 កំណត់ S0')+'</button>';
+function gtabs(){const t=$('#gtabs');if(!t)return;t.innerHTML='<button class="btn alt '+(gtab==='n'?'on':'')+'" data-t="n">'+LL('🎰 通常ガチャ','🎰 Standard','🎰 កាឆាធម្មតា')+'</button><button class="btn alt s0tab'+(LIMS===1?' s1tab':'')+' '+(gtab==='l'?'on':'')+'" data-t="l">'+SM().ic+' '+LL('S'+LIMS+'限定ガチャ','S'+LIMS+' Limited','កំណត់ S'+LIMS)+'</button>';
  t.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{if(pulling)return;gtab=b.dataset.t;renderGM()})}
-function renderLim(){const P=$('#glimp'),N=$('#gnrm');if(!P||!N)return;const on=gtab==='l';P.classList.toggle('hide',!on);N.classList.toggle('hide',on);$('#gacha').classList.toggle('s0m',on);
- const g1=$('#gp1 .gbt'),g10=$('#gp10 .gbt');if(g1){g1.innerHTML=on?LL('🌌 限定1連ガチャ','🌌 Limited 1-Pull','🌌 កាឆាកំណត់ ១ដង'):'🎰 1連ガチャ';g10.innerHTML=on?LL('🌌 限定10連ガチャ','🌌 Limited 10-Pull','🌌 កាឆាកំណត់ ១០ដង'):'🎰 10連ガチャ'}
+function renderLim(){const P=$('#glimp'),N=$('#gnrm');if(!P||!N)return;const on=gtab==='l';P.classList.toggle('hide',!on);N.classList.toggle('hide',on);$('#gacha').classList.toggle('s0m',on&&LIMS!==1);$('#gacha').classList.toggle('s1m',on&&LIMS===1);
+ const g1=$('#gp1 .gbt'),g10=$('#gp10 .gbt');if(g1){g1.innerHTML=on?SM().ic+' '+LL('限定1連ガチャ','Limited 1-Pull','កាឆាកំណត់ ១ដង'):'🎰 1連ガチャ';g10.innerHTML=on?SM().ic+' '+LL('限定10連ガチャ','Limited 10-Pull','កាឆាកំណត់ ១០ដង'):'🎰 10連ガチャ'}
  if(!on){P.innerHTML='';return}
  const end=new Date(ECS.end(LIMS)-1+9*36e5),md=(end.getUTCMonth()+1)+'/'+end.getUTCDate();
- const rows=['SS','S','A','B'].map(r=>'<div class="grt" style="--c:'+RC[r]+'"><span class="gbd">'+r+'</span><b style="flex:1">'+RATE_L[r]+'%</b><span class="mut">'+LIMI().filter(i=>i.r===r).map(i=>i.e).join(' ')+'</span></div>').join('');
+ const rows=['SS','S','A','B'].map(r=>'<div class="grt" style="--c:'+RC[r]+'"><span class="gbd">'+r+'</span><b style="flex:1">'+RATE_L[r]+'%</b><span class="mut">'+LIMI().filter(i=>i.r===r).map(i=>i.img?vis(i):i.e).join(' ')+'</span></div>').join('');
  const kinds=['c','w','e'].map(k=>'<div class="tc"><b>'+KN[k]+'</b> <span class="mut">('+LIMI().filter(i=>i.k===k).length+')</span>'+LIMI().filter(i=>i.k===k).sort((a,b)=>RI(b.r)-RI(a.r)).map(i=>'<div class="lit"><span class="gbd" style="--c:'+RC[i.r]+'">'+i.r+'</span><span class="litv">'+vis(i)+'</span><span style="flex:1"><b>'+esc(i.n)+'</b><div class="stat">'+esc(i.d)+'</div></span>'+(G.inv[i.id]?'<span class="lown">✓</span>':'')+'</div>').join('')+'</div>').join('');
- P.innerHTML='<div class="s0b"><div><span style="font-size:20px">🌌</span> <span class="s0h">SEASON 0 LIMITED</span></div><div class="s0s">'+LL('コンセプト:未来 / FUTURE','Concept: THE FUTURE','គំនិត៖ អនាគត / FUTURE')+'</div><div class="s0t2">'+(limOn()?LL('開催期間:〜 '+md+' ・残り ','Available until '+md+' · ','ទាញបានដល់ '+md+' · នៅសល់ ')+ECS.fmt(ECS.end(LIMS)-Date.now()):LL('このガチャは終了しました','This banner has ended','កាឆានេះបានបញ្ចប់'))+'</div><div class="s0t2">'+LL('1連 🎟×10 / 10連 🎟×100(通常の2倍)','1-pull 🎟×10 / 10-pull 🎟×100 (double the standard)','១ដង 🎟×១០ / ១០ដង 🎟×១០០ (ទ្វេដងនៃធម្មតា)')+'</div></div>'
+ P.innerHTML='<div class="s0b'+(LIMS===1?' s1b':'')+'">'+(LIMS===1?'<i class="s1sn"></i>':'')+'<div><span style="font-size:20px">'+SM().ic+'</span> <span class="s0h">'+SM().h+'</span></div><div class="s0s">'+LL(...SM().c)+'</div><div class="s0t2">'+(limOn()?LL('開催期間:〜 '+md+' ・残り ','Available until '+md+' · ','ទាញបានដល់ '+md+' · នៅសល់ ')+ECS.fmt(ECS.end(LIMS)-Date.now()):LL('このガチャは終了しました','This banner has ended','កាឆានេះបានបញ្ចប់'))+'</div><div class="s0t2">'+LL('1連 🎟×10 / 10連 🎟×100(通常の2倍)','1-pull 🎟×10 / 10-pull 🎟×100 (double the standard)','១ដង 🎟×១០ / ១០ដង 🎟×១០០ (ទ្វេដងនៃធម្មតា)')+'</div></div>'
   +'<b>'+LL('排出確率','Drop rates','អត្រាទាញ')+'</b><span class="mut"> (100%)</span>'+rows+'<b style="display:block;margin-top:10px">'+LL('限定ラインナップ(15種)','Limited lineup (15 items)','បញ្ជីកំណត់ (១៥ មុខ)')+'</b>'+kinds
-  +'<div class="mut">'+LL('見た目だけが変わります(性能・ダメージは変わりません)。シーズン0が終わると引けなくなりますが、入手したものはずっと使えます。','Visual only (no change to stats or damage). You can\'t pull after Season 0 ends, but what you got stays yours.','សម្រាប់តែរូបរាង (មិនប្ដូរសមត្ថភាព ឬខូចខាតទេ)។ ទាញមិនបានទៀតទេនៅពេលរដូវកាល ០ ចប់ ប៉ុន្តែរបស់ដែលបានទទួលនៅតែជារបស់អ្នក។')+'</div>'}
+  +'<div class="mut">'+LL('見た目だけが変わります(性能・ダメージは変わりません)。シーズン'+LIMS+'が終わると引けなくなりますが、入手したものはずっと使えます。','Visual only (no change to stats or damage). You can\'t pull after Season '+LIMS+' ends, but what you got stays yours.','សម្រាប់តែរូបរាង (មិនប្ដូរសមត្ថភាព ឬខូចខាតទេ)។ ទាញមិនបានទៀតទេនៅពេលរដូវកាល '+LIMS+' ចប់ ប៉ុន្តែរបស់ដែលបានទទួលនៅតែជារបស់អ្នក។')+'</div>'}
 function renderGM(){gtabs();renderLim();upd()}
 function award(){let cap=false;if(ROOM){const nt=Date.now();G.rw=(G.rw||[]).filter(t=>nt-t<36e5);if(G.rw.length>=CFG.onlineCap)cap=true;else G.rw.push(nt)}if(!cap)G.t++;save();upd();return{cap,t:G.t}}
 /* ---- コレクション(A以上の未入手は「？」で秘密) ---- */
@@ -1346,7 +1587,7 @@ const list=IT.filter(i=>i.k===tab).sort((a,b)=>RI(b.r)-RI(a.r)),own=IT.filter(i=
 el.innerHTML=`<div class="row"><b style="font-size:20px">📦 コレクション</b><span class="gtkp">${TKI} <b class="gtk"></b></span></div>
 <div class="mut">所持 ${own} / ${IT.length}</div><div class="ceq" style="margin-top:6px"><span>🧑 ${eqn('c')}</span><span>🗡️ ${eqn('w')}</span><span>💫 ${eqn('e')}</span></div>
 <div class="gtab">${['c','w','e'].map(k=>`<button class="btn alt ${k===tab?'on':''}" data-k="${k}">${KN[k]}</button>`).join('')}</div>
-<div class="cgrid">${list.map(i=>{const n=G.inv[i.id]||0,known=n||RI(i.r)<2;return `<div class="ci ${n?'':'no'} ${sel===i.id?'sel':''}" style="--c:${RC[i.r]}" data-id="${i.id}"><em>${i.r}</em>${i.lim!==undefined?'<b class="s0t">S0</b>':''}${G.eq[i.k]===i.id?'<i>装備中</i>':n>1?`<i>×${n}</i>`:''}<span class="gi">${known?vis(i):'？'}</span>${known?esc(i.n):'未入手'}</div>`}).join('')}</div>
+<div class="cgrid">${list.map(i=>{const n=G.inv[i.id]||0,known=n||RI(i.r)<2;return `<div class="ci ${n?'':'no'} ${sel===i.id?'sel':''}" style="--c:${RC[i.r]}" data-id="${i.id}"><em>${i.r}</em>${i.lim===1?'<b class="s0t s1t">S1</b>':i.lim!==undefined?'<b class="s0t">S0</b>':''}${G.eq[i.k]===i.id?'<i>装備中</i>':n>1?`<i>×${n}</i>`:''}<span class="gi">${known?vis(i):'？'}</span>${known?esc(i.n):'未入手'}</div>`}).join('')}</div>
 <div id="cdet"></div><button class="btn alt" id="c2g">🎰 ガチャへ</button><button class="btn alt" id="cback">← ホームへ</button>`;
 el.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{tab=b.dataset.k;sel=null;renderColl()});
 el.querySelectorAll('.ci').forEach(c=>c.onclick=()=>{sel=c.dataset.id;renderColl()});
@@ -1359,7 +1600,7 @@ ${n&&fxk?'<button class="btn alt" id="cpb">▶ エフェクトを試す</button>
 if($('#cpb'))$('#cpb').onclick=()=>fx($('#cpv'),FX[fxk],RI(i.r),false);
 $('#ceq').onclick=()=>{if(!G.inv[i.id])return;G.eq[i.k]=on?null:i.id;save();renderColl()}}
 /* ---- 戦闘エフェクト(mode: burst/rise/rain/spiral/slash/inward/glitch/ring。rg=衝撃リング追加) ---- */
-function fx(el,def,rank,crit,eq){if(!el||!def)return;const R=[1,1.4,2,3,4.5][rank],n=Math.round(6*R*(crit?1.5:1)*(eq?1.5:1));
+function fx(el,def,rank,crit,eq){if(!el||!def)return;if(def.cv&&S1FX.run(el,def.cv,rank,crit,eq)){if(rank>=3)fl(def.col);if(rank>=4){shake();vib(40)}return}const R=[1,1.4,2,3,4.5][rank],n=Math.round(6*R*(crit?1.5:1)*(eq?1.5:1));
 const t=document.createElement('div');t.className='gfx-t';t.style.background=`radial-gradient(circle,${def.col}cc,transparent 65%)`;el.appendChild(t);
 t.animate([{opacity:0,transform:'scale(.4)'},{opacity:1,offset:.25},{opacity:0,transform:`scale(${1+rank*.25})`}],{duration:650}).onfinish=()=>t.remove();
 if(def.rg||def.mode==='ring'){for(let k=0;k<2+(rank>1?1:0)+(rank>3?1:0);k++){const r=document.createElement('div');r.className='gfx-r';r.style.cssText=`width:60px;height:60px;border:3px solid ${def.col};border-radius:50%;box-shadow:0 0 10px ${def.col}`;el.appendChild(r);r.animate([{transform:'translate(-50%,-50%) scale(.2)',opacity:1},{transform:`translate(-50%,-50%) scale(${1.4+rank*.35})`,opacity:0}],{duration:600,delay:k*140}).onfinish=()=>r.remove()}}
@@ -1476,6 +1717,9 @@ const EN=[['🎲 ランダムな人と対戦','🎲 Battle a random player'],['�
 [['cr0a','SS','🐆','疾風の覇王チーター','Gale Emperor Cheetah','ខ្លារខិនអធិរាជខ្យល់','シーズン0で1位になった者だけが持つ、風より速い覇王。','An emperor faster than the wind, owned only by the Season 0 champion.','អធិរាជលឿនជាងខ្យល់ សម្រាប់តែជើងឯករដូវកាល 0។','gale'],
  ['cr0b','S','🦓','白黒の将軍ゼブラ','Zebra General','ឧត្តមសេនីយ៍សេះបង្កង់','シーズン0で2位・3位に入った者に贈られる、縞模様の将軍。','A striped general awarded to Season 0 runners-up.','ឧត្តមសេនីយ៍ឆ្នូតសម្រាប់លេខ 2 និង 3 រដូវកាល 0។','gen']
 ].forEach(a=>{IT.push({id:a[0],k:'c',r:a[1],e:a[2],n:a[3],ne:a[4],d:a[6],de:a[7],lim:'rw',deco:a[9]});LIMKM.push([a[3],a[5]],[a[6],a[8]])});
+[['cr1a','SS','白夜の覇王シロフクロウ','Midnight-Sun Sovereign Owl','មេបក្សីទីទុយស','シーズン1で1位になった者だけが持つ、冬の空を統べるフクロウの王。','An owl king who rules the winter sky, owned only by the Season 1 champion.','ស្ដេចទីទុយដែលគ្រប់គ្រងមេឃរដូវរងា សម្រាប់តែជើងឯករដូវកាល 1។','frost'],
+ ['cr1b','S','雪原の将軍オオカミ','Snowfield General Wolf','ឧត្តមសេនីយ៍ចចកព្រិល','シーズン1で2位・3位に入った者に贈られる、氷の肩当てをつけた将軍。','A general in ice pauldrons, awarded to Season 1 runners-up.','ឧត្តមសេនីយ៍ពាក់ស្មាទឹកកក សម្រាប់លេខ 2-3 រដូវកាល 1។','fgen']
+].forEach(a=>{IT.push({id:a[0],k:'c',r:a[1],e:'❄',n:a[2],ne:a[3],d:a[5],de:a[6],lim:'rw',deco:a[8],img:S1ART.img(a[0])});LIMKM.push([a[2],a[4]],[a[5],a[7]])});
 if(window.EC_CHAR_TEST){IT.forEach(i=>{if(!G.inv[i.id])G.inv[i.id]=1});save()}
 IT.forEach(i=>EN.push([i.n,i.ne],[i.d,i.de]));KM_PAIRS.push(...LIMKM);KM_PAIRS.sort((a,b)=>b[0].length-a[0].length);
 EN_PAIRS.push(...EN);EN_PAIRS.sort((a,b)=>b[0].length-a[0].length);
@@ -1696,17 +1940,17 @@ $$('#m2').onclick=()=>{TEAM=true;try{localStorage.setItem('ecmode','2')}catch(e)
 function modeUI(){$$('#m1').textContent=LL('⚔️ 1対1','⚔️ 1v1','⚔️ ១ទល់១');$$('#m2').textContent=LL('👥 2対2','👥 2v2','👥 ២ទល់២');
  $$('#m1').classList.toggle('on',!TEAM);$$('#m2').classList.toggle('on',TEAM);
  $$('#mhint').textContent=TEAM?LL('2対2:2人チーム同士の4人対戦。通常マッチはCPUが味方と相手になります。ルーム・ランダムは人数が足りなければCPUで補充できます。','2v2: 4-player battles between two teams of two. Normal matches use CPU allies and foes. In rooms and random matches, missing players can be filled by CPUs.','២ទល់២៖ ការប្រយុទ្ធ ៤នាក់រវាងក្រុម ២នាក់។ ការប្រកួតធម្មតាមាន CPU ជាមិត្ត និងសត្រូវ។ ក្នុងបន្ទប់ និងការប្រកួតចៃដន្យ អាចបំពេញកន្លែងខ្វះដោយ CPU។'):''}
-function seasonUI(){const n=ECS.cur(),end=ECS.end(n),left=end-Date.now(),d=new Date(end-1+9*36e5),md=(d.getUTCMonth()+1)+'/'+d.getUTCDate();
- $$('#season').innerHTML='<div class="sbt"><b style="font-size:17px">🌌 '+LL('シーズン','SEASON ','រដូវកាល ')+n+'</b><span>'+LL('残り ','Time left: ','នៅសល់ ')+ECS.fmt(left)+'</span></div><small>'+LL('〜 '+md+' まで / 戦績・ランキングは毎シーズンリセットされます','Until '+md+' / Records and ranking reset every season','ដល់ '+md+' / កំណត់ត្រា និងចំណាត់ថ្នាក់កំណត់ឡើងវិញរៀងរាល់រដូវកាល')+'</small>';
+function seasonUI(){const n=window.EC_S1_PREVIEW?1:ECS.cur(),end=ECS.end(n),left=end-Date.now(),d=new Date(end-1+9*36e5),md=(d.getUTCMonth()+1)+'/'+d.getUTCDate();
+ $$('#season').innerHTML=(window.EC_S1_PREVIEW?'<div class="mut" style="color:#ffd23f">🧪 '+LL('テスト: シーズン1の表示プレビュー','Test: Season 1 preview','សាកល្បង: មើលរដូវកាល 1')+'</div>':'')+'<div class="sbt"><b style="font-size:17px">'+(n===1?'❄️':'🌌')+' '+LL('シーズン','SEASON ','រដូវកាល ')+n+'</b><span>'+LL('残り ','Time left: ','នៅសល់ ')+ECS.fmt(left)+'</span></div><small>'+LL('〜 '+md+' まで / 戦績・ランキングは毎シーズンリセットされます','Until '+md+' / Records and ranking reset every season','ដល់ '+md+' / កំណត់ត្រា និងចំណាត់ថ្នាក់កំណត់ឡើងវិញរៀងរាល់រដូវកាល')+'</small>';
  const sn=window.__SEASON_NEW,box=$$('#snewbox');if(sn&&!seasonUI.hide){box.innerHTML='<div class="tc" style="border-left:4px solid #3df2ff"><b>🌌 '+LL('新シーズンが始まりました!','A new season has started!','រដូវកាលថ្មីបានចាប់ផ្ដើម!')+'</b><div class="stat">'+LL('戦績とランキングがリセットされました。前シーズン('+sn.from+'):'+sn.w+'勝 '+sn.l+'敗 / 最高'+sn.best+'連勝','Records and ranking were reset. Last season ('+sn.from+'): '+sn.w+'W '+sn.l+'L / best streak '+sn.best,'កំណត់ត្រា និងចំណាត់ថ្នាក់ត្រូវបានកំណត់ឡើងវិញ។ រដូវកាលមុន ('+sn.from+')៖ ឈ្នះ '+sn.w+' ចាញ់ '+sn.l+' / ឈ្នះជាប់គ្នាល្អបំផុត '+sn.best)+'</div><button class="btn alt" id="snok">OK</button></div>';$$('#snok').onclick=()=>{seasonUI.hide=1;box.innerHTML=''}}}
 /* ---------- アプデ情報 ---------- */
-const UPV='1.65';
+const UPV='1.7';
 function seen(){try{return localStorage.getItem('ecup')===UPV}catch(e){return false}}
 document.body.insertAdjacentHTML('beforeend','<div id="upd"><div class="hc" id="updc"></div></div>');
 $$('#upd').onclick=e=>{if(e.target===$$('#upd'))$$('#upd').classList.remove('on')};
 function updHTML(){const B=(a,b,c)=>'<b style="display:block;margin:12px 0 2px;font-size:15px">'+a+'</b><p style="margin:0;line-height:1.6;font-size:14px">'+b+'</p>';
  return '<div class="row" style="margin-bottom:6px"><b style="font-size:18px">'+LL('🆕 アプデ情報','🆕 Update Notes','🆕 ព័ត៌មានអាប់ដេត')+'</b><button class="btn alt" id="updx" style="width:auto;margin:0;padding:6px 14px;font-size:13px">'+LL('閉じる','Close','បិទ')+'</button></div>'
- +'<div class="tc"><b>Ver 1.65</b> <span class="mut">2026/11/05</span></div>'+B(LL('🚚 新しいサイトへ引っ越し','🚚 Moving to a new site','🚚 ផ្លាស់ទៅគេហទំព័រថ្មី'),LL('EMOJI CLASH は新しいアドレス <b>emojiclash.com</b> で遊べるようになりました。前のアドレスで遊んでいた人は、ホーム画面の「データごと引っ越す」ボタンを押すと、記録・ガチャ・称号をそのまま持っていけます。','EMOJI CLASH can now be played at the new address <b>emojiclash.com</b>. If you played at the old address, press “Move with my data” on the home screen to bring your records, gacha items and titles.','EMOJI CLASH អាចលេងបាននៅអាសយដ្ឋានថ្មី <b>emojiclash.com</b>។ បើអ្នកធ្លាប់លេងនៅអាសយដ្ឋានចាស់ សូមចុច “ផ្លាស់ទីជាមួយទិន្នន័យ” នៅទំព័រដើម ដើម្បីយកកំណត់ត្រា កាឆា និងងារទៅជាមួយ។'))+'<div class="tc" style="margin-top:12px"><b>Ver 1.6</b> <span class="mut">2026/11/05</span></div>'
+ +'<div class="tc"><b>Ver 1.7</b> <span class="mut">2026/11/26</span></div>'+B(LL('❄️ シーズン1限定ガチャ「星降る冬夜」','❄️ Season 1 limited gacha: FROST NIGHT','❄️ កាឆាកំណត់រដូវកាល 1៖ FROST NIGHT'),LL('11/26からシーズン1が始まり、限定ガチャが「星降る冬夜」に変わります。雪うさぎやオーロラジカ、星晶竜スノウドレイクなどのキャラ・武器・エフェクト全15種は、すべてこのゲームのために描いたオリジナルのドット絵です。エフェクトも絵文字ではなく、雪の結晶やオーロラ、流れ星を一から描いています。シーズン0限定ガチャは11/25で終わります(入手したものはずっと使えます)。','Season 1 starts on 11/26 and the limited gacha changes to FROST NIGHT. All 15 characters, weapons and effects, including the Snow Bunny, Aurora Stag and Snowdrake, are original pixel art drawn just for this game. The effects are hand-drawn too, with snow crystals, aurora and shooting stars instead of emoji. The Season 0 limited gacha ends on 11/25 (anything you got stays yours).','រដូវកាល 1 ចាប់ផ្ដើមថ្ងៃ 26/11 ហើយកាឆាកំណត់ប្ដូរទៅ FROST NIGHT។ តួអង្គ អាវុធ និងអេហ្វេកត៌ទាំង ១៥ គឺជារូបភីកសែលដើមដែលគូរសម្រាប់ហ្គេមនេះ។'))+B(LL('🏆 シーズン1のランキング報酬','🏆 Season 1 ranking rewards','🏆 រង្វាន់ចំណាត់ថ្នាក់រដូវកាល 1'),LL('シーズン1の1位には「白夜の覇王シロフクロウ」、2〜3位には「雪原の将軍オオカミ」が贈られます。どちらもランキングでしか手に入らない、オリジナルのドット絵キャラです。チケットと、シーズンごとの称号もこれまでどおり贈られます。','The Season 1 champion receives the Midnight-Sun Sovereign Owl, and 2nd–3rd place receive the Snowfield General Wolf. Both are original pixel-art characters you can only get from the ranking. Tickets and season titles are awarded as before.','ជើងឯករដូវកាល 1 ទទួលបានទីទុយស ហើយលេខ 2-3 ទទួលបានចចកព្រិល។'))+B(LL('🏅 新称号「星霜の君主」','🏅 New title: Frost-Star Monarch','🏅 ងារថ្មី៖ ស្ដេចផ្កាយទឹកកក'),LL('シーズン1限定ガチャのアイテムを全部そろえるともらえる、最高ランクの称号です。','The top-rank title for collecting every Season 1 limited gacha item.','ងារកម្រិតខ្ពស់បំផុត សម្រាប់អ្នកប្រមូលរបស់កាឆាកំណត់រដូវកាល 1 ទាំងអស់។'))+'<div class="tc" style="margin-top:12px"><b>Ver 1.65</b> <span class="mut">2026/11/05</span></div>'+B(LL('🚚 新しいサイトへ引っ越し','🚚 Moving to a new site','🚚 ផ្លាស់ទៅគេហទំព័រថ្មី'),LL('EMOJI CLASH は新しいアドレス <b>emojiclash.com</b> で遊べるようになりました。前のアドレスで遊んでいた人は、ホーム画面の「データごと引っ越す」ボタンを押すと、記録・ガチャ・称号をそのまま持っていけます。','EMOJI CLASH can now be played at the new address <b>emojiclash.com</b>. If you played at the old address, press “Move with my data” on the home screen to bring your records, gacha items and titles.','EMOJI CLASH អាចលេងបាននៅអាសយដ្ឋានថ្មី <b>emojiclash.com</b>។ បើអ្នកធ្លាប់លេងនៅអាសយដ្ឋានចាស់ សូមចុច “ផ្លាស់ទីជាមួយទិន្នន័យ” នៅទំព័រដើម ដើម្បីយកកំណត់ត្រា កាឆា និងងារទៅជាមួយ។'))+'<div class="tc" style="margin-top:12px"><b>Ver 1.6</b> <span class="mut">2026/11/05</span></div>'
  +B(LL('🗼 新モード「試練の塔」','🗼 New mode: Trial Tower','🗼 មុខងារថ្មី៖ ប៉មសាកល្បង'),LL('運営が用意した敵を1階ずつ倒して、30階のてっぺんを目指すモードです。上の階ほど敵が強くなり、10階ごとに特殊能力を持つボスが待っています。何回でも挑戦できます。ホーム画面の「🗼 試練の塔」から遊べます。','Defeat the enemies we prepared one floor at a time and aim for the top of 30 floors. Enemies get stronger as you climb, and every 10th floor has a boss with special abilities. Retry as many times as you like. Play from “🗼 Trial Tower” on the home screen.','កម្ចាត់សត្រូវម្ដងមួយជាន់ ហើយឡើងដល់កំពូលជាន់ទី 30។ ជាន់ខ្ពស់ សត្រូវខ្លាំងជាង ហើយរៀងរាល់ 10 ជាន់មានបុសដែលមានសមត្ថភាពពិសេស។ អាចសាកបានគ្មានដែនកំណត់។ លេងពី «🗼 ប៉មសាកល្បង» នៅទំព័រដើម។'))
  +B(LL('🎁 塔だけの報酬','🎁 Tower-only rewards','🎁 រង្វាន់សម្រាប់តែប៉ម'),LL('初めてクリアした階ではガチャチケットがもらえます。5階ごとにガチャでは手に入らない限定キャラ・武器・エフェクト、10・20・30階では限定の称号ももらえます。30階を制覇すると、SSキャラ「塔の覇王クロコ」と称号「塔の頂点」！','Each floor gives gacha tickets the first time you clear it. Every 5 floors you get characters, weapons or effects you can’t get from the gacha, plus exclusive titles on floors 10, 20 and 30. Conquer floor 30 for the SS character “Croco, Tower Sovereign” and the title “Tower Summit”!','ជាន់នីមួយៗផ្ដល់សំបុត្រកាឆាពេលឆ្លងលើកដំបូង។ រៀងរាល់ 5 ជាន់ទទួលតួអង្គ អាវុធ ឬអេហ្វេកត៌ពិសេស ហើយជាន់ 10, 20, 30 ទទួលងារពិសេស។'))
  +B(LL('📊 ランキングについて','📊 About the ranking','📊 អំពីចំណាត់ថ្នាក់'),LL('試練の塔の勝ち負けは、ランキングの勝利数・勝率には入りません。','Trial Tower wins and losses do not count toward the ranking.','ការឈ្នះ ឬចាញ់ក្នុងប៉ម មិនរាប់ក្នុងចំណាត់ថ្នាក់ទេ។'))
@@ -1998,7 +2242,7 @@ const LVR=[
  {lv:75,pick:'SS',tk:30},{lv:99,items:['c10','e10'],pick:'SS',tk:50,vc:5}];
 const BGLV={};LVR.forEach(q=>{if(q.bg)BGLV[q.bg]=q.lv});
 const BGN={tk:['東京','Tokyo','តូក្យូ'],ak:['アンコールワット','Angkor Wat','អង្គរវត្ត'],ny:['ニューヨーク','New York','ញូវយ៉ក'],pa:['パリ','Paris','ប៉ារីស'],eg:['エジプト','Egypt','អេហ្ស៊ីប'],ky:['京都','Kyoto','គីយ៉ូតូ'],sp:['宇宙','Space','អវកាស']};
-const itm=id=>{const i=ECG.oi?ECG.oi(id,id[0]):null;return i?esc(i.e)+' '+esc(tr(i.n)):esc(id)};
+const itm=id=>{const i=ECG.oi?ECG.oi(id,id[0]):null;return i?(i.img?ECG.vis(i):esc(i.e))+' '+esc(tr(i.n)):esc(id)};
 const SK_I='🛌',VC_I='🌌';
 function parts(q){const a=[];
  (q.items||[]).forEach(id=>a.push(itm(id)));
@@ -2011,6 +2255,7 @@ function parts(q){const a=[];
 const rwHtml=q=>'🎁 Lv.'+q.lv+' '+LL('到達報酬','reward','រង្វាន់')+': '+parts(q);
 /* ---- 称号 ---- */
 const T=(ja,en,km,rj,re,rk,q,cat,own,hid)=>({ja,en,km,rj,re,rk,q,cat,own,hid});
+const allS1=()=>{try{const inv=(ECG.G&&ECG.G.inv)||{},a=ECG.items().filter(i=>i.lim===1);return a.length>0&&a.every(i=>inv[i.id])}catch(e){return false}};
 const allS0=()=>{try{const inv=(ECG.G&&ECG.G.inv)||{},a=ECG.items().filter(i=>i.lim===0);return a.length>0&&a.every(i=>inv[i.id])}catch(e){return false}};
 const allSS=()=>{try{const inv=(ECG.G&&ECG.G.inv)||{},a=ECG.items().filter(i=>i.r==='SS'&&i.lim===undefined);return a.length>0&&a.every(i=>inv[i.id])}catch(e){return false}};
 const SP={
@@ -2032,6 +2277,7 @@ const SP={
  ug2:T('ガチャの求道者','Gacha Seeker','អ្នកស្វែងរកកាឆា','ガチャを通算500連引く','Pull the gacha 500 times','ទាញកាឆា ៥០០ដង',3,'gacha',()=>S.gp>=500),
  ug3:T('豪運の持ち主','Lucky Star','មានសំណាងធំ','ガチャでSSを引く','Pull an SS from the gacha','ទាញបាន SS ពីកាឆា',3,'gacha',()=>S.gs>=1),
  uc0:T('原初の支配者','Primordial Sovereign','អ្នកគ្រប់គ្រងដើមកំណើត','シーズン0限定ガチャのアイテムを全部そろえる','Collect every Season 0 limited gacha item','ប្រមូលរបស់កាឆាកំណត់រដូវកាល 0 ទាំងអស់',5,'gacha',()=>allS0()),
+ uc1:T('星霜の君主','Frost-Star Monarch','ស្ដេចផ្កាយទឹកកក','シーズン1限定ガチャのアイテムを全部そろえる','Collect every Season 1 limited gacha item','ប្រមូលរបស់កាឆាកំណត់រដូវកាល 1 ទាំងអស់',5,'gacha',()=>allS1()),
  ug4:T('虹を呼ぶ者','Rainbow Caller','អ្នកហៅឥន្ទធនូ','ガチャでSSを3個引く','Pull 3 SS from the gacha','ទាញបាន SS ៣',4,'gacha',()=>S.gs>=3),
  ua:T('全キャラを知る者','Knower of All','អ្នកស្គាល់តួអង្គទាំងអស់','全キャラを'+TIERS[0]+'回以上使う','Use every character '+TIERS[0]+'+ times','ប្រើតួអង្គទាំងអស់ '+TIERS[0]+' ដងឡើងទៅ',3,'misc',()=>CH.every(e=>(S.u[e]||0)>=TIERS[0])),
  us7:T('七日の誓い','Seven-Day Oath','ពាក្យសន្យាប្រាំពីរថ្ងៃ','7日連続ログイン','7-day login streak','ចូលបន្តគ្នា ៧ថ្ងៃ',1,'login',()=>S.lm>=7),
@@ -2047,7 +2293,7 @@ const SP={
 /* イベント称号 */
 SP.uhw=T('ハッピーハロウィン','Happy Halloween','រីករាយថ្ងៃហាឡូវីន','ハロウィン期間(2026/10/30〜11/5)にログイン','Log in during Halloween (Oct 30 – Nov 5, 2026)','ចូលក្នុងរដូវហាឡូវីន (30 តុលា – 5 វិច្ឆិកា 2026)',3,'event',()=>{try{return !!localStorage.getItem('echw26')}catch(e){return false}});
 /* シーズン報酬の称号 */
-for(let n=0;n<=ECS.cur();n++)[[1,'覇王','Overlord','អធិរាជ','1位','1st place','លេខ 1',5],[2,'英雄','Hero','វីរបុរស','2〜3位','2nd-3rd','លេខ 2-3',4],[3,'精鋭','Elite','ឥស្សរជន','4〜10位','4th-10th','លេខ 4-10',3],[4,'挑戦者','Challenger','អ្នកប្រកួត','11〜30位','11th-30th','លេខ 11-30',2]].forEach(x=>{const id='sr'+n+'_'+x[0];
+for(let n=0;n<=(window.EC_S1_PREVIEW?Math.max(1,ECS.cur()):ECS.cur());n++)[[1,'覇王','Overlord','អធិរាជ','1位','1st place','លេខ 1',5],[2,'英雄','Hero','វីរបុរស','2〜3位','2nd-3rd','លេខ 2-3',4],[3,'精鋭','Elite','ឥស្សរជន','4〜10位','4th-10th','លេខ 4-10',3],[4,'挑戦者','Challenger','អ្នកប្រកួត','11〜30位','11th-30th','លេខ 11-30',2]].forEach(x=>{const id='sr'+n+'_'+x[0];
  SP[id]=T('S'+n+' '+x[1],'S'+n+' '+x[2],'S'+n+' '+x[3],'シーズン'+n+'ランキング '+x[4],'Season '+n+' ranking: '+x[5],'ចំណាត់ថ្នាក់រដូវកាល '+n+' '+x[6],x[7],'season',()=>{try{return !!(JSON.parse(localStorage.getItem('ecsrw')||'{}').t||{})[id]}catch(e){return false}})});
 const CATS=[['rank','🎖 階級','🎖 Rank','🎖 ឋានន្តរស័ក្ដិ'],['battle','⚔️ 戦闘','⚔️ Battle','⚔️ ការប្រយុទ្ធ'],['gacha','🎰 ガチャ','🎰 Gacha','🎰 កាឆា'],['login','📅 ログイン','📅 Login','📅 ចូលប្រចាំថ្ងៃ'],['misc','✨ その他','✨ Other','✨ ផ្សេងៗ'],['tower','🗼 試練の塔','🗼 Trial Tower','🗼 ប៉មសាកល្បង'],['event','🎉 イベント','🎉 Events','🎉 ព្រឹត្តិការណ៍'],['season','🏆 シーズン','🏆 Season','🏆 រដូវកាល'],['hidden','🕳 隠し称号','🕳 Hidden','🕳 ងារលាក់']];
 const SPK=Object.keys(SP);
@@ -2131,6 +2377,7 @@ D('uh1','虚空の支配者',5,'hidden','通常ガチャのSSを全種類そろ�
 D('uh2','終焉を超えし者',5,'hidden','Lv.99に到達し、通算1000勝する','砕けた鎖が両脇に散り、板は闇から夜明けの光へ',tt('d-uh2',A('l',brokenChain(false))+A('r',brokenChain(true))+pl('終焉を超えし者','<i class="sh"></i>')+'<i class="spk" style="left:-8px;top:30%"></i><i class="spk" style="right:-8px;top:60%;animation-delay:.7s"></i><i class="spk" style="left:50%;top:-6px;animation-delay:.3s"></i>'));
 D('uh3','ミリ残りの奇跡',4,'hidden','HP1で生き残って勝利する','ほぼ空のHPゲージが点滅し、心電図が走る。頭上に光輪',tt('d-uh3',A('t','<span class="halo"></span>')+pl('ミリ残りの奇跡','<svg class="ecg" viewBox="0 0 120 30" preserveAspectRatio="none"><polyline points="0,15 20,15 26,15 30,5 34,25 38,15 70,15 76,15 80,3 84,26 88,15 120,15" fill="none" stroke="#ff2a3a" stroke-width="1.2" stroke-dasharray="60 60" opacity=".35" style="animation:u_ecg 2.4s linear infinite"/></svg><span class="hp"></span>')));
 D('uc0','原初の支配者',5,'gacha','シーズン0限定ガチャのアイテムを全部そろえる','ホログラムの板の周りを七色の光が回り、2つの衛星が周回する。右上に「S0」',tt('d-uc0',pl('<span class="tx">原初の支配者</span>','<i class="scan"></i><i class="shine"></i>')+'<i class="s0">S0</i><i class="orb"></i><i class="orb o2"></i><i class="px" style="left:6%;top:-5px"></i><i class="px" style="right:14%;bottom:-5px;animation-delay:.5s"></i><i class="px" style="left:40%;top:-6px;animation-delay:.9s"></i>'));
+D('uc1','星霜の君主',5,'gacha','シーズン1限定ガチャのアイテムを全部そろえる','夜空の氷の板にオーロラが流れ、雪が降り続ける。上で星の結晶が回り、右上に「S1」',tt('d-uc1',pl('<span class="tx">星霜の君主</span>','<i class="au"></i><i class="sn"></i><i class="sn s2"></i>')+'<i class="st"></i><i class="s1">S1</i><i class="cr"></i><i class="cr c2"></i>'));
 D('uhw','ハッピーハロウィン',3,'event','ハロウィン期間にログイン','紫と橙の板。両脇でカボチャが揺れ、上をコウモリが飛ぶ',tt('d-uhw',A('l','<span class="pk">🎃</span>')+pl('ハッピーハロウィン')+A('r','<span class="pk">🎃</span>')+'<span class="bats"><i class="bat">🦇</i><i class="bat b2">🦇</i><i class="bat b3">🦇</i></span>'));
 D('ut10','塔の挑戦者',3,'tower','試練の塔10階をクリア','石レンガの看板。左に小さな塔',tt('d-ut10',A('l','<span class="tp">🗼</span>')+pl('塔の挑戦者')));
 D('ut20','天空の征服者',4,'tower','試練の塔20階をクリア','青空と雲の板を金のふちが囲む',tt('d-ut20',A('l','<span class="tp">☁️</span>')+pl('天空の征服者')+A('r','<span class="tp">☁️</span>')));
@@ -2142,7 +2389,7 @@ D('t3','○○を極めし者',3,'usage','そのキャラを150回使う','金�
 
 return Object.fromEntries(ds.map(d=>[d.id,d.html]))})();
 
-const UPAD={ur1:[24,18,4,18],ur2:[6,30,6,30],ur3:[20,28,6,28],ur4:[20,8,20,8],ub1:[6,14,14,14],ub2:[6,26,6,26],ub3:[8,26,8,26],ub4:[8,50,12,50],ub5:[6,30,6,30],ub6:[14,12,6,12],ub7:[6,6,6,22],ub8:[8,26,8,26],ub9:[6,42,6,42],ub10:[6,6,14,6],ug1:[6,6,16,6],ug2:[10,32,10,32],ug3:[10,26,6,26],ug4:[26,30,6,30],ua:[6,40,6,40],us7:[6,6,14,6],us30:[6,26,14,26],us100:[18,24,10,24],us365:[8,8,14,8],uf:[8,16,14,8],uh1:[16,22,16,22],uh2:[8,48,8,48],uh3:[18,8,6,8],uc0:[14,20,10,20],uhw:[18,30,8,30],ut10:[8,30,8,10],ut20:[8,34,8,34],ut30:[24,10,8,10],t1:[6,6,6,16],t2:[34,8,6,8],t3:[26,8,6,8]};
+const UPAD={uc1:[22,26,8,26],ur1:[24,18,4,18],ur2:[6,30,6,30],ur3:[20,28,6,28],ur4:[20,8,20,8],ub1:[6,14,14,14],ub2:[6,26,6,26],ub3:[8,26,8,26],ub4:[8,50,12,50],ub5:[6,30,6,30],ub6:[14,12,6,12],ub7:[6,6,6,22],ub8:[8,26,8,26],ub9:[6,42,6,42],ub10:[6,6,14,6],ug1:[6,6,16,6],ug2:[10,32,10,32],ug3:[10,26,6,26],ug4:[26,30,6,30],ua:[6,40,6,40],us7:[6,6,14,6],us30:[6,26,14,26],us100:[18,24,10,24],us365:[8,8,14,8],uf:[8,16,14,8],uh1:[16,22,16,22],uh2:[8,48,8,48],uh3:[18,8,6,8],uc0:[14,20,10,20],uhw:[18,30,8,30],ut10:[8,30,8,10],ut20:[8,34,8,34],ut30:[24,10,8,10],t1:[6,6,6,16],t2:[34,8,6,8],t3:[26,8,6,8]};
 const USAMP={t1:'駆け出しのカメ',t2:'カメの使い手',t3:'カメを極めし者'};
 const chip=id=>{const t=tinfo(id);if(!t)return'';const key=t.sp?id:'t'+t.tier;let h=UTD[key];if(!h)return chipOld(id);
  h=h.split(t.sp?SP[id].ja:USAMP[key]).join(esc(tname(id)));
@@ -2244,7 +2491,7 @@ function renderPick(){
  PM.innerHTML='<div class="hc"><div class="row"><b style="font-size:18px">🎁 '+LL('好きな景品を選ぼう','Choose your reward','ជ្រើសរើសរង្វាន់របស់អ្នក')+'</b><button class="btn alt" id="pkx" style="width:auto;margin:0;padding:6px 14px;font-size:13px">'+LL('あとで','Later','ពេលក្រោយ')+'</button></div>'
  +'<div class="mut" style="margin:6px 0">'+LL('レア度 ','Rarity ','កម្រិត ')+'<b style="color:'+RCOL[r]+'">'+r+'</b> / '+LL('残り '+S.pk.length+' 枚','Left: '+S.pk.length,'នៅសល់ '+S.pk.length)+'</div>'
  +'<div class="mtog">'+['c','w','e'].map(k=>'<button class="btn alt'+(k===pkTab?' on':'')+'" data-k="'+k+'" style="padding:8px 4px;font-size:13px">'+KN[k]+'</button>').join('')+'</div>'
- +'<div class="pkg">'+(pool.length?pool.map(i=>'<div class="pki'+(pkSel===i.id?' on':'')+'" data-i="'+i.id+'" style="--c:'+RCOL[r]+'"><div class="pke">'+esc(i.e)+'</div><div class="pkn">'+esc(tr(i.n))+'</div><div class="mut" style="font-size:10px">'+(inv[i.id]?'✅ ×'+inv[i.id]:'🆕')+'</div></div>').join(''):'<div class="mut" style="grid-column:1/-1;text-align:center;padding:14px">'+LL('このレア度の景品はありません','No rewards at this rarity','គ្មានរង្វាន់នៅកម្រិតនេះទេ')+'</div>')+'</div>'
+ +'<div class="pkg">'+(pool.length?pool.map(i=>'<div class="pki'+(pkSel===i.id?' on':'')+'" data-i="'+i.id+'" style="--c:'+RCOL[r]+'"><div class="pke">'+(i.img?ECG.vis(i):esc(i.e))+'</div><div class="pkn">'+esc(tr(i.n))+'</div><div class="mut" style="font-size:10px">'+(inv[i.id]?'✅ ×'+inv[i.id]:'🆕')+'</div></div>').join(''):'<div class="mut" style="grid-column:1/-1;text-align:center;padding:14px">'+LL('このレア度の景品はありません','No rewards at this rarity','គ្មានរង្វាន់នៅកម្រិតនេះទេ')+'</div>')+'</div>'
  +'<button class="btn'+(pkSel?'':' dis')+'" id="pkok">✅ '+LL('これにする','Take this one','យកមួយនេះ')+'</button></div>';
  $$('#pkx').onclick=closePick;
  PM.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{pkTab=b.dataset.k;pkSel=null;renderPick()});
@@ -2272,7 +2519,7 @@ function rollText(ro,m){
  if(ro.kind==='xp')return '⭐ +'+ro.xp+' EXP';
  if(ro.kind==='sk')return SK_I+' '+LL('お休み券','Skip pass','ប័ណ្ណសម្រាក')+' ×1';
  if(ro.kind==='vc')return VC_I+' '+LL('限定ガチャ券','Limited voucher','ប័ណ្ណកាឆាកំណត់')+' ×1';
- if(ro.kind==='item')return '<b style="color:'+RCOL[ro.rar]+'">['+ro.rar+']</b> '+esc(ro.item.e)+' '+esc(tr(ro.item.n));return''}
+ if(ro.kind==='item')return '<b style="color:'+RCOL[ro.rar]+'">['+ro.rar+']</b> '+(ro.item.img?ECG.vis(ro.item):esc(ro.item.e))+' '+esc(tr(ro.item.n));return''}
 function renderLB(){
  const p=pending(),t=today(),sc=season(t),stamps=(S.cals===sc.n?S.cald:[]),c=stamps.length;
  const cd=p?p.d:((S.ls-1)%7+7)%7,dn=p?(p.st>1||p.use?p.d:0):cd+1;
@@ -2752,14 +2999,14 @@ const SR_TIERS=[ // from〜to位の報酬。t=称号の段階(1〜4)、c=キャ�
  {from:4,to:10,tk:300,t:3},
  {from:11,to:30,tk:100,t:4}];
 const SR_JOIN=20; // 参加賞(そのシーズンに1戦以上)
-const SR_CHARS={0:{1:'cr0a',2:'cr0b'}}; // シーズンごとの報酬キャラ
+const SR_CHARS={0:{1:'cr0a',2:'cr0b'},1:{1:'cr1a',2:'cr1b'}}; // シーズンごとの報酬キャラ
 const $$=s=>document.querySelector(s),KEY='ecsrw';
 let S={};try{S=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
 S.done=Array.isArray(S.done)?S.done:[];S.t=S.t||{};S.ids=Array.isArray(S.ids)?S.ids:[];
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const tierOf=r=>r>0?SR_TIERS.find(x=>r>=x.from&&r<=x.to)||null:null;
 const TN=[null,['覇王','Overlord','អធិរាជ'],['英雄','Hero','វីរបុរស'],['精鋭','Elite','ឥស្សរជន'],['挑戦者','Challenger','អ្នកប្រកួត']];
-const itName=id=>{const i=(window.ECG?ECG.items():[]).find(x=>x.id===id);return i?i.e+' '+LL(i.n,i.ne,i.n):id};
+const itName=id=>{const i=(window.ECG?ECG.items():[]).find(x=>x.id===id);return i?(i.img?ECG.vis(i):i.e)+' '+LL(i.n,i.ne,i.n):id};
 const rwHtml=(sn,r)=>{const t=tierOf(r),a=[];
  if(t){const c=t.c&&(SR_CHARS[sn]||{})[t.c];if(c)a.push('🎁 '+LL('限定キャラ','Exclusive character','តួអង្គពិសេស')+': '+esc(itName(c)));
   a.push('🏅 '+LL('称号','Title','ងារ')+': '+(window.tb?tb('sr'+sn+'_'+t.t):''));a.push('🎟 '+LL('ガチャチケット','Gacha tickets','សំបុត្រកាឆា')+' ×'+t.tk)}
@@ -2804,9 +3051,9 @@ async function admin(){const ov=document.createElement('div');ov.style.cssText='
  try{const f=ranks(await db('GET','ps/'+recSn));h+='<div class="tc"><b>'+LL('今シーズンの暫定順位','Current standings','')+'</b> ('+f.n+LL('人','','')+')'+f.L.slice(0,10).map((x,i)=>'<div>'+(i+1)+'. '+esc(x.n)+' <span class="mut">'+x.wins+'-'+x.losses+'</span></div>').join('')+'</div>'}catch(e){}
  ov.innerHTML=h+'<button class="btn alt" id="adx">'+LL('閉じる','Close','បិទ')+'</button></div>';document.body.appendChild(ov);
  ov.querySelector('#adx').onclick=()=>{ov.remove();history.replaceState(null,'',location.pathname+location.search)};
- ov.querySelectorAll('[data-pv]').forEach(b=>b.onclick=()=>popup(recSn,+b.dataset.pv,57,true))}
+ ov.querySelectorAll('[data-pv]').forEach(b=>b.onclick=()=>popup(window.EC_S1_PREVIEW?1:recSn,+b.dataset.pv,57,true))}
 // ---- ランキング報酬の一覧 ----
-window.ecSRView=function(){const sn=recSn,end=new Date(ECS.start(sn+1)-1),ed=end.toLocaleString('ja-JP',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+window.ecSRView=function(){const sn=window.EC_S1_PREVIEW?1:recSn,end=new Date(ECS.start(sn+1)-1),ed=end.toLocaleString('ja-JP',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
  const ov=document.createElement('div');ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:100000;overflow:auto;padding:16px';
  const row=(lbl,t,tk)=>{const c=t&&t.c&&(SR_CHARS[sn]||{})[t.c];const it=c&&(ECG.items().find(x=>x.id===c));
   return '<div class="tc"><b style="font-size:18px">'+lbl+'</b>'
